@@ -1,2 +1,30 @@
-<!--pages/question/list/index.wxml-->
-<text>pages/question/list/index.wxml</text>
+<view class="c-menu">
+  <view class="c-menu__spec">速查手册</view>
+  <view class="c-menu__knowledge-graph">知识点图谱</view>
+  <view class="c-menu__create-question">创建问题</view>
+</view>
+
+<view class="c-questions-info">
+  当前章节：
+  <view class="c-questions-info__subject">第一单元 1.桃花源记</view>
+  <view class="c-questions-info__count">共<view>30</view>条</view>
+</view>
+
+<scroll-view class="c-question-lists">
+  <view class="c-question-list c-question-list--txt">
+    <view class="c-question-list__info">
+      <view class="c-question-list__info-title">章节：第一单元 1.桃花源记</view>
+      <view class="c-question-list__info-time">2018-11-09</view>
+    </view>
+    <view class="c-question-list__con-box">
+      <view class="c-question-list__con">题干内容</view>
+    </view>
+    <view class="c-question-list__operator">
+      <view class="c-question-list__bind-class">绑定课堂</view>
+      <view class="c-question-list__edit">编辑</view>
+      <view class="c-question-list__del">删除</view>
+    </view>
+  </view>
+</scroll-view>
+
+<tabbar bindchange="handleTabChange"></tabbar>
