@@ -16,7 +16,11 @@ export default {
   // 预习详情
   questionEdit: '/pages/preview/detail/index',
   // 做题
-  questionEdit: '/pages/preview/exercises/index',
+  questionDo: '/pages/preview/exercises/index',
   // 个人首页
-  profile: '/pages/profile/index'
+  profile: '/pages/profile/index',
+  // 老师我的班级
+  myClass: '/pages/myClass/index',
+  // 历史记录
+  record: '/pages/record/index'
 };

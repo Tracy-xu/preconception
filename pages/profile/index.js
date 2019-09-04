@@ -1,18 +1,29 @@
 // pages/profile/index.js
+import router from '../../router/index.js';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    roleId: 1, //1 老师,2 学生
+    img:'http://g.hiphotos.baidu.com/image/pic/item/c2cec3fdfc03924590b2a9b58d94a4c27d1e2500.jpg'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log("dddd")
+    wx.getUserInfo({
+      success: function(res) {
+        console.log(res)
+        alert(res.avatarUrl)
+        this.setData({
+          img: res.avatarUrl,
+        })
+      }
+    })
   },
 
   /**
@@ -62,5 +73,21 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  /**
+     * 跳转我的班级页面
+     */
+  goToMyClass: function () {
+    wx.navigateTo({
+      url: router.myClass
+    });
+  },
+  /**
+     * 跳转我的记录页面
+     */
+  goToRecord: function () {
+    wx.navigateTo({
+      url: router.record
+    });
+  },
 })

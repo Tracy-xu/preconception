@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/record/index",
+    "pages/profile/index",
     "pages/question/list/index",
     "pages/auth/index",
     "pages/question/create/index",
@@ -9,12 +11,12 @@
     "pages/preview/detail/index",
     "pages/preview/exercises/index",
     "pages/analysis/index",
-    "pages/profile/index"
+    "pages/myClass/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "前概念",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",

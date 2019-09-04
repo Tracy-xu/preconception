@@ -1,1 +1,10 @@
 /* pages/profile/index.wxss */
+.c-arrow{display:inline-block;font-size:50rpx;color:#999;}
+.c-profile-header{display:flex;align-items:center;height:240rpx;background:#fff;margin-bottom:22rpx;border-bottom:1px solid #e6e6e6;}
+.c-profile-operation{display:felx;align-items:center;position:absolute;right:36rpx;}
+.c-profile-img{width:160rpx;height:160rpx;margin:0 30rpx 0 36rpx; border-radius:50%;}
+.c-profile-name{display:inline-block;height:42rpx;font-size:40rpx;}
+.c-profile-list{background:#fff;border:1px solid #e6e6e6;padding:0 24rpx;}
+.c-profile-list__item{display:flex;align-items:center;height:88rpx;font-size:38rpx;color:#444;border-bottom:1px solid #e6e6e6;}
+.c-profile-list__item:last-child{border:none;}
+.c-profile-list__item .c-arrow{position:absolute;right:24rpx;}

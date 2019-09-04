@@ -1,0 +1,32 @@
+<view>
+  <view class="c-record-header">
+    <view class="c-record-header__time">
+      <view class="c-record-header__tit">
+        今日记录
+      </view>
+      <i class="c-time-btn"></i>
+      <view class="c-record-header__con">
+        {{date}}
+      </view>
+      <i class="c-time-btn"></i>
+      <i class="c-tody-btn">
+        今天
+      </i>
+    </view>
+    <view class="c-record-header__tips">
+      共30条
+    </view>
+  </view>
+  <view class="c-reord-list">
+    <view class="c-reord-list__item">
+      <view class="c-reord-list__tit">
+        <i class="c-reord-list__titicon"></i>
+        杭州市第二中学七年级一班
+      </view>
+      <view class="c-reord-list__subtit">
+        <i class="c-reord-list__subicon"></i>
+        杭州市第二中学七年级一班
+        </view>
+    </view>
+  </view>
+</view>

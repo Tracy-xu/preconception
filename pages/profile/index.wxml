@@ -1,2 +1,21 @@
 <!--pages/profile/index.wxml-->
-<text>pages/profile/index.wxml</text>
+<view class="c-profile-header">
+  <image src="{{img}}" class="c-profile-img"></image>
+  <view class="c-profile-name">
+    张三
+  </view>
+  <view class="c-profile-operation" wx:if="{{roleId === 2}}">
+    设置
+    <view class="c-arrow">></view>
+  </view>
+</view>
+<view class="c-profile-list">
+  <view class="c-profile-list__item" bindtap="goToMyClass" wx:if="{{roleId === 1}}">
+    <view>我的班级</view>
+    <view class="c-arrow">></view>
+  </view>
+  <view class="c-profile-list__item" bindtap="goToRecord">
+    <view>历史记录</view>
+    <view class="c-arrow">></view>
+  </view>
+</view>
