@@ -1,0 +1,17 @@
+<view class="m-tabbar">
+  <view
+    class="m-tabbar__item {{current ===0 ? 'm-tabbar__item--active' : ''}}"
+    data-index='0'
+    bindtap="handleTabChange"
+  >
+    前概念
+  </view>
+
+  <view
+    class="m-tabbar__item {{current ===1 ? 'm-tabbar__item--active' : ''}}"
+    data-index='1'
+    bindtap="handleTabChange"
+  >
+    我的
+  </view>
+</view>
