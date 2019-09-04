@@ -1,3 +1,6 @@
+@import 'plugins/weui/dialog/dialog/dialog.wxss';
+@import 'assstes/styles/common.wxss';
+
 /**app.wxss**/
 .container {
   height: 100%;

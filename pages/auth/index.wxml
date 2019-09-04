@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="container">
+  <mp-dialog 
+    title="登录" 
+    show="{{true}}" 
+    bindbuttontap="handleLogin" 
+    buttons="{{buttons}}"
+  >
+    <view>
+      <view class="section">
+        <i class="c-icon"></i>
+        <input placeholder="请输入账号" class="login-ipt"/>
+      </view>
+      <view class="section">
+        <i class="c-icon"></i>
+        <input placeholder="请输入密码" class="login-ipt" auto-focus/>
+      </view>
+    </view>
+  </mp-dialog>
+</view>

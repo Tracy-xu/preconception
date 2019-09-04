@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "mp-dialog": "../../components/dialog/dialog/dialog",
-    "mp-tabbar": "../../components/tabbar/tabbar/tabbar"
-  }
-}

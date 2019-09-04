@@ -1,7 +1,15 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/auth/index",
+    "pages/question/list/index",
+    "pages/question/create/index",
+    "pages/question/edit/index",
+    "pages/question/detail/index",
+    "pages/preview/list/index",
+    "pages/preview/detail/index",
+    "pages/preview/exercises/index",
+    "pages/analysis/index",
+    "pages/profile/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -9,5 +17,9 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "mp-dialog": "plugins/weui/dialog/dialog/dialog",
+    "mp-tabbar": "plugins/weui/tabbar/tabbar/tabbar"
+  }
 }
