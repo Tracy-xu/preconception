@@ -1,33 +1,25 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button
-      wx:if="{{!hasUserInfo && canIUse}}"
-      open-type="getUserInfo"
-      bindgetuserinfo="getUserInfo"
-    >
-      获取头像昵称
-    </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-  <view>
-    <view class="a">
-      dfd
+  <view>dfgdfg</view>
+  <mp-dialog 
+    title="登录" 
+    show="{{dialogShow}}" 
+    bindbuttontap="tapDialogButton" 
+    buttons="{{buttons}}">
+    <view>
+    <view class="section">
+    <i class="c-icon"></i>
+      <input placeholder="请输入账号" class="login-ipt"/>
     </view>
-    <view class="a">
-      dfd
+    <view class="section">
+     <i class="c-icon"></i>
+      <input placeholder="请输入密码" class="login-ipt" auto-focus/>
     </view>
-    <button bindtouchstart="handleTouchStart">232</button>
-    
-    <!-- component -->
-    <demo></demo>
-    <!-- 链接 -->
-    <navigator url="../logs/logs?a=1">ss</navigator>
-  </view>
+    </view>
+  </mp-dialog>
+  <mp-tabbar 
+    style="position:fixed;bottom:0;width:100%;left:0;right:0;" 
+    list="{{list}}" 
+    bindchange="tabChange">
+    </mp-tabbar>
 </view>

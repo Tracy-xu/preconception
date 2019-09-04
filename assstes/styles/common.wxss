@@ -1,0 +1,24 @@
+.section{
+  padding-top:24px;
+  width:500rpx;
+  height:104rpx;
+  box-sizing:border-box;
+  border-bottom:1px solid #e6e6e6;
+}
+.c-icon{
+  display:inline-block;
+  width:24rpx;
+  height:24rpx;
+}
+.section .c-icon{
+  float:left;
+}
+.section .login-ipt{
+  margin-left:30px;
+}
+.login-ipt{
+  text-align:left;
+  font-size:28rpx;
+  line-height:80rpx;
+  color:#999;
+}

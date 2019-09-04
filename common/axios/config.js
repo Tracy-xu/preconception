@@ -1,5 +1,6 @@
 import axios from './axios.min.js';
-axios.defaults.baseURL = 'http://api.kpg123.com';
+// axios.defaults.baseURL = 'http://api.kpg123.com';
+axios.defaults.baseURL = 'http://122.112.239.223:13000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const Axios = axios.create({
@@ -26,10 +27,10 @@ Axios.defaults.adapter = function (config) {
 
 Axios.interceptors.request.use((config) => {
   // 此处需要改为微信的存储
-  if (localStorage.token) {
-    const token = JSON.parse(localStorage.token);
-    config.headers.Authorization = `${token.token_type} ${token.access_token}`;
-  }
+  // if (localStorage.token) {
+  //   const token = JSON.parse(localStorage.token);
+  //   config.headers.Authorization = `${token.token_type} ${token.access_token}`;
+  // }
 
   return config;
 }, error => Promise.reject(error));

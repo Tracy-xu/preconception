@@ -1,3 +1,5 @@
+@import '../../components/dialog/dialog/dialog.wxss';
+@import '../../assstes/styles/common.wxss';
 /**index.wxss**/
 .userinfo {
   display: flex;
@@ -23,9 +25,4 @@
 .a {
   border: 1px red solid;
   display: inline-block;
-}
-
-.container {
-  border: 1px red solid;
-
 }
