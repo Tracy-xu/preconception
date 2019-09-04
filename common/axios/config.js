@@ -26,11 +26,11 @@ Axios.defaults.adapter = function (config) {
 };
 
 Axios.interceptors.request.use((config) => {
-  // 此处需要改为微信的存储
-  // if (localStorage.token) {
-  //   const token = JSON.parse(localStorage.token);
-  //   config.headers.Authorization = `${token.token_type} ${token.access_token}`;
-  // }
+  let token = wx.getStorageSync('token');
+  if (token) {
+    token = JSON.parse(token);
+    config.headers.Authorization = `${token.token_type} ${token.access_token}`;
+  }
 
   return config;
 }, error => Promise.reject(error));
