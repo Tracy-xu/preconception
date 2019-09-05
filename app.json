@@ -11,7 +11,7 @@
     "pages/analysis/index",
     "pages/profile/index",
     "pages/record/index",
-    "pages/myClass/index"
+    "pages/my-class/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
