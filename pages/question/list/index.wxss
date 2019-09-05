@@ -7,8 +7,11 @@
 .c-menu__create-question {display: inline-flex; flex-direction: column; align-items: center;}
 .c-menu__spec::before,
 .c-menu__knowledge-graph::before,
-.c-menu__create-question::before {content: ""; width: 66rpx; height: 66rpx;}
-.c-menu__spec::before{background:url('../../../../assets/images/makeQuestion.png') no-repeat center cover;}
+.c-menu__create-question::before {content: ""; width: 66rpx; height: 66rpx;background-size:100% 100%;
+-moz-background-size:100% 100%;}
+.c-menu__spec::before{background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/notebook.png')  ;}
+.c-menu__knowledge-graph::before{background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/map.png')  ;}
+.c-menu__create-question::before{background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/makeQuestion.png')  ;}
 
 /**
  * 题库信息
