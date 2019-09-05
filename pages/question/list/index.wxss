@@ -41,7 +41,10 @@
 .c-question-list__del {display: inline-flex; font-size: 44rpx; color: #999999FF; align-items: center;}
 .c-question-list__bind-class::before,
 .c-question-list__edit::before,
-.c-question-list__del::before {content: ""; width: 50rpx; height: 50rpx; margin-right: 15rpx; background: #f00;}
+.c-question-list__del::before {content: ""; width: 50rpx; height: 50rpx; margin-right: 15rpx;background-size:100% 100%;}
+.c-question-list__bind-class::before{background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/bindclass.png')}
+.c-question-list__edit::before{background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/edit.png')}
+.c-question-list__del::before{background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/delete.png')}
 /* 标签 */
 .c-question-list__con-box--txt::after,
 .c-question-list__con-box--img::after,

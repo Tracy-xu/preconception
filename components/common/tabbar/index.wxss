@@ -1,5 +1,9 @@
 .m-tabbar {position: fixed; display: flex; height: 129rpx; bottom: 0; left: 0; right: 0; align-items: center; justify-content: space-around; font-size: 34rpx; box-shadow:-1px -11px 27px 0px rgba(0, 0, 0, 0.1); background: #fff;}
 .m-tabbar__item {display: inline-flex; flex-direction: column; align-items: center;}
 .m-tabbar__item--preview::before,
-.m-tabbar__item--profile::before {content: ""; width: 54rpx; height: 54rpx; background: #f00;}
+.m-tabbar__item--profile::before {content: ""; width: 54rpx; height: 54rpx;background-size:100% 100%;}
+.m-tabbar__item--preview::before{background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/preconcept.png')}
+.m-tabbar__item--profile::before {background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/my.png')}
+.m-tabbar__item--active.m-tabbar__item--preview::before{background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/activepreconcept.png')}
+.m-tabbar__item--active.m-tabbar__item--profile::before {background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/activemy.png')}
 .m-tabbar__item--active {color: #517B39FF;}

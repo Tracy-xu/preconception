@@ -1,4 +1,13 @@
 <view>
+<!-- 筛选 -->
+  <view class="c-sort">
+      <view class="c-sort__left">
+        共30条记录
+      </view>
+      <view class="c-sort__right">
+        <i class="c-sort__icon"></i>筛选
+      </view>
+  </view>
   <view class="c-record-header">
     <view class="c-record-header__time">
       <view class="c-record-header__tit">
