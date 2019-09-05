@@ -1,6 +1,6 @@
 <view class="m-tabbar">
   <view
-    class="m-tabbar__item {{current ===0 ? 'm-tabbar__item--active' : ''}}"
+    class="m-tabbar__item m-tabbar__item--preview {{current ===0 ? 'm-tabbar__item--active' : ''}}"
     data-index='0'
     bindtap="handleTabChange"
   >
@@ -8,7 +8,7 @@
   </view>
 
   <view
-    class="m-tabbar__item {{current ===1 ? 'm-tabbar__item--active' : ''}}"
+    class="m-tabbar__item m-tabbar__item--profile {{current ===1 ? 'm-tabbar__item--active' : ''}}"
     data-index='1'
     bindtap="handleTabChange"
   >
