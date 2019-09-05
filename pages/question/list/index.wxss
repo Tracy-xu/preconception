@@ -7,7 +7,8 @@
 .c-menu__create-question {display: inline-flex; flex-direction: column; align-items: center;}
 .c-menu__spec::before,
 .c-menu__knowledge-graph::before,
-.c-menu__create-question::before {content: ""; width: 66rpx; height: 66rpx; background: #f00;}
+.c-menu__create-question::before {content: ""; width: 66rpx; height: 66rpx;}
+.c-menu__spec::before{background:url('../../../../assets/images/makeQuestion.png') no-repeat center cover;}
 
 /**
  * 题库信息

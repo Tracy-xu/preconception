@@ -1,2 +1,3 @@
 @import "./reset.wxss";
 @import "./module.wxss";
+@import "./record.wxss";
