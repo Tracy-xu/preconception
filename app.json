@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/question/list/index",
-        "pages/index/index",
+    "pages/index/index",
     "pages/auth/index",
     "pages/question/create/index",
     "pages/question/edit/index",
