@@ -90,9 +90,7 @@ wx.navigateTo({
 
 在 plugins 文件夹。采用官方 weui。
 
-## 小程序技巧
-
-### 设置 Data
+## 组件
 
 ### 拍照
 
@@ -132,7 +130,9 @@ bindstoprecord 录像结束时出发，返回的结果时录像数据。可以�
 
 * 视频
 
+```
 <myk-video src="xxx"></myk-video>
+```
 
 ### 上传
 
