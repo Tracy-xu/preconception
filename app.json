@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/question/list/index",
+        "pages/index/index",
     "pages/auth/index",
     "pages/question/create/index",
     "pages/question/edit/index",
@@ -22,6 +23,9 @@
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "mp-dialog": "plugins/weui/dialog/dialog/dialog",
-    "mp-tabbar": "plugins/weui/tabbar/tabbar/tabbar"
+    "myk-tabbar": "components/common/tabbar/index",
+    "myk-video": "components/common/video/index",
+    "myk-audio": "components/common/audio/index",
+    "myk-camera": "components/common/camera/index"
   }
 }

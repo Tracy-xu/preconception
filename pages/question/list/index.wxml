@@ -44,5 +44,5 @@
   </scroll-view>
 
   <!-- tapbar -->
-  <tabbar bindchange="handleTabChange"></tabbar>
+  <myk-tabbar bindchange="handleTabChange"></myk-tabbar>
 </view>
