@@ -1,11 +1,12 @@
-// pages/analysis/index.js
+// pages/analysis/analysis-list/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    view: 'video',
+    width: 50,
   },
 
   /**

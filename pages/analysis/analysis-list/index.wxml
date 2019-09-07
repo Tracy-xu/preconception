@@ -1,0 +1,81 @@
+<!--pages/analysis/analysis-list/index.wxml-->
+<view class="c-analysislist">
+  <view class="c-analysislist__header">
+    <view class="c-analysislist__header-top">
+      <view class="c-aL__header-day"><icon class="c-aL__header-sub"></icon><view>20181215</view></view>
+      <view>全部</view>
+    </view>
+    <view class="c-aL__header-scholl">杭州市第二中学七年级一班</view>
+  </view>
+  <view class="c-analysislist__nav">
+    <view>
+      <view class="c-nav__people">
+        <view class="c-nav__num m-yellow">18</view><view>人</view>
+      </view>
+      <view class="c-nav__finishState">全部</view>
+    </view>
+    <view>
+      <view class="c-nav__people m-green">
+        <view class="c-nav__num">18</view> <view>人</view>
+      </view>
+      <view class="c-nav__finishState">完成</view>
+      </view>
+    <view>
+      <view class="c-nav__people">
+        <view class="c-nav__num m-crimson">18</view> <view>人</view>
+      </view>
+      <view class="c-nav__finishState">未完成</view>
+    </view>
+  </view>
+
+  <!-- 列表 -->
+  <view class="c-content">
+    <view class="c-content__header">
+      问题列表
+    </view>
+    <view class="c-content__list">
+      <view class="c-list__content">
+        <view class="c-list__content-text">这是几周前的一个早上，同收拾 了矛，收收拾收拾收拾收拾收拾 收拾收拾是收收收拾...
+          <icon wx:if="{{view === 'text'}}" class="c-list__content-type-text"></icon>
+          <icon wx:if="{{view === 'img'}}" class="c-list__content-type-img"></icon> 
+          <icon wx:if="{{view === 'voice'}}" class="c-list__content-type-img"></icon>
+          <icon wx:if="{{view === 'video'}}"  class="c-list__content-type-video"></icon>
+          <view class="c-list__content-all m-blur">全文</view>
+        </view>
+      </view>
+
+      <view class="c-list__footer">
+        <view class="c-list__footer-finishingRate">
+          <view class="c-list__finishingRate-num">56%</view>
+          <view>完成率</view>
+        </view>
+        <view class="c-list__footer-viewpoint">
+          <view class="c-list__footer-similarity">
+            <view class="c-list__footer-similarity-text">
+              相似观点
+            </view>
+            <view class="c-list__footer-progressBox">
+              <view  style="width:{{width}}%;" class="c-list__footer-progress {{width == 100 ? 'c-list__footer-progressall' : ''}}"></view>
+            </view>
+            <view class="m-crimson c-list__footer-similarityNum">
+              75%
+            </view>
+          </view>
+
+          <view class="c-list__footer-similarity">
+            <view class="c-list__footer-similarity-text">
+              无相似观点
+            </view>
+            <view class="c-list__footer-progressBox">
+              <view  style="width:{{width}}%;" class="c-list__footer-progress {{width == 100 ? 'c-list__footer-progressall' : ''}}"></view>
+            </view>
+            <view class="m-crimson c-list__footer-similarityNum">
+              75%
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
