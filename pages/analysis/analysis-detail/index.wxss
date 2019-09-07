@@ -1,0 +1,338 @@
+/* pages/analysis/analysis-detail/index.wxss */
+page{
+  min-height: 100%;
+}
+.c-body {
+  height: 100%;
+  background: #F2F2F2;
+}
+.c-detail__list {
+  margin-bottom: 20rpx;
+  background: #fff;
+}
+.c-detail__list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height:115rpx;
+  padding: 0 20rpx;
+  line-height: 50rpx;
+  border-bottom: solid 1rpx #D9D9D9;
+}
+.c-img__header-point {
+  width:160rpx;
+  height:62rpx;
+  margin-right: 27rpx;
+  background:rgba(255,131,31,1);
+}
+.c-img__header-left {
+  display: flex;
+}
+.c-img__header-peoplenum {
+  display: inline-block;
+  color: #517B39;
+}
+.c-img__header-people {
+  display: flex;
+  font-size:34rpx;
+}
+.c-img__header-right {
+  display: flex;
+}
+.c-img__header-tactics {
+  padding: 4rpx 6rpx;
+  margin-right: 40rpx;
+  font-size:44rpx;
+  background: #3484C2;
+  color: #fff;
+  border-radius:4rpx;
+}
+.c-img__header-pack {
+  font-size:44rpx;
+  color: #999;
+}
+.c-img__header-angle {
+  display: inline-block;
+  width:36rpx;
+  height:23rpx;
+  background: #999;
+}
+.c-img__content {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 2rpx 10rpx;
+}
+.c-img__list {
+  width:340rpx;
+  height:382rpx;
+  margin: 20rpx 0 0 22rpx;
+  background:rgba(255,255,255,1);
+  border:2rpx solid rgba(217,217,217,1);
+}
+.c-img__list--active {
+  box-shadow:0rpx 6rpx 38rpx 0rpx rgba(0, 0, 0, 0.2);
+}
+.c-img__imgbox {
+  position: relative;
+  width:340rpx;
+  height:247rpx;
+}
+.c-img__list-img {
+  width:340rpx;
+  height:247rpx;
+}
+.c-img__list-check {
+  position: absolute;
+  top: 20rpx;
+  right: 8rpx;
+  width:36rpx;
+  height:36rpx;
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/checkbox.png') no-repeat center/contain;
+}
+.c-img__list-num {
+  position: absolute;
+  bottom: 0;
+  width:340rpx;
+  height:65rpx;
+  line-height: 65rpx;
+  background:rgba(0,0,0,.5);
+  color: #fff;
+  text-align: center;
+}
+.c-img__list-check--yes {
+ background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/checkboxon.png') no-repeat center/contain;
+}
+.c-img__detail {
+  padding: 17rpx 16rpx 0;
+  font-size:40rpx;
+  line-height: 40rpx;
+  color:rgba(153,153,153,1);
+}
+.c-img__detail-content {
+  display: flex;
+  justify-content: space-between;
+}
+.c-img__detail--fun {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rpx;
+}
+.c-img__tab-left {
+  width:32rpx;
+  height:32rpx;
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/preday.png') no-repeat center/100% 100%;
+}
+.c-img__detail-tab {
+  display: flex;
+  align-items: flex-end; 
+}
+.c-img__tab-right {
+  margin-left: 40rpx;
+  transform: rotate(180deg);
+}
+.c-imgList__footer {
+  padding: 22rpx 22rpx 30rpx;
+}
+.c-imgList__footer-lable {
+  width: 140rpx;
+  flex-shrink: 0;
+}
+.c-imgList__footer-content {
+  display: flex;
+  font-size:46rpx;
+  color:rgba(255,87,87,1);
+  line-height:48rpx;
+}
+.c-footer__lable {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 28rpx;
+}
+.c-lable__list {
+  padding: 8rpx 5rpx 10rpx 10rpx;
+  font-size:44rpx;
+  line-height: 44rpx;
+  border:2rpx solid rgba(153,153,153,1);
+  border-radius:6rpx;
+  color:rgba(153,153,153,1);
+}
+.c-lable__list--active {
+  background: #3484C2;
+  border-color: #3484C2;
+  color: #fff;
+}
+
+.c-video__bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width:70rpx;
+  height:70rpx;
+  border-radius:50%;
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/activeplay.png') no-repeat center/100% 100%;
+}
+
+/* voice */
+.c-voice__content {
+  border-bottom: solid 1rpx #D9D9D9;
+}
+.c-voice__content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 25rpx 0 30rpx;
+  font-size:44rpx;
+  line-height: 44rpx;
+  color:rgba(153,153,153,1);
+}
+.c-voice__name {
+  width:178rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.c-voice__time {
+  font-size:36rpx;
+  line-height: 36rpx;
+}
+.c-voice__nav {
+  display: flex;
+  justify-content: space-between;
+  height: 30rpx;
+}
+.c-voice__box {
+  display: flex;
+  align-items: center;
+}
+.c-voice__icon {
+  width:50rpx;
+  height:50rpx;
+  border-radius: 50%;
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/activeplay.png') no-repeat center/100% 100%;
+}
+.c-voice__progressBox {
+  display: flex;
+  width:360rpx;
+  height:24rpx;
+  margin: 0 12rpx;
+  background:rgba(217,217,217,1);
+  border-radius:12rpx;
+}
+.c-voice__progress {
+  height:24rpx;
+  background:rgba(28,160,83,1);
+  border-radius:12rpx 0rpx 0rpx 12rpx;
+}
+.c-voice__progressAll {
+  border-radius:12rpx;
+}
+.c-voice__time {
+  font-size:44rpx;
+  color:rgba(68,68,68,1);
+}
+.c-voice__tab-pre {
+  width:40rpx;
+  height:40rpx;
+  transform: rotate(90deg);
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/preday.png') no-repeat center/100% 100%;
+}
+.c-voice__tab {
+  display: flex;
+  align-items: center;
+}
+.c-voice__tab-next {
+  width:40rpx;
+  height:40rpx;
+  margin-left: 40rpx;
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/preday.png') no-repeat center/100% 100%;
+  transform: rotate(-90deg);
+}
+.c-voice__text {
+  padding: 24rpx 0 15rpx;
+  font-size:51rpx;
+  color:rgba(68,68,68,1);
+  line-height:72rpx;
+  text-align: justify;
+}
+.c-voice__text-all {
+  float: right;
+  margin-right: 415rpx;
+}
+.c-voice__hide {
+  padding: 0 12rpx 0 22rpx;
+  background: #FFBABA;
+  border-bottom: dashed 1px #D9D9D9;
+}
+.c-voice__show {
+  padding: 0 12rpx 0 22rpx;
+}
+
+.c-text__content {
+  display: flex;
+}
+.c-text__txt {
+  width: 550rpx;
+  padding-bottom: 15rpx;
+  font-size:51rpx;
+  color:rgba(68,68,68,1);
+  line-height:72rpx;
+  text-align: justify;
+  margin-right: 38rpx;
+}
+.c-text__txt-show {
+  float: right;
+  margin-right: 25rpx;
+}
+.c-detail__list--yes {
+  width:60rpx;
+  height:59rpx;
+  margin-left: 10rpx;
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/right.png') no-repeat center/100% 100%;
+}
+
+
+.m-blur{
+  color: #22A9FF;
+}
+
+
+
+/* 弹出框样式 */
+.c-viewpoint__list {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 30rpx;
+}
+.c-viewpoint__check {
+  width:52prx;
+  height:52rpx;
+  margin-right: 20rpx;
+  /* background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/radio.png') no-repeat center/100% 100%; */
+}
+.c-viewpoint__option {
+  position: relative;
+  width:280rpx;
+  height:72rpx;
+}
+.c-viewpoint__option--yes {
+  position: absolute;
+  width:38rpx;
+  height:37rpx;
+  top: 17rpx;
+  right: 18rpx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
