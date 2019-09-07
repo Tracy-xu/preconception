@@ -21,6 +21,6 @@
 .c-exercises-con__text-tit{display:inline-block;color:#14C75E;}
 .c-exercises-con__text-con{display:inline-block;color:#5A5A5A;overflow:hidden;}
 .c-exercises-con__text .c-icon--edit{position:absolute;right:24rpx;bottom:40rpx;}
-.c-exercises-bottom{height:96rpx;background:#f9f9f9;border-top:1rpx solid #e6e6e6;text-align:center;}
-.c-exercises-bottom__leftbtn{float:left;width:50%;font-size:46rpx;line-height:96rpx;color:#FFB423;box-sizing:border-box;border-right:1rpx solid #e6e6e6;}
+.c-exercises-bottom{height:96rpx;line-height:96rpx;background:#f9f9f9;border-top:1rpx solid #e6e6e6;text-align:center;}
+.c-exercises-bottom__leftbtn{float:left;width:50%;font-size:46rpx;color:#FFB423;box-sizing:border-box;border-right:1rpx solid #e6e6e6;}
 .c-exercises-bottom__rightbtn{float:right;width:50%;color:#14C75E;}

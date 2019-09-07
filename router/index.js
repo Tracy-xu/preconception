@@ -9,8 +9,10 @@ export default {
   questionDetail: '/pages/question/detail/index',
   // 编辑问题
   questionEdit: '/pages/question/edit/index',
-  // 前概念分享
-  analysis: '/pages/analysis/index',
+  // 前概念分析--列表
+  analysis: '/pages/analysis/analysis-list/index',
+  // 前概念分析--详情
+  analysis: '/pages/analysis/analysis-detail/index',
   // 学生首页
   previewList: '/pages/preview/list/index',
   // 预习详情

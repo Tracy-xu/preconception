@@ -13,7 +13,7 @@
           </view>
         </view>
         <view class="c-exercises-main__text">
-          这是几周前的一个早上，同收拾
+          这是几周前的一个早上，同收拾 
           <i class="c-preview__icon--text"></i>
         </view>
         <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/default.png" class="c-preview-list__img"></image>
