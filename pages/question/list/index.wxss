@@ -7,14 +7,18 @@
 .c-menu__create-question {display: inline-flex; flex-direction: column; align-items: center;}
 .c-menu__spec::before,
 .c-menu__knowledge-graph::before,
-.c-menu__create-question::before {content: ""; width: 66rpx; height: 66rpx; background: #f00;}
+.c-menu__create-question::before {content: ""; width: 66rpx; height: 66rpx;background-size:100% 100%;
+-moz-background-size:100% 100%;}
+.c-menu__spec::before{background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/notebook.png')  ;}
+.c-menu__knowledge-graph::before{background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/map.png')  ;}
+.c-menu__create-question::before{background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/makeQuestion.png')  ;}
 
 /**
  * 题库信息
  */
 .c-questions-info {margin-bottom: 20rpx; background: #fff;}
 .c-questions-info__subject {display: flex; height: 87rpx; padding: 0 24rpx; border-bottom: 1px #E5E5E5FF solid; font-size: 38rpx; align-items: center;}
-.c-questions-info__subject-del {width: 54rpx; height: 54rpx; margin-left: 16rpx; background: #f00;}
+.c-questions-info__subject-del {width: 54rpx; height: 54rpx; margin-left: 16rpx; background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/reddelete.png');background-size:100% 100%;}
 .c-questions-info__count {height: 66rpx; line-height: 66rpx; padding: 0 24rpx; font-size: 32rpx; color: #666666FF;}
 .c-questions-info__count view,
 .c-questions-info__subject view {display: inline; color: #517B39FF;}
@@ -37,11 +41,14 @@
 .c-question-list__del {display: inline-flex; font-size: 44rpx; color: #999999FF; align-items: center;}
 .c-question-list__bind-class::before,
 .c-question-list__edit::before,
-.c-question-list__del::before {content: ""; width: 50rpx; height: 50rpx; margin-right: 15rpx; background: #f00;}
+.c-question-list__del::before {content: ""; width: 50rpx; height: 50rpx; margin-right: 15rpx;background-size:100% 100%;}
+.c-question-list__bind-class::before{background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/bindclass.png')}
+.c-question-list__edit::before{background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/edit.png')}
+.c-question-list__del::before{background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/delete.png')}
 /* 标签 */
 .c-question-list__con-box--txt::after,
 .c-question-list__con-box--img::after,
-.c-question-list__con-box--video::after {content: ""; display: inline-block; width: 66rpx; height: 57rpx; background: #f00; vertical-align: middle;}
-.c-question-list__con-box--txt::after {background: #f00;}
-.c-question-list__con-box--img::after {background: #ccc;}
-.c-question-list__con-box--video::after {background: #000;}
+.c-question-list__con-box--video::after {content: ""; display: inline-block; width: 50rpx; height: 60rpx; vertical-align: middle;background-size: 100% 100%;}
+.c-question-list__con-box--txt::after {background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/text.png');}
+.c-question-list__con-box--img::after {background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/picture.png');}
+.c-question-list__con-box--video::after {background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/voice.png');}

@@ -1,5 +1,14 @@
 <view>
-  <text>
-    我的班级
-  </text>
+  <view class="c-reord-list">
+    <view class="c-reord-list__item">
+      <view class="c-reord-list__tit">
+        <i class="c-reord-list__titicon"></i>
+        杭州市第二中学七年级一班
+      </view>
+      <view class="c-reord-list__subtit">
+        <i class="c-reord-list__subicon"></i>
+        杭州市第二中学七年级一班
+        </view>
+    </view>
+  </view>
 </view>

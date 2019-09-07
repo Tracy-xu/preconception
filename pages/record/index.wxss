@@ -4,10 +4,5 @@
 .c-record-header__con{margin:0 20rpx;}
 .c-time-btn{display:inline-block;background:red;width:50rpx;height:50rpx;}
 .c-tody-btn{width:96rpx;height:50rpx;line-height:50rpx;margin-left:20rpx;text-align:center;color:#fff;background:#3484C2;border-radius:4rpx;}
-.c-record-header__tips{padding:0 24rpx;height:66rpx;line-height:66r9px;font-size:32rpx;color:#666;}
-.c-reord-list{background:#fff;border-top:1px solid #e6e6e6;}
-.c-reord-list__item{height:162rpx;padding:24rpx;border-bottom:1px solid #e6e6e6;}
-.c-reord-list__tit,
-.c-reord-list__subtit{display:flex;align-items:center;font-size:46rpx;}
-.c-reord-list__titicon{display: inline-block;width:48rpx;height:38rpx;margin-right:12rpx;background:red;}
-.c-reord-list__subicon{display: inline-block;width:34rpx;height:40rpx;margin:0 21rpx 0 7rpx;background:red;}
+
+
