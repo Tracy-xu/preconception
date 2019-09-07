@@ -1,1 +1,13 @@
 /* pages/preview-list/index.wxss */
+.c-preview-list{position:fixed;top:90rpx;bottom:0;left:0;right:0;overflow: auto;}
+.c-preview-list__item{background:#fff;margin-bottom:20rpx;padding:0 20rpx;}
+.c-preview-list__con{padding:20rpx 0;font-size:50rpx;color:#517B39;line-height:70rpx;}
+.c-preview-list__bottom{position:relative;height:90rpx;line-height:90rpx;font-size:44rpx;border-top:1rpx dashed #d9d9d9;overflow:hidden;}
+.c-preview-list__bottom .u-button{position:absolute;right:0;top:50%;margin-top:-25rpx;}
+.c-preview__icon--text{display:inline-block;width:50rpx;height:50rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/text.png');vertical-align:middle;}
+.c-preview__icon--video{display:inline-block;width:66rpx;height:57rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/picture.png');vertical-align:middle;}
+.c-preview__icon--voice{display:inline-block;width:54rpx;height:67rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/voice.png');vertical-align:middle;}
+.c-preview__icon--camera{display:inline-block;width:66rpx;height:62rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/video.png');vertical-align:middle;}
+.c-preview-list__result{padding:0 0 20rpx 0;}
+.c-preview-list__img{display:inline-block;vertical-align:middle;height:190rpx;width:190rpx;margin:10rpx 14rpx 0 0;border:1rpx solid #d9d9d9;}
+.c-preview-list__img:nth-child(3n){margin-right:0;}

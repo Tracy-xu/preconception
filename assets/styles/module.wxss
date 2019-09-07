@@ -1,1 +1,16 @@
 .m-scroll-container {position: fixed; left: 0; right: 0; bottom: 0; top: 0;}
+/* 按钮 */
+.u-button{display:inline-block;height:50rpx;padding:0 5rpx;line-height:50rpx;font-size:44rpx;border-radius:4rpx;color:#fff;background:#999;}
+.u-button--primary{background:#3484C2;}
+/* 字体颜色 */
+.font-color--blue{color:#3484C2;}
+/* voice */
+.c-voice-box{display:flex;flex-direction:row;height:50rpx;align-items:center;}
+.c-voice-box__btn{width:50rpx;height:50rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/activeplay.png');}
+.c-voice-box__btn--play{background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/pause.png')}
+.c-voice-box__progress{width:360rpx;height:24rpx;margin:0 24rpx;background:#d9d9d9;border-radius:24rpx;}
+.c-voice-box__progress-con{background:#1CA053;}
+/* icon */
+.c-icon--transform{display:inline-block;vertical-align: middel;width:34rpx;height:34rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/transform.png')}
+.c-icon--delete{display:inline-block;vertical-align: middel;width:34rpx;height:34rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/delete.png')}
+.c-icon--edit{display:inline-block;width:44rpx;height:44rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/edit.png')}

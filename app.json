@@ -1,13 +1,13 @@
 {
   "pages": [
+    "pages/preview/list/index",
     "pages/question/list/index",
     "pages/auth/index",
     "pages/question/create/index",
     "pages/question/edit/index",
     "pages/question/detail/index",
-    "pages/preview/list/index",
-    "pages/preview/detail/index",
     "pages/preview/exercises/index",
+    "pages/preview/detail/index",
     "pages/analysis/index",
     "pages/profile/index",
     "pages/record/index",

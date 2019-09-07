@@ -1,2 +1,77 @@
 <!--pages/exercises/index.wxml-->
-<text>pages/exercises/index.wxml</text>
+<view>
+  <view class="c-exercises">
+    <view class="c-exercises-main">
+      <view class="c-preview-list__result">
+        <view class="c-voice-box">
+          <view class="c-voice-box__btn c-voice-box__btn--play"></view>
+          <view class="c-voice-box__progress">
+            <view class="c-voice-box__progress-con"></view>
+          </view>
+          <view class="c-voice-box__num">
+            00:20
+          </view>
+        </view>
+        <view class="c-exercises-main__text">
+          这是几周前的一个早上，同收拾
+          <i class="c-preview__icon--text"></i>
+        </view>
+        <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/default.png" class="c-preview-list__img"></image>
+      </view>
+    </view>
+    <view class="c-exercises-con">
+      <textarea class="c-exercises-con__textarea" auto-height placeholder="请在此输入答案~" />
+      <view class="c-exercises-con__imgs">
+        <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/default.png" class="c-preview-list__img"></image>
+        <view class="c-preview-list__img">
+          +
+        </view>
+        <view class="c-preview-list__img">
+          <view class="c-preview__icon--voice"></view>
+        </view>
+        <view class="c-preview-list__img">
+          <view class="c-preview__icon--camera"></view>
+        </view>
+        <view class="c-preview-list__img">
+          <icon type="clear" size="24" color="#999" class="c-icon" />
+          <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/default.png"></image>
+          <view class="c-voice-box__btn c-voice-box__btn--play"></view>
+        </view>
+        <view class="c-voice-box">
+          <view class="c-voice-box__btn c-voice-box__btn--play"></view>
+          <view class="c-voice-box__progress">
+            <view class="c-voice-box__progress-con"></view>
+          </view>
+          <view class="c-voice-box__num">
+            00:20
+          </view>
+        </view>
+      </view>
+      <view class="c-exercises-con__btns">
+        <view class="c-exercises-con__btn">
+          <i class="c-icon--transform"></i> 转换文字
+        </view>
+        <view class="c-exercises-con__btn">
+          <i class="c-icon--delete"></i> 删除
+        </view>
+      </view>
+      <view class="c-exercises-con__text">
+        <view class="c-exercises-con__text-con">
+          <view class="c-exercises-con__text-tit">
+            转换内容：
+          </view>
+          思考一下，分享篇小短文思考一下，分享搜索搜
+        </view>
+        <i class="c-icon--edit"></i>
+      </view>
+    </view>
+    <view class="c-exercises-bottom">
+      <view class="c-exercises-bottom__leftbtn">
+        暂存答案
+      </view>
+      <view class="c-exercises-bottom__rightbtn">
+        提交答案
+      </view>
+    </view>
+  </view>
+</view>

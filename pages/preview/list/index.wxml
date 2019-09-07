@@ -1,2 +1,66 @@
 <!--pages/preview-list/index.wxml-->
-<text>pages/preview-list/index.wxml</text>
+<view>
+ <!-- 筛选 -->
+  <view class="c-sort">
+      <view class="c-sort__left">
+         班级名称
+      </view>
+      <view class="c-sort__right" bindtap="searchQuestion">
+        <i class="c-sort__icon"></i>筛选
+      </view>
+  </view>
+  <view class="c-preview-list">
+    <view class="c-preview-list__item">
+      <view class="c-preview-list__con">
+        思考一下，分享你记忆最深事实一篇小短文思考一下。
+        <i class="c-preview__icon--text"></i>
+      </view>
+       <view class="c-preview-list__result">
+        <view class="c-voice-box">
+          <view class="c-voice-box__btn c-voice-box__btn--play"></view>
+          <view class="c-voice-box__progress">
+            <view class="c-voice-box__progress-con"></view>
+          </view>
+          <view class="c-voice-box__num">
+            00:20
+          </view>
+        </view>
+        <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/default.png" class="c-preview-list__img"></image>
+      </view>
+      <view class="c-preview-list__bottom">
+        <view class="u-button u-button--primary">查看详情</view>
+        <view class="font-color--blue">已提交</view>
+      </view>
+    </view>
+    <view class="c-preview-list__item">
+      <view class="c-preview-list__con">
+        思考一下，分享你记忆最深事实一篇小短文思考一下。
+        <i class="c-preview__icon--video"></i>
+      </view>
+      <view class="c-preview-list__bottom">
+        <view class="u-button u-button--primary">查看详情</view>
+        <view class="font-color--blue">已提交</view>
+      </view>
+    </view>
+    <view class="c-preview-list__item">
+      <view class="c-preview-list__con">
+        思考一下，分享你记忆最深事实一篇小短文思考一下。
+        <i class="c-preview__icon--voice"></i>
+      </view>
+      <view class="c-preview-list__bottom">
+        <view class="u-button u-button--primary">查看详情</view>
+        <view class="font-color--blue">已提交</view>
+      </view>
+    </view>
+    <view class="c-preview-list__item">
+      <view class="c-preview-list__con">
+        思考一下，分享你记忆最深事实一篇小短文思考一下。
+        <i class="c-preview__icon--camera"></i>
+      </view>
+      <view class="c-preview-list__bottom">
+        <view class="u-button u-button--primary" bindtap="goDoWork">去完成</view>
+        <view class="">未提交</view>
+      </view>
+    </view>
+  </view>
+</view>
