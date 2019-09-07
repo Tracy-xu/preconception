@@ -8,10 +8,11 @@
     "pages/preview/list/index",
     "pages/preview/detail/index",
     "pages/preview/exercises/index",
-    "pages/analysis/index",
     "pages/profile/index",
     "pages/record/index",
-    "pages/my-class/index"
+    "pages/my-class/index",
+    "pages/analysis/analysis-list/index",
+    "pages/analysis/analysis-detail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
