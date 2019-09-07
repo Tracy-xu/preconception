@@ -1,0 +1,16 @@
+<view class="m-camera">
+  <camera
+    wx:if="{{ visible }}"
+    device-position="back"
+    flash="off"
+    binderror="error"
+  >
+  </camera>
+  
+  <view class="m-camera__operator">
+    <button type="primary" bindtap="startRecord">开始录像</button>
+    <button type="primary" bindtap="stopRecord">结束录像</button>
+
+    <video wx:if="{{videoSrc}}" class="video" src="{{videoSrc}}"></video>
+  </view>
+</view>

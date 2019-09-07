@@ -1,13 +1,18 @@
 {
   "pages": [
     "pages/question/list/index",
+    "pages/index/index",
     "pages/auth/index",
     "pages/question/create/index",
     "pages/question/edit/index",
     "pages/question/detail/index",
     "pages/preview/list/index",
-    "pages/preview/detail/index",
     "pages/preview/exercises/index",
+<<<<<<< HEAD
+=======
+    "pages/preview/detail/index",
+    "pages/analysis/index",
+>>>>>>> master
     "pages/profile/index",
     "pages/record/index",
     "pages/my-class/index",
@@ -23,6 +28,9 @@
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "mp-dialog": "plugins/weui/dialog/dialog/dialog",
-    "mp-tabbar": "plugins/weui/tabbar/tabbar/tabbar"
+    "myk-tabbar": "components/common/tabbar/index",
+    "myk-video": "components/common/video/index",
+    "myk-audio": "components/common/audio/index",
+    "myk-camera": "components/common/camera/index"
   }
 }

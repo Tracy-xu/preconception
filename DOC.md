@@ -68,9 +68,18 @@ wx.navigateTo({
 ```
 {
   "usingComponents": {
-    "tabbar": "../../../components/common/tabbar/index"
+    "tabbar": "../../../components/common/tabbar/index",
+    "my-video": "/components/common/video/index"
   }
 }
+```
+
+* 公用组件
+
+公用组件，比如音视频播放、弹框、tapbar...，已再 app.json 中引入，无限页面中再次引入。
+
+```
+<myk-video src="xxx"></myk-video>
 ```
 
 ### 工具类
@@ -81,13 +90,52 @@ wx.navigateTo({
 
 在 plugins 文件夹。采用官方 weui。
 
-## 小程序技巧
+## 组件
 
-### 设置 Data
+### 拍照
 
 ```
-this.setData({
-  userInfo: e.detail.userInfo,
-  hasUserInfo: true
+import chooseImage from '../../../utils/choose-image/choose-image.js';
+
+chooseImage().then((res) => {
+
 });
+```
+
+### 录音
+
+```
+wx.getRecorderManager()
+```
+
+### 录像
+
+```
+<myk-camera
+  wx:if="record"
+  bindstoprecord="handleStopRecord"
+>
+</myk-camera>
+```
+
+bindstoprecord 录像结束时出发，返回的结果时录像数据。可以在这个事件里做相机的退出操作。
+
+### 播放
+
+* 音频
+
+```
+<myk-audio src="xxx"></myk-audio>
+```
+
+* 视频
+
+```
+<myk-video src="xxx"></myk-video>
+```
+
+### 上传
+
+```
+wx.uploadFile
 ```
