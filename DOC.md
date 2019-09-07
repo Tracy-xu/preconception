@@ -90,9 +90,7 @@ wx.navigateTo({
 
 在 plugins 文件夹。采用官方 weui。
 
-## 小程序技巧
-
-### 设置 Data
+## 组件
 
 ### 拍照
 
