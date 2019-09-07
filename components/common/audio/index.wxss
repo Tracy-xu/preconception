@@ -1,0 +1,5 @@
+.m-audio {display: flex; align-items: center;}
+.m-audio__button {width: 50rpx; height: 50rpx; background: #ccc;}
+.m-audio__button--play {background: #f00;}
+.m-audio__button--pause {background: #ccc;}
+.m-audio slider {flex: 1;}

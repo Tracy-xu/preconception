@@ -1,0 +1,9 @@
+<view class="m-video">
+  <video
+    id="myVideo"
+    src="{{ src }}"
+    binderror="handleVideoErrorCallback"
+    controls
+  >
+  </video>
+</view>

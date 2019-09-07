@@ -1,0 +1,27 @@
+<view class="m-audio">
+  <audio
+    src="{{ src }}"
+    poster="{{ poster }}"
+    action="{{ audioAction }}"
+    bindplay="handleAudioPlayed"
+    bindtimeupdate="handleAudioTimeUpdated"
+  >
+  </audio>
+
+  <button
+    class="m-audio__button {{ audioAction.method === 'pause' ? 'm-audio__button--pause' : 'm-audio__button--play' }}"
+    bindtap="handlePlayPause"
+  >
+  </button>
+
+  <slider
+    value="{{ slideValue }}"
+    bindchanging="handleSliderChanging"
+    bindchange="handleSliderChanged"
+    left-icon="cancel"
+    right-icon="success_no_circle"
+    block-size="18"
+  />
+
+  <view>00:00</view>
+</view>
