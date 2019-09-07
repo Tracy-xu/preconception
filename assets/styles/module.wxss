@@ -4,6 +4,8 @@
 .u-button--primary{background:#3484C2;}
 /* 字体颜色 */
 .font-color--blue{color:#3484C2;}
+.font-color--green{color:#1CA053;}
+.font-color--red{color:#FF3356;}
 /* voice */
 .c-voice-box{display:flex;flex-direction:row;height:50rpx;align-items:center;}
 .c-voice-box__btn{width:50rpx;height:50rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/activeplay.png');}

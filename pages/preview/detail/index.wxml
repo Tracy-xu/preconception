@@ -1,2 +1,43 @@
 <!--pages/preview/detail/index.wxml-->
-<text>pages/preview/detail/index.wxml</text>
+ <view class="c-detail-container">
+    <view class="c-detail__header">
+      共<span class="font-color--green">50</span>人,已交<span class="font-color--green">50</span>人,未交<span class="font-color--red">50</span>人
+      <view class="c-detail__header-operation">
+        <view class="font-color--green">我的答案</view>      
+      </view>
+    </view>
+    <view class="c-detail__con">
+      <view class="c-detail__con-item">
+        <view class="c-detail__con__header">
+        <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/activeplay.png"></image>
+        张三
+          <view class="c-detail__con__header-operation">
+          2017-7-23
+          </view>
+        </view>
+        <view class="c-detail__con__text">
+        这是几周前的一个早上，因为前 一天我同学发了矛盾，因此心里 太事实收拾收拾收拾事实...
+        </view>
+      </view>
+       <view class="c-detail__con-item c-detail__con-item--active">
+        <view class="c-detail__con__header">
+        <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/activeplay.png"></image>
+        张三
+          <view class="c-detail__con__header-operation">
+          2017-7-23
+          </view>
+        </view>
+        <view class="c-detail__con__text">
+        这是几周前的一个早上，因为前 一天我同学发了矛盾，因此心里 太事实收拾收拾收拾事实...
+        </view>
+      </view>
+    </view>
+    <view class="c-detail__bottom">
+      <view class="c-detail__bottom__leftbtn">
+        没有相近观点
+      </view>
+      <view class="c-detail__bottom__rightbtn">
+        提交
+      </view>
+    </view>
+ </view>

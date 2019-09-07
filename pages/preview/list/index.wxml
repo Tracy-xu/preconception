@@ -28,7 +28,7 @@
         <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/default.png" class="c-preview-list__img"></image>
       </view>
       <view class="c-preview-list__bottom">
-        <view class="u-button u-button--primary">查看详情</view>
+        <view class="u-button u-button--primary" bindtap="goToDetail">查看详情</view>
         <view class="font-color--blue">已提交</view>
       </view>
     </view>

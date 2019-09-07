@@ -11,6 +11,11 @@ Page({
       "语文"  
     ]
   },
+  goToDetail(){
+    wx.navigateTo({
+      url: router.questionEdit,
+    })
+  },
   // 学生去预习
   goDoWork() {
     wx.navigateTo({
