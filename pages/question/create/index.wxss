@@ -1,1 +1,13 @@
-/* pages/question/create/index.wxss */
+/* 题干 */
+.c-question-create__stem {display: flex; align-items: center;}
+.c-question-create__stem input {width: 600rpx; height: 82rpx; padding-left: 17rpx; margin: 0 12rpx 0 5rpx; border:1px solid rgba(217,217,217,1); border-radius:6px;}
+.c-question-create__stem icon {width: 54rpx; height: 54rpx; background: #ccc;}
+/* 答题方式 */
+.c-queston-create__answer {overflow: hidden; border: 1px red solid;}
+.c-queston-create__label {float: left;}
+.c-queston-create__type {overflow: hidden; display: flex; justify-content: space-around;}
+.c-queston-create__type-txt,
+.c-queston-create__type-img,
+.c-queston-create__type-audio,
+.c-queston-create__type-video {display: inline-flex; flex-direction: column; align-items: center;}
+.c-queston-create__type-txt::before {content: ""; display: inline-block; width: 50rpx; height: 60rpx; background: #ccc;}

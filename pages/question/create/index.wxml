@@ -1,2 +1,16 @@
-<!--pages/question/create/index.wxml-->
-<text>pages/question/create/index.wxml</text>
+<view class="c-question-create">
+  <view class="c-question-create__stem">
+    1. 
+    <input placeholder="请输入题目内容"></input>
+    <icon></icon>
+  </view>
+  <view class="c-queston-create__answer">
+    <view class="c-queston-create__label">答题方式：</view>
+    <view class="c-queston-create__type">
+      <view class="c-queston-create__type-txt">文本</view>
+      <view class="c-queston-create__type-img">图片</view>
+      <view class="c-queston-create__type-audio">语音</view>
+      <view class="c-queston-create__type-video">视频</view>
+    </view>
+  </view> 
+</view>
