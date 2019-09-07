@@ -130,7 +130,9 @@ bindstoprecord 录像结束时出发，返回的结果时录像数据。可以�
 
 * 视频
 
+```
 <myk-video src="xxx"></myk-video>
+```
 
 ### 上传
 
