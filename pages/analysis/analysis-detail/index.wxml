@@ -1,10 +1,10 @@
 <!--pages/analysis/analysis-detail/index.wxml-->
 <scroll-view class="c-body">
   <!-- 图片  c-img__list--active 选中需要一个阴影 -->
-  <view wx:if="{{imgshow}}"  class="c-detail__list">
+  <view wx:if="{{imgshow}}" class="c-detail__list">
     <view class="c-detail__list-header">
       <view class="c-img__header-left">
-        <view class="c-img__header-point">观点</view>
+        <view class="c-img__header-point c-img__header-point1 c-img__header-point2 c-img__header-point3 c-img__header-point4 c-img__header-point5 c-img__header-point6">观点1</view>
         <view class="c-img__header-people">
           (共
           <view class="c-img__header-peoplenum">20</view>
@@ -140,7 +140,7 @@
   </view>
 
   <!-- 音频 -->
-  <view wx:if="{{imgshow}}" class="c-detail__list">
+  <view class="c-detail__list">
     <view class="c-detail__list-header">
       <view class="c-img__header-left">
         <view class="c-img__header-point">观点</view>
@@ -177,8 +177,8 @@
             <view class="c-voice__time">00:20</view>
           </view>
           <view class="c-voice__tab">
-            <view class="c-voice__tab-pre"></view>
-            <view class="c-voice__tab-next"></view>
+            <view class="c-voice__tab-pre c-voice__tab-pre--active"></view>
+            <view class="c-voice__tab-next c-voice__tab-next--active"></view>
           </view>
         </view>
         <view class="c-voice__text">
@@ -233,7 +233,7 @@
   </view>
 
   <!-- 文本 -->
-  <view class="c-detail__list">
+  <view  wx:if="{{imgshow}}" class="c-detail__list">
     <view class="c-detail__list-header">
       <view class="c-img__header-left">
         <view class="c-img__header-point">观点</view>
@@ -309,8 +309,46 @@
 
   <!-- 弹出框观点样式 -->
   <view class="c-viewpoint__list">
-    <view class="c-viewpoint__check"></view>
-    <view class="c-viewpoint__option">  
+    <view class="c-viewpoint__check c-viewpoint__check--active"></view>
+    <view class="c-viewpoint__option c-viewpoint__option1">
+    观点1
+      <view class="c-viewpoint__option--yes"></view>
+    </view>
+  </view>
+
+  <view class="c-viewpoint__list">
+    <view class="c-viewpoint__check c-viewpoint__check--active"></view>
+    <view class="c-viewpoint__option c-viewpoint__option2">
+    观点2
+      <view class="c-viewpoint__option--yes"></view>
+    </view>
+  </view>
+
+  <view class="c-viewpoint__list">
+    <view class="c-viewpoint__check c-viewpoint__check--active"></view>
+    <view class="c-viewpoint__option c-viewpoint__option3">
+    观点3
+      <view class="c-viewpoint__option--yes"></view>
+    </view>
+  </view>
+  <view class="c-viewpoint__list">
+    <view class="c-viewpoint__check c-viewpoint__check--active"></view>
+    <view class="c-viewpoint__option c-viewpoint__option4">
+    观点4
+      <view class="c-viewpoint__option--yes"></view>
+    </view>
+  </view>
+  <view class="c-viewpoint__list">
+    <view class="c-viewpoint__check c-viewpoint__check--active"></view>
+    <view class="c-viewpoint__option c-viewpoint__option5">
+    观点5
+      <view class="c-viewpoint__option--yes"></view>
+    </view>
+  </view>
+  <view class="c-viewpoint__list">
+    <view class="c-viewpoint__check c-viewpoint__check--active"></view>
+    <view class="c-viewpoint__option c-viewpoint__option6">
+    观点6
       <view class="c-viewpoint__option--yes"></view>
     </view>
   </view>

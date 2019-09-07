@@ -3,7 +3,7 @@
   <view class="c-analysislist__header">
     <view class="c-analysislist__header-top">
       <view class="c-aL__header-day"><icon class="c-aL__header-sub"></icon><view>20181215</view></view>
-      <view>全部</view>
+      <view><icon class="c-nav__finishIcon"></icon>全部</view>
     </view>
     <view class="c-aL__header-scholl">杭州市第二中学七年级一班</view>
   </view>

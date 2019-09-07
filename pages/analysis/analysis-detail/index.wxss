@@ -22,8 +22,29 @@ page{
 .c-img__header-point {
   width:160rpx;
   height:62rpx;
+  padding-left: 30rpx;
   margin-right: 27rpx;
-  background:rgba(255,131,31,1);
+  text-align: center;
+  line-height: 62rpx;
+  color: #fff;
+}
+.c-img__header-point1 {
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/viewpoint1__small.png') no-repeat center/100% 100%;
+}
+.c-img__header-point2 {
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/viewpoint2__small.png') no-repeat center/100% 100%;
+}
+.c-img__header-point3 {
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/viewpoint3__small.png') no-repeat center/100% 100%;
+}
+.c-img__header-point4 {
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/viewpoint4__small.png') no-repeat center/100% 100%;
+}
+.c-img__header-point5 {
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/viewpoint5__small.png') no-repeat center/100% 100%;
+}
+.c-img__header-point6 {
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/viewpoint6__small.png') no-repeat center/100% 100%;
 }
 .c-img__header-left {
   display: flex;
@@ -53,9 +74,15 @@ page{
 }
 .c-img__header-angle {
   display: inline-block;
-  width:36rpx;
-  height:23rpx;
-  background: #999;
+  /* width:36rpx;
+  height:23rpx; */
+  width: 0;
+  height: 0;
+  border-width: 15rpx;
+  border-style: solid;
+  vertical-align: sub;
+  border-color: #999999 transparent transparent transparent;
+  /* background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/show__click.png') no-repeat center/contain; */
 }
 .c-img__content {
   display: flex;
@@ -237,6 +264,10 @@ page{
   transform: rotate(90deg);
   background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/preday.png') no-repeat center/100% 100%;
 }
+.c-voice__tab-pre--active {
+  transform: rotate(0deg);
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/preday__no.png') no-repeat center/100% 100%;
+}
 .c-voice__tab {
   display: flex;
   align-items: center;
@@ -247,6 +278,10 @@ page{
   margin-left: 40rpx;
   background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/preday.png') no-repeat center/100% 100%;
   transform: rotate(-90deg);
+}
+.c-voice__tab-next--active {
+  transform: rotate(180deg);
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/preday__no.png') no-repeat center/100% 100%;
 }
 .c-voice__text {
   padding: 24rpx 0 15rpx;
@@ -306,15 +341,20 @@ page{
   margin-bottom: 30rpx;
 }
 .c-viewpoint__check {
-  width:52prx;
+  width:52rpx;
   height:52rpx;
+  margin-top: 12rpx;
   margin-right: 20rpx;
-  /* background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/radio.png') no-repeat center/100% 100%; */
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/radio.png') no-repeat center/100% 100%;
 }
 .c-viewpoint__option {
   position: relative;
   width:280rpx;
   height:72rpx;
+  font-size:46rpx;
+  text-align: center;
+  color: #fff;
+  line-height: 72rpx;
 }
 .c-viewpoint__option--yes {
   position: absolute;
@@ -322,6 +362,28 @@ page{
   height:37rpx;
   top: 17rpx;
   right: 18rpx;
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/yes--white.png') no-repeat center/100% 100%;
+}
+.c-viewpoint__check--active {
+   background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/radioOn.png') no-repeat center/100% 100%;
+}
+.c-viewpoint__option1 {
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/viewpoint1.png') no-repeat center/100% 100%;
+}
+.c-viewpoint__option2 {
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/viewpoint2.png') no-repeat center/100% 100%;
+}
+.c-viewpoint__option3 {
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/viewpoint3.png') no-repeat center/100% 100%;
+}
+.c-viewpoint__option4 {
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/viewpoint4.png') no-repeat center/100% 100%;
+}
+.c-viewpoint__option5 {
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/viewpoint5.png') no-repeat center/100% 100%;
+}
+.c-viewpoint__option6 {
+  background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/viewpoint6.png') no-repeat center/100% 100%;
 }
 
 
