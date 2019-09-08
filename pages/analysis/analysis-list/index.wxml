@@ -41,7 +41,7 @@
     <view class="c-content__header">
       问题列表
     </view>
-    <view class="c-content__list">
+    <view class="c-content__list" bindtap="onGroupEdit">
       <view class="c-list__content">
         <view class="c-list__content-text">{{workReport.item.content}}
           <icon wx:if="{{view === 'text'}}" class="c-list__content-type-text"></icon>

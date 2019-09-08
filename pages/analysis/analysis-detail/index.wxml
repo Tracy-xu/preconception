@@ -1,292 +1,222 @@
 <!--pages/analysis/analysis-detail/index.wxml-->
 <scroll-view class="c-body">
-  <!-- 图片  c-img__list--active 选中需要一个阴影 -->
-  <view wx:if="{{imgshow}}" class="c-detail__list">
+  <view wx:for="{{workGroup.groups}}" wx:key="index" wx:for-index="gIdx" wx:for-item="group">
+  <template is="text" wx:if="{{workGroup.mode == 1}}" data="{{group: group,gIdx: gIdx,openGroupInfo: openGroupInfo}}"></template>
+    <template is="img" wx:if="{{workGroup.mode == 2}}" data="{{group: group,gIdx: gIdx,openGroupInfo: openGroupInfo}}"></template>
+    <template is="video" wx:if="{{workGroup.mode == 3}}" data="{{group: group,gIdx: gIdx,openGroupInfo: openGroupInfo}}"></template>
+    <template is="audio" wx:if="{{workGroup.mode == 4}}" data="{{group: group,gIdx: gIdx,openGroupInfo: openGroupInfo}}"></template>
+  </view>
+  <mp-dialog title="策略" show="{{commentDialog}}" bindbuttontap="bindCommentConfirm" buttons="{{commentbtns}}">
+    <view><input placeholder="请输入策略内容" auto-focus  bindinput="bindCurrCommentInput"  value="{{currComment}}" /></view>
+  </mp-dialog>
+</scroll-view>
+
+<!-- 图片begin  c-img__list--active 选中需要一个阴影 -->
+<template name="img">
+  <view  class="c-detail__list">
     <view class="c-detail__list-header">
       <view class="c-img__header-left">
-        <view class="c-img__header-point c-img__header-point1 c-img__header-point2 c-img__header-point3 c-img__header-point4 c-img__header-point5 c-img__header-point6">观点1</view>
+        <view class="{{'c-img__header-point' + (gIdx + 1)}}">{{gIdx < 6 ? '观点' + (gIdx + 1) : '其他'}}</view>
         <view class="c-img__header-people">
-          (共
-          <view class="c-img__header-peoplenum">20</view>
-          人)
+          (共<view class="c-img__header-peoplenum">{{group.works.length}}</view>人)
         </view>
         <icon class="c-detail__list--yes"></icon>
       </view>
       <view class="c-img__header-right">
-        <view class="c-img__header-tactics">
-          策略
-        </view>
-        <view class="c-img__header-pack">
-          收起
-          <icon class="c-img__header-angle"></icon>
+        <view class="c-img__header-tactics" 
+        data-index="{{gIdx}}" data-label="{{group.groupInfo.label}}" data-comment="{{group.groupInfo.comment}}"             bindtap="showCommentDialog">策略</view>
+        <view class="c-img__header-pack" data-g-idx="{{gIdx}}" bindtap="openGroup">
+        {{openGroupInfo[gIdx].text}}<icon class="c-img__header-angle"></icon>
         </view>
       </view>
     </view>
-    <view class="c-img__content">
-      <view class="c-img__list c-img__list--active">
+    <view class="c-img__content" wx:if="{{openGroupInfo[gIdx].open}}">
+      <view class="c-img__list c-img__list--active" wx:for="{{group.works}}" wx:key="wIdx" wx:for-index="wIdx" wx:for-item="work">
         <view class="c-img__imgbox">
-          <image class="c-img__list-img" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3987907653,720009510&fm=26&gp=0.jpg"></image>
+          <image class="c-img__list-img" src="{{work.imgs.length > 0 ? work.imgs[0] : '' }}"></image>
           <view class="c-img__list-check {{check ? 'c-img__list-check--yes' : ''}}">
           </view>
-          <view class="c-img__list-num">
-            共2张
-          </view>
+          <view class="c-img__list-num">共{{work.imgs.length}}张</view>
         </view>
         <view class="c-img__detail">
           <view class="c-img__detail-content">
-            <view>学生名</view>
-            <view>07-23</view>
+            <view>{{work.userName}}</view>
+            <view>{{work.createdOn}}</view>
           </view>
           <view class="c-img__detail--fun">
-            <view class="c-img__detail-tab">
-              <view class="c-img__tab-left"></view>
+            <view class="c-img__detail-tab" data-work-id="{{work.workId}}" bindtap="moveUp">
+              <view class="c-img__tab-left" data-work-id="{{work.workId}}" bindtap="moveDown"></view>
               <view class="c-img__tab-left c-img__tab-right"></view>
             </view>
-            <view>
-              置顶
-            </view>
+            <view wx:if="{{wIdx == (group.works.length -1)}}" data-work-id="{{work.workId}}" bindtap="moveTop">置顶</view>
           </view>
         </view>
-      </view>
-      <view class="c-img__list">
-
-      </view>
-      <view class="c-img__list">
-
       </view>
     </view>
     <view class="c-imgList__footer">
       <view class="c-imgList__footer-content">
         <view class="c-imgList__footer-lable">策略：</view>
-        <view class="c-imgList__footer-text">
-          标注内容内容内容内容内容内容 内容内容内容内容。
-        </view>
+        <view class="c-imgList__footer-text">{{group.groupInfo.comment}}</view>
       </view>
       <view class="c-footer__lable">
-        <view class="c-lable__list c-lable__list--active">有效</view>
-        <view class="c-lable__list">无效</view>
-        <view class="c-lable__list">不确定</view>
+        <view class="c-lable__list {{group.groupInfo.label == 1 ? 'c-lable__list--active' : ''}}"
+          data-label = "1" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          bindtap="updateLabe">有效</view>
+        <view class="c-lable__list {{group.groupInfo.label == 2 ? 'c-lable__list--active' : ''}}"
+        data-label = "2" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          bindtap="updateLabe">无效</view>
+        <view class="c-lable__list {{group.groupInfo.label == 3 ? 'c-lable__list--active' : ''}}"
+          data-label = "3" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          bindtap="updateLabe">不确定</view>
       </view>
     </view>
   </view>
+  </template>
+   <!-- 图片end -->
 
-  <!-- 视频 -->
-  <view wx:if="{{imgshow}}" class="c-detail__list">
+  <!-- 视频begin -->
+  <template name="video">
+  <view  class="c-detail__list">
     <view class="c-detail__list-header">
       <view class="c-img__header-left">
         <view class="c-img__header-point">观点</view>
-        <view class="c-img__header-people">
-          (共
-          <view class="c-img__header-peoplenum">20</view>
-          人)
-        </view>
+        <view class="c-img__header-people">(共<view class="c-img__header-peoplenum">{{group.works.length}}</view>人)</view>
       </view>
       <view class="c-img__header-right">
-        <view class="c-img__header-tactics">
-          策略
-        </view>
-        <view class="c-img__header-pack">
-          收起
-          <icon class="c-img__header-angle"></icon>
+        <view class="c-img__header-tactics"  data-index="{{gIdx}}" data-label="{{group.groupInfo.label}}" data-comment="{{group.groupInfo.comment}}"  bindtap="showCommentDialog">策略</view>
+        <view class="c-img__header-pack">收起<icon class="c-img__header-angle"></icon>
         </view>
       </view>
     </view>
     <view class="c-img__content">
-      <view class="c-img__list c-img__list--active">
+      <view class="c-img__list c-img__list--active" wx:for="{{group.works}}" wx:for-index="wIdx" wx:for-item="work">
         <view class="c-img__imgbox">
-          <image class="c-img__list-img" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3987907653,720009510&fm=26&gp=0.jpg"></image>
-          <view class="c-img__list-check {{check ? 'c-img__list-check--yes' : ''}}">
-          </view>
-          <view class="c-video__bg">
-
-          </view>
+          <image class="c-img__list-img" src=""></image>
+          <view class="c-img__list-check {{check ? 'c-img__list-check--yes' : ''}}"></view>
+          <view class="c-video__bg"></view>
         </view>
         <view class="c-img__detail">
-          <view class="c-img__detail-content">
-            <view>学生名</view>
-            <view>07-23</view>
-          </view>
+          <view class="c-img__detail-content"><view>{{work.userName}}</view><view>{{work.createdOn}}</view></view>
           <view class="c-img__detail--fun">
             <view class="c-img__detail-tab">
               <view class="c-img__tab-left"></view>
               <view class="c-img__tab-left c-img__tab-right"></view>
             </view>
-            <view>
-              置顶
-            </view>
+            <view  wx:if="{{wIdx == (group.works.length -1)}}" data-work-id="{{work.workId}}" bindtap="moveTop">置顶</view>
           </view>
         </view>
       </view>
-      <view class="c-img__list">
-
-      </view>
-      <view class="c-img__list">
-
-      </view>
+      <view class="c-img__list"></view>
+      <view class="c-img__list"></view>
     </view>
     <view class="c-imgList__footer">
       <view class="c-imgList__footer-content">
         <view class="c-imgList__footer-lable">策略：</view>
-        <view class="c-imgList__footer-text">
-          标注内容内容内容内容内容内容 内容内容内容内容。
-        </view>
+        <view class="c-imgList__footer-text">{{group.comment}}</view>
       </view>
       <view class="c-footer__lable">
-        <view class="c-lable__list c-lable__list--active">有效</view>
-        <view class="c-lable__list">无效</view>
-        <view class="c-lable__list">不确定</view>
+        <view class="c-lable__list {{group.groupInfo.label == 1 ? 'c-lable__list--active' : ''}}"
+          data-label = "1" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          bindtap="updateLabe">有效</view>
+        <view class="c-lable__list {{group.groupInfo.label == 2 ? 'c-lable__list--active' : ''}}"
+        data-label = "2" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          bindtap="updateLabe">无效</view>
+        <view class="c-lable__list {{group.groupInfo.label == 3 ? 'c-lable__list--active' : ''}}"
+          data-label = "3" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          bindtap="updateLabe">不确定</view>
       </view>
     </view>
   </view>
+</template>
+ <!-- 视频end -->
 
-  <!-- 音频 -->
+<!-- 音频begin -->
+<template name="audio">
   <view class="c-detail__list">
     <view class="c-detail__list-header">
       <view class="c-img__header-left">
         <view class="c-img__header-point">观点</view>
-        <view class="c-img__header-people">
-          (共
-          <view class="c-img__header-peoplenum">20</view>
-          人)
-        </view>
+        <view class="c-img__header-people">(共<view class="c-img__header-peoplenum">{{group.works.length}}</view>人)</view>
       </view>
       <view class="c-img__header-right">
-        <view class="c-img__header-tactics">
-          策略
-        </view>
-        <view class="c-img__header-pack">
-          收起
-          <icon class="c-img__header-angle"></icon>
+        <view class="c-img__header-tactics"  data-index="{{gIdx}}" data-label="{{group.groupInfo.label}}" data-comment="{{group.groupInfo.comment}}"  bindtap="showCommentDialog">策略</view>
+        <view class="c-img__header-pack">收起<icon class="c-img__header-angle"></icon>
         </view>
       </view>
     </view>
-    <view class="c-voice__content">
-      <!-- 隐藏的 -->
-      <view class="c-voice__hide">
+    <view class="c-voice__content" >
+      <view class="c-voice__show" wx:for="{{group.works}}" wx:for-index="wIdx" wx:for-item="work">
         <view class="c-voice__content-header">
-          <view class="c-voice__name">学生姓名</view>
-          <view class="c-voice__time">2017-7-23 10:00</view>
-          <view>置顶</view>
+          <view class="c-voice__name">{{work.userName}}</view>
+          <view class="c-voice__time">{{work.createdOn}}</view>
+          <view wx:if="{{wIdx == (group.works.length -1)}}" data-work-id="{{work.workId}}" bindtap="moveTop">置顶</view>
         </view>
         <view class="c-voice__nav">
           <view class="c-voice__box">
             <view class="c-voice__icon"></view>
-            <view class="c-voice__progressBox">
-              <view style="width:{{progress}}%" class="c-voice__progress {{progress == 100 ? 'c-voice__progressAll' : ''}}"></view>
-            </view>
-            <view class="c-voice__time">00:20</view>
+           <myk-audio src="{{work.audio}}"></myk-audio>
           </view>
           <view class="c-voice__tab">
-            <view class="c-voice__tab-pre c-voice__tab-pre--active"></view>
-            <view class="c-voice__tab-next c-voice__tab-next--active"></view>
+             <view class="c-voice__tab-pre" data-work-id="{{work.workId}}" bindtap="moveUp"></view>
+            <view class="c-voice__tab-next" data-work-id="{{work.workId}}" bindtap="moveDown"></view>
           </view>
         </view>
         <view class="c-voice__text">
-          这是几周前的一个早上，因事实 事实绅...
-          <view class="c-voice__text-all m-blur">
-            全文
-          </view>
-        </view>
-
-      </view>
-      <!-- 显示 -->
-      <view class="c-voice__show">
-        <view class="c-voice__content-header">
-          <view class="c-voice__name">学生姓名</view>
-          <view class="c-voice__time">2017-7-23 10:00</view>
-          <view>置顶</view>
-        </view>
-        <view class="c-voice__nav">
-          <view class="c-voice__box">
-            <view class="c-voice__icon"></view>
-            <view class="c-voice__progressBox">
-              <view style="width:{{progress}}%" class="c-voice__progress {{progress == 100 ? 'c-voice__progressAll' : ''}}"></view>
-            </view>
-            <view class="c-voice__time">00:20</view>
-          </view>
-          <view class="c-voice__tab">
-            <view class="c-voice__tab-pre"></view>
-            <view class="c-voice__tab-next"></view>
-          </view>
-        </view>
-        <view class="c-voice__text">
-          这是几周前的一个早上，因事实 事实绅...
-          <view class="c-voice__text-all m-blur">
-            全文
-          </view>
+          {{work.answer}}
+          <view class="c-voice__text-all m-blur">全文</view>
         </view>
       </view>
     </view>
     <view class="c-imgList__footer">
       <view class="c-imgList__footer-content">
         <view class="c-imgList__footer-lable">策略：</view>
-        <view class="c-imgList__footer-text">
-          标注内容内容内容内容内容内容 内容内容内容内容。
-        </view>
+        <view class="c-imgList__footer-text">{{group.groupInfo.comment}}</view>
       </view>
       <view class="c-footer__lable">
-        <view class="c-lable__list c-lable__list--active">有效</view>
-        <view class="c-lable__list">无效</view>
-        <view class="c-lable__list">不确定</view>
+         <view class="c-lable__list {{group.groupInfo.label == 1 ? 'c-lable__list--active' : ''}}"
+          data-label = "1" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          bindtap="updateLabe">有效</view>
+        <view class="c-lable__list {{group.groupInfo.label == 2 ? 'c-lable__list--active' : ''}}"
+        data-label = "2" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          bindtap="updateLabe">无效</view>
+        <view class="c-lable__list {{group.groupInfo.label == 3 ? 'c-lable__list--active' : ''}}"
+          data-label = "3" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          bindtap="updateLabe">不确定</view>
       </view>
     </view>
   </view>
+</template>
+<!-- 音频end -->
 
-  <!-- 文本 -->
-  <view  wx:if="{{imgshow}}" class="c-detail__list">
+<!-- 文本begin -->
+<template name="text">
+  <view class="c-detail__list">
     <view class="c-detail__list-header">
       <view class="c-img__header-left">
         <view class="c-img__header-point">观点</view>
-        <view class="c-img__header-people">
-          (共
-          <view class="c-img__header-peoplenum">20</view>
-          人)
-        </view>
+        <view class="c-img__header-people">(共<view class="c-img__header-peoplenum">{{group.works.length}}</view>人)</view>
       </view>
       <view class="c-img__header-right">
-        <view class="c-img__header-tactics">
-          策略
-        </view>
-        <view class="c-img__header-pack">
-          收起
-          <icon class="c-img__header-angle"></icon>
-        </view>
+        <view class="c-img__header-tactics"  data-index="{{gIdx}}" data-label="{{group.groupInfo.label}}" data-comment="{{group.groupInfo.comment}}"  bindtap="showCommentDialog">策略</view>
+        <view class="c-img__header-pack">收起<icon class="c-img__header-angle"></icon></view>
       </view>
     </view>
     <view class="c-voice__content">
       <!-- 隐藏的 -->
-      <view class="c-voice__hide">
+      <view class="c-voice__show" wx:for="{{group.works}}" wx:for-index="wIdx" wx:for-item="work">
         <view class="c-voice__content-header">
-          <view class="c-voice__name">学生姓名</view>
-          <view class="c-voice__time">2017-7-23 10:00</view>
-          <view>置顶</view>
+          <view class="c-voice__name">{{work.userName}}</view>
+          <view class="c-voice__time">{{work.createdOn}}</view>
+          <view wx:if="{{wIdx == (group.works.length -1)}}" data-work-id="{{work.workId}}" bindtap="moveTop">置顶</view>
         </view>
         <view class="c-text__content">
           <view class="c-text__txt">
-            这是几周前的一个早上， 同学发了矛，收...
+            {{work.answer}}
             <view class="c-text__txt-show m-blur">全文</view>
           </view>
           <view class="c-voice__tab">
-            <view class="c-voice__tab-pre"></view>
-            <view class="c-voice__tab-next"></view>
-          </view>
-        </view>
-      </view>
-      <!-- 显示 -->
-      <view class="c-voice__show">
-        <view class="c-voice__content-header">
-          <view class="c-voice__name">学生姓名</view>
-          <view class="c-voice__time">2017-7-23 10:00</view>
-          <view>置顶</view>
-        </view>
-        <view class="c-text__content">
-          <view class="c-text__txt">
-            这是几周前的一个早上， 同学发了矛，收...
-            <view class="c-text__txt-show m-blur">全文</view>
-          </view>
-          <view class="c-voice__tab">
-            <view class="c-voice__tab-pre"></view>
-            <view class="c-voice__tab-next"></view>
+            <view class="c-voice__tab-pre" bindtap="moveUp(work.workId)"></view>
+            <view class="c-voice__tab-next" bindtap="moveDown(work.workId)"></view>
           </view>
         </view>
       </view>
@@ -294,20 +224,26 @@
     <view class="c-imgList__footer">
       <view class="c-imgList__footer-content">
         <view class="c-imgList__footer-lable">策略：</view>
-        <view class="c-imgList__footer-text">
-          标注内容内容内容内容内容内容 内容内容内容内容。
-        </view>
+        <view class="c-imgList__footer-text">{{group.groupInfo.comment}}</view>
       </view>
       <view class="c-footer__lable">
-        <view class="c-lable__list c-lable__list--active">有效</view>
-        <view class="c-lable__list">无效</view>
-        <view class="c-lable__list">不确定</view>
+         <view class="c-lable__list {{group.groupInfo.label == 1 ? 'c-lable__list--active' : ''}}"
+          data-label = "1" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          bindtap="updateLabe">有效</view>
+        <view class="c-lable__list {{group.groupInfo.label == 2 ? 'c-lable__list--active' : ''}}"
+        data-label = "2" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          bindtap="updateLabe">无效</view>
+        <view class="c-lable__list {{group.groupInfo.label == 3 ? 'c-lable__list--active' : ''}}"
+          data-label = "3" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          bindtap="updateLabe">不确定</view>
       </view>
     </view>
   </view>
+</template>
+<!-- 文本end -->
 
-
-  <!-- 弹出框观点样式 -->
+<template name="setPoint">
+<!-- 弹出框观点样式 -->
   <view class="c-viewpoint__list">
     <view class="c-viewpoint__check c-viewpoint__check--active"></view>
     <view class="c-viewpoint__option c-viewpoint__option1">
@@ -352,5 +288,4 @@
       <view class="c-viewpoint__option--yes"></view>
     </view>
   </view>
-
-</scroll-view>
+</template>
