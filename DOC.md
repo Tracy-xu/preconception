@@ -118,7 +118,7 @@ wx.getRecorderManager()
 </myk-camera>
 ```
 
-bindstoprecord 录像结束时出发，返回的结果时录像数据。可以在这个事件里做相机的退出操作。
+bindstoprecord 录像结束时出发，返回的结果时录像数据。可以在这个事件里做摄像头的退出操作。
 
 ### 播放
 
@@ -131,7 +131,12 @@ bindstoprecord 录像结束时出发，返回的结果时录像数据。可以�
 * 视频
 
 ```
-<myk-video src="xxx"></myk-video>
+<myk-video
+  bindclose="handleCloseVideo"
+  wx-if="{{ visible }}"
+  src="xxx"
+>
+</myk-video>
 ```
 
 ### 上传
