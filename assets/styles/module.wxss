@@ -16,3 +16,5 @@
 .c-icon--transform{display:inline-block;vertical-align: middel;width:34rpx;height:34rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/transform.png')}
 .c-icon--delete{display:inline-block;vertical-align: middel;width:34rpx;height:34rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/delete.png')}
 .c-icon--edit{display:inline-block;width:44rpx;height:44rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/activeedit.png')}
+.c-icon--radio{display:inline-block;width:38rpx;height:38rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/radio.png');}
+.c-icon--activeradio{display:inline-block;width:38rpx;height:38rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/radioOn.png');}
