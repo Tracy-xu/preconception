@@ -84,11 +84,12 @@
       </view>
       <view class="c-img__header-right">
         <view class="c-img__header-tactics"  data-index="{{gIdx}}" data-label="{{group.groupInfo.label}}" data-comment="{{group.groupInfo.comment}}"  bindtap="showCommentDialog">策略</view>
-        <view class="c-img__header-pack">收起<icon class="c-img__header-angle"></icon>
+        <view class="c-img__header-pack"  data-g-idx="{{gIdx}}" bindtap="openGroup">
+        {{openGroupInfo[gIdx].text}}<icon class="c-img__header-angle"></icon>
         </view>
       </view>
     </view>
-    <view class="c-img__content">
+    <view class="c-img__content" wx:if="{{openGroupInfo[gIdx].open}}">
       <view class="c-img__list c-img__list--active" wx:for="{{group.works}}" wx:for-index="wIdx" wx:for-item="work">
         <view class="c-img__imgbox">
           <image class="c-img__list-img" src=""></image>
@@ -140,11 +141,12 @@
       </view>
       <view class="c-img__header-right">
         <view class="c-img__header-tactics"  data-index="{{gIdx}}" data-label="{{group.groupInfo.label}}" data-comment="{{group.groupInfo.comment}}"  bindtap="showCommentDialog">策略</view>
-        <view class="c-img__header-pack">收起<icon class="c-img__header-angle"></icon>
+        <view class="c-img__header-pack" data-g-idx="{{gIdx}}" bindtap="openGroup">
+        {{openGroupInfo[gIdx].text}}<icon class="c-img__header-angle"></icon>
         </view>
       </view>
     </view>
-    <view class="c-voice__content" >
+    <view class="c-voice__content" wx:if="{{openGroupInfo[gIdx].open}}">
       <view class="c-voice__show" wx:for="{{group.works}}" wx:for-index="wIdx" wx:for-item="work">
         <view class="c-voice__content-header">
           <view class="c-voice__name">{{work.userName}}</view>
@@ -198,10 +200,11 @@
       </view>
       <view class="c-img__header-right">
         <view class="c-img__header-tactics"  data-index="{{gIdx}}" data-label="{{group.groupInfo.label}}" data-comment="{{group.groupInfo.comment}}"  bindtap="showCommentDialog">策略</view>
-        <view class="c-img__header-pack">收起<icon class="c-img__header-angle"></icon></view>
+        <view class="c-img__header-pack" data-g-idx="{{gIdx}}" bindtap="openGroup">
+        {{openGroupInfo[gIdx].text}}<icon class="c-img__header-angle"></icon></view>
       </view>
     </view>
-    <view class="c-voice__content">
+    <view class="c-voice__content" wx:if="{{openGroupInfo[gIdx].open}}">
       <!-- 隐藏的 -->
       <view class="c-voice__show" wx:for="{{group.works}}" wx:for-index="wIdx" wx:for-item="work">
         <view class="c-voice__content-header">
