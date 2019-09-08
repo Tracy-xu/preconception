@@ -16,10 +16,13 @@
           </view>
         </view>
         <view class="c-detail__con__text">
+        <span class="font-color--green">
+          转换内容：
+        </span>
         这是几周前的一个早上，因为前 一天我同学发了矛盾，因此心里 太事实收拾收拾收拾事实...
         </view>
       </view>
-       <view class="c-detail__con-item c-detail__con-item--active">
+      <view class="c-detail__con-item c-detail__con-item--active">
         <view class="c-detail__con__header">
         <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/activeplay.png"></image>
         张三
@@ -29,6 +32,44 @@
         </view>
         <view class="c-detail__con__text">
         这是几周前的一个早上，因为前 一天我同学发了矛盾，因此心里 太事实收拾收拾收拾事实...
+        </view>
+      </view>
+      <view class="c-detail__con-imgitem">
+        <view class="c-detail__con-imgitem__top">
+        <image src="http://g.hiphotos.baidu.com/image/pic/item/c2cec3fdfc03924590b2a9b58d94a4c27d1e2500.jpg"></image>
+        <view class="c-detail__con-imgitem__tips">
+            共2张
+        </view>
+        </view>
+        <view class="c-detail__con-imgitem__bottom">
+          <image src="http://g.hiphotos.baidu.com/image/pic/item/c2cec3fdfc03924590b2a9b58d94a4c27d1e2500.jpg"></image>
+          <view class="c-detail__con-imgitem__bottom--right">
+            <view class="c-detail__con-imgitem__bottom__name">
+              学生姓名
+            </view>
+            <view class="c-detail__con-imgitem__bottom__time">
+              2017-07-23
+            </view>
+            <i class="c-icon--radio"></i>
+          </view> 
+        </view>
+      </view>
+      <view class="c-detail__con-imgitem active">
+        <view class="c-detail__con-imgitem__top">
+        <image src="http://g.hiphotos.baidu.com/image/pic/item/c2cec3fdfc03924590b2a9b58d94a4c27d1e2500.jpg"></image>
+        <i class="c-voice-box__btn"></i>
+        </view>
+        <view class="c-detail__con-imgitem__bottom">
+          <image src="http://g.hiphotos.baidu.com/image/pic/item/c2cec3fdfc03924590b2a9b58d94a4c27d1e2500.jpg"></image>
+          <view class="c-detail__con-imgitem__bottom--right">
+            <view class="c-detail__con-imgitem__bottom__name">
+              学生姓名
+            </view>
+            <view class="c-detail__con-imgitem__bottom__time">
+              2017-07-23
+            </view>
+            <i class="c-icon--activeradio"></i>
+          </view> 
         </view>
       </view>
     </view>
