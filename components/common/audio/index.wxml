@@ -23,5 +23,5 @@
     block-size="18"
   />
 
-  <view>00:00</view>
+  <view>{{ currentTimeFormat }}</view>
 </view>

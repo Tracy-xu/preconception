@@ -14,12 +14,18 @@ Component({
     duration: 0,
     slideValue: 0,
     drag: false,
+    currentTimeFormat: '00:00',
   },
 
   methods: {
     handlePlayPause() {
       if (this.data.audioAction.method === 'pause') {
         this.play();
+        if (this.data.currentTime === 0) {
+          this.setData({
+            slideValue: 0
+          });
+        }
       } else {
         this.pause();
       }
@@ -49,6 +55,10 @@ Component({
           slideValue: parseInt(this.data.currentTime / this.data.duration * 100)
         });
       }
+
+      this.setData({
+        currentTimeFormat: this.formatSecond(this.data.currentTime)
+      });
     },
 
     /**
@@ -106,6 +116,23 @@ Component({
           method: 'pause'
         }
       });
+    },
+
+    /**
+     * 格式化秒
+     */
+    formatSecond(second) {
+      function leftPad(num) {
+        return num > 10 ? num : `0${ num }`;
+      }
+
+      if (second < 60) {
+        return `00:${ leftPad(parseInt(second)) }`;
+      } else {
+        const m = Math.floor(second / 60);
+        const s = second - m * 60;
+        return `${ leftPad(m) } : ${ leftPad(parseInt(s)) }`
+      }
     }
   }
 })

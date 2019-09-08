@@ -1,4 +1,9 @@
 <view class="m-video">
+  <view
+    class="m-video-bg"
+    bindtap="handleCloseVideo"  
+  ></view>
+
   <video
     id="myVideo"
     src="{{ src }}"
