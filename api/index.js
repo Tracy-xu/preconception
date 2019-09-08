@@ -1,4 +1,5 @@
 import auth from './auth/index.js';
 import analysis from './analysis/index.js';
-
-export { auth, analysis}
+import preview from './preview/index.js';
+console.log(preview)
+export { auth, analysis, preview }
