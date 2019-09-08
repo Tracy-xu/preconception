@@ -3,7 +3,8 @@
   <view class="c-exercises">
     <view class="c-exercises-main">
       <view class="c-preview-list__result">
-        <view class="c-voice-box">
+      <!-- 语音 -->
+        <view class="c-voice-box" wx:if="{{questionData.content.audio.length}}">
           <view class="c-voice-box__btn c-voice-box__btn--play"></view>
           <view class="c-voice-box__progress">
             <view class="c-voice-box__progress-con"></view>
@@ -13,29 +14,34 @@
           </view>
         </view>
         <view class="c-exercises-main__text">
-          这是几周前的一个早上，同收拾 
-          <i class="c-preview__icon--text"></i>
+          {{questionData.content.content}}
+           <i class="c-preview__icon--text" wx:if="{{questionData.content.mode === 1}}"></i>
+          <i class="c-preview__icon--camera" wx:elif="{{questionData.content.mode === 2}}"></i>
+          <i class="c-preview__icon--video" wx:elif="{{questionData.content.mode === 3}}"></i>
+          <i class="c-preview__icon--voice" wx:elif="{{questionData.content.mode === 4}}"></i>
         </view>
-        <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/default.png" class="c-preview-list__img"></image>
+        <span wx:if="{{questionData.content.imgs.length}}">
+        <image
+        wx:for="{{questionData.content.imgs}}"
+        src="{{item}}" 
+        class="c-preview-list__img">
+        </image>
+        </span>
       </view>
     </view>
     <view class="c-exercises-con">
-      <textarea class="c-exercises-con__textarea" auto-height placeholder="请在此输入答案~" />
-      <view class="c-exercises-con__imgs">
-        <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/default.png" class="c-preview-list__img"></image>
-        <view class="c-preview-list__img">
+      <textarea
+        wx:if="{{questionData.content.mode === 1}}"
+        class="c-exercises-con__textarea"
+        value="{{questionData.work.answer}}"
+        auto-height placeholder="请在此输入答案~" />
+      <view class="c-exercises-con__imgs" wx:if="{{questionData.content.mode === 2}}">
+        <image
+        wx:for="{{questionData.work.imgs}}"
+        src="item"   
+        class="c-preview-list__img"></image>
+        <view class="c-preview-list__img" bindTap="uploadImg">
           +
-        </view>
-        <view class="c-preview-list__img">
-          <view class="c-preview__icon--voice"></view>
-        </view>
-        <view class="c-preview-list__img">
-          <view class="c-preview__icon--camera"></view>
-        </view>
-        <view class="c-preview-list__img">
-          <icon type="clear" size="24" color="#999" class="c-icon" />
-          <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/default.png"></image>
-          <view class="c-voice-box__btn c-voice-box__btn--play"></view>
         </view>
         <view class="c-voice-box">
           <view class="c-voice-box__btn c-voice-box__btn--play"></view>
@@ -45,6 +51,17 @@
           <view class="c-voice-box__num">
             00:20
           </view>
+        </view>
+      </view>
+      <!-- 视频 -->
+      <view class="c-exercises-con__imgs" wx:if="{{questionData.content.mode === 3}}">
+        <view class="c-preview-list__img" wx:if="{{questionData.work.fileId}}">
+          <icon type="clear" size="24" color="#999" class="c-icon" />
+          <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/default.png"></image>
+          <view class="c-voice-box__btn c-voice-box__btn--play"></view>
+        </view>
+         <view class="c-preview-list__img" bindtap="uploadVideo" wx:else>
+          <view class="c-preview__icon--camera"></view>
         </view>
       </view>
       <view class="c-exercises-con__btns">
@@ -66,10 +83,10 @@
       </view>
     </view>
     <view class="c-exercises-bottom">
-      <view class="c-exercises-bottom__leftbtn">
+      <view class="c-exercises-bottom__leftbtn" bindtap="pushWorkStorage">
         暂存答案
       </view>
-      <view class="c-exercises-bottom__rightbtn">
+      <view class="c-exercises-bottom__rightbtn" bindtap="pushWorkSave">
         提交答案
       </view>
     </view>

@@ -10,3 +10,14 @@ export function getWorkList(data) {
     params:data,
   })
 }
+
+export function getWorkById(workId) {
+  return axios.get(`/qgn/precon/que/work/${workId}`)
+}
+
+export function pushWorkStorage(workId,data) {
+  return axios.put(`/qgn/precon/que/work/${workId}/storage`,data)
+}
+export function pushWorkSave(workId, data) {
+  return axios.put(`/qgn/precon/que/work/${workId}/save`, data)
+}

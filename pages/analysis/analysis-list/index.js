@@ -9,6 +9,7 @@ Page({
   data: {
     view: 'video',
     width: 50,
+    klassPreconQueId: null,
     workReport: {}
   },
 
@@ -16,14 +17,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(API)
+    this.setData({
+      klassPreconQueId: options.klassPreconQueId || 1
+    });
     API.Analysis.analyze(options.klassPreconQueId || 1).then(res => {
       let wr = res.data;
       let mode = res.data.item.content.mode;
       let lkRatio = Math.floor(w.like / wr.size * 100);
       this.setData({
         createdOnStr: wr.klassPreconQue.createdOn,
-        fnsRatio:  Math.floor(wr.commit / wr.size * 100),
+        fnsRatio: Math.floor(wr.commit / wr.size * 100),
         lkRatio: lkRatio,
         ulkRatio: 100 - lkRatio,
         workReport: wr,
@@ -79,5 +82,10 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  onGroupEdit: function(event) {
+    wx.navigateTo({
+      url: `${router.analysisDetail}?klassPreconQueId=${this.data.klassPreconQueId}`
+    });
   }
 })
