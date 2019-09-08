@@ -40,5 +40,5 @@ export function moveToIndex(klassPreconQueId, index, workIds){
  * 设置分组信息策略等信息
  */
 export function updateGroupInfo(klassPreconQueId, uwg){
-  return axios.post(`/group/preque/${klassPreconQueId}/info`,uwg);
+  return axios.post(`/group/preque/${klassPreconQueId}/info`, uwg);
 }

@@ -15,6 +15,7 @@ Page({
     currComment: null,
     commentbtns: [{ text: '取消' }, { text: '确定'}],
     moveIds: [], // 需要移动的分组ID
+    selectedWorkIds: {},
     openGroupInfo: [{ open: true, text: '收起' }, { open: true, text: '收起' }, { open: true, text: '收起' },
       { open: true, text: '收起' }, { open: true, text: '收起' }, { open: true, text: '收起' }], //展开状态的分组
     klassPreconQueId: null,
@@ -127,7 +128,7 @@ Page({
   setPoint(index) {
     API.Analysis.setPoint(this.data.klassPreconQueId, index).then(res => {
       wx.showToast({
-        title: '提示移动成功',
+        title: '移动成功',
         icon: 'success',
         duration: 2000
       })
@@ -150,7 +151,11 @@ Page({
    */
   move(workId, dir) {
     API.Analysis.move(workId, dir).then(res => {
-      // 提示移动成功
+      wx.showToast({
+        title: '操作成功',
+        icon: 'success',
+        duration: 2000
+      })
     });
   },
   // 批量设置workIds
@@ -170,7 +175,11 @@ Page({
   },
   moveToIndex(index, workIds) {
     API.Analysis.moveToIndex(this.klassPreconQueIdm, index, workIds).then(res => {
-
+      wx.showToast({
+        title: '操作成功',
+        icon: 'success',
+        duration: 2000
+      })
     });
   },
   /**
@@ -226,7 +235,11 @@ Page({
   },
   doUpdateGroupInfo(uwg){
     API.Analysis.updateGroupInfo(this.data.klassPreconQueId, uwg).then(res => {
-
+      wx.showToast({
+        title: '操作成功',
+        icon: 'success',
+        duration: 2000
+      })
     });
   },
   /**
@@ -244,5 +257,13 @@ Page({
     this.setData({
       openGroupInfo: this.data.openGroupInfo
     })
+  },
+  // 选中作业 后进行批量移动分组
+  selectedWork(event){
+    let workId = event.currentTarget.dataset.workId;
+    this.data.selectedWorkIds[workId] = !this.data.selectedWorkIds[workId];
+    this.setData({
+      selectedWorkIds: this.data.selectedWorkIds
+    });
   }
 })
