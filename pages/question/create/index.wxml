@@ -1,11 +1,53 @@
+<view class="c-sort">
+    <view class="c-sort__left">
+      学段学科教材版本
+    </view>
+    <view class="c-sort__right">
+      <i class="c-sort__icon"></i>筛选
+    </view>
+</view>
+
 <view class="c-question-create">
-  <view class="c-question-create__stem">
-    1. 
-    <input placeholder="请输入题目内容"></input>
+  <!-- 题干 -->
+  <view class="c-question-create__stem-box">
+    <view class="c-question-create__stem-label">1. </view>
+    <view class="c-question-create__stem">
+      <icon class="c-question-create__open-stem-type"></icon>
+      <input
+        class="c-question-create__stem-txt"
+        placeholder="请输入题目内容"
+      >
+      </input>
+      <view class="c-question-create__stem-audio">
+        
+      </view>
+      <view class="c-question-create__stem-img">
+        <view class="c-question-create__stem-img-item">
+          <image src=""></image>
+          <icon></icon>
+        </view>
+        <view class="c-question-create__stem-img-item">
+          <image src=""></image>
+          <icon></icon>
+        </view>
+        <view class="c-question-create__stem-img-item">
+          <image src=""></image>
+          <icon></icon>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 添加题干 -->
+  <view class="c-question-create__stem-type">
+    <view class="c-question-create__stem-type--img">添加图片</view>
+    <view class="c-question-create__stem-type--audio">添加语音</view>
     <icon></icon>
   </view>
-  <view class="c-queston-create__answer">
-    <view class="c-queston-create__label">答题方式：</view>
+
+  <!-- 选择答题方式 -->
+  <view class="c-queston-create__answer-type">
+    <view class="c-queston-create__type-label">答题方式：</view>
     <view class="c-queston-create__type">
       <view class="c-queston-create__type-txt">文本</view>
       <view class="c-queston-create__type-img">图片</view>
