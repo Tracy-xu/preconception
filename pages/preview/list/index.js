@@ -12,6 +12,7 @@ Page({
     klassId: null,
     klassName: null,
     userInfo: null,
+    subjId:null,
     workList:[],
     pageSize:10,
     total:0,
@@ -20,7 +21,7 @@ Page({
       "语文"  
     ]
   },
-  onReady(){
+  onLoad(){
     this.getStudentById();
   },
   getWorkList(){
@@ -32,36 +33,42 @@ Page({
       return;
     }
     let $data = {
+      subjId: this.data.subjId,
       curPage: this.data.curPage,
       klassId: this.data.klassId,
     }
     preview.Preview.getWorkList($data).then(res => {
       this.setData({
-        workList: res.data.items,
-        pageSize: res.data.page.pageSize,
-        total: res.data.page.total,
+        workList: res.items,
+        pageSize: res.page.pageSize,
+        total: res.page.total,
       })
     })
   },
   getStudentById(){
     preview.Preview.getStudentById(this.data.studentId).then(res => {
+      let $arr = [];
+      res.klass.subjectTeacherMap.subjects.forEach((item) => {
+        $arr.push(itrm.name)
+      })
       this.setData({
-        userInfo: res.data,
-        klassName: res.data.klass.name,
-        klassId: res.data.klass.id,
-        subJectList: res.data.klass.subjectTeacherMap.subjects
+        userInfo: res,
+        klassName: res.klass.name,
+        klassId: res.klass.id,
+        subJectList: $arr
       })
     })
   },
-  goToDetail(){
+  // 学生查看详情
+  goToDetail(data){
     wx.navigateTo({
-      url: router.questionEdit,
+      url: `${router.questionEdit}?workId=${data.work.workId}`,
     })
   },
   // 学生去预习
-  goDoWork() {
+  goDoWork(data) {
     wx.navigateTo({
-      url: router.exercises,
+      url: `${router.exercises}?workId=${data.work.workId}`,
     })
   },
   // 根据学科筛选题目
@@ -69,6 +76,14 @@ Page({
     wx.showActionSheet({
       itemList: this.data.subJectList,
       success(res) {
+        this.data.userInfo.klass.subjectTeacherMap.subjects.forEach((item) => {
+          if (this.data.subJectList[res.tapIndex] === item.name){
+            this.setData({
+              curPage:1,
+              subjId:item.id
+            })
+          }
+        })
         console.log(res.tapIndex)
       },
       fail(res) {
