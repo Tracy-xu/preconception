@@ -1,66 +1,79 @@
 <!--pages/preview-list/index.wxml-->
 <view>
- <!-- 筛选 -->
+  <!-- 筛选 -->
   <view class="c-sort">
-      <view class="c-sort__left">
-         班级名称
-      </view>
-      <view class="c-sort__right" bindtap="searchQuestion">
-        <i class="c-sort__icon"></i>筛选
-      </view>
+    <view class="c-sort__left">
+      <span wx:if="{{klassName !== null}}">{{klassName}}</span>
+      <span wx:else>--</span>
+    </view>
+    <view class="c-sort__right" bindtap="searchQuestion">
+      <i class="c-sort__icon"></i>筛选
+    </view>
   </view>
   <view class="c-preview-list">
-    <view class="c-preview-list__item">
-      <view class="c-preview-list__con">
-        思考一下，分享你记忆最深事实一篇小短文思考一下。
-        <i class="c-preview__icon--text"></i>
-      </view>
-       <view class="c-preview-list__result">
-        <view class="c-voice-box">
-          <view class="c-voice-box__btn c-voice-box__btn--play"></view>
-          <view class="c-voice-box__progress">
-            <view class="c-voice-box__progress-con"></view>
-          </view>
-          <view class="c-voice-box__num">
-            00:20
-          </view>
+    <scroll-view class="scroll-view_H" scroll-y style="width: 100%" bindscrolltolower="getWorkList">
+      <view class="c-preview-list__item" wx:for="{{workList}}">
+        <view class="c-preview-list__con" >
+        {{item.content.content}}
+          <i class="c-preview__icon--text" wx:if="{{item.content.mode === 1}}"></i>
+          <i class="c-preview__icon--text" wx:elif="{{item.content.mode === 2}}"></i>
+          <i class="c-preview__icon--text" wx:elif="{{item.content.mode === 3}}"></i>
+          <i class="c-preview__icon--text" wx:else="{{item.content.mode === 4}}"></i>
         </view>
-        <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/default.png" class="c-preview-list__img"></image>
+        <view class="c-preview-list__result">
+          <view class="c-voice-box">
+            <view class="c-voice-box__btn c-voice-box__btn--play"></view>
+            <view class="c-voice-box__progress">
+              <view class="c-voice-box__progress-con"></view>
+            </view>
+            <view class="c-voice-box__num">
+              00:20
+            </view>
+          </view>
+          <image wx:for="{{item.content.imgs}}" 
+                  wx:for-item="imgItem" 
+                  src="{{imgItem}}" 
+                  class="c-preview-list__img"></image>
+        </view>
+        <view class="c-preview-list__bottom" wx-if="{{item.work.status === 2}}">
+          <view class="u-button u-button--primary" bindtap="goToDetail(item)">查看详情</view>
+          <view class="font-color--blue">已提交</view>
+        </view>
+         <view class="c-preview-list__bottom" wx:else>
+          <view class="u-button u-button--primary" bindtap="goDoWork(item)">去完成</view>
+          <view class="">未提交</view>
+        </view>
       </view>
-      <view class="c-preview-list__bottom">
-        <view class="u-button u-button--primary" bindtap="goToDetail">查看详情</view>
-        <view class="font-color--blue">已提交</view>
+      <view class="c-preview-list__item">
+        <view class="c-preview-list__con">
+          思考一下，分享你记忆最深事实一篇小短文思考一下。
+          <i class="c-preview__icon--video"></i>
+        </view>
+        <view class="c-preview-list__bottom">
+          <view class="u-button u-button--primary">查看详情</view>
+          <view class="font-color--blue">已提交</view>
+        </view>
       </view>
-    </view>
-    <view class="c-preview-list__item">
-      <view class="c-preview-list__con">
-        思考一下，分享你记忆最深事实一篇小短文思考一下。
-        <i class="c-preview__icon--video"></i>
+      <view class="c-preview-list__item">
+        <view class="c-preview-list__con">
+          思考一下，分享你记忆最深事实一篇小短文思考一下。
+          <i class="c-preview__icon--voice"></i>
+        </view>
+        <view class="c-preview-list__bottom">
+          <view class="u-button u-button--primary">查看详情</view>
+          <view class="font-color--blue">已提交</view>
+        </view>
       </view>
-      <view class="c-preview-list__bottom">
-        <view class="u-button u-button--primary">查看详情</view>
-        <view class="font-color--blue">已提交</view>
+      <view class="c-preview-list__item">
+        <view class="c-preview-list__con">
+          思考一下，分享你记忆最深事实一篇小短文思考一下。
+          <i class="c-preview__icon--camera"></i>
+        </view>
+        <view class="c-preview-list__bottom">
+          <view class="u-button u-button--primary" bindtap="goDoWork">去完成</view>
+          <view class="">未提交</view>
+        </view>
       </view>
-    </view>
-    <view class="c-preview-list__item">
-      <view class="c-preview-list__con">
-        思考一下，分享你记忆最深事实一篇小短文思考一下。
-        <i class="c-preview__icon--voice"></i>
-      </view>
-      <view class="c-preview-list__bottom">
-        <view class="u-button u-button--primary">查看详情</view>
-        <view class="font-color--blue">已提交</view>
-      </view>
-    </view>
-    <view class="c-preview-list__item">
-      <view class="c-preview-list__con">
-        思考一下，分享你记忆最深事实一篇小短文思考一下。
-        <i class="c-preview__icon--camera"></i>
-      </view>
-      <view class="c-preview-list__bottom">
-        <view class="u-button u-button--primary" bindtap="goDoWork">去完成</view>
-        <view class="">未提交</view>
-      </view>
-    </view>
+    </scroll-view>
   </view>
 </view>

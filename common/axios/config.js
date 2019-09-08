@@ -1,6 +1,6 @@
 import axios from './axios.min.js';
 // axios.defaults.baseURL = 'http://api.kpg123.com';
-axios.defaults.baseURL = 'http://122.112.239.223:13000';
+axios.defaults.baseURL = 'http://122.112.239.223:8080';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const Axios = axios.create({
