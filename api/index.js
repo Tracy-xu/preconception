@@ -1,5 +1,4 @@
 import auth from './auth/index.js';
+import analysis from './analysis/index.js';
 
-export default {
-  ...auth
-}
+export { auth, analysis}
