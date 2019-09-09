@@ -1,6 +1,6 @@
 // pages/exercises/index.js
 import chooseImage from '../../../utils/choose-image/choose-image.js';
-import { preview } from "../../../api/index.js"
+import Api from "../../../api/index.js"
 Page({
 
   /**
@@ -8,11 +8,12 @@ Page({
    */
   data: {
     workId: null,
-    files: null,
+    files: [],
     record: false,
     recordIng: false,
     playVideoFlag: false,
-    questionData:{
+    questionData: {
+      imgs:[],
       type:1,
     }
   },
@@ -20,16 +21,18 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function () {
+  onLoad: function (options) {
     this.setData({
       workId:options.workId
     })
     this.getWorkById();
   },
   getWorkById(){
+    let that = this
     Api.Preview.getWorkById(this.data.workId).then((res) => {
-      this.setData({
-        questionData:res.work
+      let $data = JSON.parse(res.data)
+      that.setData({
+        "questionData": res.work
       })
     })
   },
@@ -49,23 +52,27 @@ Page({
   },
   // 上传图片
   uploadImg() {
+    let that = this
     chooseImage().then(res => {
-      const tempFilePaths = res.tempFilePaths
+      const tempFilePaths = res
       that.setData({
         files: that.data.files.concat(res.tempFilePaths)
       });
       wx.uploadFile({
-        url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
+        url: 'http://122.112.239.223:8080/file/upload/image/binary', //仅为示例，非真实的接口地址
         filePath: tempFilePaths[0],
         name: 'file',
         formData: {
           'user': 'test'
         },
-        success(res) {
-          this.getWorkById()
-          const data = res.data
-          this.setData
-          //do something
+        success(res1) {
+          let $obj = that.data.questionData
+          $obj.imgs.push(JSON.parse(res1.data).url);
+          that.setData({
+            questionData:{
+              imgs: $obj.imgs
+            }
+          })
         }
       })
     })
@@ -106,22 +113,26 @@ Page({
     this.setData({
       recordIng: !this.data.recordIng
     })
+    let RecorderManager = wx.getRecorderManager();
+    console.log(RecorderManager)
+    return;
     if(this.data.recordIng){
-      wx.startRecord({
-        success:()=>{
+      RecorderManager.start({
+        success:() => {
           wx.showToast({
             title: '开始录音',
           })
         }
       })
-    }else{
-      wx.stopRecord({
+    }else {
+      RecorderManager.stop({
         success: (res) => {
+          console.log(res)
           wx.showToast({
             title: '录音结束',
           })
           wx.uploadFile({
-            url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
+            url: 'http://122.112.239.223:8080/file/upload/audio/binary', //仅为示例，非真实的接口地址
             filePath: res,
             name: 'file',
             formData: {

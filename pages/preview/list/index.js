@@ -1,6 +1,6 @@
 // pages/preview-list/index.js
 import router from '../../../router/index'
-import {preview} from '../../../api/index'
+import Api from '../../../api/index'
 Page({
 
   /**
