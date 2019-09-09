@@ -5,11 +5,43 @@
     <span class="font-color--green">{{total}}</span>人,已交
     <span class="font-color--green">{{doneNum}}</span>人,未交
     <span class="font-color--red">{{total - doneNum}}</span>人
-    <view class="c-detail__header-operation">
+    <view class="c-detail__header-operation" bindtap="showMyAnswer">
       <view class="font-color--green">我的答案</view>
     </view>
   </view>
-  
+  <!-- 答案详情弹框 -->
+  <mp-dialog  title="" 
+              show="{{dialogShow}}">
+    <view class="c-dialog">
+      <view class="c-dialog__top">
+        {{activeWorkDetail.content.content}}
+        <span wx:if="activeWorkDetail.content.imgs.length">
+         <image src="{{item}}" class="c-dialog__imgs"
+                wx:for="{{activeWorkDetail.content.imgs}}"></image>
+        </span>
+        <i class="c-preview__icon--text" wx:if="{{activeWorkDetail.content.mode === 1}}"></i>
+          <i class="c-preview__icon--camera" wx:elif="{{activeWorkDetail.content.mode === 2}}"></i>
+          <i class="c-preview__icon--video" wx:elif="{{activeWorkDetail.content.mode === 3}}"></i>
+          <i class="c-preview__icon--voice" wx:else="{{activeWorkDetail.content.mode === 4}}"></i>
+      </view>
+      <view class="c-dialog__bottom">
+        <span class="font-color--blue">我的答案：</span>
+        {{activeWorkDetail.wrok.answer}}
+         <view class="c-dialog__bottom__imgs" 
+         wx:if="{{activeWorkDetail.content.mode === 2}}">
+        <image src="{{activeWorkDetail.work.imgs[0]}}"></image>
+        <view class="c-dialog__bottom__imgs__tips">
+          共{{activeWorkDetail.work.imgs.length}}张
+        </view>
+      </view>
+      <view class="c-dialog__bottom__imgs" 
+        wx:if="{{activeWorkDetail.content.mode === 3}}">
+        <image src="{{activeWorkDetail.work.thumbnail}}" bindtap="playVideo(activeWorkDetail.work)"></image>
+        <i class="c-voice-box__btn"></i>
+      </view>
+      </view>
+    </view>
+  </mp-dialog>
   <view class="c-detail__con" wx:if="{{mode === 1}}">
     <view 
         class="c-detail__con-item {{activeWorkId === item.workId ? 'active' : ''}}"

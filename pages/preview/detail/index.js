@@ -9,12 +9,16 @@ Page({
   data: {
     curPage:1,
     activeWorkId:null,
+    activeWorkDetail:{
+      mode:1,
+    },
     total:0,
     doneNum:0,
     subjId:null,
     klassId:null,
     workId:null,
     workList:[],
+    dialogShow:false,
   },
   
   /**
@@ -64,6 +68,14 @@ Page({
         pageSize: res.page.pageSize,
         total: res.page.total,
         doneNum: doneNum
+      })
+    })
+  },
+  showMyAnswer() {
+    Api.Preview.getWorkById(this.data.workId).then(res => {
+      this.setData({
+        activeWorkDetail:res.data,
+        dialogShow:true,
       })
     })
   },
