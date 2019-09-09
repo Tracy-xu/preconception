@@ -1,5 +1,5 @@
 // pages/preview/detail/index.js
-import preview from "../../../api/index.js"
+import Api from "../../../api/index.js"
 
 Page({
 
@@ -7,8 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    curPage:1,
+    activeWorkId:null,
+    total:0,
+    doneNum:0,
+    subjId:null,
+    klassId:null,
     workId:null,
-    questionData:{}
+    workList:[],
   },
   
   /**
@@ -16,19 +22,61 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      workId: options.workId
+      workId: options.workId,
+      subjId: options.subjId,
+      klassId: options.klassId,
+      mode: options.mode
     })
-    this.getWorkById();
+    this.getWorkList();
   },
-  getWorkById() {
-    preview.Preview.getWorkById(this.data.workId).then((res) => {
+  getWorkList() {
+    if (this.workList.length >= this.data.total) {
+      wx.showToast({
+        title: '暂无更多数据',
+        icon: 'none'
+      })
+      return;
+    }
+    let $data = {
+      subjId: this.data.subjId,
+      curPage: this.data.curPage,
+      klassId: this.data.klassId,
+      userId: this.data.studentId,
+    }
+    Api.Preview.getWorkList($data).then(res => {
+      if (this.data.curPage === 1){
+        this.setData({
+          workList:[]
+        })
+      }else{
+        let $arr = this.data.workList;
+        this.setData({
+          workList: arr.contact(res.items)
+        })
+      }
+      let doneNum = 0;
+      this.data.workList.forEach(item => {
+        if(item.status === 2){
+          doneNum++;
+        }
+      })
       this.setData({
-        questionData: res.work
+        pageSize: res.page.pageSize,
+        total: res.page.total,
+        doneNum: doneNum
       })
     })
   },
+  selWork(data) {
+    this.setData({
+      activeWorkId:data.workId
+    })
+  },
+  playVideo(data){
+
+  },
   putAnswerLike() {
-    preview.Preview.putAnswerLike().then(res => {
+    Api.Preview.c(workId,activeWorkId).then(res => {
       wx.navigateBack();
     })
   }

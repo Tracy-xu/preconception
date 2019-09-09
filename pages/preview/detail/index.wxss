@@ -4,7 +4,7 @@
 .c-detail__header-operation{position:absolute;top:0;right:22rpx;}
 .c-detail__con{flex: 1;overflow: auto;}
 .c-detail__con-item{border-bottom:1rpx dashed #d9d9d9;padding:0 20rpx;}
-.c-detail__con-item--active{background:#FFBABA;}
+.c-detail__con-item.active{background:#FFBABA;}
 .c-detail__con__header{position:relative;height:122rpx;line-height:122rpx;font-size:44rpx;color:#999;}
 .c-detail__con__header image{display:inline-block;vertical-align:middle;width:70rpx;height:70rpx;}
 .c-detail__con__header-operation{position:absolute;right:0;top:0;}
