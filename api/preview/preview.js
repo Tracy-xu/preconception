@@ -18,6 +18,11 @@ export function getWorkById(workId) {
 export function pushWorkStorage(workId,data) {
   return axios.put(`/qgn/precon/que/work/${workId}/storage`,data)
 }
+
 export function pushWorkSave(workId, data) {
   return axios.put(`/qgn/precon/que/work/${workId}/save`, data)
+}
+
+export function putAnswerLike(sourceId, targetId) {
+  return axios.put(`/qgn/precon/que/work/${sourceId}/like/${targetId}`)
 }

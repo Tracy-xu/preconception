@@ -14,6 +14,7 @@
 .c-preview__icon--text{display:inline-block;width:50rpx;height:50rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/text.png');vertical-align:middle;}
 .c-preview__icon--video{display:inline-block;width:66rpx;height:57rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/picture.png');vertical-align:middle;}
 .c-preview__icon--voice{display:inline-block;width:54rpx;height:67rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/voice.png');vertical-align:middle;}
+.c-preview__icon--voiceing{display:inline-block;width:54rpx;height:67rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/activevoice.png');vertical-align:middle;animation:mymove linear infinite 1s;}
 .c-preview__icon--camera{display:inline-block;width:66rpx;height:62rpx;background-size:100% 100%;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/video.png');vertical-align:middle;}
 .c-exercises-con__btns{font-size:40rpx;color:#666;overflow:hidden;padding:0 24rpx;}
 .c-exercises-con__btn{float:left;margin-right:29rpx;}
@@ -24,3 +25,11 @@
 .c-exercises-bottom{height:96rpx;line-height:96rpx;background:#f9f9f9;border-top:1rpx solid #e6e6e6;text-align:center;}
 .c-exercises-bottom__leftbtn{float:left;width:50%;font-size:46rpx;color:#FFB423;box-sizing:border-box;border-right:1rpx solid #e6e6e6;}
 .c-exercises-bottom__rightbtn{float:right;width:50%;color:#14C75E;}
+@keyframes mymove {
+  from {
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
