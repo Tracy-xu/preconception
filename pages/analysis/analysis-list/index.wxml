@@ -43,18 +43,18 @@
     </view>
     <view class="c-content__list" bindtap="onGroupEdit">
       <view class="c-list__content">
-        <view class="c-list__content-text">{{workReport.item.content}}
+        <view class="c-list__content-text">{{workReport.item.content.length > 10 && !quanwen  ? util.sub(workReport.item.content,10): workReport.item.content}}
           <icon wx:if="{{view === 'text'}}" class="c-list__content-type-text"></icon>
           <icon wx:if="{{view === 'img'}}" class="c-list__content-type-img"></icon>
           <icon wx:if="{{view === 'voice'}}" class="c-list__content-type-img"></icon>
           <icon wx:if="{{view === 'video'}}" class="c-list__content-type-video"></icon>
-          <view class="c-list__content-all m-blur">全文</view>
+          <view class="c-list__content-all m-blur" wx:if="workReport.item.content.length > 10" catchtap="openQuanwen">{{quanwen ? '收起': '全文'}}</view>
         </view>
       </view>
 
       <view class="c-list__footer">
         <view class="c-list__footer-finishingRate">
-          <view class="c-list__finishingRate-num">{{Math.floor(workReport.commit / workReport.size * 100)}}%</view>
+          <view class="c-list__finishingRate-num">{{util.floor(workReport.commit/workReport.size * 100 )}}%</view>
           <view>完成率</view>
         </view>
         <view class="c-list__footer-viewpoint">
@@ -86,3 +86,16 @@
     </view>
   </view>
 </view>
+<wxs module="util">
+    var sub = function(val,length) {
+        return val.substring(0, length) + '...';
+    };
+    var floor = function(a){
+      return Math.floor(a);
+    };
+    module.exports = {
+      sub: sub,
+      floor: floor
+    }
+</wxs>
+

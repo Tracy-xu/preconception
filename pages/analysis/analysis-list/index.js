@@ -10,7 +10,16 @@ Page({
     view: 'video',
     width: 50,
     klassPreconQueId: null,
-    workReport: {}
+    quanwen: false,
+    lkRatio: Math.floor(3 / 10 * 100),
+    ulkRatio: 100 - Math.floor(3 / 10 * 100),
+    workReport: {
+      size: 12,
+      commit: 5,
+      like: 3,
+      unlike: 2,
+      item: { content: '问题问题问题问题问题问题问题问题问题问题问题问题问题问题问题'}
+    }
   },
 
   /**
@@ -87,5 +96,10 @@ Page({
     wx.navigateTo({
       url: `${router.analysisDetail}?klassPreconQueId=${this.data.klassPreconQueId}`
     });
+  },
+  openQuanwen: function(event){
+    this.setData({
+      quanwen: !this.data.quanwen
+    })
   }
 })
