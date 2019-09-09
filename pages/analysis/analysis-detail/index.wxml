@@ -61,7 +61,7 @@
       <view class="c-voice__show {{selectedWorkIds[work.workId] ? 'c-text__list-check--yes' : ''}}" wx:for="{{group.works}}" wx:key="workId"  wx:for-index="wIdx" wx:for-item="work" data-work-id="{{work.workId}}" bindtap="selectedWork">
         <view class="c-voice__content-header">
           <view class="c-voice__name">{{work.userName}}</view>
-          <view class="c-voice__time">{{work.createdOn}}</view>
+          <view class="c-voice__time">{{work.createdOnStr}}</view>
           <view wx:if="{{wIdx == (group.works.length -1)}}" data-work-id="{{work.workId}}" bindtap="moveTop">置顶</view>
         </view>
         <view class="c-text__content">
@@ -127,7 +127,7 @@
         <view class="c-img__detail">
           <view class="c-img__detail-content">
             <view>{{work.userName}}</view>
-            <view>{{work.createdOn}}</view>
+            <view>{{work.createdOnStr}}</view>
           </view>
           <view class="c-img__detail--fun">
             <view class="c-img__detail-tab" >
@@ -183,7 +183,7 @@
           <view class="c-video__bg"></view>
         </view>
         <view class="c-img__detail">
-          <view class="c-img__detail-content"><view>{{work.userName}}</view><view>{{work.createdOn}}</view></view>
+          <view class="c-img__detail-content"><view>{{work.userName}}</view><view>{{work.createdOnStr}}</view></view>
           <view class="c-img__detail--fun">
             <view class="c-img__detail-tab">
               <view class="c-img__tab-left" wx:if="{{(gIdx+wIdx) != 0}}" data-work-id="{{work.workId}}" bindtap="moveUp"></view>
@@ -234,7 +234,7 @@
       <view class="c-voice__show {{selectedWorkIds[work.workId] ? 'c-voice__list-check--yes' : ''}}" wx:for="{{group.works}}" wx:key="workId" wx:for-index="wIdx" wx:for-item="work" data-work-id="{{work.workId}}" bindtap="selectedWork">
         <view class="c-voice__content-header">
           <view class="c-voice__name">{{work.userName}}</view>
-          <view class="c-voice__time">{{work.createdOn}}</view>
+          <view class="c-voice__time">{{work.createdOnStr}}</view>
           <view wx:if="{{wIdx == (group.works.length -1)}}" data-work-id="{{work.workId}}" bindtap="moveTop">置顶</view>
         </view>
         <view class="c-voice__nav">
