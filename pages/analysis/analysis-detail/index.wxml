@@ -9,6 +9,9 @@
   <mp-dialog title="策略" show="{{commentDialog}}" bindbuttontap="bindCommentConfirm" buttons="{{commentbtns}}">
     <view><input placeholder="请输入策略内容" auto-focus  bindinput="bindCurrCommentInput"  value="{{currComment}}" /></view>
   </mp-dialog>
+  <view class="c-fix__viewpoint">
+    正确观点
+  </view>
 </scroll-view>
 
 <!-- 图片begin  c-img__list--active 选中需要一个阴影 -->
@@ -31,7 +34,7 @@
       </view>
     </view>
     <view class="c-img__content" wx:if="{{openGroupInfo[gIdx].open}}">
-      <view class="c-img__list c-img__list--active" wx:for="{{group.works}}" wx:key="wIdx" wx:for-index="wIdx" wx:for-item="work">
+      <view class="c-img__list c-img__list--active m-border__color1" wx:for="{{group.works}}" wx:key="wIdx" wx:for-index="wIdx" wx:for-item="work">
         <view class="c-img__imgbox">
           <image class="c-img__list-img" src="{{work.imgs.length > 0 ? work.imgs[0] : '' }}"></image>
           <view class="c-img__list-check {{check ? 'c-img__list-check--yes' : ''}}">
