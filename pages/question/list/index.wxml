@@ -1,4 +1,5 @@
 <view class="m-scroll-container">
+  <select-class></select-class>
   <!-- 筛选 -->
   <view class="c-sort">
       <view class="c-sort__left">

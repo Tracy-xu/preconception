@@ -1,12 +1,13 @@
 // pages/preview/detail/index.js
 import preview from "../../../api/index.js"
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    workId:nulll,
+    workId:null,
     questionData:{}
   },
   

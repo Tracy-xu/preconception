@@ -1,6 +1,10 @@
 import router from '../../../router/index.js';
+import API from "../../../api/index.js"
 
 Page({
+  onReady() {
+    API.Question.getQuestions();
+  },
 
   /**
    * 页面的初始数据
