@@ -27,7 +27,7 @@ Page({
     this.getWorkById();
   },
   getWorkById(){
-    preview.Preview.getWorkById(this.data.workId).then((res) => {
+    Api.Preview.getWorkById(this.data.workId).then((res) => {
       this.setData({
         questionData:res.work
       })
@@ -35,14 +35,14 @@ Page({
   },
   // 暂存数据
   pushWorkStorage(){
-    preview.Preview.pushWorkStorage(this.data.workId,this.data.questionData).then(res => {
+    Api.Preview.pushWorkStorage(this.data.workId,this.data.questionData).then(res => {
       // 返回主页
       wx.navigateBack()
     })
   },
   // 提交数据
   pushWorkSave() {
-    preview.Preview.pushWorkSave(this.data.workId, this.data.questionData).then(res => {
+    Api.Preview.pushWorkSave(this.data.workId, this.data.questionData).then(res => {
       // 返回主页
       wx.navigateBack()
     })

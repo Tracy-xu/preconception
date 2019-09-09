@@ -1,84 +1,104 @@
 <!--pages/preview/detail/index.wxml-->
- <view class="c-detail-container">
-    <view class="c-detail__header">
-      共<span class="font-color--green">50</span>人,已交<span class="font-color--green">50</span>人,未交<span class="font-color--red">50</span>人
-      <view class="c-detail__header-operation">
-        <view class="font-color--green">我的答案</view>      
+<view class="c-detail-container">
+  <view class="c-detail__header">
+    共
+    <span class="font-color--green">{{total}}</span>人,已交
+    <span class="font-color--green">{{doneNum}}</span>人,未交
+    <span class="font-color--red">{{total - doneNum}}</span>人
+    <view class="c-detail__header-operation">
+      <view class="font-color--green">我的答案</view>
+    </view>
+  </view>
+  
+  <view class="c-detail__con" wx:if="{{mode === 1}}">
+    <view 
+        class="c-detail__con-item {{activeWorkId === item.workId ? 'active' : ''}}"
+        wx:for="{{workList}}" 
+        bindtap="selWork(item)">
+      <view class="c-detail__con__header">
+        <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/activeplay.png"></image>
+        {{item.userName}}
+        <view class="c-detail__con__header-operation">
+          {{item.startTime}}
+        </view>
+      </view>
+      <view class="c-detail__con__text">
+        {{item.answer}}
       </view>
     </view>
-    <view class="c-detail__con">
-      <view class="c-detail__con-item">
-        <view class="c-detail__con__header">
-        <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/activeplay.png"></image>
-        张三
-          <view class="c-detail__con__header-operation">
-          2017-7-23
-          </view>
+  </view>
+  <view class="c-detail__con" wx:if="{{mode === 2}}">
+    <view class="c-detail__con-imgitem {{activeWorkId === item.workId ? 'active' : ''}}" 
+          wx:for="{{workList}}"
+          bindtap="selWork(item)">
+      <view class="c-detail__con-imgitem__top">
+        <image src="{{item.imgs[0]}}"></image>
+        <view class="c-detail__con-imgitem__tips">
+          共{{item.imgs.length}}张
         </view>
-        <view class="c-detail__con__text">
+      </view>
+      <view class="c-detail__con-imgitem__bottom">
+        <image src="http://g.hiphotos.baidu.com/image/pic/item/c2cec3fdfc03924590b2a9b58d94a4c27d1e2500.jpg"></image>
+        <view class="c-detail__con-imgitem__bottom--right">
+          <view class="c-detail__con-imgitem__bottom__name">
+            {{item.userName}}
+          </view>
+          <view class="c-detail__con-imgitem__bottom__time">
+            {{item.startTime}}
+          </view>
+          <i class="c-icon--radio {{activeWorkId === item.workId ? 'c-icon--activeradio' : ''}}"></i>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="c-detail__con" wx:if="{{mode === 3}}">
+    <view class="c-detail__con-imgitem {{activeWorkId === item.workId ? 'active' : ''}}" 
+          wx:for="{{workList}}" 
+          bindtap="selWork(item)">
+      <view class="c-detail__con-imgitem__top">
+        <image src="item.thumbnail"></image>
+        <i class="c-voice-box__btn" bindtap="playVideo(item)"></i>
+      </view>
+      <view class="c-detail__con-imgitem__bottom">
+        <image src="http://g.hiphotos.baidu.com/image/pic/item/c2cec3fdfc03924590b2a9b58d94a4c27d1e2500.jpg"></image>
+        <view class="c-detail__con-imgitem__bottom--right">
+          <view class="c-detail__con-imgitem__bottom__name">
+            {{item.userName}}
+          </view>
+          <view class="c-detail__con-imgitem__bottom__time">
+            {{item.startTime}}
+          </view>
+          <i class="c-icon--activeradio {{activeWorkId === item.workId ? 'c-icon--activeradio' : ''}}"></i>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="c-detail__con" wx:if="{{mode === 4}}">
+    <view 
+      class="c-detail__con-item {{activeWorkId === item.workId ? 'active' : ''}}" 
+      wx:for="{{workList}}" 
+      bindtap="selWork(item)">
+      <view class="c-detail__con__header">
+        <image src="{{item.thumbnail}}"></image>
+        {{item.userName}}
+        <view class="c-detail__con__header-operation">
+          {{item.startTime}}
+        </view>
+      </view>
+      <view class="c-detail__con__text">
         <span class="font-color--green">
           转换内容：
         </span>
-        这是几周前的一个早上，因为前 一天我同学发了矛盾，因此心里 太事实收拾收拾收拾事实...
-        </view>
-      </view>
-      <view class="c-detail__con-item c-detail__con-item--active">
-        <view class="c-detail__con__header">
-        <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/activeplay.png"></image>
-        张三
-          <view class="c-detail__con__header-operation">
-          2017-7-23
-          </view>
-        </view>
-        <view class="c-detail__con__text">
-        这是几周前的一个早上，因为前 一天我同学发了矛盾，因此心里 太事实收拾收拾收拾事实...
-        </view>
-      </view>
-      <view class="c-detail__con-imgitem">
-        <view class="c-detail__con-imgitem__top">
-        <image src="http://g.hiphotos.baidu.com/image/pic/item/c2cec3fdfc03924590b2a9b58d94a4c27d1e2500.jpg"></image>
-        <view class="c-detail__con-imgitem__tips">
-            共2张
-        </view>
-        </view>
-        <view class="c-detail__con-imgitem__bottom">
-          <image src="http://g.hiphotos.baidu.com/image/pic/item/c2cec3fdfc03924590b2a9b58d94a4c27d1e2500.jpg"></image>
-          <view class="c-detail__con-imgitem__bottom--right">
-            <view class="c-detail__con-imgitem__bottom__name">
-              学生姓名
-            </view>
-            <view class="c-detail__con-imgitem__bottom__time">
-              2017-07-23
-            </view>
-            <i class="c-icon--radio"></i>
-          </view> 
-        </view>
-      </view>
-      <view class="c-detail__con-imgitem active">
-        <view class="c-detail__con-imgitem__top">
-        <image src="http://g.hiphotos.baidu.com/image/pic/item/c2cec3fdfc03924590b2a9b58d94a4c27d1e2500.jpg"></image>
-        <i class="c-voice-box__btn"></i>
-        </view>
-        <view class="c-detail__con-imgitem__bottom">
-          <image src="http://g.hiphotos.baidu.com/image/pic/item/c2cec3fdfc03924590b2a9b58d94a4c27d1e2500.jpg"></image>
-          <view class="c-detail__con-imgitem__bottom--right">
-            <view class="c-detail__con-imgitem__bottom__name">
-              学生姓名
-            </view>
-            <view class="c-detail__con-imgitem__bottom__time">
-              2017-07-23
-            </view>
-            <i class="c-icon--activeradio"></i>
-          </view> 
-        </view>
+        {{item.answer}}
       </view>
     </view>
-    <view class="c-detail__bottom">
-      <view class="c-detail__bottom__leftbtn">
-        没有相近观点
-      </view>
-      <view class="c-detail__bottom__rightbtn">
-        提交
-      </view>
+  </view>
+  <view class="c-detail__bottom">
+    <view class="c-detail__bottom__leftbtn">
+      没有相近观点
     </view>
- </view>
+    <view class="c-detail__bottom__rightbtn">
+      提交
+    </view>
+  </view>
+</view>

@@ -36,17 +36,27 @@ Page({
       subjId: this.data.subjId,
       curPage: this.data.curPage,
       klassId: this.data.klassId,
+      userId: this.data.studentId,
     }
-    preview.Preview.getWorkList($data).then(res => {
+    Api.Preview.getWorkList($data).then(res => {
+      if (this.data.curPage === 1) {
+        this.setData({
+          workList: []
+        })
+      } else {
+        let $arr = this.data.workList;
+        this.setData({
+          workList: arr.contact(res.items)
+        })
+      }
       this.setData({
-        workList: res.items,
         pageSize: res.page.pageSize,
         total: res.page.total,
       })
     })
   },
   getStudentById(){
-    preview.Preview.getStudentById(this.data.studentId).then(res => {
+    Api.Preview.getStudentById(this.data.studentId).then(res => {
       let $arr = [];
       res.klass.subjectTeacherMap.subjects.forEach((item) => {
         $arr.push(itrm.name)
@@ -62,7 +72,7 @@ Page({
   // 学生查看详情
   goToDetail(data){
     wx.navigateTo({
-      url: `${router.questionEdit}?workId=${data.work.workId}`,
+      url: `${router.questionEdit}?workId=${data.work.workId}&klassPreconQueId=${data.work.klassPreconQueId}&mode=${item.content.mode}`,
     })
   },
   // 学生去预习
