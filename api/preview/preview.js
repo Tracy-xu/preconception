@@ -5,10 +5,13 @@ export function getStudentById(studentId) {
 }
 
 export function getWorkList(data) {
-  console.log(data)
   return axios.get("/qgn/precon/que/work",{
     params:data,
   })
+}
+
+export function getWorkListByklassPreconQueId(klassPreconQueId ) {
+  return axios.get(`/qgn/precon/que/${klassPreconQueId}/work`)
 }
 
 export function getWorkById(workId) {

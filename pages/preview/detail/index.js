@@ -15,7 +15,6 @@ Page({
     total:0,
     doneNum:0,
     subjId:null,
-    klassId:null,
     workId:null,
     workList:[],
     dialogShow:false,
@@ -28,48 +27,17 @@ Page({
     this.setData({
       workId: options.workId,
       subjId: options.subjId,
-      klassId: options.klassId,
+      klassPreconQueId: options.klassPreconQueId,
       mode: options.mode
     })
-    this.getWorkList();
+    this.getWorkListByklassPreconQueId();
   },
-  getWorkList() {
-    if (this.workList.length >= this.data.total) {
-      wx.showToast({
-        title: '暂无更多数据',
-        icon: 'none'
-      })
-      return;
-    }
-    let $data = {
-      subjId: this.data.subjId,
-      curPage: this.data.curPage,
-      klassId: this.data.klassId,
-      userId: this.data.studentId,
-    }
-    Api.Preview.getWorkList($data).then(res => {
-      if (this.data.curPage === 1){
+  getWorkListByklassPreconQueId() {
+    Api.Preview.getWorkList(this.data.klassPreconQueId).then(res => {
         this.setData({
-          workList:[]
+          workList: res.data
         })
-      }else{
-        let $arr = this.data.workList;
-        this.setData({
-          workList: arr.contact(res.items)
-        })
-      }
-      let doneNum = 0;
-      this.data.workList.forEach(item => {
-        if(item.status === 2){
-          doneNum++;
-        }
       })
-      this.setData({
-        pageSize: res.page.pageSize,
-        total: res.page.total,
-        doneNum: doneNum
-      })
-    })
   },
   showMyAnswer() {
     Api.Preview.getWorkById(this.data.workId).then(res => {
