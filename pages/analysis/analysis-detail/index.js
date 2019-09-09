@@ -14,13 +14,16 @@ Page({
     currLabel: null,
     currComment: null,
     commentbtns: [{ text: '取消' }, { text: '确定'}],
+    pointbtns: [{ text: '取消' }, { text: '确定' }],
     moveIds: [], // 需要移动的分组ID
     selectedWorkIds: {},
+    openPoint: false,
+    currPointIndex: 0,
     openGroupInfo: [{ open: true, text: '收起' }, { open: true, text: '收起' }, { open: true, text: '收起' },
       { open: true, text: '收起' }, { open: true, text: '收起' }, { open: true, text: '收起' }], //展开状态的分组
     klassPreconQueId: null,
     workGroup: {
-      mode: 2,
+      mode: 3,
       groups: [{
         groupInfo: {
           workIds: [1, 2, 3],
@@ -31,32 +34,48 @@ Page({
         works: [{
           workId: 1,
           userName: "测试1",
+          answer: '学生回答问题',
           imgs: ["2222", "22222"],
           modifiedOn: "222"
         }, {
+            workId: 2,
+            userName: "测试2",
+            answer: '学生回答问题',
+            imgs: ["2222", "22222"],
+            modifiedOn: "222"
+          }, {
           workId: 3,
-          userName: "测试2",
+          userName: "测试3",
+            answer: '学生回答问题',
           imgs: ["2222", "22222"],
           modifiedOn: "222"
         }]
       }, {
         groupInfo: {
-          workIds: [1, 2, 3],
+          workIds: [4, 5, 6],
           right: false,
           comment: "commentcommentcomment",
           label: 1
         },
         works: [{
-          workId: 1,
-          userName: "测试3",
+          workId: 4,
+          userName: "测试4",
+          answer: '学生回答问题',
           imgs: ["2222", "22222"],
           modifiedOn: "222"
         }, {
-          workId: 1,
-          userName: "测试4",
+          workId: 5,
+          userName: "测试5",
+            answer: '学生回答问题',
           imgs: ["2222", "22222"],
           modifiedOn: "222"
-        }]
+          }, {
+            workId: 6,
+            userName: "测试6",
+            answer: '学生回答问题',
+            imgs: ["2222", "22222"],
+            modifiedOn: "222"
+          }]
 
       }]
     },
@@ -69,7 +88,10 @@ Page({
     this.setData({
       klassPreconQueId: options.klassPreconQueId || 1
     });
-    API.Analysis.groupInfo(options.klassPreconQueId).then(res => {
+    this.doLoad();
+  },
+  doLoad(){
+    API.Analysis.groupInfo(this.data.klassPreconQueId).then(res => {
       // this.setData({
       //   workGroup: res.data
       // })
@@ -173,13 +195,32 @@ Page({
       moveIds: this.data.moveIds
     })
   },
-  moveToIndex(index, workIds) {
-    API.Analysis.moveToIndex(this.klassPreconQueIdm, index, workIds).then(res => {
+  /**
+   * 批量移动分组
+   */
+  bulkMoveGroup(event) {
+    let gIdx = event.currentTarget.dataset.gIdx;
+    let workIds = [];
+    for (var key in this.data.selectedWorkIds){
+      workIds.push(key);
+    }
+    if (!workIds.length) {
+      wx.showToast({
+        title: '请选择移动对象',
+        icon: 'none',
+        duration: 2000
+      })
+      return false;
+    }
+    console.log(workIds);
+    API.Analysis.moveToIndex(this.data.klassPreconQueId, gIdx, workIds).then(res => {
+      this.doLoad();
+      this.setData({ selectedWorkIds: {}});
       wx.showToast({
         title: '操作成功',
         icon: 'success',
         duration: 2000
-      })
+      });
     });
   },
   /**
@@ -265,5 +306,36 @@ Page({
     this.setData({
       selectedWorkIds: this.data.selectedWorkIds
     });
-  }
+  },
+    bindPointConfirm(event) {
+    this.setData({
+      openPoint: !this.data.openPoint
+    })
+    let dataset = event.currentTarget.dataset;
+      console.log(this.data.currPointIndex);
+    if (event.detail.index == 1) {
+      //确认
+      console.log(this.data.klassPreconQueId);
+      console.log(this.data.currPointIndex);
+      API.Analysis.setPoint(this.data.klassPreconQueId, this.data.currPointIndex).then(res=>{
+        this.doLoad();
+        wx.showToast({
+          title: '操作成功',
+          icon: 'success',
+          duration: 2000
+        });
+      });
+    } else {
+      //取消
+    }
+  },
+  bindCurrPointIndex(event) {
+    let pointIndex = event.currentTarget.dataset.pointIndex;
+    console.log(pointIndex);
+    this.setData({ currPointIndex: pointIndex });
+  },
+  // 设置正确观点
+  openPoint() {
+    this.setData({ openPoint: !this.data.openPoint, currPointIndex: 0 });
+  },
 })

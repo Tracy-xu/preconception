@@ -17,7 +17,7 @@ export function groupInfo(klassPreconQueId){
  * 设置正确观点
  */
 export function setPoint(klassPreconQueId,index){
-  return axios.post("/group/preque/right/${klassPreconQueId}/${index}");
+  return axios.post(`/group/preque/right/${klassPreconQueId}/${index}`);
 }
 
 /**
