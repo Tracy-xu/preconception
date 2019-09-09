@@ -1,10 +1,10 @@
 <!--pages/analysis/analysis-detail/index.wxml-->
 <scroll-view class="c-body">
   <view wx:for="{{workGroup.groups}}" wx:key="index" wx:for-index="gIdx" wx:for-item="group">
-  <template is="text" wx:if="{{workGroup.mode == 1}}" data="{{group: group,gIdx: gIdx,openGroupInfo: openGroupInfo,selectedWorkIds: selectedWorkIds}}"></template>
+  <template is="text" wx:if="{{workGroup.mode == 1}}" data="{{group: group,gIdx: gIdx,openGroupInfo: openGroupInfo,selectedWorkIds: selectedWorkIds,quanwenWorkIds: quanwenWorkIds}}"></template>
     <template is="img" wx:if="{{workGroup.mode == 2}}" data="{{group: group,gIdx: gIdx,openGroupInfo: openGroupInfo,selectedWorkIds: selectedWorkIds}}"></template>
     <template is="video" wx:if="{{workGroup.mode == 3}}" data="{{group: group,gIdx: gIdx,openGroupInfo: openGroupInfo,selectedWorkIds: selectedWorkIds}}"></template>
-    <template is="audio" wx:if="{{workGroup.mode == 4}}" data="{{group: group,gIdx: gIdx,openGroupInfo: openGroupInfo,selectedWorkIds: selectedWorkIds}}"></template>
+    <template is="audio" wx:if="{{workGroup.mode == 4}}" data="{{group: group,gIdx: gIdx,openGroupInfo: openGroupInfo,selectedWorkIds: selectedWorkIds,quanwenWorkIds: quanwenWorkIds}}"></template>
   </view>
 
   <mp-dialog title="策略" show="{{commentDialog}}" bindbuttontap="bindCommentConfirm" buttons="{{commentbtns}}">
@@ -66,8 +66,8 @@
         </view>
         <view class="c-text__content">
           <view class="c-text__txt">
-            {{work.answer}}
-            <view class="c-text__txt-show m-blur">全文</view>
+            {{work.answer.length > 7 && !quanwenWorkIds[work.workId] ? util.sub(work.answer,7) : work.answer }}
+            <view wx:if="{{work.answer.length > 7}}" class="c-text__txt-show m-blur" data-work-id="{{work.workId}}" bindtap="openQuanwen">{{quanwenWorkIds[work.workId] ? '收起':'全文'}}</view>
           </view>
           <view class="c-voice__tab">
             <view class="c-voice__tab-pre" data-work-id="{{work.workId}}" bindtap="moveUp"></view>
@@ -248,8 +248,8 @@
           </view>
         </view>
         <view class="c-voice__text">
-          {{work.answer}}
-          <view class="c-voice__text-all m-blur">全文</view>
+          {{work.answer.length > 10 && !quanwenWorkIds[work.workId] ? util.sub(work.answer,10) : work.answer }}
+          <view class="c-voice__text-all m-blur" wx:if="{{work.answer.length > 10}}" data-work-id="{{work.workId}}"      bindtap="openQuanwen">{{quanwenWorkIds[work.workId] ? '收起':'全文'}}</view>
         </view>
       </view>
     </view>
@@ -314,3 +314,9 @@
     </view>
   </view>
 </template>
+<wxs module="util">
+    var sub = function(val,length) {
+        return val.substring(0, length) + '...';
+    }
+    module.exports.sub = sub;
+</wxs>

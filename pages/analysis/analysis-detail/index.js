@@ -17,13 +17,14 @@ Page({
     pointbtns: [{ text: '取消' }, { text: '确定' }],
     moveIds: [], // 需要移动的分组ID
     selectedWorkIds: {},
+    quanwenWorkIds: {},
     openPoint: false,
     currPointIndex: 0,
     openGroupInfo: [{ open: true, text: '收起' }, { open: true, text: '收起' }, { open: true, text: '收起' },
       { open: true, text: '收起' }, { open: true, text: '收起' }, { open: true, text: '收起' }], //展开状态的分组
     klassPreconQueId: null,
     workGroup: {
-      mode: 3,
+      mode: 1,
       groups: [{
         groupInfo: {
           workIds: [1, 2, 3],
@@ -34,13 +35,13 @@ Page({
         works: [{
           workId: 1,
           userName: "测试1",
-          answer: '学生回答问题',
+          answer: '学生回答问题学生回答问题学生回答问题学生回答问题学生回答问题学生回答问题学生回答问题学生回答问题',
           imgs: ["2222", "22222"],
           modifiedOn: "222"
         }, {
             workId: 2,
             userName: "测试2",
-            answer: '学生回答问题',
+            answer: '学生回答问题题题',
             imgs: ["2222", "22222"],
             modifiedOn: "222"
           }, {
@@ -338,4 +339,14 @@ Page({
   openPoint() {
     this.setData({ openPoint: !this.data.openPoint, currPointIndex: 0 });
   },
+  /**
+   * 全文
+   */
+  openQuanwen(event){
+    let workId = event.currentTarget.dataset.workId;
+    this.data.quanwenWorkIds[workId] = !this.data.quanwenWorkIds[workId];
+    this.setData({
+      quanwenWorkIds: this.data.quanwenWorkIds
+    })
+  }
 })
