@@ -11,8 +11,8 @@ Page({
     width: 50,
     klassPreconQueId: null,
     quanwen: false,
-    lkRatio: Math.floor(3 / 10 * 100),
-    ulkRatio: 100 - Math.floor(3 / 10 * 100),
+    lkRatio: Math.floor(3 / 5 * 100),
+    ulkRatio: 100 - Math.floor(3 / 5 * 100),
     workReport: {
       size: 12,
       commit: 5,
