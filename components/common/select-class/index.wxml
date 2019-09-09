@@ -1,0 +1,11 @@
+<view class="m-select-class">
+  <view class="m-select-class__item">
+    <checkbox />
+    <view class="m-select-class__content">
+      <view class="m-select-class__class-name">杭州市第二中学七年级一班</view>
+      <view class="m-select-class__teacher-name">老师姓名</view>
+    </view>
+  </view>
+</view>
+
+<button class="m-select-class__btn">确定</button>
