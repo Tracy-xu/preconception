@@ -327,6 +327,58 @@ page{
   background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/right.png') no-repeat center/100% 100%;
 }
 
+.c-footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width:100%;
+  height:88rpx;
+  margin-top: 10rpx;
+  background:rgba(255,255,255,1);
+}
+.c-footer__list {
+  width:110rpx;
+  height:60rpx;
+  padding: 9rpx 0;
+  border-radius:6rpx;
+  text-align: center;
+}
+.c-footer__list1 {
+  background:rgba(255,226,226,1);
+  color: #FF4747;
+}
+.c-footer__list2 {
+  background:rgba(255,240,213,1);
+  color: #FFB027;
+}
+.c-footer__list3 {
+  background:rgba(224,245,255,1);
+  color: #18B5FF;
+}
+.c-footer__list4 {
+  background:rgba(226,228,255,1);
+  color: #6E78FF;
+}
+.c-footer__list5 {
+  background:rgba(240,227,255,1);
+  color: #B171FF;
+}
+.c-footer__list6 {
+  background:rgba(255,228,251,1);
+  color: #FF93EF;
+}
+
+
+.c-footer__list-viewpoint {
+  font-size: 24rpx;
+  padding-bottom: 5rpx;
+  line-height:24rpx;
+}
+.c-footer__list-peoplenum {
+  font-size: 18rpx;
+  line-height:18rpx;
+}
+
 
 .m-blur{
   color: #22A9FF;

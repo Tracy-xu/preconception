@@ -12,8 +12,8 @@
     "pages/profile/index",
     "pages/record/index",
     "pages/my-class/index",
-    "pages/analysis/analysis-list/index",
-    "pages/analysis/analysis-detail/index"
+    "pages/analysis/analysis-detail/index",
+    "pages/analysis/analysis-list/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

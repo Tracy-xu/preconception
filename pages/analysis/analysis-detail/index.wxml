@@ -12,6 +12,32 @@
   <view class="c-fix__viewpoint">
     正确观点
   </view>
+  <view class="c-footer">
+     <view class="c-footer__list c-footer__list1">
+        <view class="c-footer__list-viewpoint">观点1</view>
+        <view class="c-footer__list-peoplenum">20人</view>
+     </view>
+    <view class="c-footer__list c-footer__list2">
+        <view class="c-footer__list-viewpoint">观点1</view>
+        <view class="c-footer__list-peoplenum">20人</view>
+     </view>
+     <view class="c-footer__list c-footer__list3">
+        <view class="c-footer__list-viewpoint">观点1</view>
+        <view class="c-footer__list-peoplenum">20人</view>
+     </view>
+     <view class="c-footer__list c-footer__list4">
+        <view class="c-footer__list-viewpoint">观点1</view>
+        <view class="c-footer__list-peoplenum">20人</view>
+     </view>
+     <view class="c-footer__list c-footer__list5">
+        <view class="c-footer__list-viewpoint">观点1</view>
+        <view class="c-footer__list-peoplenum">20人</view>
+     </view>
+     <view class="c-footer__list c-footer__list6">
+        <view class="c-footer__list-viewpoint">观点1</view>
+        <view class="c-footer__list-peoplenum">20人</view>
+     </view>
+  </view>
 </scroll-view>
 
 <!-- 图片begin  c-img__list--active 选中需要一个阴影 -->
