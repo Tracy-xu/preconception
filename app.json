@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/analysis/analysis-list/index",
     "pages/question/list/index",
     "pages/index/index",
     "pages/auth/index",
@@ -12,8 +13,8 @@
     "pages/profile/index",
     "pages/record/index",
     "pages/my-class/index",
-    "pages/analysis/analysis-detail/index",
-    "pages/analysis/analysis-list/index"
+    "pages/analysis/analysis-detail/index"
+ 
   ],
   "window": {
     "backgroundTextStyle": "light",

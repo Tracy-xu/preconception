@@ -29,7 +29,7 @@ Axios.interceptors.request.use((config) => {
   let token = wx.getStorageSync('token');
   if (token) {
     token = JSON.parse(token);
-    config.headers.Authorization = `bearer 39518739-0fe6-46ec-88d7-c6d7f923cd8a`;
+    config.headers.Authorization = `Bearer 1fc39e5a-cfe0-4d4c-a347-5eaf20b29de0`;
   }
 
   return config;
