@@ -4,6 +4,10 @@ export function getStudentById(studentId) {
   return axios.get(`/qgn/svc/student/${studentId}`)
 }
 
+export function getAllSubject() {
+  return axios.get(`/qgn/subject`)
+}
+
 export function getWorkList(data) {
   return axios.get("/qgn/precon/que/work",{
     params:data,

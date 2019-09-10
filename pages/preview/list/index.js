@@ -16,13 +16,13 @@ Page({
     workList:[],
     pageSize:10,
     total:0,
-    subJectList:[
-      "全部",
-      "语文"  
-    ]
+    actionSheetHidden:true,
+    subJectListObj:[],
   },
   onLoad(){
+    this.getAllSubject();
     this.getStudentById();
+    this.getWorkList();
   },
   getWorkList(){
     if (this.workList.length >= this.data.total){
@@ -55,6 +55,20 @@ Page({
       })
     })
   },
+  getAllSubject() {
+    Api.Preview.getAllSubject().then(res => {
+      this.data.subJectList = [];
+      this.data.subJectList.push('全部')
+      res.forEach((item) => {
+        this.data.subJectList.push(item.sbjName)
+      })
+      this.setData({
+        subJectList: this.data.subJectList,
+        subJectListObj: res,
+      })
+      console.log(res)
+    })
+  },
   getStudentById(){
     Api.Preview.getStudentById(this.data.studentId).then(res => {
       let $arr = [];
@@ -82,23 +96,16 @@ Page({
     })
   },
   // 根据学科筛选题目
-  searchQuestion(){
-    wx.showActionSheet({
-      itemList: this.data.subJectList,
-      success(res) {
-        this.data.userInfo.klass.subjectTeacherMap.subjects.forEach((item) => {
-          if (this.data.subJectList[res.tapIndex] === item.name){
-            this.setData({
-              curPage:1,
-              subjId:item.id
-            })
-          }
-        })
-        console.log(res.tapIndex)
-      },
-      fail(res) {
-        console.log(res.errMsg)
-      }
-    })
+  showActionSheet(res){
+   this.setData({
+     actionSheetHidden: false,
+   })
   },
+  bindActionItem(event) {
+    this.setData({
+      actionSheetHidden: true,
+      subjId: event.currentTarget.dataset.subjid
+    })
+    this.getWorkList()
+  }
 })

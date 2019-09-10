@@ -55,11 +55,9 @@
           <view class="c-voice-box__btn c-voice-box__btn--play"></view>
         </view>
         <view class="c-preview-list__img" bindtap="uploadVideo" wx:else>
+        <image src="{{questionData.thumbnail}}"></image>
           <view class="c-preview__icon--camera"></view>
         </view>
-      </view>
-      <view class="c-preview-list__img" bindtap="uploadVoice">
-        <view class=""></view>
       </view>
       <!-- 音频 -->
       <view class="c-exercises-con__imgs" wx:if="{{questionData.content.mode === 4}}">

@@ -6,7 +6,7 @@
       <span wx:if="{{klassName !== null}}">{{klassName}}</span>
       <span wx:else>--</span>
     </view>
-    <view class="c-sort__right" bindtap="searchQuestion">
+    <view class="c-sort__right" bindtap="showActionSheet">
       <i class="c-sort__icon"></i>筛选
     </view>
   </view>
@@ -74,5 +74,11 @@
         </view>
       </view>
     </scroll-view>
+  </view>
+  <view hidden="{{actionSheetHidden}}" style="max-height:400rpx;overflow:auto;" class="actionSheet">
+  <block wx:for-items="{{subJectListObj}}" wx:key="{{item.sbjId}}" >
+    <action-sheet-item bindtap="bindActionItem" data-subjid="{{item.sbjId}}">{{item.sbjName}}</action-sheet-item>
+  </block>
+  <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
   </view>
 </view>
