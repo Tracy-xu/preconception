@@ -248,7 +248,9 @@
           </view>
         </view>
         <view class="c-voice__text">
-          {{work.answer.length > 10 && !quanwenWorkIds[work.workId] ? util.sub(work.answer,10) : work.answer }}
+          <view class="c-voice__text-content">
+            {{work.answer.length > 10 && !quanwenWorkIds[work.workId] ? util.sub(work.answer,10) : work.answer }}
+          </view>
           <view class="c-voice__text-all m-blur" wx:if="{{work.answer.length > 10}}" data-work-id="{{work.workId}}"      bindtap="openQuanwen">{{quanwenWorkIds[work.workId] ? '收起':'全文'}}</view>
         </view>
       </view>

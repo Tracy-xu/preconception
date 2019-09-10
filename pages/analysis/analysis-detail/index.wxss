@@ -294,10 +294,13 @@ page{
   color:rgba(68,68,68,1);
   line-height:72rpx;
   text-align: justify;
+  overflow: hidden;
 }
 .c-voice__text-all {
-  float: right;
-  margin-right: 415rpx;
+  float: left;
+}
+.c-voice__text-content {
+  float: left;
 }
 .c-voice__hide {
   padding: 0 12rpx 0 22rpx;
