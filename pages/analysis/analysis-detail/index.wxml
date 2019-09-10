@@ -70,8 +70,8 @@
             <view wx:if="{{work.answer.length > 7}}" class="c-text__txt-show m-blur" data-work-id="{{work.workId}}" bindtap="openQuanwen">{{quanwenWorkIds[work.workId] ? '收起':'全文'}}</view>
           </view>
           <view class="c-voice__tab">
-            <view class="c-voice__tab-pre" data-work-id="{{work.workId}}" bindtap="moveUp"></view>
-            <view class="c-voice__tab-next" data-work-id="{{work.workId}}" bindtap="moveDown"></view>
+            <view class="c-voice__tab-pre" data-work-id="{{work.workId}}" catchtap="moveUp"></view>
+            <view class="c-voice__tab-next" data-work-id="{{work.workId}}" catchtap="moveDown"></view>
           </view>
         </view>
       </view>
@@ -131,10 +131,10 @@
           </view>
           <view class="c-img__detail--fun">
             <view class="c-img__detail-tab" >
-              <view class="c-img__tab-left" data-work-id="{{work.workId}}" bindtap="moveUp"></view>
-              <view class="c-img__tab-left c-img__tab-right" data-work-id="{{work.workId}}" bindtap="moveDown"></view>
+              <view class="c-img__tab-left" data-work-id="{{work.workId}}" catchtap="moveUp"></view>
+              <view class="c-img__tab-left c-img__tab-right" data-work-id="{{work.workId}}" catchtap="moveDown"></view>
             </view>
-            <view wx:if="{{wIdx == (group.works.length -1)}}" data-work-id="{{work.workId}}" bindtap="moveTop">置顶</view>
+            <view wx:if="{{wIdx == (group.works.length -1)}}" data-work-id="{{work.workId}}" catchtap="moveTop">置顶</view>
           </view>
         </view>
       </view>
@@ -186,10 +186,10 @@
           <view class="c-img__detail-content"><view>{{work.userName}}</view><view>{{work.createdOnStr}}</view></view>
           <view class="c-img__detail--fun">
             <view class="c-img__detail-tab">
-              <view class="c-img__tab-left {{(gIdx+wIdx) == 0  ? 'c-img__tab-left--default' : ''}}" data-work-id="{{work.workId}}" bindtap="moveUp"></view>
-              <view class="c-img__tab-left c-img__tab-right" data-work-id="{{work.workId}}" bindtap="moveDown"></view>
+              <view class="c-img__tab-left {{(gIdx+wIdx) == 0  ? 'c-img__tab-left--default' : ''}}" data-work-id="{{work.workId}}" catchtap="moveUp"></view>
+              <view class="c-img__tab-left c-img__tab-right" data-work-id="{{work.workId}}" catchtap="moveDown"></view>
             </view>
-            <view  wx:if="{{wIdx == (group.works.length -1)}}" data-work-id="{{work.workId}}" bindtap="moveTop">置顶</view>
+            <view  wx:if="{{wIdx == (group.works.length -1)}}" data-work-id="{{work.workId}}" catchtap="moveTop">置顶</view>
           </view>
         </view>
       </view>
@@ -243,8 +243,8 @@
            <myk-audio src="{{work.audio}}"></myk-audio>
           </view>
           <view class="c-voice__tab">
-             <view class="c-voice__tab-pre" data-work-id="{{work.workId}}" bindtap="moveUp"></view>
-            <view class="c-voice__tab-next" data-work-id="{{work.workId}}" bindtap="moveDown"></view>
+             <view class="c-voice__tab-pre" data-work-id="{{work.workId}}" catchtap="moveUp"></view>
+            <view class="c-voice__tab-next" data-work-id="{{work.workId}}" catchtap="moveDown"></view>
           </view>
         </view>
         <view class="c-voice__text">

@@ -15,6 +15,7 @@ Axios.defaults.adapter = function (config) {
       url: config.url,
       method: config.method,
       data: config.data,
+      header: config.headers,
       success: (res) => {
         return resolve(res)
       },
@@ -29,8 +30,10 @@ Axios.interceptors.request.use((config) => {
   let token = wx.getStorageSync('token');
   if (token) {
     token = JSON.parse(token);
-    config.headers.Authorization = `Bearer 1fc39e5a-cfe0-4d4c-a347-5eaf20b29de0`;
+    config.headers.Authorization = `${token.token_type} ${token.access_token}`;
   }
+  // TODO
+  config.headers.Authorization = 'Bearer 81ef89c8-b261-46aa-9bc9-53452ceac4dc'
 
   return config;
 }, error => Promise.reject(error));
@@ -42,6 +45,7 @@ Axios.interceptors.response.use(res => res.data, (error) => {
       type: 'warning',
     });
   }
+
   if (error && error.response) {
     switch (error.response.status) {
       case 401:
