@@ -24,7 +24,7 @@ Page({
       { open: true, text: '收起' }, { open: true, text: '收起' }, { open: true, text: '收起' }], //展开状态的分组
     klassPreconQueId: null,
     workGroup: {
-      mode: 1,
+      mode: 4,
       groups: [{
         groupInfo: {
           workIds: [1, 2, 3],

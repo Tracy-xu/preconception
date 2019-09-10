@@ -150,6 +150,10 @@ page{
   height:32rpx;
   background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/preday.png') no-repeat center/100% 100%;
 }
+
+.c-img__tab-left--default {
+  opacity: 0;
+}
 .c-img__detail-tab {
   display: flex;
   align-items: flex-end; 
@@ -325,6 +329,9 @@ page{
   height:59rpx;
   margin-left: 10rpx;
   background: url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/right.png') no-repeat center/100% 100%;
+}
+.c-text__list-check--yes, .c-voice__list-check--yes {
+  background:rgba(255,186,186,1);
 }
 
 .c-footer {
