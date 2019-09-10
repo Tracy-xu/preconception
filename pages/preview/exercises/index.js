@@ -12,33 +12,37 @@ Page({
     record: false,
     recordIng: false,
     playVideoFlag: false,
+    recorderManager:null,
     questionData: {
-      imgs:[],
-      type:1,
+      fileId:null,
+      thumbnail:null,
+      audio:null,
+      imgs: [],
+      type: 1,
     }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
-      workId:options.workId
+      workId: options.workId
     })
     this.getWorkById();
   },
-  getWorkById(){
+  getWorkById() {
     let that = this
     Api.Preview.getWorkById(this.data.workId).then((res) => {
       let $data = JSON.parse(res.data)
       that.setData({
-        "questionData": res.work
+        questionData: res.work
       })
     })
   },
   // 暂存数据
-  pushWorkStorage(){
-    Api.Preview.pushWorkStorage(this.data.workId,this.data.questionData).then(res => {
+  pushWorkStorage() {
+    Api.Preview.pushWorkStorage(this.data.workId, this.data.questionData).then(res => {
       // 返回主页
       wx.navigateBack()
     })
@@ -59,8 +63,7 @@ Page({
         files: that.data.files.concat(res.tempFilePaths)
       });
       wx.uploadFile({
-        url: 'http://122.112.239.223:8080/file/upload/image/binary', //仅为示例，非真实的接口地址
-        filePath: tempFilePaths[0],
+        url: 'http://122.112.239.223:8080/file/upload/image/binary',
         name: 'file',
         formData: {
           'user': 'test'
@@ -69,7 +72,7 @@ Page({
           let $obj = that.data.questionData
           $obj.imgs.push(JSON.parse(res1.data).url);
           that.setData({
-            questionData:{
+            questionData: {
               imgs: $obj.imgs
             }
           })
@@ -80,25 +83,35 @@ Page({
   // 上传视频
   uploadVideo() {
     this.setData({
-      record:true,
+      record: true,
     })
   },
   // 结束录像回调
   handleStopRecord(res) {
-    const tempFilePaths = res.tempFilePaths
-    that.setData({
-      files: that.data.files.concat(res.tempFilePaths)
-    });
+    let that = this
+    const tempFilePaths = res.detail
     wx.uploadFile({
-      url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
-      filePath: tempFilePaths[0],
+      url: 'http://122.112.239.223:8080/file/upload/plain/binary',
+      filePath: tempFilePaths.tempVideoPath,
       name: 'file',
-      formData: {
-        'user': 'test'
-      },
       success(res) {
-        this.getWorkById()
-        const data = res.data
+        console.log(res)
+        that.data.questionData.fileId = JSON.parse(res.data).url
+        that.setData({
+          questionData: that.data.questionData,
+          record:false
+        })
+      }
+    })
+    wx.uploadFile({
+      url: 'http://122.112.239.223:8080/file/upload/image/binary', 
+      filePath: tempFilePaths.tempThumbPath,
+      name: 'file',
+      success(res) {
+        that.data.questionData.thumbnail = JSON.parse(res.data).url || 'https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/default.png'
+        that.setData({
+          questionData: that.data.questionData
+        })
       }
     })
   },
@@ -110,52 +123,51 @@ Page({
   },
   // 上传语音
   uploadVoice() {
-    this.setData({
-      recordIng: !this.data.recordIng
+    let that = this
+    that.setData({
+      recordIng: !that.data.recordIng
     })
-    let RecorderManager = wx.getRecorderManager();
-    console.log(RecorderManager)
-    return;
-    if(this.data.recordIng){
-      RecorderManager.start({
-        success:() => {
+    if (!that.data.recorderManager){
+      let RecorderManager = wx.getRecorderManager({
+        format:'mp3'
+        });
+      that.setData({
+        recorderManager: RecorderManager
+      })
+    }
+    if (that.data.recordIng) {
+      that.data.recorderManager.start({
+        success: (res) => {
           wx.showToast({
             title: '开始录音',
           })
         }
-      })
-    }else {
-      RecorderManager.stop({
-        success: (res) => {
-          console.log(res)
-          wx.showToast({
-            title: '录音结束',
-          })
-          wx.uploadFile({
-            url: 'http://122.112.239.223:8080/file/upload/audio/binary', //仅为示例，非真实的接口地址
-            filePath: res,
-            name: 'file',
-            formData: {
-              'user': 'test'
-            },
-            success(res) {
-              this.getWorkById()
-              const data = res.data
-            }
-          })
-        }
+      });
+    } else {
+      that.data.recorderManager.stop();
+      that.data.recorderManager.onStop((res) =>{
+        wx.showToast({
+          title: '录音结束',
+        })
+        wx.uploadFile({
+          url: 'http://122.112.239.223:8080/file/upload/plain/binary',
+          name: 'file',
+          success(res) {
+            that.data.questionData.audio = JSON.parse(res.data).url;
+            that.setData({
+              questionData: that.data.questionData
+            })
+          }
+        })
       })
     }
-    wx.getRecorderManager().then(res => {
-      console.log(res)
-    })
   },
   // 删除语音答案
-  deleteVoice(){
+  deleteVoice() {
     this.setData({
-      questionData:{
-        work:{
-          fileId:null,
+      questionData: {
+        work: {
+          fileId: null,
         }
       }
     })
