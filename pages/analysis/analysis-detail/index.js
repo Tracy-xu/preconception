@@ -158,16 +158,16 @@ Page({
     });
   },
   moveUp(event) {
-    this.move(event.currentTarget.dataset.workId, 1);
+    this.move(event.currentTarget.dataset.workId, 'UP');
   },
   moveDown(event) {
-    this.move(event.currentTarget.dataset.workId, 2);
+    this.move(event.currentTarget.dataset.workId, 'DOWN');
   },
   moveTop(event) {
-    this.move(event.currentTarget.dataset.workId, 3);
+    this.move(event.currentTarget.dataset.workId, 'TOP');
   },
   moveBottom(event) {
-    this.move(event.currentTarget.dataset.workId, 4)
+    this.move(event.currentTarget.dataset.workId, 'BOTTOM')
   },
   /**
    * 移动分组

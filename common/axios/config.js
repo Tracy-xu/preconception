@@ -14,7 +14,7 @@ Axios.defaults.adapter = function (config) {
     wx.request({
       url: config.url,
       method: config.method,
-      data: config.params,
+      data: config.data,
       success: (res) => {
         return resolve(res)
       },
@@ -29,7 +29,7 @@ Axios.interceptors.request.use((config) => {
   let token = wx.getStorageSync('token');
   if (token) {
     token = JSON.parse(token);
-    config.headers.Authorization = `${token.token_type} ${token.access_token}`;
+    config.headers.Authorization = `bearer 39518739-0fe6-46ec-88d7-c6d7f923cd8a`;
   }
 
   return config;
@@ -42,7 +42,6 @@ Axios.interceptors.response.use(res => res.data, (error) => {
       type: 'warning',
     });
   }
-
   if (error && error.response) {
     switch (error.response.status) {
       case 401:

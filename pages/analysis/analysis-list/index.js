@@ -7,12 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    view: 'video',
     width: 50,
     klassPreconQueId: null,
     quanwen: false,
     lkRatio: Math.floor(3 / 5 * 100),
     ulkRatio: 100 - Math.floor(3 / 5 * 100),
+    mode: 1,
+    createdOnStr: '2019-08-10',
     workReport: {
       size: 12,
       commit: 5,
@@ -34,12 +35,12 @@ Page({
       let mode = res.data.item.content.mode;
       let lkRatio = Math.floor(w.like / wr.size * 100);
       this.setData({
-        createdOnStr: wr.klassPreconQue.createdOn,
+        mode: wr.klassPreconQue.mode,
+        createdOnStr: wr.klassPreconQue.createdOnStr,
         fnsRatio: Math.floor(wr.commit / wr.size * 100),
         lkRatio: lkRatio,
         ulkRatio: 100 - lkRatio,
-        workReport: wr,
-        view: mode == 1 ? "text" : mode == 2 ? "img" : mode == 3 ? "video" : "voice"
+        workReport: wr
       });
     });
   },

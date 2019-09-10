@@ -44,10 +44,10 @@
     <view class="c-content__list" bindtap="onGroupEdit">
       <view class="c-list__content">
         <view class="c-list__content-text">{{workReport.item.content.length > 10 && !quanwen  ? util.sub(workReport.item.content,10): workReport.item.content}}
-          <icon wx:if="{{view === 'text'}}" class="c-list__content-type-text"></icon>
-          <icon wx:if="{{view === 'img'}}" class="c-list__content-type-img"></icon>
-          <icon wx:if="{{view === 'voice'}}" class="c-list__content-type-img"></icon>
-          <icon wx:if="{{view === 'video'}}" class="c-list__content-type-video"></icon>
+          <icon wx:if="{{mode == '1'}}" class="c-list__content-type-text"></icon>
+          <icon wx:if="{{mode == '2'}}" class="c-list__content-type-img"></icon>
+          <icon wx:if="{{mode == '3'}}" class="c-list__content-type-video"></icon>
+          <icon wx:if="{{mode == '4'}}" class="c-list__content-type-img"></icon>
           <view class="c-list__content-all m-blur" wx:if="workReport.item.content.length > 10" catchtap="openQuanwen">{{quanwen ? '收起': '全文'}}</view>
         </view>
       </view>
