@@ -1,0 +1,8 @@
+/**
+ * 选择版本
+ */
+.c-select-version {height: 100%; background: #fff;}
+.c-select-version__versions {position: absolute; width: 188rpx; height: 100%; left: 0; background: #F6F6F6FF;}
+.c-select-version_version {height: 98rpx; line-height: 98rpx; text-align: center;}
+.c-select-version__stages {height: 100%; margin-left: 188rpx;}
+.c-select-version__stage {height: 98rpx; line-height: 98rpx; text-align: center; border-bottom: 1px #E5E5E5FF solid;}

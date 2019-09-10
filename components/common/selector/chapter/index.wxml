@@ -1,0 +1,31 @@
+<view class="m-tree">
+  <view class="m-tree__item">
+      <icon
+        wx:if="{{ hasChildren }}"
+        class="m-tree__icon {{ open ? 'm-tree__icon--open' : '' }}"
+        bindtap="handleToggle"
+      >
+      </icon>
+      <view
+        class="m-tree__item-name {{ selectId === treeData.id ? 'm-tree__item-name--active' : '' }}"
+        bindtap="handleClickItem"
+        data-id="{{ treeData.id }}"
+      >
+        {{ treeData.name }}
+      </view>
+  </view>
+
+  <view 
+    wx:if="{{ hasChildren }}"
+    hidden="{{ !open }}"
+    style="padding-left: 50rpx"
+  >
+    <chapter
+      wx:for="{{ treeData.children }}"
+      wx:key="{{ index }}"
+      tree-data="{{ item }}"
+      selectId="{{ selectId }}"
+    >
+    </chapter>
+  </view>
+</view>

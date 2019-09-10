@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "select-class": "/components/common/select-class/index"
+    "selector": "/components/common/selector/index"
   }
 }

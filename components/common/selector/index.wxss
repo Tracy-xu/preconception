@@ -1,0 +1,14 @@
+.c-selection {position: fixed; top: 0; left: 0; right: 0; bottom: 0; padding: 0 26rpx; background: #fff; z-index: 999;}
+.c-selection__title{position: relative; padding: 30rpx 0; font-size: 46rpx; color: #666666FF;}
+.c-selection__content {overflow: hidden;}
+.c-selection__content-item {float: left; width: 192rpx; height: 72rpx; line-height: 72rpx; margin-right: 20rpx; margin-bottom: 24rpx; background:rgba(245,245,245,1); font-size: 40rpx; text-align: center;}
+.c-selection__content-item--active {background: #E4FAEDFF; color: #14C75FFF;}
+.c-selection__select {position: absolute; right: 0; top: 50%; transform: translateY(-50%); padding-right: 40rpx; color: #14C75FFF; font-size: 40rpx;}
+.c-selection__select::after {content: ""; position: absolute; width: 16rpx; height: 28rpx; right: 0; top: 50%; transform: translateY(-50%); background: #ccc;}
+/* 滚动容器 */
+.c-selection__scroll {position: absolute; left: 0; top: 0; right: 0; bottom: 100rpx; background: #fff;}
+/* 按钮 */
+.c-selection__btn {position: absolute; display: inline-flex; bottom: 0; left: 0; right: 0;}
+.c-selection__btn button {flex: 1; height: 100rpx; line-height: 100rpx; border-radius: none; font-size: 54rpx; border: none;}
+.c-selection__btn button:nth-child(1) {background: #fff;}
+.c-selection__btn button:nth-child(2) {background: #14C75F; color: #fff;}

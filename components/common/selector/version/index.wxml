@@ -1,0 +1,12 @@
+<view class="c-select-version">
+  <view class="c-select-version__versions">
+    <view class="c-select-version_version">人教版</view>
+    <view class="c-select-version_version c-select-version_version--active">苏教版</view>
+    <view class="c-select-version_version">沪教版</view>
+  </view>
+  <scroll-view class="c-select-version__stages">
+    <view class="c-select-version__stage">一年级上册</view>
+    <view class="c-select-version__stage">一年级下册</view>
+    <view class="c-select-version__stage">一年级上传</view>
+  </scroll-view>
+</view>

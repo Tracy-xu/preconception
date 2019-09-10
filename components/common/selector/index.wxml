@@ -1,0 +1,66 @@
+<view class="c-selection">
+  <view class="c-selection__title">学段</view>
+  <view class="c-selection__content">
+    <view class="c-selection__content-item c-selection__content-item--active">小学</view>
+    <view class="c-selection__content-item">小学</view>
+    <view class="c-selection__content-item">小学</view>
+  </view>
+
+  <view class="c-selection__title">学科</view>
+  <view class="c-selection__content">
+    <view class="c-selection__content-item">语文</view>
+    <view class="c-selection__content-item">数学</view>
+    <view class="c-selection__content-item">英语</view>
+    <view class="c-selection__content-item">信息技术</view>
+  </view>
+
+  <view class="c-selection__title">
+    教材版本
+    <view
+      bindtap="handleVisibleVersion"
+      class="c-selection__select"
+    >人教版必修一</view>
+  </view>
+
+  <view class="c-selection__title">
+    章节
+    <view
+     bindtap="handleVisibleChapter"
+      class="c-selection__select"
+    >第一章窃读记</view>
+  </view>
+
+  <!-- 选择教材版本、选择教材章节 -->
+  <scroll-view
+    wx:if="{{ visibleVersion || visibleChapter }}"
+    class="c-selection__scroll"
+    scroll-y="{{ true }}"
+  >
+    <version
+      wx:if="{{ visibleVersion }}"
+    >
+    </version>
+    <chapter
+      wx:if="{{ visibleChapter }}"
+      tree-data="{{ treeData }}"
+      bindselect="handleSelectChapter"
+      selectId="{{ selectId }}"
+    >
+    </chapter>
+  </scroll-view>
+
+  <view class="c-selection__btn">
+    <button
+      class="c-selection__btn--cancel"
+      bindtap="handleClose"
+    >
+      取消
+    </button>
+    <button
+      bindtap="handleConfirm"
+      class="c-selection__btn--submit"
+    >
+      确定
+    </button>
+  </view>
+</view>
