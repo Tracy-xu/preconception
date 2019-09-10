@@ -44,10 +44,10 @@
 
 <!-- 文本begin -->
 <template name="text">
-  <view class="c-detail__list">
+  <view  class="c-detail__list">
     <view class="c-detail__list-header">
       <view class="c-img__header-left">
-         <view class="{{'c-img__header-point' + (gIdx + 1)}}">{{gIdx < 6 ? '观点' + (gIdx + 1) : '其他'}}</view>
+         <view class="{{'c-img__header-point c-img__header-point' + (gIdx + 1)}}">{{gIdx < 6 ? '观点' + (gIdx + 1) : '其他'}}</view>
         <view class="c-img__header-people">(共<view class="c-img__header-peoplenum">{{group.works.length}}</view>人)</view>
       </view>
       <view class="c-img__header-right">
@@ -102,7 +102,7 @@
   <view  class="c-detail__list">
     <view class="c-detail__list-header">
       <view class="c-img__header-left">
-        <view class="{{'c-img__header-point' + (gIdx + 1)}}">{{gIdx < 6 ? '观点' + (gIdx + 1) : '其他'}}</view>
+        <view class="{{'c-img__header-point c-img__header-point' + (gIdx + 1)}}">{{gIdx < 6 ? '观点' + (gIdx + 1) : '其他'}}</view>
         <view class="c-img__header-people">
           (共<view class="c-img__header-peoplenum">{{group.works.length}}</view>人)
         </view>
@@ -117,7 +117,7 @@
       </view>
     </view>
     <view class="c-img__content" wx:if="{{openGroupInfo[gIdx].open}}">
-      <view class="c-img__list  m-border__color1 {{selectedWorkIds[work.workId] ? 'c-img__list--active' : ''}}" wx:for="{{group.works}}" wx:key="wIdx" wx:for-index="wIdx" wx:for-item="work">
+      <view class="c-img__list  {{selectedWorkIds[work.workId] ? 'c-img__list--active m-border__color1' : ''}}" wx:for="{{group.works}}" wx:key="wIdx" wx:for-index="wIdx" wx:for-item="work">
         <view class="c-img__imgbox">
           <image class="c-img__list-img" src="{{work.imgs.length > 0 ? work.imgs[0] : '' }}"></image>
           <view class="c-img__list-check {{selectedWorkIds[work.workId] ? 'c-img__list-check--yes' : ''}}" data-work-id="{{work.workId}}" bindtap="selectedWork">
@@ -165,7 +165,7 @@
   <view  class="c-detail__list">
     <view class="c-detail__list-header">
       <view class="c-img__header-left">
-        <view class="{{'c-img__header-point' + (gIdx + 1)}}">{{gIdx < 6 ? '观点' + (gIdx + 1) : '其他'}}</view>
+        <view class="{{'c-img__header-point c-img__header-point' + (gIdx + 1)}}">{{gIdx < 6 ? '观点' + (gIdx + 1) : '其他'}}</view>
         <view class="c-img__header-people">(共<view class="c-img__header-peoplenum">{{group.works.length}}</view>人)</view>
       </view>
       <view class="c-img__header-right">
@@ -176,7 +176,7 @@
       </view>
     </view>
     <view class="c-img__content" wx:if="{{openGroupInfo[gIdx].open}}">
-      <view class="c-img__list {{selectedWorkIds[work.workId] ? 'c-img__list--active' : ''}}" wx:for="{{group.works}}" wx:key="workId" wx:for-index="wIdx" wx:for-item="work">
+      <view class="c-img__list {{selectedWorkIds[work.workId] ? 'c-img__list--active m-border__color1' : ''}}" wx:for="{{group.works}}" wx:key="workId" wx:for-index="wIdx" wx:for-item="work">
         <view class="c-img__imgbox">
           <image class="c-img__list-img" src=""></image>
           <view class="c-img__list-check {{selectedWorkIds[work.workId] ? 'c-img__list-check--yes' : ''}}" data-work-id="{{work.workId}}" bindtap="selectedWork"></view>
@@ -186,7 +186,7 @@
           <view class="c-img__detail-content"><view>{{work.userName}}</view><view>{{work.createdOnStr}}</view></view>
           <view class="c-img__detail--fun">
             <view class="c-img__detail-tab">
-              <view class="c-img__tab-left" wx:if="{{(gIdx+wIdx) != 0}}" data-work-id="{{work.workId}}" bindtap="moveUp"></view>
+              <view class="c-img__tab-left {{(gIdx+wIdx) == 0  ? 'c-img__tab-left--default' : ''}}" data-work-id="{{work.workId}}" bindtap="moveUp"></view>
               <view class="c-img__tab-left c-img__tab-right" data-work-id="{{work.workId}}" bindtap="moveDown"></view>
             </view>
             <view  wx:if="{{wIdx == (group.works.length -1)}}" data-work-id="{{work.workId}}" bindtap="moveTop">置顶</view>
@@ -220,7 +220,7 @@
   <view class="c-detail__list">
     <view class="c-detail__list-header">
       <view class="c-img__header-left">
-        <view class="{{'c-img__header-point' + (gIdx + 1)}}">{{gIdx < 6 ? '观点' + (gIdx + 1) : '其他'}}</view>
+        <view class="{{'c-img__header-point c-img__header-point' + (gIdx + 1)}}">{{gIdx < 6 ? '观点' + (gIdx + 1) : '其他'}}</view>
         <view class="c-img__header-people">(共<view class="c-img__header-peoplenum">{{group.works.length}}</view>人)</view>
       </view>
       <view class="c-img__header-right">
