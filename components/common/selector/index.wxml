@@ -1,33 +1,52 @@
 <view class="c-selection">
+  <!-- 选择学段 -->
   <view class="c-selection__title">学段</view>
   <view class="c-selection__content">
-    <view class="c-selection__content-item c-selection__content-item--active">小学</view>
-    <view class="c-selection__content-item">小学</view>
-    <view class="c-selection__content-item">小学</view>
+    <view
+      wx:for="{{ stage }}"
+      wx:key="{{ item.stgId }}"
+      bindtap="handleSelectStage"
+      data-stgid="{{ item.stgId }}"
+      class="c-selection__content-item {{ selectedStgId === item.stgId ? 'c-selection__content-item--active' : '' }}"
+    >
+      {{ item.stgName }}
+    </view>
   </view>
 
+  <!-- 选择学科 -->
   <view class="c-selection__title">学科</view>
   <view class="c-selection__content">
-    <view class="c-selection__content-item">语文</view>
-    <view class="c-selection__content-item">数学</view>
-    <view class="c-selection__content-item">英语</view>
-    <view class="c-selection__content-item">信息技术</view>
+    <view
+      wx:for="{{ relativeSubject }}"
+      wx:key="{{ item.sbjId }}"
+      bindtap="handleSelectSubject"
+      data-sbjid="{{ item.sbjId }}"
+      class="c-selection__content-item {{ selectedSbjId === item.sbjId ? 'c-selection__content-item--active' : '' }}"
+    >
+      {{ item.sbjName }}
+    </view>
   </view>
 
-  <view class="c-selection__title">
+  <!-- 选择教材版本 -->
+  <view
+    bindtap="handleVisibleVersion"
+    class="c-selection__title"
+  >
     教材版本
-    <view
-      bindtap="handleVisibleVersion"
-      class="c-selection__select"
-    >人教版必修一</view>
+    <view class="c-selection__select">
+      {{ selectedEdtName }} {{ selectedTbkName }}
+    </view>
   </view>
 
-  <view class="c-selection__title">
+  <!-- 选择教材章节 -->
+  <view
+    bindtap="handleVisibleChapter"
+    class="c-selection__title"
+  >
     章节
-    <view
-     bindtap="handleVisibleChapter"
-      class="c-selection__select"
-    >第一章窃读记</view>
+    <view class="c-selection__select">
+      {{ selectedNodeName }}
+    </view>
   </view>
 
   <!-- 选择教材版本、选择教材章节 -->
@@ -36,19 +55,24 @@
     class="c-selection__scroll"
     scroll-y="{{ true }}"
   >
-    <version
+    <edition
       wx:if="{{ visibleVersion }}"
+      bindselectbook="handleSelectBook"
+      stgId="{{ selectedStgId }}"
+      sbjId="{{ selectedSbjId }}"
     >
-    </version>
+    </edition>
+
     <chapter
       wx:if="{{ visibleChapter }}"
       tree-data="{{ treeData }}"
-      bindselect="handleSelectChapter"
-      selectId="{{ selectId }}"
+      bindselectchapter="handleSelectChapter"
+      selectId="{{ tempNodeId }}"
     >
     </chapter>
   </scroll-view>
 
+  <!-- 按钮 -->
   <view class="c-selection__btn">
     <button
       class="c-selection__btn--cancel"

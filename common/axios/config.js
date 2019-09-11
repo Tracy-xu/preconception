@@ -17,7 +17,12 @@ Axios.defaults.adapter = function (config) {
       data: config.data,
       header: config.headers,
       success: (res) => {
-        return resolve(res)
+        console.log(res.statusCode);
+        if(res.statusCode>299||res.statusCode<200){
+          reject(res.statusCode);
+        }else{
+          resolve(res)
+        }
       },
       fail: (err) => {
         return reject(err)
@@ -29,12 +34,11 @@ Axios.defaults.adapter = function (config) {
 Axios.interceptors.request.use((config) => {
   let token = wx.getStorageSync('token');
   if (token) {
-    token = JSON.parse(token);
-    config.headers.Authorization = `${token.token_type} ${token.access_token}`;
+    config.headers.Authorization = `Bearer ${token}`;
   }
   // TODO
-  config.headers.Authorization = 'Bearer 0686a41a-2853-41ce-afe3-0d4d50b007c6'
 
+  config.headers.Authorization = 'Bearer 0686a41a-2853-41ce-afe3-0d4d50b007c6'
   return config;
 }, error => Promise.reject(error));
 

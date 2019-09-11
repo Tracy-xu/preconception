@@ -1,6 +1,7 @@
 // pages/preview-list/index.js
 import router from '../../../router/index'
 import Api from '../../../api/index'
+const app = getApp()
 Page({
 
   /**
@@ -20,28 +21,27 @@ Page({
     subJectListObj:[],
   },
   onLoad(){
+    this.data.studentId = app.globalData.myk_user.id;
     this.getAllSubject();
-    this.getStudentById();
     this.getWorkList();
+    this.getStudentById();
   },
   getWorkList(){
-    if (this.workList.length >= this.data.total){
-      wx.showToast({
-        title: '暂无更多数据',
-        icon: 'none'
-      })
-      return;
-    }
+    wx.showLoading({
+      title: '加载中',
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
     let $data = {
       subjId: this.data.subjId,
       curPage: this.data.curPage,
-      klassId: this.data.klassId,
       userId: this.data.studentId,
     }
     Api.Preview.getWorkList($data).then(res => {
       if (this.data.curPage === 1) {
         this.setData({
-          workList: []
+          workList: res.items
         })
       } else {
         let $arr = this.data.workList;
@@ -53,46 +53,39 @@ Page({
         pageSize: res.page.pageSize,
         total: res.page.total,
       })
-    })
-  },
-  getAllSubject() {
-    Api.Preview.getAllSubject().then(res => {
-      this.data.subJectList = [];
-      this.data.subJectList.push('全部')
-      res.forEach((item) => {
-        this.data.subJectList.push(item.sbjName)
-      })
-      this.setData({
-        subJectList: this.data.subJectList,
-        subJectListObj: res,
-      })
-      console.log(res)
+      wx.hideLoading();
     })
   },
   getStudentById(){
     Api.Preview.getStudentById(this.data.studentId).then(res => {
-      let $arr = [];
-      res.klass.subjectTeacherMap.subjects.forEach((item) => {
-        $arr.push(itrm.name)
+      this.setData({
+        userInfo:res,
+      })
+    })
+  },
+  getAllSubject() {
+    Api.Preview.getAllSubject().then(res => {
+      this.data.subJectListObj = [];
+      res.unshift({
+        sbjId: null,
+        sbjName: "全部"
       })
       this.setData({
-        userInfo: res,
-        klassName: res.klass.name,
-        klassId: res.klass.id,
-        subJectList: $arr
+        subJectListObj: res,
       })
     })
   },
   // 学生查看详情
-  goToDetail(data){
+  goToDetail(event){
     wx.navigateTo({
-      url: `${router.questionEdit}?workId=${data.work.workId}&klassPreconQueId=${data.work.klassPreconQueId}&mode=${item.content.mode}`,
+      url: `${router.questionEdit}?workId=${event.currentTarget.dataset.item.work.workId}&klassPreconQueId=${event.currentTarget.dataset.item.work.klassPreconQueId}&sbjId=${event.currentTarget.dataset.item.work.sbjId}&mode=${event.currentTarget.dataset.item.item.content.mode}`,
     })
   },
   // 学生去预习
-  goDoWork(data) {
+  goDoWork(event) {
+    console.log(event)
     wx.navigateTo({
-      url: `${router.exercises}?workId=${data.work.workId}`,
+      url: `${router.exercises}?workId=${event.currentTarget.dataset.item.work.workId}`,
     })
   },
   // 根据学科筛选题目
@@ -101,8 +94,27 @@ Page({
      actionSheetHidden: false,
    })
   },
+  hideActionSheet(res) {
+    this.setData({
+      actionSheetHidden: true,
+    })
+  },
+  changeCurpage(){
+    if (this.data.workList.length >= this.data.total) {
+      wx.showToast({
+        title: '暂无更多数据',
+        icon: 'none'
+      })
+      return;
+    }
+    this.setData({
+      curPage:this.data.curPage + 1
+    })
+    this.getWorkList()
+  },
   bindActionItem(event) {
     this.setData({
+      curPage: 1,
       actionSheetHidden: true,
       subjId: event.currentTarget.dataset.subjid
     })
