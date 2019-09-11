@@ -9,9 +9,11 @@ export function getAllSubject() {
 }
 
 export function getWorkList(data) {
-  return axios.get("/qgn/precon/que/work",{
-    params:data,
-  })
+  let $urlQuery='';
+  if (data.subjId){
+    $urlQuery = `&subjId=${data.subjId}`
+  }
+  return axios.get(`/qgn/precon/que/work?curPage=${data.curPage}&userId=${data.userId}${$urlQuery}`)
 }
 
 export function getWorkListByklassPreconQueId(klassPreconQueId ) {
