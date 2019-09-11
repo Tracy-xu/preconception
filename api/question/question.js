@@ -27,3 +27,10 @@ export function getEdition(sbjId, stgId) {
 export function getChapterTree(tbkId) {
   return axios.get(`/qgn/textbook/${tbkId }/tree`);
 }
+
+/**
+ * 查询前概念习题
+ */
+export function getQuestion(param) {
+  return axios.get('/qgn/precon/que', param);
+}

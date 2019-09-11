@@ -1,8 +1,11 @@
 import router from '../../../router/index.js';
 import API from "../../../api/index.js"
 
+var app = getApp();
+
 Page({
   onReady() {
+    console.log(app.globalData.myk_user);
     // API.Question.getQuestions();
   },
 
@@ -11,6 +14,18 @@ Page({
    */
   data: {
     visibleSelector: false,
+    queryParam: {
+      curPage: 1
+    }
+  },
+
+  /**
+   * 查询前概念习题
+   */
+  getQuestion(param) {
+    API.Question.getQuestion(param).then((rep) => {
+      console.log(rep);
+    });
   },
 
   /**
@@ -39,7 +54,17 @@ Page({
       visibleSelector: false
     });
 
-    console.log(data);
+    this.setData({
+      queryParam: Object.assign({}, queryParam, {
+        stgId: data.detail.stgId,
+        sbjId: data.detail.sbjId,
+        edtId: data.detail.edtId,
+        tbkId: data.detail.tbkId,
+        tbkNodeId: data.detail.tbkNodeId
+      })
+    });
+
+    this.getQuestion(this.data.queryParam);
   },
 
   /**
