@@ -21,23 +21,23 @@
      </view>
     <view class="c-footer__list c-footer__list2" data-g-idx="1" bindtap="bulkMoveGroup">
         <view class="c-footer__list-viewpoint">观点2</view>
-        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 1 ? workGroup.groups[1].works.length : 0}}人</view>
+        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 1 && workGroup.groups[1].works ? workGroup.groups[1].works.length : 0}}人</view>
      </view>
      <view class="c-footer__list c-footer__list3" data-g-idx="2" bindtap="bulkMoveGroup">
         <view class="c-footer__list-viewpoint">观点3</view>
-        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 2 ? workGroup.groups[2].works.length : 0}}人</view>
+        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 2 && workGroup.groups[1].works ? workGroup.groups[2].works.length : 0}}人</view>
      </view>
      <view class="c-footer__list c-footer__list4" data-g-idx="3" bindtap="bulkMoveGroup">
         <view class="c-footer__list-viewpoint">观点4</view>
-        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 3 ? workGroup.groups[3].works.length : 0}}人</view>
+        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 3 && workGroup.groups[1].works ? workGroup.groups[3].works.length : 0}}人</view>
      </view>
      <view class="c-footer__list c-footer__list5" data-g-idx="4" bindtap="bulkMoveGroup">
         <view class="c-footer__list-viewpoint">观点5</view>
-        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 4 ? workGroup.groups[4].works.length : 0}}人</view>
+        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 4 && workGroup.groups[1].works ? workGroup.groups[4].works.length : 0}}人</view>
      </view>
      <view class="c-footer__list c-footer__list6">
         <view class="c-footer__list-viewpoint">其他</view>
-        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 5 ? workGroup.groups[5].works.length : 0}}人</view>
+        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 5 && workGroup.groups[1].works ? workGroup.groups[5].works.length : 0}}人</view>
      </view>
   </view>
 </scroll-view>
