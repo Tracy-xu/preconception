@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    studentId: 100068,
+    studentId: null,
     curPage: 1,
     klassId: null,
     klassName: null,
@@ -21,16 +21,18 @@ Page({
     subJectListObj:[],
   },
   onLoad(){
-    console.log(app.globalData.myk_user)
     this.data.studentId = app.globalData.myk_user.id;
-    this.data.klassName = app.globalData.myk_user.klass.name;
     this.getAllSubject();
     this.getWorkList();
+    this.getStudentById();
   },
   getWorkList(){
     wx.showLoading({
       title: '加载中',
     })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
     let $data = {
       subjId: this.data.subjId,
       curPage: this.data.curPage,
@@ -54,6 +56,13 @@ Page({
       wx.hideLoading();
     })
   },
+  getStudentById(){
+    Api.Preview.getStudentById(this.data.studentId).then(res => {
+      this.setData({
+        userInfo:res,
+      })
+    })
+  },
   getAllSubject() {
     Api.Preview.getAllSubject().then(res => {
       this.data.subJectListObj = [];
@@ -67,15 +76,16 @@ Page({
     })
   },
   // 学生查看详情
-  goToDetail(data){
+  goToDetail(event){
     wx.navigateTo({
-      url: `${router.questionEdit}?workId=${data.work.workId}&klassPreconQueId=${data.work.klassPreconQueId}&mode=${item.content.mode}`,
+      url: `${router.questionEdit}?workId=${event.currentTarget.dataset.item.work.workId}&klassPreconQueId=${event.currentTarget.dataset.item.work.klassPreconQueId}&sbjId=${event.currentTarget.dataset.item.work.sbjId}&mode=${event.currentTarget.dataset.item.item.content.mode}`,
     })
   },
   // 学生去预习
-  goDoWork(data) {
+  goDoWork(event) {
+    console.log(event)
     wx.navigateTo({
-      url: `${router.exercises}?workId=${data.work.workId}`,
+      url: `${router.exercises}?workId=${event.currentTarget.dataset.item.work.workId}`,
     })
   },
   // 根据学科筛选题目

@@ -34,22 +34,22 @@ Page({
   getWorkById() {
     let that = this
     Api.Preview.getWorkById(this.data.workId).then((res) => {
-      let $data = JSON.parse(res.data)
       that.setData({
-        questionData: res.work
+        questionData: res
       })
     })
   },
   // 暂存数据
   pushWorkStorage() {
-    Api.Preview.pushWorkStorage(this.data.workId, this.data.questionData).then(res => {
+    console.log(this.data.questionData.work.answer)
+    Api.Preview.pushWorkStorage(this.data.workId, this.data.questionData.work).then(res => {
       // 返回主页
       wx.navigateBack()
     })
   },
   // 提交数据
   pushWorkSave() {
-    Api.Preview.pushWorkSave(this.data.workId, this.data.questionData).then(res => {
+    Api.Preview.pushWorkSave(this.data.workId, this.data.questionData.work).then(res => {
       // 返回主页
       wx.navigateBack()
     })

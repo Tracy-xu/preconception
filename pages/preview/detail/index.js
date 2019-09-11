@@ -1,17 +1,17 @@
 // pages/preview/detail/index.js
 import Api from "../../../api/index.js"
-
+import LocalDate from "../../../utils/local-date/index.js"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    visible:false,
     curPage:1,
     activeWorkId:null,
-    activeWorkDetail:{
-      mode:1,
-    },
+    activeWorkDetail:{},
+    videoSrc:'',
     total:0,
     doneNum:0,
     subjId:null,
@@ -26,17 +26,28 @@ Page({
   onLoad: function (options) {
     this.setData({
       workId: options.workId,
-      subjId: options.subjId,
+      sbjId: options.sbjId,
       klassPreconQueId: options.klassPreconQueId,
-      mode: options.mode
+      mode: parseInt(options.mode)
     })
     this.getWorkListByklassPreconQueId();
   },
   getWorkListByklassPreconQueId() {
-    Api.Preview.getWorkList(this.data.klassPreconQueId).then(res => {
+    wx.showLoading({
+      title: '加载中',
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
+    console.log(LocalDate)
+    Api.Preview.getWorkListByklassPreconQueId(this.data.klassPreconQueId).then(res => {
+      res.forEach((item) => {
+        item.startTime = LocalDate.format(item.startTime, 'yyyy-MM-dd')
+      })
         this.setData({
-          workList: res.data
+          workList: res
         })
+      wx.hideLoading();
       })
   },
   showMyAnswer() {
@@ -53,7 +64,15 @@ Page({
     })
   },
   playVideo(data){
-
+    this.setData({
+      videoSrc: data.fileId,
+      visible: true
+    })
+  },
+  handleCloseVideo() {
+    this.setData({
+      visible:false
+    })
   },
   putAnswerLike() {
     Api.Preview.c(workId,activeWorkId).then(res => {
