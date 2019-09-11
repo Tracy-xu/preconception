@@ -11,7 +11,9 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     buttons: [{
       text: '登录'
-    }]
+    }],
+    password:null,
+    username:null
   },
 
   onLoad: function () {
@@ -43,6 +45,12 @@ Page({
     }
   },
 
+  usernameHander(event){
+    this.setData({ 'username':event.detail.value});
+  },
+  passwordHander(event){
+    this.setData({ 'password': event.detail.value });
+  },
   /**
    * 获取微信用户信息
    */
@@ -59,6 +67,6 @@ Page({
    * 登录
    */
   handleLogin() {
-    
+    API.Auth.loginByPassword(this.data.username, this.data.password);
   }
 });
