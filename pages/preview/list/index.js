@@ -1,13 +1,14 @@
 // pages/preview-list/index.js
 import router from '../../../router/index'
 import Api from '../../../api/index'
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    studentId: null,
+    studentId: 100068,
     curPage: 1,
     klassId: null,
     klassName: null,
@@ -20,28 +21,25 @@ Page({
     subJectListObj:[],
   },
   onLoad(){
+    console.log(app.globalData.myk_user)
+    this.data.studentId = app.globalData.myk_user.id;
+    this.data.klassName = app.globalData.myk_user.klass.name;
     this.getAllSubject();
-    this.getStudentById();
     this.getWorkList();
   },
   getWorkList(){
-    if (this.workList.length >= this.data.total){
-      wx.showToast({
-        title: '暂无更多数据',
-        icon: 'none'
-      })
-      return;
-    }
+    wx.showLoading({
+      title: '加载中',
+    })
     let $data = {
       subjId: this.data.subjId,
       curPage: this.data.curPage,
-      klassId: this.data.klassId,
       userId: this.data.studentId,
     }
     Api.Preview.getWorkList($data).then(res => {
       if (this.data.curPage === 1) {
         this.setData({
-          workList: []
+          workList: res.items
         })
       } else {
         let $arr = this.data.workList;
@@ -53,33 +51,18 @@ Page({
         pageSize: res.page.pageSize,
         total: res.page.total,
       })
+      wx.hideLoading();
     })
   },
   getAllSubject() {
     Api.Preview.getAllSubject().then(res => {
-      this.data.subJectList = [];
-      this.data.subJectList.push('全部')
-      res.forEach((item) => {
-        this.data.subJectList.push(item.sbjName)
+      this.data.subJectListObj = [];
+      res.unshift({
+        sbjId: null,
+        sbjName: "全部"
       })
       this.setData({
-        subJectList: this.data.subJectList,
         subJectListObj: res,
-      })
-      console.log(res)
-    })
-  },
-  getStudentById(){
-    Api.Preview.getStudentById(this.data.studentId).then(res => {
-      let $arr = [];
-      res.klass.subjectTeacherMap.subjects.forEach((item) => {
-        $arr.push(itrm.name)
-      })
-      this.setData({
-        userInfo: res,
-        klassName: res.klass.name,
-        klassId: res.klass.id,
-        subJectList: $arr
       })
     })
   },
@@ -101,8 +84,27 @@ Page({
      actionSheetHidden: false,
    })
   },
+  hideActionSheet(res) {
+    this.setData({
+      actionSheetHidden: true,
+    })
+  },
+  changeCurpage(){
+    if (this.data.workList.length >= this.data.total) {
+      wx.showToast({
+        title: '暂无更多数据',
+        icon: 'none'
+      })
+      return;
+    }
+    this.setData({
+      curPage:this.data.curPage + 1
+    })
+    this.getWorkList()
+  },
   bindActionItem(event) {
     this.setData({
+      curPage: 1,
       actionSheetHidden: true,
       subjId: event.currentTarget.dataset.subjid
     })

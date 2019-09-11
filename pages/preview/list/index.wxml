@@ -11,74 +11,48 @@
     </view>
   </view>
   <view class="c-preview-list">
-    <scroll-view class="scroll-view_H" scroll-y style="width: 100%" bindscrolltolower="getWorkList">
+    <scroll-view class="scroll-view_H" scroll-y style="width: 100%" 
+      bindscrolltolower="changeCurpage">
       <view class="c-preview-list__item" wx:for="{{workList}}">
         <view class="c-preview-list__con">
-          {{item.content.content}}
-          <i class="c-preview__icon--text" wx:if="{{item.content.mode === 1}}"></i>
-          <i class="c-preview__icon--camera" wx:elif="{{item.content.mode === 2}}"></i>
-          <i class="c-preview__icon--video" wx:elif="{{item.content.mode === 3}}"></i>
-          <i class="c-preview__icon--voice" wx:else="{{item.content.mode === 4}}"></i>
+          {{item.item.content.content}}
+          <i class="c-preview__icon--text" wx:if="{{item.item.content.mode === 1}}"></i>
+          <i class="c-preview__icon--camera" wx:elif="{{item.item.content.mode === 2}}"></i>
+          <i class="c-preview__icon--video" wx:elif="{{item.item.content.mode === 3}}"></i>
+          <i class="c-preview__icon--voice" wx:elif="{{item.item.content.mode === 4}}"></i>
         </view>
         <view class="c-preview-list__result">
-          <view class="c-voice-box">
-            <view class="c-voice-box__btn c-voice-box__btn--play"></view>
-            <view class="c-voice-box__progress">
-              <view class="c-voice-box__progress-con"></view>
-            </view>
-            <view class="c-voice-box__num">
-              00:20
-            </view>
+          <view class="c-voice-box" 
+          wx:if="{{item.item.content.audios.length}}">
+          <myk-audio 
+            wx:for-item="audioItem" 
+            wx:for="{{item.item.content.audios}}" 
+            src="{{audioItem}}"></myk-audio>
           </view>
-          <span wx:for="{{item.content.imgs}}" wx:for-item="imgItem">
+          <span wx:for="{{item.item.content.imgs}}" 
+                wx:for-item="imgItem">
             <image src="{{imgItem}}" class="c-preview-list__img"></image>
           </span>
         </view>
-        <view class="c-preview-list__bottom" wx-if="{{item.work.status === 2}}">
-          <view class="u-button u-button--primary" bindtap="goToDetail(item)">查看详情</view>
+        <view class="c-preview-list__bottom" wx-if="{{item.item.work.status === 2}}">
+          <view class="u-button u-button--primary" bindtap="goToDetail(item.item)">查看详情</view>
           <view class="font-color--blue">已提交</view>
         </view>
         <view class="c-preview-list__bottom" wx:else>
-          <view class="u-button u-button--primary" bindtap="goDoWork(item)">去完成</view>
+          <view class="u-button u-button--primary" bindtap="goDoWork(item.item)">去完成</view>
           <view class="">未提交</view>
         </view>
       </view>
-      <view class="c-preview-list__item">
-        <view class="c-preview-list__con">
-          思考一下，分享你记忆最深事实一篇小短文思考一下。
-          <i class="c-preview__icon--video"></i>
-        </view>
-        <view class="c-preview-list__bottom">
-          <view class="u-button u-button--primary">查看详情</view>
-          <view class="font-color--blue">已提交</view>
-        </view>
-      </view>
-      <view class="c-preview-list__item">
-        <view class="c-preview-list__con">
-          思考一下，分享你记忆最深事实一篇小短文思考一下。
-          <i class="c-preview__icon--voice"></i>
-        </view>
-        <view class="c-preview-list__bottom">
-          <view class="u-button u-button--primary">查看详情</view>
-          <view class="font-color--blue">已提交</view>
-        </view>
-      </view>
-      <view class="c-preview-list__item">
-        <view class="c-preview-list__con">
-          思考一下，分享你记忆最深事实一篇小短文思考一下。
-          <i class="c-preview__icon--camera"></i>
-        </view>
-        <view class="c-preview-list__bottom">
-          <view class="u-button u-button--primary" bindtap="goDoWork">去完成</view>
-          <view class="">未提交</view>
-        </view>
-      </view>
+      <view wx:if="!workList.length" class="m-null">
+      <i></i>
+        暂无数据
+      </view> 
     </scroll-view>
   </view>
   <view hidden="{{actionSheetHidden}}" style="max-height:400rpx;overflow:auto;" class="actionSheet">
   <block wx:for-items="{{subJectListObj}}" wx:key="{{item.sbjId}}" >
     <action-sheet-item bindtap="bindActionItem" data-subjid="{{item.sbjId}}">{{item.sbjName}}</action-sheet-item>
   </block>
-  <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
+  <action-sheet-cancel class="cancel" bindtap="hideActionSheet">取消</action-sheet-cancel>
   </view>
 </view>

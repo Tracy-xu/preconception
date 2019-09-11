@@ -7,11 +7,12 @@
       >
       </icon>
       <view
-        class="m-tree__item-name {{ selectId === treeData.id ? 'm-tree__item-name--active' : '' }}"
-        bindtap="handleClickItem"
-        data-id="{{ treeData.id }}"
+        class="m-tree__item-name {{ selectId === treeData.data.id ? 'm-tree__item-name--active' : '' }}"
+        bindtap="handleClickTreeNode"
+        data-id="{{ treeData.data.id }}"
+        data-name="{{ treeData.data.name }}"
       >
-        {{ treeData.name }}
+        {{ treeData.data.name }}
       </view>
   </view>
 
