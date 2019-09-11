@@ -10,7 +10,8 @@
     </view>
   </view>
   <!-- 答案详情弹框 -->
-  <mp-dialog  title="" 
+  <mp-dialog  title=""
+              class="c-preview-dialog"
               show="{{dialogShow}}">
     <view class="c-dialog">
       <view class="c-dialog__top">
