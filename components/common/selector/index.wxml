@@ -55,13 +55,13 @@
     class="c-selection__scroll"
     scroll-y="{{ true }}"
   >
-    <version
+    <edition
       wx:if="{{ visibleVersion }}"
       bindselectbook="handleSelectBook"
       stgId="{{ selectedStgId }}"
       sbjId="{{ selectedSbjId }}"
     >
-    </version>
+    </edition>
 
     <chapter
       wx:if="{{ visibleChapter }}"
