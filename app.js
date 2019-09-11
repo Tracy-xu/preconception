@@ -1,4 +1,5 @@
 //app.js
+import API from './api/auth/index.js'
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -9,6 +10,9 @@ App({
     // 登录
     wx.login({
       success: res => {
+        console.log(res.code);
+        this.globalData.myk_code = res.code
+        console.log(this.globalData.myk_code);
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })

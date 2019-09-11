@@ -29,12 +29,9 @@ Axios.defaults.adapter = function (config) {
 Axios.interceptors.request.use((config) => {
   let token = wx.getStorageSync('token');
   if (token) {
-    token = JSON.parse(token);
-    config.headers.Authorization = `${token.token_type} ${token.access_token}`;
+    config.headers.Authorization = `Bearer ${token}`;
   }
   // TODO
-  config.headers.Authorization = 'Bearer 81ef89c8-b261-46aa-9bc9-53452ceac4dc'
-
   return config;
 }, error => Promise.reject(error));
 
