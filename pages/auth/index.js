@@ -69,16 +69,20 @@ Page({
   handleLogin() {
     API.Auth.loginByPassword(this.data.username, this.data.password).then(v=>{
       API.Auth.getUser().then(v=>{
-        app.globalData.myk_user = v;
-        console.log(app.globalData.myk_user);
         if (v.roleIds.indexOf(201)>-1){
-          wx.navigateTo({
-            url: router.questionList
-          });
+          API.Auth.getTeacher().then(v=>{
+            app.globalData.myk_user = v;
+            wx.navigateTo({
+              url: router.questionList
+            });
+          })
         }else{
-          wx.navigateTo({
-            url: router.previewList
-          });
+          API.Auth.getStudent().then(v => {
+            app.globalData.myk_user = v;
+            wx.navigateTo({
+              url: router.previewList
+            });
+          })
         }
       })
     })

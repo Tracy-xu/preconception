@@ -10,6 +10,14 @@ let getUser = () => {
   return Axios.get('/user/user');
 };
 
+let getStudent = () => {
+  return Axios.get('/user/user/student');
+};
+
+let getTeacher = () => {
+  return Axios.get('/user/user/teacher');
+};
+
 let refresh = () => {
   let refresh_token = wx.getStorageSync('refreshToken');
   console.log("refresh token");
@@ -75,4 +83,4 @@ let loginByPassword = (username, password) => {
   })
 };
 
-export { loginByPassword, loginByCode, getUser}
+export { loginByPassword, loginByCode, getUser, getStudent, getTeacher}
