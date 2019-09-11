@@ -93,9 +93,9 @@ Page({
   },
   doLoad(){
     API.Analysis.groupInfo(this.data.klassPreconQueId).then(res => {
-      // this.setData({
-      //   workGroup: res.data
-      // })
+      this.setData({
+        workGroup: res
+      })
     });
   },
 
@@ -178,7 +178,8 @@ Page({
         title: '操作成功',
         icon: 'success',
         duration: 2000
-      })
+      });
+      this.doLoad();
     });
   },
   // 批量设置workIds
@@ -237,6 +238,7 @@ Page({
     })
   },
   bindCurrCommentInput(event){
+    console.log(event.detail.value);
     this.setData({
       currComment: event.detail.value
     })

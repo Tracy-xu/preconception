@@ -33,7 +33,7 @@ Axios.interceptors.request.use((config) => {
     config.headers.Authorization = `${token.token_type} ${token.access_token}`;
   }
   // TODO
-  config.headers.Authorization = 'Bearer 81ef89c8-b261-46aa-9bc9-53452ceac4dc'
+  config.headers.Authorization = 'Bearer 0686a41a-2853-41ce-afe3-0d4d50b007c6'
 
   return config;
 }, error => Promise.reject(error));
