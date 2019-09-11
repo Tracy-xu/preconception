@@ -67,6 +67,20 @@ Page({
    * 登录
    */
   handleLogin() {
-    API.Auth.loginByPassword(this.data.username, this.data.password);
+    API.Auth.loginByPassword(this.data.username, this.data.password).then(v=>{
+      API.Auth.getUser().then(v=>{
+        app.globalData.myk_user = v;
+        console.log(app.globalData.myk_user);
+        if (v.roleIds.indexOf(201)){
+          wx.navigateTo({
+            url: router.questionList
+          });
+        }else{
+          wx.navigateTo({
+            url: router.previewList
+          });
+        }
+      })
+    })
   }
 });
