@@ -68,11 +68,12 @@ Component({
     handleSelectBook(ev) {
       var tbkId = ev.target.dataset.tbkid;
       var tbkName = ev.target.dataset.tbkname;
+      var edtId = this.data.selectedEdtId;
       var edtName = this.data.selectedEdtName;
       this.setData({
         selectedTbkId: tbkId
       });
-      this.triggerEvent('selectbook', { edtName, tbkName, tbkId });
+      this.triggerEvent('selectbook', { edtName, edtId, tbkName, tbkId });
     }
   }
 })

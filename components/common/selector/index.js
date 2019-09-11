@@ -26,9 +26,11 @@ Component({
 
     // 版本和课本
     tempEdtName: '',
+    tempEdtId: null,
     tempTbkName: '',
     tempTbkId: null,
     selectedEdtName: '',
+    selectedEdtId: null,
     selectedTbkName: '',
     selectedTbkId: null,
 
@@ -133,6 +135,7 @@ Component({
       this.setData({
         tempEdtName: data.detail.edtName,
         tempTbkName: data.detail.tbkName,
+        tempEdtId: data.detail.edtId,
         tempTbkId: data.detail.tbkId
       });
     },
@@ -180,6 +183,7 @@ Component({
       if (this.data.visibleVersion) {
         this.setData({
           selectedEdtName: this.data.tempEdtName,
+          selectedEdtId: this.data.tempEdtId,
           selectedTbkName: this.data.tempTbkName,
           selectedTbkId: this.data.tempTbkId
         });
@@ -199,7 +203,12 @@ Component({
       }
 
       // 整个选择组件
-      this.triggerEvent('confirm', { index: 11 });
+      var stgId = this.data.selectedStgId;
+      var sbjId = this.data.selectedSbjId;
+      var edtId = this.data.selectedEdtId;
+      var tbkId = this.data.selectedTbkId;
+      var tbkNodeId = this.data.selectedNodeId;
+      this.triggerEvent('confirm', { stgId, sbjId, edtId, tbkId, tbkNodeId });
     },
 
     /**
