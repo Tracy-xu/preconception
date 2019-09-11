@@ -1,23 +1,78 @@
-// components/common/section-select/version/index.js
+import API from '../../../../api/index.js';
+
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
-
+    sbjId: {
+      type: Number
+    },
+    stgId: {
+      type: Number
+    }
   },
 
-  /**
-   * 组件的初始数据
-   */
   data: {
-
+    edition: [],
+    selectedEdtId: null,
+    selectedEdtName: '',
+    relativeBook: [],
+    selectedTbkId: null
   },
 
-  /**
-   * 组件的方法列表
-   */
-  methods: {
+  ready() {
+    this.getEdition(this.properties.sbjId, this.properties.stgId);
+  },
 
+  methods: {
+    /**
+     * 查询教材版本
+     */
+    getEdition(sbjId, stgId) {
+      API.Question.getEdition(sbjId, stgId).then((rep) => {
+        this.setData({
+          edition: rep
+        });
+      });
+    },
+
+    /**
+     * 选择教材版本
+     */
+    handleSelectEdition(ev) {
+      var editid = ev.target.dataset.edtid;
+      var edtName = ev.target.dataset.edtname;
+      this.setData({
+        selectedEdtId: editid
+      });
+      this.setData({
+        selectedEdtName: edtName
+      });
+      this.getRelativeBook(editid);
+    },
+
+    /**
+     * 获取关联课本
+     */
+    getRelativeBook(edtId) {
+      this.data.edition.forEach((item) => {
+          if (item.edtId === edtId) {
+            this.setData({
+              relativeBook: item.books
+            });
+          }
+      });
+    },
+
+    /**
+     * 选择课本
+     */
+    handleSelectBook(ev) {
+      var tbkId = ev.target.dataset.tbkid;
+      var tbkName = ev.target.dataset.tbkname;
+      var edtName = this.data.selectedEdtName;
+      this.setData({
+        selectedTbkId: tbkId
+      });
+      this.triggerEvent('selectbook', { edtName, tbkName, tbkId });
+    }
   }
 })

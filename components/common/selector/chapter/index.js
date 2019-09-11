@@ -40,16 +40,18 @@ Component({
     /**
      * 选中节点
      */
-    handleClickItem: function (e) {
-      const selectId = e.currentTarget.dataset.id;
-      this.triggerEvent('select', { selectId: selectId }, { bubbles: true, composed: true });
+    handleClickTreeNode: function (e) {
+      var id = e.currentTarget.dataset.id;
+      var name = e.currentTarget.dataset.name;
+
+      this.triggerEvent('selectchapter', { id, name }, { bubbles: true, composed: true });
     },
 
     /**
      * 展开默认节点
      */
     openDefaultNode() {
-      if (this.data.treeData.id == this.data.id) {
+      if (this.data.treeData.data.id == this.data.id) {
         this.setData({
           open: true
         });

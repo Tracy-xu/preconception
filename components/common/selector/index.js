@@ -14,67 +14,35 @@ Component({
   data: {
     visibleVersion: false,
     visibleChapter: false,
-    treeData: {
-      id: 12, 
-      name: 'My Tree',
-      children: [
-        {
-          id: 1,
-          name: 'hello'
-        },
-        {
-          id: 2,
-          name: 'wat'
-        },
-        {
-          id: 3,
-          name: 'child folder',
-          children: [
-            {
-              id: 4,
-              name: 'child folder',
-              children: [
-                {
-                  id: 5,
-                  name: 'hello'
-                },
-                {
-                  id: 6,
-                  name: 'wat'
-                }
-              ]
-            },
-            {
-              id: 7,
-              name: 'hello'
-            },
-            {
-              id: 8,
-              name: 'wat'
-            },
-            {
-              id: 9,
-              name: 'child folder',
-              children: [
-                {
-                  id: 10,
-                  name: 'hello'
-                },
-                {
-                  id: 11,
-                  name: 'wat'
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    selectId: 0
+
+    // 学段
+    stage: [],
+    selectedStgId: null,
+
+    // 学科
+    subject: [],
+    relativeSubject: [],
+    selectedSbjId: null,
+
+    // 版本和课本
+    tempEdtName: '',
+    tempTbkName: '',
+    tempTbkId: null,
+    selectedEdtName: '',
+    selectedTbkName: '',
+    selectedTbkId: null,
+
+    // 章节
+    tempNodeName: '',
+    tempNodeId: null,
+    selectedNodeName: '',
+    selectedNodeId: null,
+    treeData: null
   },
 
   ready() {
     this.getStage();
+    this.getSubject();
   },
 
   /**
@@ -82,10 +50,62 @@ Component({
    */
   methods: {
     /**
-     * 
+     * 查询学段
      */
     getStage() {
-      return API.Question.getStage();
+      API.Question.getStage().then((rep) => {
+        this.setData({
+          stage: rep
+        });
+      });
+    },
+
+    /**
+     * 选择学段
+     */
+    handleSelectStage(ev) {
+      var selectedStgId = ev.target.dataset.stgid;
+      
+      this.setData({
+        selectedStgId: selectedStgId
+      });
+
+      this.getRelativeSubject(selectedStgId);
+    },
+
+    /**
+     * 查询学科
+     */
+    getSubject() {
+      API.Question.getSubject().then((rep) => {
+        this.setData({
+          subject: rep
+        });
+      });
+    },
+
+    /**
+     * 获取关联学科
+     */
+    getRelativeSubject(stgId) {
+      this.data.subject.forEach((item) => {
+        if (item.stgId === stgId) {
+          this.setData({
+            relativeSubject: item.subjects
+          });
+        }
+      });
+    },
+
+    /**
+     * 选择学科
+     */
+    handleSelectSubject(ev) {
+      var selectedSbjId = ev.target.dataset.sbjid;
+
+      this.setData({
+        selectedSbjId: selectedSbjId
+      });
     },
 
     /**
@@ -107,6 +127,38 @@ Component({
     },
 
     /**
+     * 选择教材版本和课本
+     */
+    handleSelectBook(data) {
+      this.setData({
+        tempEdtName: data.detail.edtName,
+        tempTbkName: data.detail.tbkName,
+        tempTbkId: data.detail.tbkId
+      });
+    },
+
+    /**
+     * 获取章节树
+     */
+    getChapterTree(tbkId) {
+      API.Question.getChapterTree(tbkId).then((rep) => {
+        this.setData({
+          treeData: rep
+        });
+      });
+    },
+
+    /**
+     * 选中教材章节节点
+     */
+    handleSelectChapter(data) {
+      this.setData({
+        tempNodeName: data.detail.name,
+        tempNodeId: data.detail.id
+      });
+    },
+
+    /**
      * 取消
      */
     handleClose() {
@@ -124,8 +176,24 @@ Component({
      * 确定
      */
     handleConfirm() {
-      // 教材版本选择组件、教材章节选择打开状态下
-      if (this.data.visibleVersion || this.data.visibleChapter) {
+      // 教材版本选择组件
+      if (this.data.visibleVersion) {
+        this.setData({
+          selectedEdtName: this.data.tempEdtName,
+          selectedTbkName: this.data.tempTbkName,
+          selectedTbkId: this.data.tempTbkId
+        });
+        this.getChapterTree(this.data.selectedTbkId);
+        this.closeLayer();
+        return;
+      }
+
+      // 教材章节选择打开状态下
+      if (this.data.visibleChapter) {
+        this.setData({
+          selectedNodeName: this.data.tempNodeName,
+          selectedNodeId: this.data.tempNodeId
+        });
         this.closeLayer();
         return;
       }
@@ -144,15 +212,6 @@ Component({
 
       this.setData({
         visibleChapter: false
-      });
-    },
-
-    /**
-     * 选中教材章节节点
-     */
-    handleSelectChapter(data) {
-      this.setData({
-        selectId: data.detail.selectId
       });
     }
   }
