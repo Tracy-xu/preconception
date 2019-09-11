@@ -1,5 +1,5 @@
 <view class="m-scroll-container">
-  <!-- 学段学科教材章节筛选组件 -->
+  <!-- 筛选学段学科教材章节 -->
   <view class="c-sort">
       <view class="c-sort__left">
         学段学科教材版本
@@ -22,7 +22,12 @@
   <view class="c-menu">
     <view class="c-menu__spec">速查手册</view>
     <view class="c-menu__knowledge-graph">知识点图谱</view>
-    <view class="c-menu__create-question" bindtap="toCreatQuestion">创建问题</view>
+    <view
+      class="c-menu__create-question"
+      bindtap="handleCreatQuestion"
+    >
+      创建问题
+    </view>
   </view>
 
   <!-- 题库信息 -->
@@ -40,10 +45,17 @@
     class="c-question-lists"
     scroll-y="{{true}}"
   >
-    <view class="c-question-list">
-      <view class="c-question-list__info">章节：第一单元 1.桃花源记</view>
+    <view
+      wx:for="{{ questions }}"
+      class="c-question-list"
+    >
+      <view class="c-question-list__info">
+        章节：第一单元 1.桃花源记
+      </view>
       <view class="c-question-list__con-box c-question-list__con-box--txt">
-        <view class="c-question-list__con">题干内容</view>
+        <view class="c-question-list__con">
+          {{ item.content.content }}
+        </view>
       </view>
       <view class="c-question-list__operator">
         <view class="c-question-list__bind-class">绑定课堂</view>

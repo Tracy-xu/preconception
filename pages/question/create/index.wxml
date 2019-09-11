@@ -12,7 +12,11 @@
   <view class="c-question-create__stem-box">
     <view class="c-question-create__stem-label">1. </view>
     <view class="c-question-create__stem">
-      <icon class="c-question-create__open-stem-type"></icon>
+      <icon
+        bindtap="handleVisibleStemType"
+        class="c-question-create__open-stem-type"
+      >
+      </icon>
       <input
         class="c-question-create__stem-txt"
         placeholder="请输入题目内容"
@@ -39,7 +43,10 @@
   </view>
 
   <!-- 添加题干 -->
-  <view class="c-question-create__stem-type">
+  <view
+    wx:if="{{ handleVisibleStemType }}"
+    class="c-question-create__stem-type"
+  >
     <view class="c-question-create__stem-type--img">添加图片</view>
     <view class="c-question-create__stem-type--audio">添加语音</view>
     <icon></icon>
@@ -55,4 +62,10 @@
       <view class="c-queston-create__type-video">视频</view>
     </view>
   </view> 
+</view>
+
+<view class="c-question-create__btn">
+  <button>取消</button>
+  <button>确定</button>
+  <button>绑定课堂</button>
 </view>

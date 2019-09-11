@@ -1,66 +1,31 @@
-// pages/question/create/index.js
+import API from '../../../api/index.js';
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    content: '',
+    imgs: [],
+    audios: [],
+    mode: 0,
+    handleVisibleStemType: false
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 显示第一个添加题干弹层
    */
-  onLoad: function (options) {
-
+  handleVisibleStemType() {
+    this.setData({
+      handleVisibleStemType: !this.data.handleVisibleStemType
+    });
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 创建习题
    */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  createQuestion(param) {
+    API.Question.createQuestion(param);
   }
 })

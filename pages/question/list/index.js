@@ -1,12 +1,10 @@
 import router from '../../../router/index.js';
-import API from "../../../api/index.js"
-
-var app = getApp();
+import API from '../../../api/index.js';
+import qs from '../../../utils/qs/index.js';
 
 Page({
-  onReady() {
-    console.log(app.globalData.myk_user);
-    // API.Question.getQuestions();
+  onLoad() {
+    this.getQuestion(this.data.queryParam);
   },
 
   /**
@@ -15,16 +13,21 @@ Page({
   data: {
     visibleSelector: false,
     queryParam: {
-      curPage: 1
-    }
+      curPage: 1,
+      scope: 1
+    },
+    questions: []
   },
 
   /**
    * 查询前概念习题
    */
   getQuestion(param) {
+    param = qs(param);
     API.Question.getQuestion(param).then((rep) => {
-      console.log(rep);
+      this.setData({
+        questions: rep.items
+      });
     });
   },
 
@@ -55,7 +58,7 @@ Page({
     });
 
     this.setData({
-      queryParam: Object.assign({}, queryParam, {
+      queryParam: Object.assign({}, this.data.queryParam, {
         stgId: data.detail.stgId,
         sbjId: data.detail.sbjId,
         edtId: data.detail.edtId,
@@ -79,8 +82,10 @@ Page({
     }
   },
 
-  toCreatQuestion() {
-    console.log("ddd")
+  /**
+   * 创建习题
+   */
+  handleCreatQuestion() {
     wx.navigateTo({
       url: router.questionCreate
     });

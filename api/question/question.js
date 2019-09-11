@@ -32,5 +32,14 @@ export function getChapterTree(tbkId) {
  * 查询前概念习题
  */
 export function getQuestion(param) {
-  return axios.get('/qgn/precon/que', param);
+  return axios.get(`/qgn/precon/que?${param }`);
+}
+
+/**
+ * 创建习题
+ */
+export function createQuestion(param) {
+  return axios.post('/qgn/precon/que?intent=ADD&scope=1', {
+    data: param
+  });
 }
