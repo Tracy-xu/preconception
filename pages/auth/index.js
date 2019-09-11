@@ -71,7 +71,7 @@ Page({
       API.Auth.getUser().then(v=>{
         app.globalData.myk_user = v;
         console.log(app.globalData.myk_user);
-        if (v.roleIds.indexOf(201)){
+        if (v.roleIds.indexOf(201)>-1){
           wx.navigateTo({
             url: router.questionList
           });
