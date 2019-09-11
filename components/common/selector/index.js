@@ -1,3 +1,5 @@
+import API from '../../../api/index.js';
+
 Component({
   /**
    * 组件的属性列表
@@ -71,10 +73,21 @@ Component({
     selectId: 0
   },
 
+  ready() {
+    this.getStage();
+  },
+
   /**
    * 组件的方法列表
    */
   methods: {
+    /**
+     * 
+     */
+    getStage() {
+      return API.Question.getStage();
+    },
+
     /**
      * 显示教材版本选择组件
      */
@@ -100,7 +113,6 @@ Component({
       // 教材版本选择组件、教材章节选择打开状态下
       if (this.data.visibleVersion || this.data.visibleChapter) {
         this.closeLayer();
-
         return;
       }
 
@@ -115,7 +127,6 @@ Component({
       // 教材版本选择组件、教材章节选择打开状态下
       if (this.data.visibleVersion || this.data.visibleChapter) {
         this.closeLayer();
-
         return;
       }
 

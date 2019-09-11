@@ -1,14 +1,23 @@
 <view class="m-scroll-container">
-  <selector></selector>
-  <!-- 筛选 -->
+  <!-- 学段学科教材章节筛选组件 -->
   <view class="c-sort">
       <view class="c-sort__left">
         学段学科教材版本
       </view>
-      <view class="c-sort__right">
+      <view
+        bindtap="handleVisibleSelector"
+        class="c-sort__right"
+      >
         <i class="c-sort__icon"></i>筛选
       </view>
   </view>
+  <selector
+    wx:if="{{ visibleSelector }}"
+    bindclose="handleCloseSelector"
+    bindconfirm="handleConfirmSelector"
+  >
+  </selector>
+
   <!-- 菜单 -->
   <view class="c-menu">
     <view class="c-menu__spec">速查手册</view>
