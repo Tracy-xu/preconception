@@ -32,7 +32,6 @@ Axios.defaults.adapter = function (config) {
 };
 
 Axios.interceptors.request.use((config) => {
-  console.log(config.headers.isAuth)
   let token = wx.getStorageSync('token');
   if (config.headers.isAuth !== false && token) {
     config.headers.Authorization = `Bearer ${token}`;

@@ -50,7 +50,7 @@ let loginByOpenId = (openId) => {
 };
 
 let bind = (openId) => {
-  return Axios.post(`${hosts}/social/bind?openId=${openId}`);
+  return Axios.post(`/auth/social/bind?openId=${openId}`);
 };
 
 let loginByPassword = (username, password, openId) => {
@@ -88,6 +88,8 @@ let login = (username, password) => {
               }).catch(v=>{
                 reject(v);
               });
+            }else{
+              reject(v);
             }
           }else{
             reject(v);
