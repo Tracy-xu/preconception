@@ -8,4 +8,4 @@
 .c-sort{height:90rpx;line-height:90rpx;padding:0 21rpx;font-size:40rpx;background:#f2f2f2;color:#444;}
 .c-sort__left{float:left;}
 .c-sort__right{float:right;}
-.c-sort__icon{display:inline-block;width:42rpx;height:38rpx;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/search.png');background-size:100% 100%;}
+.c-sort__icon{display:inline-block;width:42rpx;height:38rpx;margin-right:10rpx;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/search.png');background-size:100% 100%;}
