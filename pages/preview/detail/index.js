@@ -58,10 +58,11 @@ Page({
       })
     })
   },
-  selWork(data) {
+  selWork(event) {
     this.setData({
-      activeWorkId:data.workId
+      activeWorkId: event.currentTarget.dataset.id
     })
+    console.log(event.currentTarget.dataset.id)
   },
   playVideo(data){
     this.setData({
@@ -75,7 +76,7 @@ Page({
     })
   },
   putAnswerLike() {
-    Api.Preview.c(workId,activeWorkId).then(res => {
+    Api.Preview.putAnswerLike(this.data.workId,this.data.activeWorkId).then(res => {
       wx.navigateBack();
     })
   }

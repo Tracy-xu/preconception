@@ -21,7 +21,7 @@ Page({
     subJectListObj:[],
   },
   onLoad(){
-    this.data.studentId = app.globalData.myk_user.id;
+    this.data.studentId = app.globalData.userInfo.id;
     this.getAllSubject();
     this.getWorkList();
     this.getStudentById();
@@ -78,7 +78,7 @@ Page({
   // 学生查看详情
   goToDetail(event){
     wx.navigateTo({
-      url: `${router.questionEdit}?workId=${event.currentTarget.dataset.item.work.workId}&klassPreconQueId=${event.currentTarget.dataset.item.work.klassPreconQueId}&sbjId=${event.currentTarget.dataset.item.work.sbjId}&mode=${event.currentTarget.dataset.item.item.content.mode}`,
+      url: `${router.previewDetail}?workId=${event.currentTarget.dataset.item.work.workId}&klassPreconQueId=${event.currentTarget.dataset.item.work.klassPreconQueId}&sbjId=${event.currentTarget.dataset.item.work.sbjId}&mode=${event.currentTarget.dataset.item.item.content.mode}`,
     })
   },
   // 学生去预习
