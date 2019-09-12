@@ -133,6 +133,16 @@ Page({
    * 保存创建习题
    */
   handleCreateQuestion() {
+    // 校验（学段学科教材章节必填）
+    if (!this.data.stgId) {
+      wx.showToast({
+        title: '请选择学段学科教程章节',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+
     this.createQuestion().then(() => {
       var pages = getCurrentPages();
       var prevPage = pages[pages.length - 2];
@@ -168,7 +178,6 @@ Page({
         ]
       };
 
-      // 调这个接口前，需要数据校验（学段学科教材章节必填）
       API.Question.createQuestion(param).then((res) => {
         resolve(res);
       });

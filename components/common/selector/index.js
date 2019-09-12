@@ -1,16 +1,6 @@
 import API from '../../../api/index.js';
 
 Component({
-  /**
-   * 组件的属性列表
-   */
-  properties: {
-
-  },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
     visibleVersion: false,
     visibleChapter: false,
@@ -50,9 +40,6 @@ Component({
     this.getSubject();
   },
 
-  /**
-   * 组件的方法列表
-   */
   methods: {
     /**
      * 查询学段
@@ -117,6 +104,15 @@ Component({
      * 显示教材版本选择组件
      */
     handleVisibleVersion() {
+      if (!this.data.selectedStgId || !this.data.selectedSbjId) {
+        wx.showToast({
+          title: '请先选择学段学科',
+          icon: 'none',
+          duration: 2000
+        });
+        return;
+      }
+
       this.setData({
         visibleVersion: true
       });
@@ -126,6 +122,15 @@ Component({
      * 显示教材章节选择组件
      */
     handleVisibleChapter() {
+      if (!this.data.treeData) {
+        wx.showToast({
+          title: '请先选择教材版本',
+          icon: 'none',
+          duration: 2000
+        });
+        return;
+      }
+      
       this.setData({
         visibleChapter: true
       });
