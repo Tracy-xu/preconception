@@ -31,7 +31,10 @@
       <!-- 文本 -->
       <textarea wx:if="{{questionData.item.content.mode === 1}}" 
       class="c-exercises-con__textarea" 
-      value="{{questionData.work.answer}}" auto-height placeholder="请在此输入答案~" />
+      value="{{questionData.work.answer}}" 
+      auto-height
+      bindinput="answerHander"
+      placeholder="请在此输入答案~" />
       <view class="c-exercises-con__imgs" 
       wx:if="{{questionData.item.content.mode === 2}}">
         <image wx:for="{{questionData.work.imgs}}" src="item" 

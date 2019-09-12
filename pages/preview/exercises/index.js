@@ -14,6 +14,9 @@ Page({
     playVideoFlag: false,
     recorderManager:null,
     questionData: {
+      work:{
+        answer:'',
+      },
       fileId:null,
       thumbnail:null,
       audio:null,
@@ -172,4 +175,11 @@ Page({
       }
     })
   },
+  // 输入文字
+  answerHander(event) {
+    this.data.questionData.work.answer = event.detail.value;
+    this.setData({
+      questionData: this.data.questionData
+    })
+  }
 })
