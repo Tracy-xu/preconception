@@ -56,7 +56,7 @@
         wx:key="{{item.workId}}"
         bindtap="selWork(item)">
       <view class="c-detail__con__header">
-        <image src="http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/activeplay.png"></image>
+        <image src="http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/activeplay.png"></image>
         {{item.userName}}
         <view class="c-detail__con__header-operation">
           {{item.startTime}}

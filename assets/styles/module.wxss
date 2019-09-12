@@ -8,16 +8,16 @@
 .font-color--red{color:#FF3356;}
 /* voice */
 .c-voice-box{display:flex;flex-direction:row;height:50rpx;align-items:center;}
-.c-voice-box__btn{width:50rpx;height:50rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/activeplay.png');}
-.c-voice-box__btn--play{background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/pause.png')}
+.c-voice-box__btn{width:50rpx;height:50rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/activeplay.png');}
+.c-voice-box__btn--play{background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/pause.png')}
 .c-voice-box__progress{width:360rpx;height:24rpx;margin:0 24rpx;background:#d9d9d9;border-radius:24rpx;}
 .c-voice-box__progress-con{background:#1CA053;}
 /* icon */
-.c-icon--transform{display:inline-block;vertical-align: middel;width:34rpx;height:34rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/transform.png')}
-.c-icon--delete{display:inline-block;vertical-align: middel;width:34rpx;height:34rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/delete.png')}
-.c-icon--edit{display:inline-block;width:44rpx;height:44rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/activeedit.png')}
-.c-icon--radio{display:inline-block;width:38rpx;height:38rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/radio.png');}
-.c-icon--activeradio{display:inline-block;width:38rpx;height:38rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/radioOn.png');}
+.c-icon--transform{display:inline-block;vertical-align: middel;width:34rpx;height:34rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/transform.png')}
+.c-icon--delete{display:inline-block;vertical-align: middel;width:34rpx;height:34rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/delete.png')}
+.c-icon--edit{display:inline-block;width:44rpx;height:44rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/activeedit.png')}
+.c-icon--radio{display:inline-block;width:38rpx;height:38rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/radio.png');}
+.c-icon--activeradio{display:inline-block;width:38rpx;height:38rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/radioOn.png');}
 /* 缺省页面 */
-.m-null i{display:block;width:200rpx;height:200rpx;margin:30rpx auto;}
+.m-null i{display:block;width:200rpx;height:200rpx;margin:30rpx auto;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/null.png');background-size:100% 100%;}
 .m-null{text-align:center;}

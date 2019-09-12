@@ -3,9 +3,9 @@
 .c-reord-list__item{height:114rpx;padding:24rpx;border-bottom:1px solid #e6e6e6;}
 .c-reord-list__tit,
 .c-reord-list__subtit{display:flex;align-items:center;font-size:46rpx;}
-.c-reord-list__titicon{display: inline-block;width:48rpx;height:38rpx;margin-right:12rpx;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/activeclass.png');background-size:100% 100%;}
-.c-reord-list__subicon{display: inline-block;width:34rpx;height:40rpx;margin:0 21rpx 0 7rpx;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/subject.png');background-size:100% 100%;}
+.c-reord-list__titicon{display: inline-block;width:48rpx;height:38rpx;margin-right:12rpx;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/activeclass.png');background-size:100% 100%;}
+.c-reord-list__subicon{display: inline-block;width:34rpx;height:40rpx;margin:0 21rpx 0 7rpx;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/subject.png');background-size:100% 100%;}
 .c-sort{height:90rpx;line-height:90rpx;padding:0 21rpx;font-size:40rpx;background:#f2f2f2;color:#444;}
 .c-sort__left{float:left;}
 .c-sort__right{float:right;}
-.c-sort__icon{display:inline-block;width:42rpx;height:38rpx;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/search.png');background-size:100% 100%;}
+.c-sort__icon{display:inline-block;width:42rpx;height:38rpx;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/search.png');background-size:100% 100%;}

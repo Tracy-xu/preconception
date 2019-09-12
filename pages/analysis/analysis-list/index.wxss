@@ -4,7 +4,7 @@
 }
 .c-analysislist__header-top {display: flex; justify-content: space-between;   padding: 26rpx 0 23rpx;
   line-height: 38rpx;}
-.c-aL__header-sub {display: inline-block; width:34rpx; height:40rpx; margin-right: 16rpx; background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/subject.png') center/100% 100%;}
+.c-aL__header-sub {display: inline-block; width:34rpx; height:40rpx; margin-right: 16rpx; background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/subject.png') center/100% 100%;}
 .c-aL__header-day {
   display: flex;
   align-items: center;
@@ -39,7 +39,7 @@
   width: 42rpx;
   height: 38rpx;
   margin-right: 10rpx;
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/search.png') center/contain;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/search.png') center/contain;
 }
 .c-content {
   margin-top: 20rpx;
@@ -77,28 +77,28 @@
   width:50rpx;
   height:60rpx;
   margin: 10rpx 11rpx 0 56rpx;
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/text.png') center/contain;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/text.png') center/contain;
 }
 .c-list__content-type-img {
   float: right;
   width: 66rpx;
   height: 57rpx;
   margin: 10rpx 11rpx 0 40rpx;
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/picture.png') center/contain;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/picture.png') center/contain;
 }
 .c-list__content-type-voice {
   float: right;
   width: 54rpx;
   height: 67rpx;
   margin: 0rpx 17rpx 0 44rpx;
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/voice.png') center/contain;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/voice.png') center/contain;
 }
 .c-list__content-type-video {
   float: right;
   width: 66rpx;
   height: 62rpx;
   margin: 10rpx 11rpx 0 40rpx;
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/video.png') center/contain;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/video.png') center/contain;
 }
 .c-list__footer {
   display: flex;
