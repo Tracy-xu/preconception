@@ -7,6 +7,10 @@ module.exports = {
     var path = item.content.tbkNodes[0].path;
     var result = '';
 
+    if (!path) {
+      return;
+    }
+
     for (var i = 0; i < path.length; i++) {
       result += path[i].name;
     }

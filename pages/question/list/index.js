@@ -17,11 +17,45 @@ Page({
       curPage: 1,
       scope: 1
     },
-    page: {},
+    pageTips: '',
+    questions: {
+      items: [],
+      page: {}
+    },
 
     // 绑定班级所需参数
     resId: null,
     refId: null
+  },
+
+  /**
+   * 分页查询前概念习题
+   */
+  handlePageChange() {
+    var curPage = this.data.queryParam.curPage + 1;
+    var totalPage = Math.ceil(this.data.questions.page.total / this.data.questions.page.pageSize);
+
+    if (curPage > totalPage) {
+      curPage = totalPage;
+
+      this.setData({
+        pageTips: '没有更多数据'
+      });
+
+      return;
+    }
+
+    this.setData({
+      pageTips: '加载中'
+    });
+
+    this.setData({
+      queryParam: Object.assign({}, this.data.queryParam, {
+        curPage: curPage
+      })
+    });
+
+    this.getQuestion(this.data.queryParam);
   },
 
   /**
@@ -30,8 +64,13 @@ Page({
   getQuestion(param) {
     param = qs(param);
     API.Question.getQuestion(param).then((rep) => {
+      var items = this.data.questions.items.concat(rep.items);
+      var page = rep.page;
+      this.data.questions.items = items;
+      this.data.questions.page = page;
+
       this.setData({
-        page: rep
+        questions: this.data.questions
       });
     });
   },

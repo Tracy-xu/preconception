@@ -46,9 +46,11 @@
   <scroll-view
     class="c-question-lists"
     scroll-y="{{ true }}"
+    bindscrolltolower="handlePageChange"
   >
     <view
-      wx:for="{{ page.items }}"
+      wx:for="{{ questions.items }}"
+      wx:key="{{ index }}"
       class="c-question-list"
     >
       <view class="c-question-list__info">
@@ -80,6 +82,7 @@
         </view>
       </view>
     </view>
+    <view class="m-page-tips">{{ pageTips }}</view>
   </scroll-view>
 
   <!-- 绑定班级 -->
