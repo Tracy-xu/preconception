@@ -19,7 +19,7 @@ Axios.defaults.adapter = function (config) {
       success: (res) => {
         console.log(res.statusCode);
         if(res.statusCode>299||res.statusCode<200){
-          reject(res.statusCode);
+          reject(res);
         }else{
           resolve(res)
         }
@@ -36,34 +36,34 @@ Axios.interceptors.request.use((config) => {
   if (config.headers.isAuth !== false && token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-  // TODO
+
   return config;
 }, error => Promise.reject(error));
 
 Axios.interceptors.response.use(res => res.data, (error) => {
-  if (error.message.indexOf('timeout') > -1) {
-    Message({
-      message: '请求超时,请检查网络',
-      type: 'warning',
-    });
-  }
+  // if (error.message.indexOf('timeout') > -1) {
+  //   Message({
+  //     message: '请求超时,请检查网络',
+  //     type: 'warning',
+  //   });
+  // }
 
-  if (error && error.response) {
-    switch (error.response.status) {
+  if (error && error.data.message) {
+    switch (error.status) {
       case 401:
         break;
       case 404:
         break;
       case 500:
         wx.showToast({
-          title: error.response.data.message,
+          title: error.data.message,
           icon: 'none',
           duration: 2000
         });
         break;
       default:
         wx.showToast({
-          title: error.response.data.message,
+          title: error.data.message,
           icon: 'none',
           duration: 2000
         });
