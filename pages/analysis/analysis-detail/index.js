@@ -91,7 +91,7 @@ Page({
     this.setData({
       klassPreconQueId: options.klassPreconQueId || 1
     });
-    //this.doLoad();
+    this.doLoad();
   },
   doLoad(){
     API.Analysis.groupInfo(this.data.klassPreconQueId).then(res => {

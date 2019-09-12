@@ -1,3 +1,4 @@
+import router from '../../../router/index.js';
 import API from '../../../api/index.js';
 
 Page({
@@ -41,6 +42,11 @@ Page({
   handleUnbindClass(ev) {
     API.Question.unbindClass({
       klassPreconQueId: ev.target.dataset.id
+    });
+  },
+  openKlassPrequeView(ev){
+    wx.navigateTo({
+      url: `${router.analysisList}?klassPreconQueId=${ev.target.dataset.id}`
     });
   }
 })
