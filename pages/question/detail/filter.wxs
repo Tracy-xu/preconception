@@ -1,0 +1,16 @@
+module.exports = {
+  formatPath: function (item) {
+    if (!item.content.tbkNodes) {
+      return;
+    }
+
+    var path = item.content.tbkNodes[0].path;
+    var result = '';
+
+    for (var i = 0; i < path.length; i++) {
+      result += path[i].name;
+    }
+
+    return result;
+  }
+};

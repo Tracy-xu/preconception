@@ -1,1 +1,7 @@
-/* pages/question/detail/index.wxss */
+.c-bind-class {padding: 20px; background: #fff;}
+.c-bind-class__info {display: flex;}
+.c-bind-class__info view {color: #517B39FF;}
+.c-bind-class_item {border-bottom: 1px #ccc solid;}
+.c-bind-class__content {display: flex; align-items: center; justify-content: space-between;}
+.c-bind-class__class-name {width: 70%;}
+.c-bind-class__unbind {width: 30%;}

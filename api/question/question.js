@@ -62,3 +62,17 @@ export function deleteQuextion(resId) {
 export function bindClass(param) {
   return axios.post('/qgn/klass/precon/que/bind', param);
 }
+
+/**
+ * 解除绑定班级
+ */
+export function unbindClass(param) {
+  return axios.post('/qgn/klass/precon/que/unbind', param);
+}
+
+/**
+ * 查询习题所绑定班级
+ */
+export function getBindClass(resId) {
+  return axios.get(`/qgn/klass/precon/que/${resId }/info`);
+}

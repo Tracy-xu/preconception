@@ -152,8 +152,6 @@ Page({
         ]
       };
 
-      console.log(param, 222);
-
       // 调这个接口前，需要数据校验（学段学科教材章节必填）
       API.Question.createQuestion(param).then((res) => {
         resolve(res);
@@ -175,5 +173,12 @@ Page({
         refId: res.refId
       });
     });
+  },
+
+  /**
+   * 确定绑定班级
+   */
+  handleConfirmBindClass() {
+    wx.navigateBack();
   }
 })

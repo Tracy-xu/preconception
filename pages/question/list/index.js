@@ -12,11 +12,16 @@ Page({
    */
   data: {
     visibleSelector: false,
+    visibleSelectClass: false,
     queryParam: {
       curPage: 1,
       scope: 1
     },
-    page: {}
+    page: {},
+
+    // 绑定班级所需参数
+    resId: null,
+    refId: null
   },
 
   /**
@@ -101,6 +106,29 @@ Page({
       setTimeout(() => {
         this.getQuestion(this.data.queryParam)
       }, 500);
+    });
+  },
+
+  /**
+   * 绑定班级
+   */
+  handleBindClass(ev) {
+    this.setData({
+      resId: ev.target.dataset.resid,
+      refId: ev.target.dataset.refid
+    });
+
+    this.setData({
+      visibleSelectClass: true
+    });
+  },
+
+  /**
+   * 确定版本
+   */
+  handleConfirmBindClass() {
+    this.setData({
+      visibleSelectClass: false
     });
   }
 })

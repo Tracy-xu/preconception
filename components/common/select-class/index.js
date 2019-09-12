@@ -41,7 +41,9 @@ Component({
       var refId = this.properties.refId;
       var resId = this.properties.resId
 
-      API.Question.bindClass({ klassIds, refId, resId }).then(() => wx.navigateBack());
+      API.Question.bindClass({ klassIds, refId, resId }).then(() => {
+        this.triggerEvent('confirmbindclass');
+      });
     },
   }
 })

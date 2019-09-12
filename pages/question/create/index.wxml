@@ -117,6 +117,7 @@
     resId="{{ resId }}"
     refId="{{ refId }}"
     wx:if="{{ visibleSelectClass }}"
+    bindconfirmbindclass="handleConfirmBindClass"
   >
   </select-class>
 

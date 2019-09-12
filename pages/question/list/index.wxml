@@ -62,7 +62,14 @@
         </view>
       </view>
       <view class="c-question-list__operator">
-        <view class="c-question-list__bind-class">绑定班级</view>
+        <view
+          bindtap="handleBindClass"
+          data-resId="{{ item.resource.resId }}"
+          data-refId="{{ item.resource.refId }}"
+          class="c-question-list__bind-class"
+        >
+          绑定班级
+        </view>
         <view class="c-question-list__edit">编辑</view>
         <view
           bindtap="handleDeleteQuextion"
@@ -74,6 +81,15 @@
       </view>
     </view>
   </scroll-view>
+
+  <!-- 绑定班级 -->
+  <select-class
+    resId="{{ resId }}"
+    refId="{{ refId }}"
+    wx:if="{{ visibleSelectClass }}"
+    bindconfirmbindclass="handleConfirmBindClass"
+  >
+  </select-class>
 
   <!-- tapbar -->
   <myk-tabbar bindchange="handleTabChange"></myk-tabbar>

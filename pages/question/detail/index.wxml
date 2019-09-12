@@ -1,7 +1,30 @@
-<view>
-  
+<wxs src="./filter.wxs" module="filter"></wxs>
+
+<!-- 题目详情 -->
+<view class="c-question-detail">
+  <view class="c-question-detail__title">{{ filter.formatPath(detail) }}</view>
+  <view class="c-question-detail__content">
+    {{ detail.content.content }}
+  </view>
 </view>
 
-<view>
-
+<!-- 绑定的班级 -->
+<view class="c-bind-class">
+  <view class="c-bind-class__info">推送至班级情况<view>3</view>条记录</view>
+  <view
+    wx:for="{{ classData }}"
+    class="c-bind-class_item"
+  >
+    <view>{{ item.createdOn }} 科目：语文</view>
+    <view class="c-bind-class__content">
+      <view class="c-bind-class__class-name">{{ item.schoolName }} {{ item.klassName }}</view>
+      <button
+        bindtap="handleUnbindClass"
+        class="c-bind-class__unbind"
+        data-id="{{ item.klassPreconQueId }}"
+      >
+        解除绑定
+      </button>
+    </view>
+  </view>
 </view>
