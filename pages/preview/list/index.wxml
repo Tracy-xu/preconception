@@ -3,7 +3,7 @@
   <!-- 筛选 -->
   <view class="c-sort">
     <view class="c-sort__left">
-      <span wx:if="{{klassName !== null}}">{{klassName}}</span>
+      <span wx:if="{{userInfo.klass.name !== null}}">{{userInfo.klass.name}}</span>
       <span wx:else>--</span>
     </view>
     <view class="c-sort__right" bindtap="showActionSheet">
@@ -29,21 +29,26 @@
             wx:for="{{item.item.content.audios}}" 
             src="{{audioItem}}"></myk-audio>
           </view>
-          <span wx:for="{{item.item.content.imgs}}" 
+          <span wx:for="{{item.item.content.imgs}}"
+                wx:key="{{imgItem}}" 
                 wx:for-item="imgItem">
             <image src="{{imgItem}}" class="c-preview-list__img"></image>
           </span>
         </view>
-        <view class="c-preview-list__bottom" wx-if="{{item.item.work.status === 2}}">
-          <view class="u-button u-button--primary" bindtap="goToDetail(item.item)">查看详情</view>
+        <view class="c-preview-list__bottom" wx-if="{{item.work.status === 2}}">
+          <view class="u-button u-button--primary" 
+           data-item="{{item}}" 
+           bindtap="goToDetail">查看详情</view>
           <view class="font-color--blue">已提交</view>
         </view>
         <view class="c-preview-list__bottom" wx:else>
-          <view class="u-button u-button--primary" bindtap="goDoWork(item.item)">去完成</view>
+          <view class="u-button u-button--primary"
+          data-item="{{item}}" 
+          bindtap="goDoWork">去完成</view>
           <view class="">未提交</view>
         </view>
       </view>
-      <view wx:if="!workList.length" class="m-null">
+      <view wx:if="{{!workList.length}}" class="m-null">
       <i></i>
         暂无数据
       </view> 

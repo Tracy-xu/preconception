@@ -4,7 +4,7 @@
     <view class="c-exercises-main">
       <view class="c-preview-list__result">
         <!-- 语音 -->
-        <view class="c-voice-box" wx:if="{{questionData.content.audio.length}}">
+        <view class="c-voice-box" wx:if="{{questionData.item.content.audio.length}}">
           <view class="c-voice-box__btn c-voice-box__btn--play"></view>
           <view class="c-voice-box__progress">
             <view class="c-voice-box__progress-con"></view>
@@ -15,23 +15,30 @@
         </view>
         <!-- 文本 -->
         <view class="c-exercises-main__text">
-          {{questionData.content.content}}
-          <i class="c-preview__icon--text" wx:if="{{questionData.content.mode === 1}}"></i>
-          <i class="c-preview__icon--camera" wx:elif="{{questionData.content.mode === 2}}"></i>
-          <i class="c-preview__icon--video" wx:elif="{{questionData.content.mode === 3}}"></i>
-          <i class="c-preview__icon--voice" wx:elif="{{questionData.content.mode === 4}}"></i>
+          {{questionData.item.content.content}}
+          <i class="c-preview__icon--text" wx:if="{{questionData.item.content.mode === 1}}"></i>
+          <i class="c-preview__icon--camera" wx:elif="{{questionData.item.content.mode === 2}}"></i>
+          <i class="c-preview__icon--video" wx:elif="{{questionData.item.content.mode === 3}}"></i>
+          <i class="c-preview__icon--voice" wx:elif="{{questionData.item.content.mode === 4}}"></i>
         </view>
-        <span wx:if="{{questionData.content.imgs.length}}">
-          <image wx:for="{{questionData.content.imgs}}" src="{{item}}" class="c-preview-list__img">
+        <span wx:if="{{questionData.item.content.imgs.length}}">
+          <image wx:for="{{questionData.item.content.imgs}}" src="{{item}}" class="c-preview-list__img">
           </image>
         </span>
       </view>
     </view>
     <view class="c-exercises-con">
       <!-- 文本 -->
-      <textarea wx:if="{{questionData.content.mode === 1}}" class="c-exercises-con__textarea" value="{{questionData.work.answer}}" auto-height placeholder="请在此输入答案~" />
-      <view class="c-exercises-con__imgs" wx:if="{{questionData.content.mode === 2}}">
-        <image wx:for="{{questionData.work.imgs}}" src="item" class="c-preview-list__img"></image>
+      <textarea wx:if="{{questionData.item.content.mode === 1}}"
+      class="c-exercises-con__textarea"
+      value="{{questionData.work.answer}}"
+      auto-height
+      bindinput="answerHander"
+      placeholder="请在此输入答案~" />
+      <view class="c-exercises-con__imgs"
+      wx:if="{{questionData.item.content.mode === 2}}">
+        <image wx:for="{{questionData.work.imgs}}" src="item"
+        class="c-preview-list__img"></image>
         <view class="c-preview-list__img" bindTap="uploadImg">
           +
         </view>
@@ -46,12 +53,12 @@
         </view>
       </view>
       <!-- 视频 -->
-      <view class="c-exercises-con__imgs" wx:if="{{questionData.content.mode === 3}}">
-        <view class="c-preview-list__img" 
+      <view class="c-exercises-con__imgs" wx:if="{{questionData.item.content.mode === 3}}">
+        <view class="c-preview-list__img"
               wx:if="{{questionData.work.fileId}}"
               bindTap="playvideo(questionData.work.fileId)">
           <icon type="clear" size="24" color="#999" class="c-icon" />
-          <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/default.png"></image>
+          <image src="http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/default.png"></image>
           <view class="c-voice-box__btn c-voice-box__btn--play"></view>
         </view>
         <view class="c-preview-list__img" bindtap="uploadVideo" wx:else>
@@ -60,7 +67,7 @@
         </view>
       </view>
       <!-- 音频 -->
-      <view class="c-exercises-con__imgs" wx:if="{{questionData.content.mode === 4}}">
+      <view class="c-exercises-con__imgs" wx:if="{{questionData.item.content.mode === 4}}">
         <view class="c-preview-list__img" bindtap="uploadVoice">
         <view class="c-preview__icon--voice" class="{{recordIng ? 'c-preview__icon--voiceing' : 'c-preview__icon--voice'}}"></view>
         </view>
@@ -92,8 +99,8 @@
       </view>
     </view>
     <!-- 录像 -->
-    <myk-camera 
-        wx:if="{{record}}" 
+    <myk-camera
+        wx:if="{{record}}"
         bindstoprecord="handleStopRecord">
     </myk-camera>
   </view>

@@ -8,7 +8,7 @@
   </view>
 
   <mp-dialog title="策略" show="{{commentDialog}}" bindbuttontap="bindCommentConfirm" buttons="{{commentbtns}}">
-    <view><input placeholder="请输入策略内容" auto-focus  bindinput="bindCurrCommentInput"  value="{{currComment}}" /></view>
+    <view><input placeholder="请输入策略内容" type="text" auto-focus  bindinput="bindCurrCommentInput"  value="{{currComment}}" /></view>
   </mp-dialog>
 
   <view class="c-fix__viewpoint" bindtap="openPoint">正确观点</view>
@@ -21,23 +21,23 @@
      </view>
     <view class="c-footer__list c-footer__list2" data-g-idx="1" bindtap="bulkMoveGroup">
         <view class="c-footer__list-viewpoint">观点2</view>
-        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 1 ? workGroup.groups[1].works.length : 0}}人</view>
+        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 1 && workGroup.groups[1].works ? workGroup.groups[1].works.length : 0}}人</view>
      </view>
      <view class="c-footer__list c-footer__list3" data-g-idx="2" bindtap="bulkMoveGroup">
         <view class="c-footer__list-viewpoint">观点3</view>
-        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 2 ? workGroup.groups[2].works.length : 0}}人</view>
+        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 2 && workGroup.groups[1].works ? workGroup.groups[2].works.length : 0}}人</view>
      </view>
      <view class="c-footer__list c-footer__list4" data-g-idx="3" bindtap="bulkMoveGroup">
         <view class="c-footer__list-viewpoint">观点4</view>
-        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 3 ? workGroup.groups[3].works.length : 0}}人</view>
+        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 3 && workGroup.groups[1].works ? workGroup.groups[3].works.length : 0}}人</view>
      </view>
      <view class="c-footer__list c-footer__list5" data-g-idx="4" bindtap="bulkMoveGroup">
         <view class="c-footer__list-viewpoint">观点5</view>
-        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 4 ? workGroup.groups[4].works.length : 0}}人</view>
+        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 4 && workGroup.groups[1].works ? workGroup.groups[4].works.length : 0}}人</view>
      </view>
      <view class="c-footer__list c-footer__list6">
         <view class="c-footer__list-viewpoint">其他</view>
-        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 5 ? workGroup.groups[5].works.length : 0}}人</view>
+        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 5 && workGroup.groups[1].works ? workGroup.groups[5].works.length : 0}}人</view>
      </view>
   </view>
 </scroll-view>
@@ -47,7 +47,7 @@
   <view  class="c-detail__list">
     <view class="c-detail__list-header">
       <view class="c-img__header-left">
-         <view class="{{'c-img__header-point c-img__header-point' + (gIdx + 1)}}">{{gIdx < 6 ? '观点' + (gIdx + 1) : '其他'}}</view>
+         <view class="{{'c-img__header-point c-img__header-point' + (gIdx + 1)}}">{{gIdx < 5 ? '观点' + (gIdx + 1) : '其他'}}</view>
         <view class="c-img__header-people">(共<view class="c-img__header-peoplenum">{{group.works.length}}</view>人)</view>
       </view>
       <view class="c-img__header-right">
@@ -57,21 +57,20 @@
       </view>
     </view>
     <view class="c-voice__content" wx:if="{{openGroupInfo[gIdx].open}}">
-      <!-- 隐藏的 -->
       <view class="c-voice__show {{selectedWorkIds[work.workId] ? 'c-text__list-check--yes' : ''}}" wx:for="{{group.works}}" wx:key="workId"  wx:for-index="wIdx" wx:for-item="work" data-work-id="{{work.workId}}" bindtap="selectedWork">
         <view class="c-voice__content-header">
           <view class="c-voice__name">{{work.userName}}</view>
           <view class="c-voice__time">{{work.createdOnStr}}</view>
-          <view wx:if="{{wIdx == (group.works.length -1)}}" data-work-id="{{work.workId}}" bindtap="moveTop">置顶</view>
+          <view wx:if="{{wIdx != (group.works.length -1) && gIdx < 5}}" data-work-id="{{work.workId}}" bindtap="moveTop">置顶</view>
         </view>
         <view class="c-text__content">
           <view class="c-text__txt">
-            {{work.answer.length > 7 && !quanwenWorkIds[work.workId] ? util.sub(work.answer,7) : work.answer }}
+            {{work.answer.length > 7 && !quanwenWorkIds[work.workId] ? util.sub(work.answer,7) : work.answer || '' }}
             <view wx:if="{{work.answer.length > 7}}" class="c-text__txt-show m-blur" data-work-id="{{work.workId}}" bindtap="openQuanwen">{{quanwenWorkIds[work.workId] ? '收起':'全文'}}</view>
           </view>
-          <view class="c-voice__tab">
-            <view class="c-voice__tab-pre" data-work-id="{{work.workId}}" catchtap="moveUp"></view>
-            <view class="c-voice__tab-next" data-work-id="{{work.workId}}" catchtap="moveDown"></view>
+          <view class="c-voice__tab" wx:if="{{gIdx < 5}}">
+            <view class="c-voice__tab-pre"  data-work-id="{{work.workId}}" catchtap="moveUp"></view>
+            <view class="c-voice__tab-next"  data-work-id="{{work.workId}}" catchtap="moveDown"></view>
           </view>
         </view>
       </view>
@@ -79,17 +78,17 @@
     <view class="c-imgList__footer">
       <view class="c-imgList__footer-content">
         <view class="c-imgList__footer-lable">策略：</view>
-        <view class="c-imgList__footer-text">{{group.groupInfo.comment}}</view>
+        <view class="c-imgList__footer-text">{{group.groupInfo.comment || ''}}</view>
       </view>
       <view class="c-footer__lable">
          <view class="c-lable__list {{group.groupInfo.label == 1 ? 'c-lable__list--active' : ''}}"
-          data-label = "1" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          data-label = "1" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}"
           bindtap="updateLabe">有效</view>
         <view class="c-lable__list {{group.groupInfo.label == 2 ? 'c-lable__list--active' : ''}}"
-        data-label = "2" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+        data-label = "2" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}"
           bindtap="updateLabe">无效</view>
         <view class="c-lable__list {{group.groupInfo.label == 3 ? 'c-lable__list--active' : ''}}"
-          data-label = "3" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          data-label = "3" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}"
           bindtap="updateLabe">不确定</view>
       </view>
     </view>
@@ -129,12 +128,12 @@
             <view>{{work.userName}}</view>
             <view>{{work.createdOnStr}}</view>
           </view>
-          <view class="c-img__detail--fun">
+          <view class="c-img__detail--fun" wx:if="{{gIdx < 5}}">
             <view class="c-img__detail-tab" >
               <view class="c-img__tab-left" data-work-id="{{work.workId}}" catchtap="moveUp"></view>
               <view class="c-img__tab-left c-img__tab-right" data-work-id="{{work.workId}}" catchtap="moveDown"></view>
             </view>
-            <view wx:if="{{wIdx == (group.works.length -1)}}" data-work-id="{{work.workId}}" catchtap="moveTop">置顶</view>
+            <view wx:if="{{wIdx != (group.works.length -1)}}" data-work-id="{{work.workId}}" catchtap="moveTop">置顶</view>
           </view>
         </view>
       </view>
@@ -146,13 +145,13 @@
       </view>
       <view class="c-footer__lable">
         <view class="c-lable__list {{group.groupInfo.label == 1 ? 'c-lable__list--active' : ''}}"
-          data-label = "1" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          data-label = "1" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}"
           bindtap="updateLabe">有效</view>
         <view class="c-lable__list {{group.groupInfo.label == 2 ? 'c-lable__list--active' : ''}}"
-        data-label = "2" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+        data-label = "2" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}"
           bindtap="updateLabe">无效</view>
         <view class="c-lable__list {{group.groupInfo.label == 3 ? 'c-lable__list--active' : ''}}"
-          data-label = "3" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          data-label = "3" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}"
           bindtap="updateLabe">不确定</view>
       </view>
     </view>
@@ -185,11 +184,11 @@
         <view class="c-img__detail">
           <view class="c-img__detail-content"><view>{{work.userName}}</view><view>{{work.createdOnStr}}</view></view>
           <view class="c-img__detail--fun">
-            <view class="c-img__detail-tab">
+            <view class="c-img__detail-tab" wx:if="{{gIdx < 5}}">
               <view class="c-img__tab-left {{(gIdx+wIdx) == 0  ? 'c-img__tab-left--default' : ''}}" data-work-id="{{work.workId}}" catchtap="moveUp"></view>
               <view class="c-img__tab-left c-img__tab-right" data-work-id="{{work.workId}}" catchtap="moveDown"></view>
             </view>
-            <view  wx:if="{{wIdx == (group.works.length -1)}}" data-work-id="{{work.workId}}" catchtap="moveTop">置顶</view>
+            <view  wx:if="{{wIdx != (group.works.length -1)}}" data-work-id="{{work.workId}}" catchtap="moveTop">置顶</view>
           </view>
         </view>
       </view>
@@ -201,13 +200,13 @@
       </view>
       <view class="c-footer__lable">
         <view class="c-lable__list {{group.groupInfo.label == 1 ? 'c-lable__list--active' : ''}}"
-          data-label = "1" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          data-label = "1" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}"
           bindtap="updateLabe">有效</view>
         <view class="c-lable__list {{group.groupInfo.label == 2 ? 'c-lable__list--active' : ''}}"
-        data-label = "2" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+        data-label = "2" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}"
           bindtap="updateLabe">无效</view>
         <view class="c-lable__list {{group.groupInfo.label == 3 ? 'c-lable__list--active' : ''}}"
-          data-label = "3" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          data-label = "3" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}"
           bindtap="updateLabe">不确定</view>
       </view>
     </view>
@@ -235,14 +234,14 @@
         <view class="c-voice__content-header">
           <view class="c-voice__name">{{work.userName}}</view>
           <view class="c-voice__time">{{work.createdOnStr}}</view>
-          <view wx:if="{{wIdx == (group.works.length -1)}}" data-work-id="{{work.workId}}" bindtap="moveTop">置顶</view>
+          <view wx:if="{{wIdx != (group.works.length -1) && gIdx < 5}}" data-work-id="{{work.workId}}" bindtap="moveTop">置顶</view>
         </view>
         <view class="c-voice__nav">
           <view class="c-voice__box">
             <view class="c-voice__icon"></view>
            <myk-audio src="{{work.audio}}"></myk-audio>
           </view>
-          <view class="c-voice__tab">
+          <view class="c-voice__tab" wx:if="{{gIdx < 5}}">
              <view class="c-voice__tab-pre" data-work-id="{{work.workId}}" catchtap="moveUp"></view>
             <view class="c-voice__tab-next" data-work-id="{{work.workId}}" catchtap="moveDown"></view>
           </view>
@@ -262,13 +261,13 @@
       </view>
       <view class="c-footer__lable">
          <view class="c-lable__list {{group.groupInfo.label == 1 ? 'c-lable__list--active' : ''}}"
-          data-label = "1" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          data-label = "1" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}t"
           bindtap="updateLabe">有效</view>
         <view class="c-lable__list {{group.groupInfo.label == 2 ? 'c-lable__list--active' : ''}}"
-        data-label = "2" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+        data-label = "2" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}t"
           bindtap="updateLabe">无效</view>
         <view class="c-lable__list {{group.groupInfo.label == 3 ? 'c-lable__list--active' : ''}}"
-          data-label = "3" data-index = "{{gIdx}}" data-comment="group.groupInfo.comment"
+          data-label = "3" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}t"
           bindtap="updateLabe">不确定</view>
       </view>
     </view>

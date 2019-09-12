@@ -14,6 +14,9 @@ Page({
     playVideoFlag: false,
     recorderManager:null,
     questionData: {
+      work:{
+        answer:'',
+      },
       fileId:null,
       thumbnail:null,
       audio:null,
@@ -34,22 +37,22 @@ Page({
   getWorkById() {
     let that = this
     Api.Preview.getWorkById(this.data.workId).then((res) => {
-      let $data = JSON.parse(res.data)
       that.setData({
-        questionData: res.work
+        questionData: res
       })
     })
   },
   // 暂存数据
   pushWorkStorage() {
-    Api.Preview.pushWorkStorage(this.data.workId, this.data.questionData).then(res => {
+    console.log(this.data.questionData.work.answer)
+    Api.Preview.pushWorkStorage(this.data.workId, this.data.questionData.work).then(res => {
       // 返回主页
       wx.navigateBack()
     })
   },
   // 提交数据
   pushWorkSave() {
-    Api.Preview.pushWorkSave(this.data.workId, this.data.questionData).then(res => {
+    Api.Preview.pushWorkSave(this.data.workId, this.data.questionData.work).then(res => {
       // 返回主页
       wx.navigateBack()
     })
@@ -104,11 +107,11 @@ Page({
       }
     })
     wx.uploadFile({
-      url: 'http://122.112.239.223:8080/file/upload/image/binary', 
+      url: 'http://122.112.239.223:8080/file/upload/image/binary',
       filePath: tempFilePaths.tempThumbPath,
       name: 'file',
       success(res) {
-        that.data.questionData.thumbnail = JSON.parse(res.data).url || 'https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/default.png'
+        that.data.questionData.thumbnail = JSON.parse(res.data).url || 'http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/default.png'
         that.setData({
           questionData: that.data.questionData
         })
@@ -172,4 +175,11 @@ Page({
       }
     })
   },
+  // 输入文字
+  answerHander(event) {
+    this.data.questionData.work.answer = event.detail.value;
+    this.setData({
+      questionData: this.data.questionData
+    })
+  }
 })

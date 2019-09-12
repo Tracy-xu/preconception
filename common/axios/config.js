@@ -17,7 +17,12 @@ Axios.defaults.adapter = function (config) {
       data: config.data,
       header: config.headers,
       success: (res) => {
-        return resolve(res)
+        console.log(res.statusCode);
+        if(res.statusCode>299||res.statusCode<200){
+          reject(res.statusCode);
+        }else{
+          resolve(res)
+        }
       },
       fail: (err) => {
         return reject(err)
@@ -32,6 +37,8 @@ Axios.interceptors.request.use((config) => {
     config.headers.Authorization = `Bearer ${token}`;
   }
   // TODO
+
+  config.headers.Authorization = 'Bearer 0686a41a-2853-41ce-afe3-0d4d50b007c6'
   return config;
 }, error => Promise.reject(error));
 

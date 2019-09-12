@@ -28,12 +28,12 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      klassPreconQueId: options.klassPreconQueId || 1
+      klassPreconQueId: options.klassPreconQueId || 6
     });
-    API.Analysis.analyze(options.klassPreconQueId || 1).then(res => {
-      let wr = res.data;
-      let mode = res.data.item.content.mode;
-      let lkRatio = Math.floor(w.like / wr.size * 100);
+    API.Analysis.analyze(options.klassPreconQueId || 6).then(res => {
+      let wr = res;
+      let mode = res.item.content.mode;
+      let lkRatio = Math.floor(wr.like / wr.size * 100);
       this.setData({
         mode: wr.klassPreconQue.mode,
         createdOnStr: wr.klassPreconQue.createdOnStr,

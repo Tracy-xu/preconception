@@ -1,13 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo" wx:if="{{!hasUserInfo && canIUse}}">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <mp-dialog wx:else
+  <mp-dialog
     title="绑定每一刻账号" 
     show="{{true}}" 
     bindbuttontap="handleLogin" 
@@ -15,11 +8,11 @@
   >
     <view>
       <view class="section">
-        <i class="c-icon"></i>
+      <i></i>
         <input placeholder="请输入账号" bindinput="usernameHander" class="login-ipt"/>
       </view>
       <view class="section">
-        <i class="c-icon"></i>
+      <i></i>
         <input placeholder="请输入密码" bindinput="passwordHander" type="password" class="login-ipt" auto-focus/>
       </view>
     </view>
