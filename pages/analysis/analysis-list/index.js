@@ -28,18 +28,19 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      klassPreconQueId: options.klassPreconQueId || 6
+      klassPreconQueId: options.klassPreconQueId || 18
     });
-    API.Analysis.analyze(options.klassPreconQueId || 6).then(res => {
+    API.Analysis.analyze(this.data.klassPreconQueId).then(res => {
       let wr = res;
       let mode = res.item.content.mode;
       let lkRatio = Math.floor(wr.like / wr.size * 100);
+      let unlkRatio = Math.floor(wr.unlike / wr.size * 100);
       this.setData({
         mode: wr.klassPreconQue.mode,
         createdOnStr: wr.klassPreconQue.createdOnStr,
         fnsRatio: Math.floor(wr.commit / wr.size * 100),
         lkRatio: lkRatio,
-        ulkRatio: 100 - lkRatio,
+        ulkRatio: unlkRatio,
         workReport: wr
       });
     });

@@ -20,11 +20,13 @@ Page({
     quanwenWorkIds: {},
     openPoint: false,
     currPointIndex: 0,
+    visibleVideo: false,
+    urlVideo: '',
     openGroupInfo: [{ open: true, text: '收起' }, { open: true, text: '收起' }, { open: true, text: '收起' },
       { open: true, text: '收起' }, { open: true, text: '收起' }, { open: true, text: '收起' }], //展开状态的分组
     klassPreconQueId: null,
     workGroup: {
-      mode: 4,
+      mode: 3,
       groups: [{
         groupInfo: {
           workIds: [1, 2, 3],
@@ -89,7 +91,7 @@ Page({
     this.setData({
       klassPreconQueId: options.klassPreconQueId || 1
     });
-    this.doLoad();
+    //this.doLoad();
   },
   doLoad(){
     API.Analysis.groupInfo(this.data.klassPreconQueId).then(res => {
@@ -350,5 +352,17 @@ Page({
     this.setData({
       quanwenWorkIds: this.data.quanwenWorkIds
     })
+  },
+  handleCloseVideo(event){
+    this.setData({
+      visibleVideo: false
+    });
+  },
+  openVideo(event){
+    let urlVideo = event.currentTarget.dataset.urlVideo;
+    this.setData({
+      urlVideo: urlVideo,
+      visibleVideo: true,
+    });
   }
 })

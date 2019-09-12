@@ -40,6 +40,9 @@
         <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 5 && workGroup.groups[1].works ? workGroup.groups[5].works.length : 0}}人</view>
      </view>
   </view>
+  <!-- 视频播放器begin -->
+  <myk-video bindclose="handleCloseVideo" wx-if="{{ visibleVideo }}" src="{{urlVideo}}"></myk-video>
+    <!-- 视频播放器end -->
 </scroll-view>
 
 <!-- 文本begin -->
@@ -176,8 +179,8 @@
     </view>
     <view class="c-img__content" wx:if="{{openGroupInfo[gIdx].open}}">
       <view class="c-img__list {{selectedWorkIds[work.workId] ? 'c-img__list--active m-border__color1' : ''}}" wx:for="{{group.works}}" wx:key="workId" wx:for-index="wIdx" wx:for-item="work">
-        <view class="c-img__imgbox">
-          <image class="c-img__list-img" src=""></image>
+        <view class="c-img__imgbox" data-url-video="{{work.fileId}}" bindtap="openVideo">
+          <image class="c-img__list-img" src=""  ></image>
           <view class="c-img__list-check {{selectedWorkIds[work.workId] ? 'c-img__list-check--yes' : ''}}" data-work-id="{{work.workId}}" bindtap="selectedWork"></view>
           <view class="c-video__bg"></view>
         </view>
