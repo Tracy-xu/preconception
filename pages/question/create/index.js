@@ -8,6 +8,7 @@ Page({
    */
   data: {
     visibleSelector: false,
+    visibleSelectClass: false,
 
     // 表单操作相关数据
     content: '',
@@ -21,7 +22,11 @@ Page({
     sbjId: null,
     edtId: null,
     tbkId: null,
-    path: []
+    path: [],
+
+    // 绑定到班级所需参数
+    refId: null,
+    resId: null
   },
 
   /**
@@ -118,36 +123,57 @@ Page({
    * 保存创建习题
    */
   handleCreateQuestion() {
-    this.createQuestion();
-    wx.navigateBack();
+    this.createQuestion().then(() => {
+      wx.navigateBack();
+    });
   },
 
   /**
    * 创建习题
    */
   createQuestion() {
-    var param = {
-      content: this.data.content,
-      imgs: this.data.imgs,
-      audios: this.data.audios,
-      mode: this.data.mode,
+    return new Promise((resolve, reject) => {
+      var param = {
+        content: this.data.content,
+        imgs: this.data.imgs,
+        audios: this.data.audios,
+        mode: this.data.mode,
 
-      stgId: this.data.stgId,
-      sbjId: this.data.sbjId,
-      tbkNodes: [
-        {
-          attrs: {
-            edtId: this.data.edtId,
-            tbkId: this.data.tbkId
-          },
-          path: this.data.path.reverse()
-        }
-      ]
-    };
+        stgId: this.data.stgId,
+        sbjId: this.data.sbjId,
+        tbkNodes: [
+          {
+            attrs: {
+              edtId: this.data.edtId,
+              tbkId: this.data.tbkId
+            },
+            path: this.data.path.reverse()
+          }
+        ]
+      };
 
-    console.log(param, 222);
+      console.log(param, 222);
 
-    // 调这个接口前，需要数据校验（学段学科教材章节必填）
-    API.Question.createQuestion(param);
+      // 调这个接口前，需要数据校验（学段学科教材章节必填）
+      API.Question.createQuestion(param).then((res) => {
+        resolve(res);
+      });
+    });
+  },
+
+  /**
+   * 绑定班级
+   */
+  handleBindClass() {
+    this.setData({
+      visibleSelectClass: true
+    });
+
+    this.createQuestion().then((res) => {
+      this.setData({
+        resId: res.resId,
+        refId: res.refId
+      });
+    });
   }
 })

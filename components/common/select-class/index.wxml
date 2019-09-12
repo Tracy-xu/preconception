@@ -1,11 +1,25 @@
 <view class="m-select-class">
-  <view class="m-select-class__item">
-    <checkbox />
-    <view class="m-select-class__content">
-      <view class="m-select-class__class-name">杭州市第二中学七年级一班</view>
-      <view class="m-select-class__teacher-name">老师姓名</view>
+  {{resid}} -- {{refid}}
+  <checkbox-group bindchange="handleCheckBoxChange">
+    <view
+      wx:for="{{ userInfo.klasses }}"
+      wx:key="{{ index }}"
+      class="m-select-class__item"
+    >
+      <checkbox
+        value="{{ item.id }}"
+      />
+      <view class="m-select-class__content">
+        <view class="m-select-class__class-name">{{ item.school.name }} {{ item.name }}</view>
+        <view class="m-select-class__teacher-name">{{ userInfo.name }}</view>
+      </view>
     </view>
-  </view>
+  </checkbox-group>
 </view>
 
-<button class="m-select-class__btn">确定</button>
+<button 
+  bindtap="handleConfirm"
+  class="m-select-class__btn"
+>
+  确定
+</button>

@@ -1,28 +1,47 @@
-const app = getApp()
+import API from '../../../api/index.js';
+
+const app = getApp();
 
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
-
+    resId: {
+      type: Number
+    },
+    refId: {
+      type: Number
+    }
   },
 
-  /**
-   * 组件的初始数据
-   */
   data: {
-
+    userInfo: null,
+    klassIds: []
   },
 
   ready() {
-    console.log(app.globalData);
+    this.setData({
+      userInfo: app.globalData.userInfo
+    });
   },
 
-  /**
-   * 组件的方法列表
-   */
   methods: {
+    /**
+     * 勾选班级
+     */
+    handleCheckBoxChange(ev) {
+      this.setData({
+        klassIds: ev.detail.value
+      });
+    },
 
+    /**
+     * 确定
+     */
+    handleConfirm() {
+      var klassIds = this.data.klassIds;
+      var refId = this.properties.refId;
+      var resId = this.properties.resId
+
+      API.Question.bindClass({ klassIds, refId, resId }).then(() => wx.navigateBack());
+    },
   }
 })

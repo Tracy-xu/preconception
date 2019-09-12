@@ -113,15 +113,16 @@
   </scroll-view>
   
   <!-- 绑定班级 -->
-  <select-class></select-class>
+  <select-class
+    resId="{{ resId }}"
+    refId="{{ refId }}"
+    wx:if="{{ visibleSelectClass }}"
+  >
+  </select-class>
 
   <view class="c-question-create__btn">
     <button>取消</button>
-    <button
-      bindtap="handleCreateQuestion"
-    >
-      确定
-    </button>
-    <button>绑定班级</button>
+    <button bindtap="handleCreateQuestion">确定</button>
+    <button bindtap="handleBindClass">绑定班级</button>
   </view>
 </view>

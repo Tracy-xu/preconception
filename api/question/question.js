@@ -55,3 +55,10 @@ export function createQuestion(param) {
 export function deleteQuextion(resId) {
   return axios.delete(`qgn/resource/${ resId }`);
 }
+
+/**
+ * 绑定班级
+ */
+export function bindClass(param) {
+  return axios.post('/qgn/klass/precon/que/bind', param);
+}
