@@ -39,18 +39,20 @@
       <view class="c-question-create__stem-audio">
         
       </view>
-      <view class="c-question-create__stem-img">
-        <view class="c-question-create__stem-img-item">
-          <image src=""></image>
-          <icon></icon>
-        </view>
-        <view class="c-question-create__stem-img-item">
-          <image src=""></image>
-          <icon></icon>
-        </view>
-        <view class="c-question-create__stem-img-item">
-          <image src=""></image>
-          <icon></icon>
+      <view
+        wx:if="{{ imgs.length }}"
+        class="c-question-create__stem-img"
+      >
+        <view
+          wx:for="{{ imgs }}"
+          class="c-question-create__stem-img-item"
+        >
+          <image src="{{ item }}"></image>
+          <icon
+            bindtap="handleDeleteImg"
+            data-index="{{ index }}"
+          >
+          </icon>
         </view>
       </view>
     </view>
@@ -58,8 +60,8 @@
   
     <!-- 添加题干 -->
     <view
-    wx:if="{{ handleVisibleStemType }}"
-    class="c-question-create__stem-type"
+      wx:if="{{ visibleStemType }}"
+      class="c-question-create__stem-type"
     >
     <view
       bindtap="handleAddStemImg"

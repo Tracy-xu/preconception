@@ -71,7 +71,7 @@ Page({
    */
   handleVisibleStemType() {
     this.setData({
-      handleVisibleStemType: !this.data.handleVisibleStemType
+      visibleStemType: !this.data.visibleStemType
     });
   },
 
@@ -88,18 +88,28 @@ Page({
    * 添加图片
    */
   handleAddStemImg() {
+    this.setData({
+      visibleStemType: false
+    });
+    
     chooseImage().then((res) => {
-      wx.uploadFile({
-        url: 'http://122.112.239.223:8080/file/upload/image/binary',
-        filePath: res[0],
-        name: 'file',
-        formData: {
-          'user': 'test'
-        },
-        success(data) {
+      API.Common.upload('image', res[0]).then((data) => {
+        this.setData({
+          imgs: [...this.data.imgs, data.url]
+        });
+      });
+    });
+  },
 
-        }
-      })
+  /**
+   * 删除图片
+   */
+  handleDeleteImg(ev) {
+    var index = ev.target.dataset.index;
+    console.log(index);
+    this.data.imgs.splice(index, 1);
+    this.setData({
+      imgs: this.data.imgs
     });
   },
 
