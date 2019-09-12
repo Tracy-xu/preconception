@@ -16,7 +16,7 @@ export default {
   // 学生首页
   previewList: '/pages/preview/list/index',
   // 预习详情
-  questionEdit: '/pages/preview/detail/index',
+  previewDetail: '/pages/preview/detail/index',
   // 做题
   exercises: '/pages/preview/exercises/index',
   // 个人首页

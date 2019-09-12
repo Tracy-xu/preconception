@@ -38,7 +38,7 @@ let setRefresh = () => {
 };
 
 let loginByOpenId = (openId) => {
-  return Axios.post(`/auth/oauth/token?client_id=${client_id}&client_secret=${client_secret}&grant_type=openid&scope=all&openId=${openId}`).then(v => {
+  return Axios.post(`/auth/oauth/token?client_id=${client_id}&client_secret=${client_secret}&grant_type=openid&scope=all&openId=${openId}`, {},{ headers: { isAuth:false}}).then(v => {
     console.log("setting auth to localStorage by password loginByOpenId");
     let auth = v;
     wx.setStorageSync('token', auth.access_token);
@@ -54,7 +54,7 @@ let bind = (openId) => {
 };
 
 let loginByPassword = (username, password, openId) => {
-  return Axios.post(`/auth/oauth/token?client_id=${client_id}&client_secret=${client_secret}&grant_type=password&scope=all&username=${username}&password=${password}`).then(v => {
+  return Axios.post(`/auth/oauth/token?client_id=${client_id}&client_secret=${client_secret}&grant_type=password&scope=all&username=${username}&password=${password}`, {}, { headers: { isAuth: false } }).then(v => {
     console.log(v);
     console.log("setting auth to localStorage by password loginByPassword");
     let auth = v;
@@ -72,7 +72,7 @@ let login = (username, password) => {
   return new Promise((resolve, reject) => {
     wx.login({
       success: res => {
-        Axios.post(`/auth/social/auth/wxmp?code=${res.code}`).then(v => {
+        Axios.post(`/auth/social/auth/wxmp?code=${res.code}`, {}, { headers: { isAuth: false } }).then(v => {
           console.log("get social message from service");
           let social = v;
           if(social.nextStep=='signIn'){

@@ -32,13 +32,12 @@ Axios.defaults.adapter = function (config) {
 };
 
 Axios.interceptors.request.use((config) => {
+  console.log(config.headers.isAuth)
   let token = wx.getStorageSync('token');
-  if (token) {
+  if (config.headers.isAuth !== false && token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   // TODO
-
-  config.headers.Authorization = 'Bearer 0686a41a-2853-41ce-afe3-0d4d50b007c6'
   return config;
 }, error => Promise.reject(error));
 

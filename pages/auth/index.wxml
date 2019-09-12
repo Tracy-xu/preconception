@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <mp-dialog
+  <mp-dialog wx:if="{{showLogin}}"
     title="绑定每一刻账号" 
     show="{{true}}" 
     bindbuttontap="handleLogin" 

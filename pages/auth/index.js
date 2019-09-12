@@ -13,38 +13,49 @@ Page({
       text: '登录'
     }],
     password:null,
-    username:null
+    username:null,
+    showLogin:false,
   },
-
+  onLoad: function () {
+    // 展示本地存储能力
+    var logs = wx.getStorageSync('logs') || []
+    logs.unshift(Date.now())
+    wx.setStorageSync('logs', logs)
+    API.Auth.login().then(v=>{
+      this.loginSuccess();
+    }).catch(v=>{
+      console.log('showLogin',this.data.showLogin);
+      this.setData({'showLogin':true});
+    })
+  },
   usernameHander(event){
     this.setData({ 'username':event.detail.value});
   },
   passwordHander(event){
     this.setData({ 'password': event.detail.value });
   },
-
-  /**
-   * 登录
-   */
   handleLogin() {
     API.Auth.login(this.data.username, this.data.password).then(v=>{
-      API.Auth.getUser().then(v=>{
-        if (v.roleIds.indexOf(201)>-1){
-          API.Auth.getTeacher().then(v=>{
-            app.globalData.myk_user = v;
-            wx.navigateTo({
-              url: router.questionList
-            });
-          })
-        }else{
-          API.Auth.getStudent().then(v => {
-            app.globalData.myk_user = v;
-            wx.navigateTo({
-              url: router.previewList
-            });
-          })
-        }
-      })
+      this.loginSuccess();
     })
-  }
+  },
+  loginSuccess(){
+    API.Auth.getUser().then(v=>{
+      if (v.roleIds.indexOf(201)>-1){
+        API.Auth.getTeacher().then(v=>{
+          app.globalData.userInfo = v;
+          wx.navigateTo({
+            url: router.questionList
+          });
+        })
+      }else{
+        API.Auth.getStudent().then(v => {
+          app.globalData.userInfo = v;
+          wx.navigateTo({
+            url: router.previewList
+          });
+        })
+      }
+    })
+  },
 });
