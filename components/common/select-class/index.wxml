@@ -1,5 +1,4 @@
 <view class="m-select-class">
-  {{resid}} -- {{refid}}
   <checkbox-group bindchange="handleCheckBoxChange">
     <view
       wx:for="{{ userInfo.klasses }}"
