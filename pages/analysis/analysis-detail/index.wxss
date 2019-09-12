@@ -29,22 +29,22 @@ page{
   color: #fff;
 }
 .c-img__header-point1 {
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/viewpoint1__small.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/viewpoint1__small.png') no-repeat center/100% 100%;
 }
 .c-img__header-point2 {
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/viewpoint2__small.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/viewpoint2__small.png') no-repeat center/100% 100%;
 }
 .c-img__header-point3 {
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/viewpoint3__small.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/viewpoint3__small.png') no-repeat center/100% 100%;
 }
 .c-img__header-point4 {
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/viewpoint4__small.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/viewpoint4__small.png') no-repeat center/100% 100%;
 }
 .c-img__header-point5 {
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/viewpoint5__small.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/viewpoint5__small.png') no-repeat center/100% 100%;
 }
 .c-img__header-point6 {
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/viewpoint6__small.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/viewpoint6__small.png') no-repeat center/100% 100%;
 }
 .c-img__header-left {
   display: flex;
@@ -82,7 +82,7 @@ page{
   border-style: solid;
   vertical-align: sub;
   border-color: #999999 transparent transparent transparent;
-  /* background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/show__click.png') no-repeat center/contain; */
+  /* background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/show__click.png') no-repeat center/contain; */
 }
 .c-img__content {
   display: flex;
@@ -115,7 +115,7 @@ page{
   right: 8rpx;
   width:36rpx;
   height:36rpx;
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/checkbox.png') no-repeat center/contain;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/checkbox.png') no-repeat center/contain;
 }
 .c-img__list-num {
   position: absolute;
@@ -128,7 +128,7 @@ page{
   text-align: center;
 }
 .c-img__list-check--yes {
- background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/checkboxon.png') no-repeat center/contain;
+ background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/checkboxon.png') no-repeat center/contain;
 }
 .c-img__detail {
   padding: 17rpx 16rpx 0;
@@ -148,7 +148,7 @@ page{
 .c-img__tab-left {
   width:32rpx;
   height:32rpx;
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/preday.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/preday.png') no-repeat center/100% 100%;
 }
 
 .c-img__tab-left--default {
@@ -202,7 +202,7 @@ page{
   width:70rpx;
   height:70rpx;
   border-radius:50%;
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/activeplay.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/activeplay.png') no-repeat center/100% 100%;
 }
 
 /* voice */
@@ -241,7 +241,7 @@ page{
   width:50rpx;
   height:50rpx;
   border-radius: 50%;
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/activeplay.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/activeplay.png') no-repeat center/100% 100%;
 }
 .c-voice__progressBox {
   display: flex;
@@ -267,11 +267,11 @@ page{
   width:40rpx;
   height:40rpx;
   transform: rotate(90deg);
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/preday.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/preday.png') no-repeat center/100% 100%;
 }
 .c-voice__tab-pre--active {
   transform: rotate(0deg);
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/preday__no.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/preday__no.png') no-repeat center/100% 100%;
 }
 .c-voice__tab {
   display: flex;
@@ -281,12 +281,12 @@ page{
   width:40rpx;
   height:40rpx;
   margin-left: 40rpx;
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/preday.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/preday.png') no-repeat center/100% 100%;
   transform: rotate(-90deg);
 }
 .c-voice__tab-next--active {
   transform: rotate(180deg);
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/preday__no.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/preday__no.png') no-repeat center/100% 100%;
 }
 .c-voice__text {
   padding: 24rpx 0 15rpx;
@@ -331,7 +331,7 @@ page{
   width:60rpx;
   height:59rpx;
   margin-left: 10rpx;
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/right.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/right.png') no-repeat center/100% 100%;
 }
 .c-text__list-check--yes, .c-voice__list-check--yes {
   background:rgba(255,186,186,1);
@@ -408,7 +408,7 @@ page{
   height:52rpx;
   margin-top: 12rpx;
   margin-right: 20rpx;
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/radio.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/radio.png') no-repeat center/100% 100%;
 }
 .c-viewpoint__option {
   position: relative;
@@ -441,28 +441,28 @@ page{
   height:37rpx;
   top: 17rpx;
   right: 18rpx;
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/yes--white.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/yes--white.png') no-repeat center/100% 100%;
 }
 .c-viewpoint__check--active {
-   background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/radioOn.png') no-repeat center/100% 100%;
+   background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/radioOn.png') no-repeat center/100% 100%;
 }
 .c-viewpoint__option1 {
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/viewpoint1.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/viewpoint1.png') no-repeat center/100% 100%;
 }
 .c-viewpoint__option2 {
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/viewpoint2.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/viewpoint2.png') no-repeat center/100% 100%;
 }
 .c-viewpoint__option3 {
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/viewpoint3.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/viewpoint3.png') no-repeat center/100% 100%;
 }
 .c-viewpoint__option4 {
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/viewpoint4.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/viewpoint4.png') no-repeat center/100% 100%;
 }
 .c-viewpoint__option5 {
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/viewpoint5.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/viewpoint5.png') no-repeat center/100% 100%;
 }
 .c-viewpoint__option6 {
-  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/viewpoint6.png') no-repeat center/100% 100%;
+  background: url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/viewpoint6.png') no-repeat center/100% 100%;
 }
 
 .m-border__color1 {

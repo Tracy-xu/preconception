@@ -58,7 +58,7 @@
               wx:if="{{questionData.work.fileId}}"
               bindTap="playvideo(questionData.work.fileId)">
           <icon type="clear" size="24" color="#999" class="c-icon" />
-          <image src="http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/default.png"></image>
+          <image src="http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/default.png"></image>
           <view class="c-voice-box__btn c-voice-box__btn--play"></view>
         </view>
         <view class="c-preview-list__img" bindtap="uploadVideo" wx:else>
