@@ -107,11 +107,11 @@ Page({
       }
     })
     wx.uploadFile({
-      url: 'http://122.112.239.223:8080/file/upload/image/binary', 
+      url: 'http://122.112.239.223:8080/file/upload/image/binary',
       filePath: tempFilePaths.tempThumbPath,
       name: 'file',
       success(res) {
-        that.data.questionData.thumbnail = JSON.parse(res.data).url || 'https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/default.png'
+        that.data.questionData.thumbnail = JSON.parse(res.data).url || 'http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/default.png'
         that.setData({
           questionData: that.data.questionData
         })

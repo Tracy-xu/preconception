@@ -1,5 +1,6 @@
 /**index.wxss**/
 .section{position:relative;height:104rpx;padding-top:40rpx;font-size:28rpx;color:#999;border-bottom:1rpx solid #e6e6e6;text-align:left;}
 .section .login-ipt{display:inline-block;height:50rpx;width:100%;line-height:50rpx;padding-left:60rpx;box-sizing:border-box;}
-.section::before{position:absolute;top:54rpx;left:24rpx;display:inline-block;width:24rpx;height:26rpx;content:"";background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/username.png');background-repeat:no-repeat;background-size:100% 100%;}
-.section:nth-child(2)::before{width:24rpx;background-image:url('https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/password.png');}
+.section i{position:absolute;top:54rpx;left:24rpx;display:inline-block;width:24rpx;height:26rpx;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/username.png');background-repeat:no-repeat;background-size:100% 100%;}
+.section:nth-child(2) i{width:24rpx;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/password.png');}
+.weui-dialog__ft::after{display:none !important;}

@@ -28,14 +28,14 @@
       <view class="c-dialog__bottom">
         <span class="font-color--blue">我的答案：</span>
         {{activeWorkDetail.wrok.answer}}
-         <view class="c-dialog__bottom__imgs" 
+         <view class="c-dialog__bottom__imgs"
          wx:if="{{activeWorkDetail.content.mode === 2}}">
         <image src="{{activeWorkDetail.work.imgs[0]}}"></image>
         <view class="c-dialog__bottom__imgs__tips">
           共{{activeWorkDetail.work.imgs.length}}张
         </view>
       </view>
-      <view class="c-dialog__bottom__imgs" 
+      <view class="c-dialog__bottom__imgs"
         wx:if="{{activeWorkDetail.content.mode === 3}}">
         <image src="{{activeWorkDetail.work.thumbnail}}" bindtap="playVideo(activeWorkDetail.work)"></image>
         <i class="c-voice-box__btn"></i>
@@ -50,13 +50,13 @@
 >
 </myk-video>
   <view class="c-detail__con" wx:if="{{mode == 1}}">
-    <view 
+    <view
         class="c-detail__con-item {{activeWorkId === item.workId ? 'active' : ''}}"
         wx:for="{{workList}}"
-        wx:key="{{item.workId}}" 
+        wx:key="{{item.workId}}"
         bindtap="selWork(item)">
       <view class="c-detail__con__header">
-        <image src="https://raw.githubusercontent.com/Tracy-xu/myk/master/assets/images/activeplay.png"></image>
+        <image src="http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/activeplay.png"></image>
         {{item.userName}}
         <view class="c-detail__con__header-operation">
           {{item.startTime}}
@@ -68,7 +68,7 @@
     </view>
   </view>
   <view class="c-detail__con" wx:if="{{mode == 2}}">
-    <view class="c-detail__con-imgitem {{activeWorkId === item.workId ? 'active' : ''}}" 
+    <view class="c-detail__con-imgitem {{activeWorkId === item.workId ? 'active' : ''}}"
           wx:for="{{workList}}"
           bindtap="selWork(item)">
       <view class="c-detail__con-imgitem__top">
@@ -92,8 +92,8 @@
     </view>
   </view>
   <view class="c-detail__con" wx:if="{{mode == 3}}">
-    <view class="c-detail__con-imgitem {{activeWorkId === item.workId ? 'active' : ''}}" 
-          wx:for="{{workList}}" 
+    <view class="c-detail__con-imgitem {{activeWorkId === item.workId ? 'active' : ''}}"
+          wx:for="{{workList}}"
           bindtap="selWork(item)">
       <view class="c-detail__con-imgitem__top">
         <image src="item.thumbnail"></image>
@@ -114,9 +114,9 @@
     </view>
   </view>
   <view class="c-detail__con" wx:if="{{mode == 4}}">
-    <view 
-      class="c-detail__con-item {{activeWorkId === item.workId ? 'active' : ''}}" 
-      wx:for="{{workList}}" 
+    <view
+      class="c-detail__con-item {{activeWorkId === item.workId ? 'active' : ''}}"
+      wx:for="{{workList}}"
       bindtap="selWork(item)">
       <view class="c-detail__con__header">
         <image src="{{item.thumbnail}}"></image>
