@@ -1,5 +1,5 @@
 /* 题干 */
-.c-question-create {position: relative; padding: 30rpx 20rpx; background: #fff;}
+.c-question-create {position: relative; padding: 30rpx 20rpx 0 20rpx; height: calc(100% - 186rpx); background: #fff;}
 .c-question-create__stem-box {font-size: 46rpx;}
 .c-question-create__stem-label {float: left; margin-right: 5rpx;}
 .c-question-create__stem {position: relative; overflow: auto;}
@@ -28,9 +28,19 @@
 .c-queston-create__type-txt,
 .c-queston-create__type-img,
 .c-queston-create__type-audio,
-.c-queston-create__type-video {display: inline-flex; margin-left: 45rpx; flex-direction: column; align-items: center;}
+.c-queston-create__type-video {display: inline-flex; margin-left: 40rpx; flex-direction: column; align-items: center;}
 .c-queston-create__type-txt {margin-left: 0;}
+.c-queston-create__type-txt--active,
+.c-queston-create__type-img--active,
+.c-queston-create__type-audio--active,
+.c-queston-create__type-video--active {border: 4px solid rgba(255,87,87,1);}
 .c-queston-create__type-txt::before,
 .c-queston-create__type-img::before,
 .c-queston-create__type-audio::before,
 .c-queston-create__type-video::before {content: ""; display: inline-block; width: 50rpx; height: 60rpx; background: #ccc;}
+/* 按钮 */
+.c-question-create__btn {position: fixed; display: flex; bottom: 0; left: 0; right: 0;}
+.c-question-create__btn button {flex: 1; height: 96rpx;}
+.c-question-create__btn button:nth-child(1) {color: #999999;}
+.c-question-create__btn button:nth-child(2) {color: #14C75E;}
+.c-question-create__btn button:nth-child(3) {color: #FFB423;}

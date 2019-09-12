@@ -2,4 +2,5 @@ page {background: #F5F7F8FF; color: #444444FF;}
 view,
 scroll-view,
 icon,
-input {box-sizing: border-box;}
+input,
+button {box-sizing: border-box;}

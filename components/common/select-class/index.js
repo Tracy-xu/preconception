@@ -1,4 +1,5 @@
-// components/common/class/index.js
+const app = getApp()
+
 Component({
   /**
    * 组件的属性列表
@@ -12,6 +13,10 @@ Component({
    */
   data: {
 
+  },
+
+  ready() {
+    console.log(app.globalData);
   },
 
   /**

@@ -1,24 +1,28 @@
-<view class="c-sort">
-    <view class="c-sort__left">
-      学段学科教材版本
-    </view>
-    <view
-      bindtap="handleVisibleSelector"
-      class="c-sort__right"
-    >
-      <i class="c-sort__icon"></i>筛选
-    </view>
-</view>
-<selector
-  wx:if="{{ visibleSelector }}"
-  bindclose="handleCloseSelector"
-  bindconfirm="handleConfirmSelector"
->
-</selector>
-
-<view class="c-question-create">
-  <!-- 题干 -->
-  <view class="c-question-create__stem-box">
+<view class="m-scroll-container">
+  <view class="c-sort">
+      <view class="c-sort__left">
+        学段学科教材版本
+      </view>
+      <view
+        bindtap="handleVisibleSelector"
+        class="c-sort__right"
+      >
+        <i class="c-sort__icon"></i>筛选
+      </view>
+  </view>
+  <selector
+    wx:if="{{ visibleSelector }}"
+    bindclose="handleCloseSelector"
+    bindconfirm="handleConfirmSelector"
+  >
+  </selector>
+  
+  <scroll-view
+    scroll-y="{{true}}"
+    class="c-question-create"
+  >
+    <!-- 题干 -->
+    <view class="c-question-create__stem-box">
     <view class="c-question-create__stem-label">1. </view>
     <view class="c-question-create__stem">
       <icon
@@ -27,6 +31,7 @@
       >
       </icon>
       <input
+        bindinput="handleInputContent"
         class="c-question-create__stem-txt"
         placeholder="请输入题目内容"
       >
@@ -49,32 +54,74 @@
         </view>
       </view>
     </view>
-  </view>
-
-  <!-- 添加题干 -->
-  <view
+    </view>
+  
+    <!-- 添加题干 -->
+    <view
     wx:if="{{ handleVisibleStemType }}"
     class="c-question-create__stem-type"
-  >
-    <view class="c-question-create__stem-type--img">添加图片</view>
-    <view class="c-question-create__stem-type--audio">添加语音</view>
+    >
+    <view
+      bindtap="handleAddStemImg"
+      class="c-question-create__stem-type--img"
+    >
+      添加图片
+    </view>
+    <view
+      bindtap="handleAddStemAudio"
+      class="c-question-create__stem-type--audio"
+    >
+      添加语音
+    </view>
     <icon></icon>
-  </view>
-
-  <!-- 选择答题方式 -->
-  <view class="c-queston-create__answer-type">
+    </view>
+  
+    <!-- 选择答题方式 -->
+    <view class="c-queston-create__answer-type">
     <view class="c-queston-create__type-label">答题方式：</view>
     <view class="c-queston-create__type">
-      <view class="c-queston-create__type-txt">文本</view>
-      <view class="c-queston-create__type-img">图片</view>
-      <view class="c-queston-create__type-audio">语音</view>
-      <view class="c-queston-create__type-video">视频</view>
+      <view
+        bindtap="handleSelectAnswerType"
+        data-type="1"
+        class="c-queston-create__type-txt {{mode == 1 ? 'c-queston-create__type-txt--active' : ''}}"
+      >
+        文本
+      </view>
+      <view
+        bindtap="handleSelectAnswerType"
+        data-type="2"
+        class="c-queston-create__type-img {{mode == 2 ? 'c-queston-create__type-txt--active' : ''}}"
+      >
+        图片
+      </view>
+      <view
+        bindtap="handleSelectAnswerType"
+        data-type="4"
+        class="c-queston-create__type-audio {{mode == 4 ? 'c-queston-create__type-txt--active' : ''}}"
+      >
+        语音
+      </view>
+      <view
+        bindtap="handleSelectAnswerType"
+        data-type="3"
+        class="c-queston-create__type-video {{mode == 3 ? 'c-queston-create__type-txt--active' : ''}}"
+      >
+        视频
+      </view>
     </view>
-  </view> 
-</view>
+    </view> 
+  </scroll-view>
+  
+  <!-- 绑定班级 -->
+  <select-class></select-class>
 
-<view class="c-question-create__btn">
-  <button>取消</button>
-  <button>确定</button>
-  <button>绑定课堂</button>
+  <view class="c-question-create__btn">
+    <button>取消</button>
+    <button
+      bindtap="handleCreateQuestion"
+    >
+      确定
+    </button>
+    <button>绑定班级</button>
+  </view>
 </view>

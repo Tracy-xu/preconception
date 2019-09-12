@@ -1,0 +1,34 @@
+module.exports = {
+  formatPath: function (item) {
+    if (!item.content.tbkNodes) {
+      return;
+    }
+
+    var path = item.content.tbkNodes[0].path;
+    var result = '';
+
+    for (var i = 0; i < path.length; i++) {
+      result += path[i].name;
+    }
+
+    return result;
+  },
+
+  getModeClass: function (mode) {
+    if (mode === 1) {
+      return 'c-question-list__con-box--txt';
+    }
+
+    if (mode === 2) {
+      return 'c-question-list__con-box--img';
+    }
+
+    if (mode === 3) {
+      return 'c-question-list__con-box--video';
+    }
+
+    if (mode === 4) {
+      return 'c-question-list__con-box--audio';
+    }
+  }
+};

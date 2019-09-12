@@ -26,7 +26,7 @@
 /**
  * 题目列表
  */
-.c-question-lists {height: calc(100% - 450rpx);}
+.c-question-lists {height: calc(100% - 540rpx);}
 .c-question-list {margin-top: 20rpx; background: #fff; box-shadow:0px 3px 7px 0px rgba(0, 0, 0, 0.04);}
 .c-question-list:first-child {margin-top: 0;}
 /* 信息 */

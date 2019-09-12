@@ -36,10 +36,22 @@ export function getQuestion(param) {
 }
 
 /**
+ * 查询习题详情
+ */
+export function getQuestionDetail(resId, refId) {
+  return axios.get(`/qgn/precon/que/${ resId }/${ refId }`);
+}
+
+/**
  * 创建习题
  */
 export function createQuestion(param) {
-  return axios.post('/qgn/precon/que?intent=ADD&scope=1', {
-    data: param
-  });
+  return axios.post('/qgn/precon/que?intent=ADD&scope=1', param);
+}
+
+/**
+ * 删除习题
+ */
+export function deleteQuextion(resId) {
+  return axios.delete(`qgn/resource/${ resId }`);
 }

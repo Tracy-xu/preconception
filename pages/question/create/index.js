@@ -1,4 +1,5 @@
 import API from '../../../api/index.js';
+import chooseImage from '../../../utils/choose-image/choose-image.js';
 
 Page({
 
@@ -18,7 +19,9 @@ Page({
     // 学段学科教材版本数据
     stgId: null,
     sbjId: null,
-    tbkNodes: []
+    edtId: null,
+    tbkId: null,
+    path: []
   },
 
   /**
@@ -48,16 +51,15 @@ Page({
     });
 
     this.setData({
-      queryParam: Object.assign({}, this.data.queryParam, {
-        stgId: data.detail.stgId,
-        sbjId: data.detail.sbjId,
-        // edtId: data.detail.edtId,
-        // tbkId: data.detail.tbkId,
-        tbkNodeId: data.detail.tbkNodeId
-      })
+      stgId: data.detail.stgId,
+      sbjId: data.detail.sbjId,
+      edtId: data.detail.edtId,
+      tbkId: data.detail.tbkId,
+      tbkNodeId: data.detail.tbkNodeId,
+      path: data.detail.path,
+      name: data.detail.name
     });
   },
-
 
   /**
    * 显示第一个添加题干弹层
@@ -69,9 +71,83 @@ Page({
   },
 
   /**
+   * 输入文本内容
+   */
+  handleInputContent(ev) {
+    this.setData({
+      content: ev.detail.value
+    });
+  },
+
+  /**
+   * 添加图片
+   */
+  handleAddStemImg() {
+    chooseImage().then((res) => {
+      wx.uploadFile({
+        url: 'http://122.112.239.223:8080/file/upload/image/binary',
+        filePath: res[0],
+        name: 'file',
+        formData: {
+          'user': 'test'
+        },
+        success(data) {
+
+        }
+      })
+    });
+  },
+
+  /**
+   * 添加语音
+   */
+  handleAddStemAudio() {
+    wx.getRecorderManager();
+  },
+
+  /**
+   * 选中答题方式
+   */
+  handleSelectAnswerType(ev) {
+    this.setData({
+      mode: ev.target.dataset.type
+    });
+  },
+
+  /**
+   * 保存创建习题
+   */
+  handleCreateQuestion() {
+    this.createQuestion();
+    wx.navigateBack();
+  },
+
+  /**
    * 创建习题
    */
-  createQuestion(param) {
+  createQuestion() {
+    var param = {
+      content: this.data.content,
+      imgs: this.data.imgs,
+      audios: this.data.audios,
+      mode: this.data.mode,
+
+      stgId: this.data.stgId,
+      sbjId: this.data.sbjId,
+      tbkNodes: [
+        {
+          attrs: {
+            edtId: this.data.edtId,
+            tbkId: this.data.tbkId
+          },
+          path: this.data.path.reverse()
+        }
+      ]
+    };
+
+    console.log(param, 222);
+
+    // 调这个接口前，需要数据校验（学段学科教材章节必填）
     API.Question.createQuestion(param);
   }
 })

@@ -1,3 +1,5 @@
+<wxs src="./filter.wxs" module="filter"></wxs>
+
 <view class="m-scroll-container">
   <!-- 筛选学段学科教材章节 -->
   <view class="c-sort">
@@ -37,30 +39,38 @@
       <view>第一单元 1.桃花源记</view>
       <icon class="c-questions-info__subject-del"></icon>
     </view>
-    <view class="c-questions-info__count">共<view>30</view>条</view>
+    <view class="c-questions-info__count">共<view>{{ page.page.total }}</view>条</view>
   </view>
 
   <!-- 题库列表 -->
   <scroll-view
     class="c-question-lists"
-    scroll-y="{{true}}"
+    scroll-y="{{ true }}"
   >
     <view
-      wx:for="{{ questions }}"
+      wx:for="{{ page.items }}"
       class="c-question-list"
     >
       <view class="c-question-list__info">
-        章节：第一单元 1.桃花源记
+        章节：{{ filter.formatPath(item) }}
       </view>
-      <view class="c-question-list__con-box c-question-list__con-box--txt">
+      <view class="c-question-list__con-box {{ filter.getModeClass(item.content.mode) }}">
         <view class="c-question-list__con">
-          {{ item.content.content }}
+          <navigator url="/pages/question/detail/index?resId={{ item.resource.resId }}&refId={{ item.resource.refId }}">
+            {{ item.content.content }}
+          </navigator>
         </view>
       </view>
       <view class="c-question-list__operator">
-        <view class="c-question-list__bind-class">绑定课堂</view>
+        <view class="c-question-list__bind-class">绑定班级</view>
         <view class="c-question-list__edit">编辑</view>
-        <view class="c-question-list__del">删除</view>
+        <view
+          bindtap="handleDeleteQuextion"
+          data-resid="{{ item.resource.resId }}"
+          class="c-question-list__del"
+        >
+          删除
+        </view>
       </view>
     </view>
   </scroll-view>

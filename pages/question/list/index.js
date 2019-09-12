@@ -16,7 +16,7 @@ Page({
       curPage: 1,
       scope: 1
     },
-    questions: []
+    page: {}
   },
 
   /**
@@ -26,7 +26,7 @@ Page({
     param = qs(param);
     API.Question.getQuestion(param).then((rep) => {
       this.setData({
-        questions: rep.items
+        page: rep
       });
     });
   },
@@ -50,7 +50,7 @@ Page({
   },
 
   /**
-   * 确定学段学科教材章节组件
+   * 学段学科教材章节组件自定义事件返回数据
    */
   handleConfirmSelector(data) {
     this.setData({
@@ -63,7 +63,8 @@ Page({
         sbjId: data.detail.sbjId,
         edtId: data.detail.edtId,
         tbkId: data.detail.tbkId,
-        tbkNodeId: data.detail.tbkNodeId
+        tbkNodeId: data.detail.tbkNodeId,
+        name: data.detail.name
       })
     });
 
@@ -88,6 +89,18 @@ Page({
   handleCreatQuestion() {
     wx.navigateTo({
       url: router.questionCreate
+    });
+  },
+
+  /**
+   * 删除习题
+   */
+  handleDeleteQuextion(ev) {
+    var resId = ev.target.dataset.resid;
+    API.Question.deleteQuextion(resId).then((res) => {
+      setTimeout(() => {
+        this.getQuestion(this.data.queryParam)
+      }, 500);
     });
   }
 })
