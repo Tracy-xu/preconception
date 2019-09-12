@@ -2,10 +2,19 @@
     <view class="c-sort__left">
       学段学科教材版本
     </view>
-    <view class="c-sort__right">
+    <view
+      bindtap="handleVisibleSelector"
+      class="c-sort__right"
+    >
       <i class="c-sort__icon"></i>筛选
     </view>
 </view>
+<selector
+  wx:if="{{ visibleSelector }}"
+  bindclose="handleCloseSelector"
+  bindconfirm="handleConfirmSelector"
+>
+</selector>
 
 <view class="c-question-create">
   <!-- 题干 -->
