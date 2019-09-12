@@ -37,8 +37,11 @@ Component({
     // 章节
     tempNodeName: '',
     tempNodeId: null,
+    tempNodePid: null,
     selectedNodeName: '',
     selectedNodeId: null,
+    selectedNodePid: null,
+    path: [],
     treeData: null
   },
 
@@ -157,7 +160,8 @@ Component({
     handleSelectChapter(data) {
       this.setData({
         tempNodeName: data.detail.name,
-        tempNodeId: data.detail.id
+        tempNodeId: data.detail.id,
+        tempNodePid: data.detail.pid
       });
     },
 
@@ -196,8 +200,23 @@ Component({
       if (this.data.visibleChapter) {
         this.setData({
           selectedNodeName: this.data.tempNodeName,
-          selectedNodeId: this.data.tempNodeId
+          selectedNodeId: this.data.tempNodeId,
+          selectedNodePid: this.data.tempNodePid
         });
+
+        // 查找父节点
+        var path = [];
+        var treeData = [this.data.treeData];
+        var pid = this.data.selectedNodePid;
+        var id = this.data.selectedNodeId;
+        var name = this.data.selectedNodeName;
+
+        this.findAllParent({ pid, id, name }, treeData, path);
+        path.unshift({ name, id, pid });
+        this.setData({
+          path: path
+        });
+
         this.closeLayer();
         return;
       }
@@ -207,8 +226,17 @@ Component({
       var sbjId = this.data.selectedSbjId;
       var edtId = this.data.selectedEdtId;
       var tbkId = this.data.selectedTbkId;
-      var tbkNodeId = this.data.selectedNodeId;
-      this.triggerEvent('confirm', { stgId, sbjId, edtId, tbkId, tbkNodeId });
+
+      // 需要校验数据
+      this.triggerEvent('confirm', {
+        stgId, 
+        sbjId, 
+        edtId, 
+        tbkId, 
+        tbkNodeId: this.data.selectedNodeId, 
+        name: this.data.selectedNodeName, 
+        path: this.data.path
+      });
     },
 
     /**
@@ -222,6 +250,39 @@ Component({
       this.setData({
         visibleChapter: false
       });
+    },
+
+    /**
+     * 查找父节点
+     */
+    findAllParent(node, tree, parentNodes = [], index = 0) {
+      if (!node || node.pid === 0) {
+        return
+      }
+
+      this.findParent(node, parentNodes, tree);
+      let parentNode = parentNodes[index];
+      this.findAllParent(parentNode, tree, parentNodes, ++index);
+
+      return parentNodes;
+    },
+
+    findParent(node, parentNodes, tree) {
+      for (let i = 0; i < tree.length; i++) {
+        let item = tree[i]
+        if (item.data.id === node.pid) {
+          parentNodes.push({
+            id: item.data.id,
+            pid: item.data.pid,
+            name: item.data.name
+          });
+
+          return;
+        }
+        if (item.children && item.children.length > 0) {
+          this.findParent(node, parentNodes, item.children);
+        }
+      }
     }
   }
 })

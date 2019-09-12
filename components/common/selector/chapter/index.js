@@ -42,9 +42,10 @@ Component({
      */
     handleClickTreeNode: function (e) {
       var id = e.currentTarget.dataset.id;
+      var pid = e.currentTarget.dataset.pid;
       var name = e.currentTarget.dataset.name;
 
-      this.triggerEvent('selectchapter', { id, name }, { bubbles: true, composed: true });
+      this.triggerEvent('selectchapter', { pid, id, name }, { bubbles: true, composed: true });
     },
 
     /**
