@@ -8,12 +8,27 @@ Page({
   },
 
   /**
+   * 创建问题点击确定重新加载分页
+   */
+  onShow() {
+    if (this.data.needRefresh) {
+      debugger;
+      this.getQuestion(this.data.queryParam);
+
+      this.setData({
+        needRefresh: false
+      });
+    }
+  },
+
+  /**
    * 页面的初始数据
    */
   data: {
     visibleSelector: false,
     visibleSelectClass: false,
     queryParam: {
+      asc: false,
       curPage: 1,
       scope: 1
     },
@@ -22,6 +37,7 @@ Page({
       items: [],
       page: {}
     },
+    needRefresh: false,
 
     // 绑定班级所需参数
     resId: null,

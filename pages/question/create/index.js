@@ -134,6 +134,12 @@ Page({
    */
   handleCreateQuestion() {
     this.createQuestion().then(() => {
+      var pages = getCurrentPages();
+      var prevPage = pages[pages.length - 2];
+      prevPage.setData({
+        needRefresh: true
+      });
+
       wx.navigateBack();
     });
   },
