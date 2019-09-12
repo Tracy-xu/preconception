@@ -53,7 +53,7 @@ Page({
   showMyAnswer() {
     Api.Preview.getWorkById(this.data.workId).then(res => {
       this.setData({
-        activeWorkDetail:res.data,
+        activeWorkDetail:res,
         dialogShow:true,
       })
     })
@@ -75,6 +75,13 @@ Page({
       visible:false
     })
   },
+  // 暂无相似观点
+  putNoAnswerLike(){
+    Api.Preview.putAnswerLike(this.data.workId, 0).then(res => {
+      wx.navigateBack();
+    })
+  },
+  // 提交观点
   putAnswerLike() {
     Api.Preview.putAnswerLike(this.data.workId,this.data.activeWorkId).then(res => {
       wx.navigateBack();

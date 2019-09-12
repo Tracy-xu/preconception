@@ -4,15 +4,11 @@
     <view class="c-exercises-main">
       <view class="c-preview-list__result">
         <!-- 语音 -->
-        <view class="c-voice-box" wx:if="{{questionData.item.content.audio.length}}">
-          <view class="c-voice-box__btn c-voice-box__btn--play"></view>
-          <view class="c-voice-box__progress">
-            <view class="c-voice-box__progress-con"></view>
-          </view>
-          <view class="c-voice-box__num">
-            00:20
-          </view>
-        </view>
+        <span wx:if="{{questionData.item.content.audios.length}}">
+          <myk-audio src="{{item}}"
+                      wx:key="{{item}}"
+                      wx:for="{{questionData.item.content.audios}}"></myk-audio>
+        </span>
         <!-- 文本 -->
         <view class="c-exercises-main__text">
           {{questionData.item.content.content}}
@@ -36,41 +32,34 @@
       bindinput="answerHander"
       placeholder="请在此输入答案~" />
       <view class="c-exercises-con__imgs"
-      wx:if="{{questionData.item.content.mode === 2}}">
+        wx:if="{{questionData.item.content.mode === 2}}">
         <image wx:for="{{questionData.work.imgs}}" src="item"
         class="c-preview-list__img"></image>
         <view class="c-preview-list__img" bindTap="uploadImg">
           +
         </view>
-        <view class="c-voice-box">
-          <view class="c-voice-box__btn c-voice-box__btn--play"></view>
-          <view class="c-voice-box__progress">
-            <view class="c-voice-box__progress-con"></view>
-          </view>
-          <view class="c-voice-box__num">
-            00:20
-          </view>
-        </view>
+        
       </view>
       <!-- 视频 -->
       <view class="c-exercises-con__imgs" wx:if="{{questionData.item.content.mode === 3}}">
         <view class="c-preview-list__img"
               wx:if="{{questionData.work.fileId}}"
-              bindTap="playvideo(questionData.work.fileId)">
-          <icon type="clear" size="24" color="#999" class="c-icon" />
-          <image src="http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/default.png"></image>
-          <view class="c-voice-box__btn c-voice-box__btn--play"></view>
+              bindTap="playvideo">
+          <icon type="clear" size="24" color="#999" class="c-icon" bindtap="deleteVideo"/>
+          <image src="{{questionData.work.thumbnail}}"></image>
+          <view class="c-voice-box__btn"></view>
         </view>
         <view class="c-preview-list__img" bindtap="uploadVideo" wx:else>
-        <image src="{{questionData.thumbnail}}"></image>
           <view class="c-preview__icon--camera"></view>
         </view>
       </view>
       <!-- 音频 -->
       <view class="c-exercises-con__imgs" wx:if="{{questionData.item.content.mode === 4}}">
         <view class="c-preview-list__img" bindtap="uploadVoice">
-        <view class="c-preview__icon--voice" class="{{recordIng ? 'c-preview__icon--voiceing' : 'c-preview__icon--voice'}}"></view>
+        <view class="c-preview__icon--voice" 
+              class="{{recordIng ? 'c-preview__icon--voiceing' : 'c-preview__icon--voice'}}"></view>
         </view>
+        <myk-audio src="{{questionData.work.audio}}" wx:if="{{questionData.work.audio}}"></myk-audio>
       <view class="c-exercises-con__btns">
         <view class="c-exercises-con__btn">
           <i class="c-icon--transform"></i> 转换文字
@@ -84,9 +73,9 @@
           <view class="c-exercises-con__text-tit">
             转换内容：
           </view>
-          思考一下，分享篇小短文思考一下，分享搜索搜
+          {{questionData.work.answer}}
         </view>
-        <i class="c-icon--edit"></i>
+        <i class="c-icon--edit" bindTap="editAnswer"></i>
       </view>
       </view>
     </view>
@@ -104,4 +93,9 @@
         bindstoprecord="handleStopRecord">
     </myk-camera>
   </view>
+  <myk-video
+  bindclose="handleCloseVideo"
+  wx:if="{{playVideoFlag}}"
+  src="{{questionData.work.fileId}}">
+</myk-video>
 </view>

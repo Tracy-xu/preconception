@@ -1,6 +1,7 @@
 // pages/exercises/index.js
 import chooseImage from '../../../utils/choose-image/choose-image.js';
 import Api from "../../../api/index.js"
+const app = getApp()
 Page({
 
   /**
@@ -16,12 +17,11 @@ Page({
     questionData: {
       work:{
         answer:'',
+        fileId: null,
+        thumbnail: null,
+        audio: null,
+        imgs: [],
       },
-      fileId:null,
-      thumbnail:null,
-      audio:null,
-      imgs: [],
-      type: 1,
     }
   },
 
@@ -72,12 +72,10 @@ Page({
           'user': 'test'
         },
         success(res1) {
-          let $obj = that.data.questionData
+          let $obj = that.data.questionData.work;
           $obj.imgs.push(JSON.parse(res1.data).url);
           that.setData({
-            questionData: {
-              imgs: $obj.imgs
-            }
+            questionData: that.data.questionData,
           })
         }
       })
@@ -93,13 +91,16 @@ Page({
   handleStopRecord(res) {
     let that = this
     const tempFilePaths = res.detail
+    that.setData({
+      record: false,
+    })
     wx.uploadFile({
       url: 'http://122.112.239.223:8080/file/upload/plain/binary',
       filePath: tempFilePaths.tempVideoPath,
       name: 'file',
       success(res) {
         console.log(res)
-        that.data.questionData.fileId = JSON.parse(res.data).url
+        that.data.questionData.work.fileId = JSON.parse(res.data).url
         that.setData({
           questionData: that.data.questionData,
           record:false
@@ -111,7 +112,7 @@ Page({
       filePath: tempFilePaths.tempThumbPath,
       name: 'file',
       success(res) {
-        that.data.questionData.thumbnail = JSON.parse(res.data).url || 'http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/default.png'
+        that.data.questionData.work.thumbnail = JSON.parse(res.data).url || 'http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/default.png'
         that.setData({
           questionData: that.data.questionData
         })
@@ -121,7 +122,13 @@ Page({
   // 播放视频
   playvideo(src) {
     this.setData({
-      playVideoFlag: true
+      playVideoFlag: true,
+    })
+  },
+  // 暂停播放视频
+  handleCloseVideo(){
+    this.setData({
+      playVideoFlag: false,
     })
   },
   // 上传语音
@@ -130,16 +137,14 @@ Page({
     that.setData({
       recordIng: !that.data.recordIng
     })
-    if (!that.data.recorderManager){
-      let RecorderManager = wx.getRecorderManager({
+    console.log(app.globalData.RecorderManager)
+    if (!app.globalData.RecorderManager){
+      app.globalData.RecorderManager = wx.getRecorderManager({
         format:'mp3'
         });
-      that.setData({
-        recorderManager: RecorderManager
-      })
     }
     if (that.data.recordIng) {
-      that.data.recorderManager.start({
+      app.globalData.RecorderManager.start({
         success: (res) => {
           wx.showToast({
             title: '开始录音',
@@ -147,32 +152,39 @@ Page({
         }
       });
     } else {
-      that.data.recorderManager.stop();
-      that.data.recorderManager.onStop((res) =>{
+      app.globalData.RecorderManager.stop();
+      app.globalData.RecorderManager.onStop((res) => {
         wx.showToast({
           title: '录音结束',
         })
         wx.uploadFile({
           url: 'http://122.112.239.223:8080/file/upload/plain/binary',
           name: 'file',
-          success(res) {
-            that.data.questionData.audio = JSON.parse(res.data).url;
+          filePath: res.tempFilePath,
+          success(res1) {
+            console.log(res1);
+            that.data.questionData.work.audio = JSON.parse(res1.data).url;
             that.setData({
               questionData: that.data.questionData
             })
           }
         })
-      })
+      });
     }
   },
   // 删除语音答案
   deleteVoice() {
+    this.data.questionData.work.audio = '';
     this.setData({
-      questionData: {
-        work: {
-          fileId: null,
-        }
-      }
+      questionData: this.data.questionData,
+    })
+  },
+  // 删除视频
+  deleteVideo(){
+    this.data.questionData.work.fileId = '';
+    this.data.questionData.work.thumbnail = '';
+    this.setData({
+      questionData: this.data.questionData,
     })
   },
   // 输入文字
@@ -181,5 +193,9 @@ Page({
     this.setData({
       questionData: this.data.questionData
     })
+  },
+  // 编辑语音转换文字
+  editAnswer(){
+
   }
 })

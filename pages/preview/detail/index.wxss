@@ -6,7 +6,8 @@
 .c-detail__con-item{border-bottom:1rpx dashed #d9d9d9;padding:0 20rpx;}
 .c-detail__con-item.active{background:#FFBABA;}
 .c-detail__con__header{position:relative;height:122rpx;line-height:122rpx;font-size:44rpx;color:#999;}
-.c-detail__con__header image{display:inline-block;vertical-align:middle;width:70rpx;height:70rpx;}
+.c-detail__con__header-name{display:inline-block;max-width:60%;overflow:hidden;white-space:nowrap;text-overflow: ellipsis;}
+.c-detail__con__header image{float:left;width:70rpx;height:70rpx;margin:26rpx 4rpx 0 0;}
 .c-detail__con__header-operation{position:absolute;right:0;top:0;}
 .c-detail__con__text{font-size:51rpx;color:#444;padding:0 0 25rpx 0;}
 .c-detail__bottom{height:96rpx;line-height:96rpx;background:#f9f9f9;border-top:1rpx solid #e6e6e6;text-align:center;}
