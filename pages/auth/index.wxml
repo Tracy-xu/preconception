@@ -8,11 +8,9 @@
   >
     <view>
       <view class="section">
-        <i class="c-icon"></i>
         <input placeholder="请输入账号" bindinput="usernameHander" class="login-ipt"/>
       </view>
       <view class="section">
-        <i class="c-icon"></i>
         <input placeholder="请输入密码" bindinput="passwordHander" type="password" class="login-ipt" auto-focus/>
       </view>
     </view>
