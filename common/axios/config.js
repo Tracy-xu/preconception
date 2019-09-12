@@ -17,7 +17,6 @@ Axios.defaults.adapter = function (config) {
       data: config.data,
       header: config.headers,
       success: (res) => {
-        console.log(res.statusCode);
         if(res.statusCode>299||res.statusCode<200){
           reject(res);
         }else{
