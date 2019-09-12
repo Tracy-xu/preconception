@@ -41,7 +41,7 @@
         
       </view>
       <!-- 视频 -->
-      <view class="c-exercises-con__imgs" wx:if="{{questionData.item.content.mode === 1}}">
+      <view class="c-exercises-con__imgs" wx:if="{{questionData.item.content.mode === 3}}">
         <view class="c-preview-list__img"
               wx:if="{{questionData.work.fileId}}"
               bindtap="playvideo">
