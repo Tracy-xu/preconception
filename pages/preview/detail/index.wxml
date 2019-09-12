@@ -36,8 +36,9 @@
         </view>
       </view>
       <view class="c-dialog__bottom__imgs"
-        wx:if="{{activeWorkDetail.item.content.mode === 3}}">
-        <image src="{{activeWorkDetail.work.thumbnail}}" bindtap="playVideo"></image>
+        wx:if="{{activeWorkDetail.item.content.mode === 3}}"
+        bindtap="playVideo">
+        <image src="{{activeWorkDetail.work.thumbnail}}" ></image>
         <i class="c-voice-box__btn"></i>
       </view>
       </view>
@@ -113,7 +114,7 @@
           <view class="c-detail__con-imgitem__bottom__time">
             {{item.startTime}}
           </view>
-          <i class="c-icon--activeradio {{activeWorkId === item.workId ? 'c-icon--activeradio' : ''}}"></i>
+          <i class="c-icon--radio {{activeWorkId === item.workId ? 'c-icon--activeradio' : ''}}"></i>
         </view>
       </view>
     </view>

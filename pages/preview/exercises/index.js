@@ -120,7 +120,8 @@ Page({
     })
   },
   // 播放视频
-  playvideo(src) {
+  playvideo() {
+    console.log("ddd")
     this.setData({
       playVideoFlag: true,
     })

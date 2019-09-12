@@ -64,9 +64,9 @@ Page({
     })
     console.log(event.currentTarget.dataset.id)
   },
-  playVideo(data){
+  playVideo(){
     this.setData({
-      videoSrc: data.fileId,
+      videoSrc: this.data.activeWorkDetail.work.fileId,
       visible: true
     })
   },

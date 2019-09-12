@@ -41,11 +41,12 @@
         
       </view>
       <!-- 视频 -->
-      <view class="c-exercises-con__imgs" wx:if="{{questionData.item.content.mode === 3}}">
+      <view class="c-exercises-con__imgs" wx:if="{{questionData.item.content.mode === 1}}">
         <view class="c-preview-list__img"
               wx:if="{{questionData.work.fileId}}"
-              bindTap="playvideo">
-          <icon type="clear" size="24" color="#999" class="c-icon" bindtap="deleteVideo"/>
+              bindtap="playvideo">
+          <icon type="clear" size="24" color="#999" class="c-icon" 
+          bindtap="deleteVideo"/>
           <image src="{{questionData.work.thumbnail}}"></image>
           <view class="c-voice-box__btn"></view>
         </view>
@@ -96,6 +97,7 @@
   <myk-video
   bindclose="handleCloseVideo"
   wx:if="{{playVideoFlag}}"
-  src="{{questionData.work.fileId}}">
+  src="{{questionData.work.fileId}}"
+  style="z-index:999;">
 </myk-video>
 </view>
