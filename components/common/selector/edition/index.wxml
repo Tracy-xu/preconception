@@ -1,5 +1,8 @@
 <view class="c-select-version">
-  <scroll-view class="c-select-version__versions">
+  <scroll-view
+    scroll-y="{{ true }}"
+    class="c-select-version__versions"
+  >
     <view
       wx:for="{{ edition }}"
       wx:key="{{ item.edtId }}"
@@ -11,7 +14,10 @@
       {{ item.edtName }}
     </view>
   </scroll-view>
-  <scroll-view class="c-select-version__stages">
+  <scroll-view
+    scroll-y="{{ true }}"
+    class="c-select-version__stages"
+  >
     <view
       wx:for="{{ relativeBook }}"
       wx:key="index"
