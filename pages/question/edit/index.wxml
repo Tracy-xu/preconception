@@ -116,13 +116,13 @@
   </scroll-view>
   
   <!-- 绑定班级 -->
-  <select-class
+  <bind-class
     resId="{{ resId }}"
     refId="{{ refId }}"
     wx:if="{{ visibleSelectClass }}"
     bindconfirmbindclass="handleConfirmBindClass"
   >
-  </select-class>
+  </bind-class>
 
   <view class="c-question-create__btn">
     <button>取消</button>
