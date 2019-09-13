@@ -1,3 +1,10 @@
 export default function query(json) {
-  return Object.keys(json).map(k => `${k}=${json[k]}`).join('&');
+  var arr = [];
+  Object.keys(json).forEach((key) => {
+    if (json[key]) {
+      arr.push(`${ key }=${ json[key] }`);
+    }
+  })
+  
+  return arr.join('&');
 }
