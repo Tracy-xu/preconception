@@ -1,0 +1,24 @@
+<view class="m-select-class">
+  <checkbox-group bindchange="handleCheckBoxChange">
+    <view
+      wx:for="{{ userInfo.klasses }}"
+      wx:key="{{ index }}"
+      class="m-select-class__item"
+    >
+      <checkbox
+        value="{{ item.id }}"
+      />
+      <view class="m-select-class__content">
+        <view class="m-select-class__class-name">{{ item.school.name }} {{ item.name }}</view>
+        <view class="m-select-class__teacher-name">{{ userInfo.name }}</view>
+      </view>
+    </view>
+  </checkbox-group>
+</view>
+
+<button 
+  bindtap="handleConfirm"
+  class="m-select-class__btn"
+>
+  确定
+</button>

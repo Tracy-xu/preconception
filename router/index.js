@@ -9,6 +9,8 @@ export default {
   questionDetail: '/pages/question/detail/index',
   // 编辑问题
   questionEdit: '/pages/question/edit/index',
+  // 绑定班级
+  bindClass: '/pages/question/bind-class/index',
   // 前概念分析--列表
   analysisList: '/pages/analysis/analysis-list/index',
   // 前概念分析--详情

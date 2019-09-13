@@ -13,7 +13,6 @@ var sleep = time => {
 Page({
   data: {
     visibleSelector: false,
-    visibleSelectClass: false,
     queryParam: {
       curPage: 1,
       scope: 1,
@@ -246,22 +245,11 @@ Page({
    * 绑定班级
    */
   handleBindClass(ev) {
-    this.setData({
-      resId: ev.target.dataset.resid,
-      refId: ev.target.dataset.refid
-    });
+    var resId = ev.target.dataset.resid;
+    var refId = ev.target.dataset.refid;
 
-    this.setData({
-      visibleSelectClass: true
-    });
-  },
-
-  /**
-   * 确定绑定班级
-   */
-  handleConfirmBindClass() {
-    this.setData({
-      visibleSelectClass: false
+    wx.navigateTo({
+      url: `${ router.bindClass }?refId=${ refId }&resId=${ resId }`
     });
   },
 
@@ -269,13 +257,11 @@ Page({
    * 编辑
    */
   handleEditQuestion(ev) {
-    this.setData({
-      resId: ev.target.dataset.resid,
-      refId: ev.target.dataset.refid
-    });
+    var resId = ev.target.dataset.resid;
+    var refId = ev.target.dataset.refid;
 
     wx.navigateTo({
-      url: `${ router.questionEdit }?refId=${ this.data.refId }&resId=${ this.data.resId }`
+      url: `${ router.questionEdit }?refId=${ refId }&resId=${ resId }`
     });
   }
 })

@@ -131,7 +131,6 @@ Page({
    */
   handleDeleteImg(ev) {
     var index = ev.target.dataset.index;
-    console.log(index);
     this.data.imgs.splice(index, 1);
     this.setData({
       imgs: this.data.imgs

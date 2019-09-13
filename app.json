@@ -6,6 +6,7 @@
     "pages/question/create/index",
     "pages/question/edit/index",
     "pages/question/detail/index",
+    "pages/question/bind-class/index",
     "pages/preview/list/index",
     "pages/preview/exercises/index",
     "pages/preview/detail/index",

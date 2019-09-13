@@ -106,15 +106,6 @@
     <view class="m-page-tips">{{ pageTips }}</view>
   </scroll-view>
 
-  <!-- 绑定班级 -->
-  <select-class
-    resId="{{ resId }}"
-    refId="{{ refId }}"
-    wx:if="{{ visibleSelectClass }}"
-    bindconfirmbindclass="handleConfirmBindClass"
-  >
-  </select-class>
-
   <!-- tapbar -->
   <myk-tabbar bindchange="handleTabChange"></myk-tabbar>
 </view>
