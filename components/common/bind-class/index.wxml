@@ -16,9 +16,11 @@
   </checkbox-group>
 </view>
 
-<button 
-  bindtap="handleConfirm"
-  class="m-select-class__btn"
->
-  确定
-</button>
+<view class="m-select-class__btn">
+  <button bindtap="handleCancel">
+    取消
+  </button>
+  <button bindtap="handleConfirm">
+    确定
+  </button>
+</view>

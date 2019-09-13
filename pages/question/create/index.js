@@ -4,7 +4,7 @@ import chooseImage from '../../../utils/choose-image/choose-image.js';
 Page({
   data: {
     visibleSelector: false,
-    visibleSelectClass: false,
+    visibleBindClass: false,
     isRecord: false,
     RecorderManager: null,
     count: 0,
@@ -235,7 +235,7 @@ Page({
    */
   handleBindClass() {
     this.setData({
-      visibleSelectClass: true
+      visibleBindClass: true
     });
 
     this.createQuestion().then((res) => {
@@ -251,5 +251,14 @@ Page({
    */
   handleConfirmBindClass() {
     wx.navigateBack();
+  },
+
+  /**
+   * 取消绑定班级
+   */
+  handleCancelBindClass() {
+    this.setData({
+      visibleBindClass: false
+    });
   }
 })

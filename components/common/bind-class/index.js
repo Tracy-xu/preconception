@@ -45,5 +45,12 @@ Component({
         this.triggerEvent('confirmbindclass');
       });
     },
+
+    /**
+     * 取消
+     */
+    handleCancel() {
+      this.triggerEvent('cancelbindclass');
+    }
   }
 })
