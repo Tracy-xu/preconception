@@ -34,7 +34,7 @@
 /* 内容 */
 .c-question-list__con-box {position: relative; min-height: 176rpx; padding: 28rpx 22rpx; font-size: 50rpx; color: #517B39FF;}
 .c-question-list__con {display: inline;}
-.c-question-list__con-img image {width: 190rpx; height: 190rpx;}
+.c-question-list__attach-img image {width: 190rpx; height: 190rpx;}
 /* 操作 */
 .c-question-list__operator {display: flex; height: 110rpx; padding: 0 22rpx; box-shadow:0 -3px 7px 0 rgba(0, 0, 0, 0.04); justify-content: space-between; align-items: center;}
 .c-question-list__bind-class,
@@ -47,9 +47,9 @@
 .c-question-list__edit::before{background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/edit.png')}
 .c-question-list__del::before{background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/delete.png')}
 /* 标签 */
-.c-question-list__con-box--txt::after,
-.c-question-list__con-box--img::after,
-.c-question-list__con-box--video::after {content: ""; display: inline-block; width: 50rpx; height: 60rpx; vertical-align: middle;background-size: 100% 100%;}
-.c-question-list__con-box--txt::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/text.png');}
-.c-question-list__con-box--img::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/picture.png');}
-.c-question-list__con-box--video::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/voice.png');}
+.c-question-list__stem--txt::after,
+.c-question-list__stem--img::after,
+.c-question-list__stem--video::after {content: ""; display: inline-block; width: 50rpx; height: 60rpx; vertical-align: middle;background-size: 100% 100%;}
+.c-question-list__stem--txt::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/text.png');}
+.c-question-list__stem--img::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/picture.png');}
+.c-question-list__stem--video::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/voice.png');}

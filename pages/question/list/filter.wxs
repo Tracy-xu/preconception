@@ -24,19 +24,27 @@ module.exports = {
 
   getModeClass: function (mode) {
     if (mode === 1) {
-      return 'c-question-list__con-box--txt';
+      return 'c-question-list__stem--txt';
     }
 
     if (mode === 2) {
-      return 'c-question-list__con-box--img';
+      return 'c-question-list__stem--img';
     }
 
     if (mode === 3) {
-      return 'c-question-list__con-box--video';
+      return 'c-question-list__stem--video';
     }
 
     if (mode === 4) {
-      return 'c-question-list__con-box--audio';
+      return 'c-question-list__stem--audio';
     }
+  },
+
+  ellipsis: function (text) {
+    if (text && text.length > 24) {
+      return text.substring(0, 24) + '...';
+    }
+
+    return text;
   }
 };
