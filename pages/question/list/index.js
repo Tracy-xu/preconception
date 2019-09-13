@@ -261,11 +261,25 @@ Page({
   },
 
   /**
-   * 确定版本
+   * 确定绑定班级
    */
   handleConfirmBindClass() {
     this.setData({
       visibleSelectClass: false
+    });
+  },
+
+  /**
+   * 编辑
+   */
+  handleEditQuestion(ev) {
+    this.setData({
+      resId: ev.target.dataset.resid,
+      refId: ev.target.dataset.refid
+    });
+
+    wx.navigateTo({
+      url: `${ router.questionEdit }?refId=${ this.data.refId }&resId=${ this.data.resId }`
     });
   }
 })

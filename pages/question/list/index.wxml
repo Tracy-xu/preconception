@@ -77,7 +77,14 @@
         >
           绑定班级
         </view>
-        <view class="c-question-list__edit">编辑</view>
+        <view
+          bindtap="handleEditQuestion"
+          data-resId="{{ item.resource.resId }}"
+          data-refId="{{ item.resource.refId }}"
+          class="c-question-list__edit"
+        >
+          编辑
+        </view>
         <view
           bindtap="handleDeleteQuextion"
           data-resid="{{ item.resource.resId }}"

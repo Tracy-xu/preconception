@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "selector": "/components/common/selector/index",
+    "select-class": "/components/common/select-class/index"
+  }
 }
