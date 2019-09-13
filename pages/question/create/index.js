@@ -2,20 +2,20 @@ import API from '../../../api/index.js';
 import chooseImage from '../../../utils/choose-image/choose-image.js';
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     visibleSelector: false,
     visibleSelectClass: false,
+    isRecord: false,
+    RecorderManager: null,
+    count: 0,
+    timer: null,
 
     // 表单操作相关数据
     content: '',
     imgs: [],
     audios: [],
     mode: 0,
-    handleVisibleStemType: false,
+    visibleStemType: false,
 
     // 学段学科教材版本数据
     stgId: null,
@@ -27,6 +27,20 @@ Page({
     // 绑定到班级所需参数
     refId: null,
     resId: null
+  },
+
+  onReady() {
+    this.setData({
+      RecorderManager: wx.getRecorderManager()
+    });
+
+    this.data.RecorderManager.onStop((res) => {
+      API.Common.upload('audio', res.tempFilePath).then((data) => {
+        this.setData({
+          audios: [...this.data.audios, data.url]
+        });
+      });
+    });
   },
 
   /**
@@ -91,7 +105,7 @@ Page({
     this.setData({
       visibleStemType: false
     });
-    
+
     chooseImage().then((res) => {
       API.Common.upload('image', res[0]).then((data) => {
         this.setData({
@@ -106,7 +120,6 @@ Page({
    */
   handleDeleteImg(ev) {
     var index = ev.target.dataset.index;
-    console.log(index);
     this.data.imgs.splice(index, 1);
     this.setData({
       imgs: this.data.imgs
@@ -117,7 +130,40 @@ Page({
    * 添加语音
    */
   handleAddStemAudio() {
-    wx.getRecorderManager();
+    if (!this.data.isRecord) {
+      this.setData({
+        isRecord: true
+      });
+
+      this.data.RecorderManager.start();
+
+      var count = 0;
+      var timer = null;
+      timer = setInterval(() => {
+        count += 1;
+        this.setData({
+          count
+        });
+      }, 1000);
+
+      this.setData({
+        timer
+      });
+    } else {
+      this.setData({
+        isRecord: false,
+        visibleStemType: false
+      });
+
+      clearInterval(this.data.timer);
+
+      this.setData({
+        timer: null,
+        count: 0
+      });
+
+      this.data.RecorderManager.stop();
+    }
   },
 
   /**

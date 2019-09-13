@@ -25,20 +25,23 @@
     <view class="c-question-create__stem-box">
     <view class="c-question-create__stem-label">1. </view>
     <view class="c-question-create__stem">
-      <icon
-        bindtap="handleVisibleStemType"
-        class="c-question-create__open-stem-type"
-      >
-      </icon>
+      <!-- 文本 -->
       <input
         bindinput="handleInputContent"
         class="c-question-create__stem-txt"
         placeholder="请输入题目内容"
       >
       </input>
-      <view class="c-question-create__stem-audio">
-        
+      <!-- 音频 -->
+      <view
+        wx:if="{{ audios.length }}"
+        class="c-question-create__stem-audio"
+      >
+        <view wx:for="{{ audios }}">
+          <myk-audio src="{{ items }}"></myk-audio>
+        </view>
       </view>
+      <!-- 图片 -->
       <view
         wx:if="{{ imgs.length }}"
         class="c-question-create__stem-img"
@@ -55,6 +58,12 @@
           </icon>
         </view>
       </view>
+
+      <icon
+        bindtap="handleVisibleStemType"
+        class="c-question-create__open-stem-type"
+      >
+      </icon>
     </view>
     </view>
   
@@ -63,19 +72,25 @@
       wx:if="{{ visibleStemType }}"
       class="c-question-create__stem-type"
     >
-    <view
-      bindtap="handleAddStemImg"
-      class="c-question-create__stem-type--img"
-    >
-      添加图片
-    </view>
-    <view
-      bindtap="handleAddStemAudio"
-      class="c-question-create__stem-type--audio"
-    >
-      添加语音
-    </view>
-    <icon></icon>
+      <view
+        bindtap="handleAddStemImg"
+        class="c-question-create__stem-type--img"
+      >
+        添加图片
+      </view>
+      <view
+        bindtap="handleAddStemAudio"
+        class="c-question-create__stem-type--audio"
+      >
+        添加语音
+        <view
+          wx:if="{{ isRecord }}"
+          class="c-question-create__record-count"
+        >
+          {{ count }}
+        </view>
+      </view>
+      <icon></icon>
     </view>
   
     <!-- 选择答题方式 -->
