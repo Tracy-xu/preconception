@@ -260,5 +260,12 @@ Page({
     this.setData({
       visibleBindClass: false
     });
+  },
+
+  /**
+   * 取消
+   */
+  handleCancel() {
+    wx.navigateBack();
   }
 })

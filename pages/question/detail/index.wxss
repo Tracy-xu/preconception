@@ -17,4 +17,4 @@
 .c-bind-class_item {padding: 24rpx; border-bottom: 1px #E5E5E5 solid;}
 .c-bind-class__content {display: flex; align-items: center; justify-content: space-between;}
 .c-bind-class__class-name {width: 70%;}
-.c-bind-class__unbind {width: 30%;}
+.c-bind-class__unbind {width: 30%; color: #14C75E; background: #fff;}
