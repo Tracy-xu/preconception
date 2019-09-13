@@ -65,6 +65,14 @@
         <view class="c-question-list__con">
           <navigator url="/pages/question/detail/index?resId={{ item.resource.resId }}&refId={{ item.resource.refId }}">
             {{ item.content.content }}
+            <view class="c-question-list__con-img">
+              <view
+                wx:for="{{ item.content.imgs }}"
+                wx:key="{{ index }}"
+              >
+                <image src="{{ item }}"></image>
+              </view>
+            </view>
           </navigator>
         </view>
       </view>
@@ -88,6 +96,7 @@
         <view
           bindtap="handleDeleteQuextion"
           data-resid="{{ item.resource.resId }}"
+          data-index="{{ index }}"
           class="c-question-list__del"
         >
           删除

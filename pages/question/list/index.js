@@ -7,7 +7,7 @@ var sleep = time => {
     setTimeout(() => {
       resolve();
     }, time);
-  })
+  });
 };
 
 Page({
@@ -231,18 +231,14 @@ Page({
    */
   async handleDeleteQuextion(ev) {
     var resId = ev.target.dataset.resid;
+    var index = ev.target.dataset.index;
+
     await API.Question.deleteQuextion(resId);
-    await sleep(600);
 
-    this.getQuestion(this.data.queryParam).then((rep) => {
-      var items = rep.items;
-      var page = rep.page;
-      this.data.questions.items = items;
-      this.data.questions.page = page;
-
-      this.setData({
-        questions: this.data.questions
-      });
+    // 直接删前端数据即可，不需再次请求
+    this.data.questions.items.splice(index, 1);
+    this.setData({
+      questions: this.data.questions
     });
   },
 
