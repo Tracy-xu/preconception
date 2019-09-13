@@ -231,16 +231,29 @@ Component({
       var sbjId = this.data.selectedSbjId;
       var edtId = this.data.selectedEdtId;
       var tbkId = this.data.selectedTbkId;
+      var tbkNodeId = this.data.selectedNodeId;
+      var name = this.data.selectedNodeName;
+      var path = this.data.path;
 
       // 需要校验数据
+      if (!stgId || !sbjId) {
+        wx.showToast({
+          title: '请先选择学段学科',
+          icon: 'none',
+          duration: 2000
+        });
+        
+        return;
+      }
+
       this.triggerEvent('confirm', {
         stgId, 
         sbjId, 
         edtId, 
         tbkId, 
-        tbkNodeId: this.data.selectedNodeId, 
-        name: this.data.selectedNodeName, 
-        path: this.data.path
+        tbkNodeId, 
+        name, 
+        path
       });
     },
 

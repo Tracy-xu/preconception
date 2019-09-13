@@ -2,35 +2,22 @@ import router from '../../../router/index.js';
 import API from '../../../api/index.js';
 import qs from '../../../utils/qs/index.js';
 
+var sleep = time => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, time);
+  })
+};
+
 Page({
-  onLoad() {
-    this.getQuestion(this.data.queryParam);
-  },
-
-  /**
-   * 创建问题点击确定重新加载分页
-   */
-  onShow() {
-    if (this.data.needRefresh) {
-      debugger;
-      this.getQuestion(this.data.queryParam);
-
-      this.setData({
-        needRefresh: false
-      });
-    }
-  },
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     visibleSelector: false,
     visibleSelectClass: false,
     queryParam: {
-      asc: false,
       curPage: 1,
-      scope: 1
+      scope: 1,
+      sortBy: 'created',
     },
     pageTips: '',
     questions: {
@@ -42,6 +29,43 @@ Page({
     // 绑定班级所需参数
     resId: null,
     refId: null
+  },
+
+  onLoad() {
+    this.getQuestion(this.data.queryParam).then((rep) => {
+      var items = rep.items;
+      var page = rep.page;
+      this.data.questions.items = items;
+      this.data.questions.page = page;
+
+      this.setData({
+        questions: this.data.questions
+      });
+    });
+  },
+
+  /**
+   * 创建问题点击确定重新加载分页
+   */
+  async onShow() {
+    if (this.data.needRefresh) {
+      this.setData({
+        needRefresh: false
+      });
+
+      await sleep(600);
+
+      this.getQuestion(this.data.queryParam).then((rep) => {
+        var items = rep.items;
+        var page = rep.page;
+        this.data.questions.items = items;
+        this.data.questions.page = page;
+
+        this.setData({
+          questions: this.data.questions
+        });
+      });
+    }
   },
 
   /**
@@ -71,15 +95,7 @@ Page({
       })
     });
 
-    this.getQuestion(this.data.queryParam);
-  },
-
-  /**
-   * 查询前概念习题
-   */
-  getQuestion(param) {
-    param = qs(param);
-    API.Question.getQuestion(param).then((rep) => {
+    this.getQuestion(this.data.queryParam).then((rep) => {
       var items = this.data.questions.items.concat(rep.items);
       var page = rep.page;
       this.data.questions.items = items;
@@ -87,6 +103,18 @@ Page({
 
       this.setData({
         questions: this.data.questions
+      });
+    });
+  },
+
+  /**
+   * 查询前概念习题
+   */
+  getQuestion(param) {
+    return new Promise((resolve, reject) => {
+      param = qs(param);
+      API.Question.getQuestion(param).then((rep) => {
+        resolve(rep);
       });
     });
   },
@@ -110,25 +138,71 @@ Page({
   },
 
   /**
-   * 学段学科教材章节组件自定义事件返回数据
+   * 选择学段学科教材章节查询习题
    */
   handleConfirmSelector(data) {
     this.setData({
       visibleSelector: false
     });
 
+    var stgId = data.detail.stgId;
+    var sbjId = data.detail.sbjId;
+    var edtId = data.detail.edtId;
+    var tbkId = data.detail.tbkId;
+    var tbkNodeId = data.detail.tbkNodeId;
+    var name = data.detail.name;
+    var path = data.detail.path;
+
     this.setData({
+      name,
+      path,
       queryParam: Object.assign({}, this.data.queryParam, {
-        stgId: data.detail.stgId,
-        sbjId: data.detail.sbjId,
-        edtId: data.detail.edtId,
-        tbkId: data.detail.tbkId,
-        tbkNodeId: data.detail.tbkNodeId,
-        name: data.detail.name
+        stgId,
+        sbjId,
+        edtId,
+        tbkId,
+        tbkNodeId,
       })
     });
 
-    this.getQuestion(this.data.queryParam);
+    this.getQuestion(this.data.queryParam).then((rep) => {
+      var items = rep.items;
+      var page = rep.page;
+      this.data.questions.items = items;
+      this.data.questions.page = page;
+
+      this.setData({
+        questions: this.data.questions
+      });
+    });
+  },
+
+  /**
+   * 移除学段学科教材章节查询习题
+   */
+  handleRemoveChapterQueryParam() {
+    this.setData({
+      name: '',
+      path: '',
+      queryParam: Object.assign({}, this.data.queryParam, {
+        stgId: '',
+        sbjId: '',
+        edtId: '',
+        tbkId: '',
+        tbkNodeId: ''
+      })
+    });
+
+    this.getQuestion(this.data.queryParam).then((rep) => {
+      var items = rep.items;
+      var page = rep.page;
+      this.data.questions.items = items;
+      this.data.questions.page = page;
+
+      this.setData({
+        questions: this.data.questions
+      });
+    });
   },
 
   /**
@@ -155,12 +229,20 @@ Page({
   /**
    * 删除习题
    */
-  handleDeleteQuextion(ev) {
+  async handleDeleteQuextion(ev) {
     var resId = ev.target.dataset.resid;
-    API.Question.deleteQuextion(resId).then((res) => {
-      setTimeout(() => {
-        this.getQuestion(this.data.queryParam)
-      }, 500);
+    await API.Question.deleteQuextion(resId);
+    await sleep(600);
+
+    this.getQuestion(this.data.queryParam).then((rep) => {
+      var items = rep.items;
+      var page = rep.page;
+      this.data.questions.items = items;
+      this.data.questions.page = page;
+
+      this.setData({
+        questions: this.data.questions
+      });
     });
   },
 

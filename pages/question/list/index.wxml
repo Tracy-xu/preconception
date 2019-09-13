@@ -36,10 +36,15 @@
   <view class="c-questions-info">
     <view class="c-questions-info__subject">
       当前章节：
-      <view>第一单元 1.桃花源记</view>
-      <icon class="c-questions-info__subject-del"></icon>
+      <view>{{ name }}</view>
+      <icon
+        wx:if="{{ name }}"
+        bindtap="handleRemoveChapterQueryParam"
+        class="c-questions-info__subject-del"
+      >
+      </icon>
     </view>
-    <view class="c-questions-info__count">共<view>{{ page.page.total }}</view>条</view>
+    <view class="c-questions-info__count">共<view>{{ questions.page.total }}</view>条</view>
   </view>
 
   <!-- 题库列表 -->
