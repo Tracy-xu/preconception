@@ -48,7 +48,7 @@
       >
         <view
           wx:for="{{ imgs }}"
-          class="c-question-create__stem-img-item"
+          class="c-question-create__attach-img"
         >
           <image src="{{ item }}"></image>
           <icon

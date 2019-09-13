@@ -66,12 +66,12 @@
           <navigator url="/pages/question/detail/index?resId={{ item.resource.resId }}&refId={{ item.resource.refId }}">
             <view class="c-question-list__stem {{ filter.getModeClass(item.content.mode) }}"> {{ filter.ellipsis(item.content.content) }} </view>
             <view class="c-question-list__attach-img">
-              <view
+              <image
                 wx:for="{{ item.content.imgs }}"
                 wx:key="{{ index }}"
+                src="{{ item }}"
               >
-                <image src="{{ item }}"></image>
-              </view>
+              </image>
             </view>
           </navigator>
         </view>

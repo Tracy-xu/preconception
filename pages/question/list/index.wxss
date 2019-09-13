@@ -34,7 +34,8 @@
 /* 内容 */
 .c-question-list__con-box {position: relative; min-height: 176rpx; padding: 28rpx 22rpx; font-size: 50rpx; color: #517B39FF;}
 .c-question-list__con {display: inline;}
-.c-question-list__attach-img image {width: 190rpx; height: 190rpx;}
+.c-question-list__attach-img {}
+.c-question-list__attach-img image {width: 190rpx; height: 190rpx; margin-right: 14rpx; margin-bottom: 14rpx; vertical-align: middle;}
 /* 操作 */
 .c-question-list__operator {display: flex; height: 110rpx; padding: 0 22rpx; box-shadow:0 -3px 7px 0 rgba(0, 0, 0, 0.04); justify-content: space-between; align-items: center;}
 .c-question-list__bind-class,

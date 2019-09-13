@@ -1,7 +1,20 @@
+/**
+ * 滚动容器
+ */
 .m-scroll-container {position: fixed; left: 0; right: 0; bottom: 0; top: 0;}
-/* 按钮 */
+
+/**
+ * 按钮
+ */
 .u-button{display:inline-block;height:50rpx;padding:0 5rpx;line-height:50rpx;font-size:44rpx;border-radius:4rpx;color:#fff;background:#999;}
 .u-button--primary{background:#3484C2;}
+
+/**
+ * 分页提示
+ */
+.m-page-tips {display: flex; padding: 20rpx 0; align-items: center; justify-content: center;}
+
+
 /* 字体颜色 */
 .font-color--blue{color:#3484C2;}
 .font-color--green{color:#1CA053;}

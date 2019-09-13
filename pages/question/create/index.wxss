@@ -8,9 +8,9 @@
 .c-question-create__stem-audio,
 .c-question-create__stem-video {margin-bottom: 30rpx;}
 .c-question-create__stem-txt {width: 600rpx; height: 82rpx; padding-left: 17rpx; border:1px solid rgba(217,217,217,1); border-radius:6rpx;}
-.c-question-create__stem-img-item {position: relative; float: left; width: 190rpx; height: 190rpx; margin-right: 14rpx; border:1px solid rgba(153, 153, 153, 1);}
-.c-question-create__stem-img-item image {width: 100%; height: 100%;}
-.c-question-create__stem-img-item icon {position: absolute; width: 36rpx; height: 36rpx; right: 0; top: 0; transform: translate(50%, -50%); background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/graydelete.png"); background-size: 100% 100%;}
+.c-question-create__attach-img {position: relative; float: left; width: 190rpx; height: 190rpx; margin-right: 14rpx; margin-bottom: 14rpx; border:1px solid rgba(153, 153, 153, 1);}
+.c-question-create__attach-img image {width: 100%; height: 100%;}
+.c-question-create__attach-img icon {position: absolute; width: 36rpx; height: 36rpx; right: 0; top: 0; transform: translate(50%, -50%); background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/graydelete.png"); background-size: 100% 100%;}
 /* 添加题干 */
 .c-question-create__open-stem-type {position: absolute; top: 14rpx; right: 0; width: 54rpx; height: 54rpx; background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/activeadd.png"); background-size: 100% 100%;}
 .c-question-create__stem-type {display: flex; position: absolute; height: 177rpx; left: 0; top: 115rpx; right: 0; align-items: center; justify-content: space-around; background: #fff; box-shadow:0px 6px 38px 0px rgba(0, 0, 0, 0.2);}
