@@ -4,13 +4,32 @@
 <view class="c-question-detail">
   <view class="c-question-detail__title">{{ filter.formatPath(detail) }}</view>
   <view class="c-question-detail__content">
-    {{ detail.content.content }}
+    <view class="c-question-detail__stem">
+      {{ detail.content.content }}
+    </view>
+    <view
+      wx:if="{{ detail.content.imgs.length }}"
+      class="c-question-detail__attath-img"
+    >
+      <image
+        wx:for="{{ detail.content.imgs }}"
+        src="{{ item }}"
+      >
+      </image>
+    </view>
+    <view class="c-question-detail__attach-audio">
+    
+    </view>
   </view>
 </view>
 
 <!-- 绑定的班级 -->
+<view class="c-bind-class-info">
+  推送至班级情况
+  <view class="s-primary">{{ classData.length }}</view>
+  条记录
+</view>
 <view class="c-bind-class">
-  <view class="c-bind-class__info">推送至班级情况<view>3</view>条记录</view>
   <view
     wx:for="{{ classData }}"
     wx:key="{{ index }}"

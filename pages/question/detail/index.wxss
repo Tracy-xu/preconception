@@ -1,7 +1,20 @@
-.c-bind-class {padding: 20px; background: #fff;}
-.c-bind-class__info {display: flex;}
-.c-bind-class__info view {color: #517B39FF;}
-.c-bind-class_item {border-bottom: 1px #ccc solid;}
+/** 
+ * 题目详情
+ */
+/* 标题 */
+.c-question-detail {background: #fff;}
+.c-question-detail__title {padding: 24rpx; border-bottom: 1px #E5E5E5 solid;}
+/* 内容 */
+.c-question-detail__content {padding: 24rpx;}
+/* 附件 */
+.c-question-detail__attath-img image {display: block; width: 100%; margin: 28rpx auto;}
+
+/** 
+ * 绑定班级列表 
+ */
+.c-bind-class-info {display: flex; margin-top: 30rpx; padding: 24rpx;}
+.c-bind-class {background: #fff;}
+.c-bind-class_item {padding: 24rpx; border-bottom: 1px #E5E5E5 solid;}
 .c-bind-class__content {display: flex; align-items: center; justify-content: space-between;}
 .c-bind-class__class-name {width: 70%;}
 .c-bind-class__unbind {width: 30%;}

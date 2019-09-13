@@ -1,4 +1,9 @@
 /**
+ * 颜色
+ */
+.s-primary {color: #1CA053;}
+
+/**
  * 滚动容器
  */
 .m-scroll-container {position: fixed; left: 0; right: 0; bottom: 0; top: 0;}
