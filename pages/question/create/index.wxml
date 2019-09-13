@@ -18,7 +18,7 @@
   </selector>
   
   <scroll-view
-    scroll-y="{{true}}"
+    scroll-y="{{ true }}"
     class="c-question-create"
   >
     <!-- 题干 -->
@@ -100,28 +100,28 @@
       <view
         bindtap="handleSelectAnswerType"
         data-type="1"
-        class="c-queston-create__type-txt {{mode == 1 ? 'c-queston-create__type-txt--active' : ''}}"
+        class="c-queston-create__type-txt {{ mode == 1 ? 'c-queston-create__type-txt--active' : '' }}"
       >
         文本
       </view>
       <view
         bindtap="handleSelectAnswerType"
         data-type="2"
-        class="c-queston-create__type-img {{mode == 2 ? 'c-queston-create__type-txt--active' : ''}}"
+        class="c-queston-create__type-img {{ mode == 2 ? 'c-queston-create__type-txt--active' : '' }}"
       >
         图片
       </view>
       <view
         bindtap="handleSelectAnswerType"
         data-type="4"
-        class="c-queston-create__type-audio {{mode == 4 ? 'c-queston-create__type-txt--active' : ''}}"
+        class="c-queston-create__type-audio {{ mode == 4 ? 'c-queston-create__type-txt--active' : '' }}"
       >
         语音
       </view>
       <view
         bindtap="handleSelectAnswerType"
         data-type="3"
-        class="c-queston-create__type-video {{mode == 3 ? 'c-queston-create__type-txt--active' : ''}}"
+        class="c-queston-create__type-video {{ mode == 3 ? 'c-queston-create__type-txt--active' : '' }}"
       >
         视频
       </view>

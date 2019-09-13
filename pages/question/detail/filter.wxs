@@ -1,5 +1,9 @@
 module.exports = {
   formatPath: function (item) {
+    if (!item) {
+      return;
+    }
+    
     if (!item.content.tbkNodes) {
       return;
     }

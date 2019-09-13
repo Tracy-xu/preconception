@@ -13,6 +13,7 @@
   <view class="c-bind-class__info">推送至班级情况<view>3</view>条记录</view>
   <view
     wx:for="{{ classData }}"
+    wx:key="{{ index }}"
     class="c-bind-class_item"
   >
     <view>{{ item.createdOn }} 科目：语文</view>
