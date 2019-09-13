@@ -3,7 +3,7 @@
 .c-selection__content {overflow: hidden;}
 .c-selection__content-item {float: left; width: 192rpx; height: 72rpx; line-height: 72rpx; margin-right: 20rpx; margin-bottom: 24rpx; background:rgba(245,245,245,1); font-size: 40rpx; text-align: center;}
 .c-selection__content-item--active {background: #E4FAEDFF; color: #14C75FFF;}
-.c-selection__select {position: absolute; right: 0; top: 50%; transform: translateY(-50%); padding-right: 40rpx; color: #14C75FFF; font-size: 40rpx;}
+.c-selection__select {position: absolute; right: 0; top: 50%; max-width: 245px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; transform: translateY(-50%); padding-right: 40rpx; color: #14C75FFF; font-size: 40rpx;}
 .c-selection__select::after {content: ""; position: absolute; width: 20rpx; height: 20rpx; right: 0; top: 50%; transform: translateY(-50%) rotate(45deg); border-top: 3px #14C75FFF solid; border-right: 3px #14C75FFF solid;}
 /* 滚动容器 */
 .c-selection__scroll {position: absolute; left: 0; top: 0; right: 0; bottom: 100rpx; background: #fff;}
