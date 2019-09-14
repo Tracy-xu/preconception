@@ -189,11 +189,34 @@ Page({
       return;
     }
 
-    this.createQuestion().then(() => {
+    this.createQuestion().then((res) => {
+      var newQuestion = {
+        content: {
+          content: this.data.content,
+          imgs: this.data.imgs,
+          audios: this.data.audios,
+          mode: this.data.mode,
+          tbkNodes: [
+            {
+              attrs: {
+                edtId: this.data.edtId,
+                tbkId: this.data.tbkId
+              },
+              path: this.data.path.reverse()
+            }
+          ]
+        },
+        resource: {
+          resId: res.resId,
+          refId: res.refId
+        }
+      };
+
       var pages = getCurrentPages();
       var prevPage = pages[pages.length - 2];
       prevPage.setData({
-        needRefresh: true
+        needRefresh: true,
+        newQuestion
       });
 
       wx.navigateBack();

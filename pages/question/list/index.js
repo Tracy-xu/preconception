@@ -24,6 +24,7 @@ Page({
       page: {}
     },
     needRefresh: false,
+    newQuestion: null,
 
     // 绑定班级所需参数
     resId: null,
@@ -52,18 +53,27 @@ Page({
         needRefresh: false
       });
 
-      await sleep(600);
+      this.data.questions.items.unshift(this.data.newQuestion);
+      this.data.questions.items.pop();
+      this.data.questions.page.total = this.data.questions.page.total + 1;
 
-      this.getQuestion(this.data.queryParam).then((rep) => {
-        var items = rep.items;
-        var page = rep.page;
-        this.data.questions.items = items;
-        this.data.questions.page = page;
-
-        this.setData({
-          questions: this.data.questions
-        });
+      this.setData({
+        questions: this.data.questions
       });
+
+      // 由于 ES 异步的原因，使用前端自己的数据
+      // await sleep(600);
+
+      // this.getQuestion(this.data.queryParam).then((rep) => {
+      //   var items = rep.items;
+      //   var page = rep.page;
+      //   this.data.questions.items = items;
+      //   this.data.questions.page = page;
+
+      //   this.setData({
+      //     questions: this.data.questions
+      //   });
+      // });
     }
   },
 
