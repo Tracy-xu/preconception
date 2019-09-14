@@ -179,10 +179,28 @@ Page({
    * 保存创建习题
    */
   handleCreateQuestion() {
-    // 校验（学段学科教材章节必填）
+    // 校验必填（学段学科教材章节、题干、答题方式）
     if (!this.data.stgId) {
       wx.showToast({
         title: '请选择学段学科教程章节',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+
+    if (!this.data.content) {
+      wx.showToast({
+        title: '请输入题目内容',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+
+    if (!this.data.mode) {
+      wx.showToast({
+        title: '请选择答题方式',
         icon: 'none',
         duration: 2000
       });
@@ -257,14 +275,14 @@ Page({
    * 绑定班级
    */
   handleBindClass() {
-    this.setData({
-      visibleBindClass: true
-    });
-
     this.createQuestion().then((res) => {
       this.setData({
         resId: res.resId,
         refId: res.refId
+      });
+
+      this.setData({
+        visibleBindClass: true
       });
     });
   },
