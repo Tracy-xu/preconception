@@ -1,5 +1,6 @@
 import router from '../../../router/index.js';
 import API from '../../../api/index.js';
+import LocalDate from '../../../utils/local-date/index.js';
 
 Page({
   data: {
@@ -30,6 +31,10 @@ Page({
    */
   getBindClass(resId) {
     API.Question.getBindClass(resId).then((rep) => {
+      rep.forEach((item) => {
+        item.createdOn = LocalDate.format(item.createdOn, 'yyyy-MM-dd');
+      });
+
       this.setData({
         classData: rep
       });

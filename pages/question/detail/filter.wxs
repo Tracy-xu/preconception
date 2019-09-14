@@ -1,5 +1,5 @@
 module.exports = {
-  formatPath: function (item) {
+  formatPath: function(item) {
     if (!item) {
       return;
     }
