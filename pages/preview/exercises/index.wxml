@@ -96,7 +96,7 @@
   </view>
   <!-- 编辑语音答案 -->
   <mp-dialog 
-      class="c-preview-dialog" 
+      ext-class="c-preview-dialog"
       show="{{dialogShow}}">
       <form bindsubmit="bindFormSubmit">
     <textarea 
