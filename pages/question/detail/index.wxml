@@ -44,6 +44,7 @@
         bindtap="handleUnbindClass"
         class="c-bind-class__unbind"
         data-id="{{ item.klassPreconQueId }}"
+        data-index="{{ index }}"
       >
         解除绑定
       </button>

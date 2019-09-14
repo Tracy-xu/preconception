@@ -39,11 +39,22 @@ Page({
   /**
    * 解除绑定
    */
-  handleUnbindClass(ev) {
-    API.Question.unbindClass({
+  async handleUnbindClass(ev) {
+    await API.Question.unbindClass({
       klassPreconQueId: ev.target.dataset.id
     });
+
+    var index = ev.target.dataset.index;
+
+    this.data.classData.splice(index, 1);
+    this.setData({
+      classData: this.data.classData
+    });
   },
+
+  /**
+   * 打开报告
+   */
   openKlassPrequeView(ev){
     wx.navigateTo({
       url: `${router.analysisList}?klassPreconQueId=${ev.target.dataset.id}`
