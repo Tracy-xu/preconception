@@ -11,8 +11,10 @@
     </view>
   </view>
   <view class="c-preview-list">
-    <scroll-view class="scroll-view_H" scroll-y style="width: 100%" 
-      bindscrolltolower="changeCurpage">
+    <scroll-view class="scroll-view_H"
+                lower-threshold="100"
+                  scroll-y style="width: 100%" 
+                  bindscrolltolower="changeCurpage">
       <view class="c-preview-list__item" wx:for="{{workList}}">
         <view class="c-preview-list__con">
           {{item.item.content.content}}

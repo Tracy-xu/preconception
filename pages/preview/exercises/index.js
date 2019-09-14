@@ -8,15 +8,17 @@ Page({
    * 页面的初始数据
    */
   data: {
+    id: null,
     workId: null,
     files: [],
+    dialogShow: false,
     record: false,
     recordIng: false,
     playVideoFlag: false,
-    recorderManager:null,
+    recorderManager: null,
     questionData: {
-      work:{
-        answer:'',
+      work: {
+        answer: '',
         fileId: null,
         thumbnail: null,
         audio: null,
@@ -93,7 +95,10 @@ Page({
     const tempFilePaths = res.detail
     that.setData({
       record: false,
-    })
+    });
+    wx.showLoading({
+      title: '视频上传中~',
+    });
     wx.uploadFile({
       url: 'http://122.112.239.223:8080/file/upload/plain/binary',
       filePath: tempFilePaths.tempVideoPath,
@@ -103,8 +108,9 @@ Page({
         that.data.questionData.work.fileId = JSON.parse(res.data).url
         that.setData({
           questionData: that.data.questionData,
-          record:false
-        })
+          record: false
+        });
+        wx.hideLoading();
       }
     })
     wx.uploadFile({
@@ -127,7 +133,7 @@ Page({
     })
   },
   // 暂停播放视频
-  handleCloseVideo(){
+  handleCloseVideo() {
     this.setData({
       playVideoFlag: false,
     })
@@ -138,11 +144,10 @@ Page({
     that.setData({
       recordIng: !that.data.recordIng
     })
-    console.log(app.globalData.RecorderManager)
-    if (!app.globalData.RecorderManager){
+    if (!app.globalData.RecorderManager) {
       app.globalData.RecorderManager = wx.getRecorderManager({
-        format:'mp3'
-        });
+        format: 'mp3'
+      });
     }
     if (that.data.recordIng) {
       app.globalData.RecorderManager.start({
@@ -158,16 +163,20 @@ Page({
         wx.showToast({
           title: '录音结束',
         })
+        wx.showLoading({
+          title: '录音上传中',
+        });
         wx.uploadFile({
           url: 'http://122.112.239.223:8080/file/upload/plain/binary',
           name: 'file',
           filePath: res.tempFilePath,
           success(res1) {
-            console.log(res1);
             that.data.questionData.work.audio = JSON.parse(res1.data).url;
             that.setData({
               questionData: that.data.questionData
-            })
+            });
+            that.uploadAsr();
+            wx.hideLoading();
           }
         })
       });
@@ -181,7 +190,7 @@ Page({
     })
   },
   // 删除视频
-  deleteVideo(){
+  deleteVideo() {
     this.data.questionData.work.fileId = '';
     this.data.questionData.work.thumbnail = '';
     this.setData({
@@ -195,8 +204,49 @@ Page({
       questionData: this.data.questionData
     })
   },
-  // 编辑语音转换文字
-  editAnswer(){
+  // 转换文字
+  uploadAsr() {
+    Api.Preview.asr(this.data.questionData.work.audio).then(res => {
+      if (res.id) {
+        this.data.questionData.work.answer = null;
+        this.setData({
+          questionData: this.data.questionData,
+          id: res.id
+        })
+      }
+    });
+  },
+  asr() {
+    let that = this;
+    wx.showLoading({
+      title: '语音转换中',
+    });
+    Api.Preview.getAsrDetail(that.data.id).then(resDetail => {
+      if (resDetail.status === 1) {
+        that.data.questionData.work.answer = resDetail.details[0].result.result.join(',');
+        that.setData({
+          questionData: that.data.questionData,
+        })
+      } else {
+        wx: wx.showToast({
+          title: resDetail.msg,
+        })
+      }
+      wx.hideLoading();
+    })
 
+  },
+  // 编辑语音转换文字
+  editAnswer() {
+    this.setData({
+      dialogShow:true,
+    })
+  },
+  bindFormSubmit(e) {
+    this.data.questionData.work.answer = e.detail.value.textarea
+    this.setData({
+      questionData: this.data.questionData,
+      dialogShow: false,
+    })
   }
 })

@@ -61,22 +61,22 @@
               class="{{recordIng ? 'c-preview__icon--voiceing' : 'c-preview__icon--voice'}}"></view>
         </view>
         <myk-audio src="{{questionData.work.audio}}" wx:if="{{questionData.work.audio}}"></myk-audio>
-      <view class="c-exercises-con__btns">
-        <view class="c-exercises-con__btn">
+      <view class="c-exercises-con__btns" wx:if="{{id}}">
+        <view class="c-exercises-con__btn" bindtap="asr">
           <i class="c-icon--transform"></i> 转换文字
         </view>
         <view class="c-exercises-con__btn" bindTap="deleteVoice">
           <i class="c-icon--delete"></i> 删除
         </view>
       </view>
-      <view class="c-exercises-con__text">
+      <view class="c-exercises-con__text" wx:if="{{questionData.work.answer}}">
         <view class="c-exercises-con__text-con">
           <view class="c-exercises-con__text-tit">
             转换内容：
           </view>
           {{questionData.work.answer}}
         </view>
-        <i class="c-icon--edit" bindTap="editAnswer"></i>
+        <i class="c-icon--edit" bindtap="editAnswer"></i>
       </view>
       </view>
     </view>
@@ -94,6 +94,17 @@
         bindstoprecord="handleStopRecord">
     </myk-camera>
   </view>
+  <!-- 编辑语音答案 -->
+  <mp-dialog 
+      class="c-preview-dialog" 
+      show="{{dialogShow}}">
+      <form bindsubmit="bindFormSubmit">
+    <textarea 
+          value="{{questionData.work.answer}}"
+          name="textarea"/>
+    <button form-type="submit">确定</button>
+  </form>
+  </mp-dialog>
   <myk-video
   bindclose="handleCloseVideo"
   wx:if="{{playVideoFlag}}"

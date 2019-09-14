@@ -35,3 +35,9 @@ export function pushWorkSave(workId, data) {
 export function putAnswerLike(sourceId, targetId) {
   return axios.put(`/qgn/precon/que/work/${sourceId}/like/${targetId}`)
 }
+export function asr(url) {
+  return axios.post(`/asr/asr/task?url=${url}`)
+}
+export function getAsrDetail(id) {
+  return axios.get(`/asr/asr/task/${id}`)
+}
