@@ -10,8 +10,10 @@
     </view>
   </view>
   <!-- 答案详情弹框 -->
-  <mp-dialog title="" class="c-preview-dialog" show="{{dialogShow}}">
-    <view class="c-dialog">
+  <mp-dialog title="" 
+              ext-class="c-preview-dialog"
+              show="{{dialogShow}}">
+    <view class="c-dialog" >
       <view class="c-dialog__top">
         {{activeWorkDetail.item.content.content}}
         <span wx:if="activeWorkDetail.item.content.imgs.length">
