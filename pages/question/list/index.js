@@ -54,7 +54,6 @@ Page({
       });
 
       this.data.questions.items.unshift(this.data.newQuestion);
-      this.data.questions.items.pop();
       this.data.questions.page.total = this.data.questions.page.total + 1;
 
       this.setData({
