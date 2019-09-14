@@ -44,14 +44,14 @@ Page({
       if (v.roleIds.indexOf(201)>-1){
         API.Auth.getTeacher().then(v=>{
           app.globalData.userInfo = v;
-          wx.navigateTo({
+          wx.redirectTo({
             url: router.questionList
           });
         })
       }else{
         API.Auth.getStudent().then(v => {
           app.globalData.userInfo = v;
-          wx.navigateTo({
+          wx.redirectTo({
             url: router.previewList
           });
         })
