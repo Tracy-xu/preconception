@@ -33,12 +33,12 @@
       placeholder="请在此输入答案~" />
       <view class="c-exercises-con__imgs"
         wx:if="{{questionData.item.content.mode === 2}}">
-        <image wx:for="{{questionData.work.imgs}}" src="item"
+        <image wx:for="{{questionData.work.imgs}}" 
+                src="{{item}}"
         class="c-preview-list__img"></image>
         <view class="c-preview-list__img" bindtap="uploadImg">
           +
         </view>
-        
       </view>
       <!-- 视频 -->
       <view class="c-exercises-con__imgs" wx:if="{{questionData.item.content.mode === 3}}">

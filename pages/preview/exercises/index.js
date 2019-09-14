@@ -64,17 +64,16 @@ Page({
     let that = this
     chooseImage().then(res => {
       const tempFilePaths = res
-      that.setData({
-        files: that.data.files.concat(res.tempFilePaths)
-      });
       wx.uploadFile({
         url: 'http://122.112.239.223:8080/file/upload/image/binary',
+        filePath: tempFilePaths[0],
         name: 'file',
         formData: {
           'user': 'test'
         },
         success(res1) {
           let $obj = that.data.questionData.work;
+          $obj.imgs = $obj.imgs ? $obj.imgs : [];
           $obj.imgs.push(JSON.parse(res1.data).url);
           that.setData({
             questionData: that.data.questionData,
