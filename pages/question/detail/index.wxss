@@ -3,7 +3,9 @@
  */
 /* 标题 */
 .c-question-detail {background: #fff;}
-.c-question-detail__title {padding: 24rpx; border-bottom: 1px #E5E5E5 solid;}
+.c-question-detail__title {display: flex; padding: 24rpx; border-bottom: 1px #E5E5E5 solid;}
+.c-question-detail__title view {flex: 1;}
+.c-question-detail__title-time {text-align: right;}
 /* 内容 */
 .c-question-detail__content {padding: 24rpx;}
 /* 附件 */
@@ -16,5 +18,5 @@
 .c-bind-class {background: #fff;}
 .c-bind-class_item {padding: 24rpx; border-bottom: 1px #E5E5E5 solid;}
 .c-bind-class__content {display: flex; align-items: center; justify-content: space-between;}
-.c-bind-class__class-name {width: 70%;}
+.c-bind-class__class-name {width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
 .c-bind-class__unbind {width: 30%; color: #14C75E; background: #fff;}

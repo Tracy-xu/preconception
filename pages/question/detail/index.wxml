@@ -2,7 +2,10 @@
 
 <!-- 题目详情 -->
 <view class="c-question-detail">
-  <view class="c-question-detail__title">{{ filter.formatPath(detail) }}</view>
+  <view class="c-question-detail__title">
+    <view>{{ filter.formatPath(detail) }}</view>
+    <view class="c-question-detail__title-time">{{ detail.content.createdOn }}</view>
+  </view>
   <view class="c-question-detail__content">
     <view class="c-question-detail__stem">
       {{ detail.content.content }}

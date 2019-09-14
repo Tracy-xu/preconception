@@ -20,6 +20,8 @@ Page({
    */
   getQuestionDetail(resId, refId) {
     API.Question.getQuestionDetail(resId, refId).then((res) => {
+      res.content.createdOn = LocalDate.format(res.content.createdOn, 'yyyy-MM-dd');
+
       this.setData({
         detail: res
       });
@@ -30,13 +32,13 @@ Page({
    * 查询绑定班级
    */
   getBindClass(resId) {
-    API.Question.getBindClass(resId).then((rep) => {
-      rep.forEach((item) => {
+    API.Question.getBindClass(resId).then((res) => {
+      res.forEach((item) => {
         item.createdOn = LocalDate.format(item.createdOn, 'yyyy-MM-dd');
       });
 
       this.setData({
-        classData: rep
+        classData: res
       });
     });
   },
