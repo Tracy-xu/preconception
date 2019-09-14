@@ -1,6 +1,7 @@
 // pages/exercises/index.js
 import chooseImage from '../../../utils/choose-image/choose-image.js';
-import Api from "../../../api/index.js"
+import Api from "../../../api/index.js";
+import router from "../../../router/index.js";
 const app = getApp()
 Page({
 
@@ -46,17 +47,30 @@ Page({
   },
   // 暂存数据
   pushWorkStorage() {
-    console.log(this.data.questionData.work.answer)
+    wx.showLoading({
+      title: '暂存答案中哟~',
+    });
     Api.Preview.pushWorkStorage(this.data.workId, this.data.questionData.work).then(res => {
       // 返回主页
-      wx.navigateBack()
+      wx.hideLoading();
+      wx.navigateBack();
     })
   },
   // 提交数据
   pushWorkSave() {
+    wx.showLoading({
+      title: '答提交中哟~',
+    });
     Api.Preview.pushWorkSave(this.data.workId, this.data.questionData.work).then(res => {
-      // 返回主页
-      wx.navigateBack()
+      wx.hideLoading();
+      // 进入相似答案
+      this.goToDetail();
+    })
+  },
+  // 查看相似观点
+  goToDetail() {
+    wx.redirectTo({
+      url: `${router.previewDetail}?workId=${this.data.questionData.work.workId}&klassPreconQueId=${this.data.questionData.work.klassPreconQueId}&sbjId=${this.data.questionData.work.sbjId}&mode=${this.data.questionData.item.content.mode}`,
     })
   },
   // 上传图片
