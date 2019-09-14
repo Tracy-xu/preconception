@@ -1,5 +1,6 @@
 .m-audio {display: flex; align-items: center;}
-.m-audio__button {width: 50rpx; height: 50rpx; background: #ccc;}
-.m-audio__button--play {background: #f00;}
-.m-audio__button--pause {background: #ccc;}
+.m-audio__button {width: 50rpx; height: 50rpx; border: none;}
+.m-audio__button::after {content: ""; border: none;}
+.m-audio__button--play {background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/pause.png"); background-size: 100% 100%;}
+.m-audio__button--pause {background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/activeplay.png"); background-size: 100% 100%;}
 .m-audio slider {flex: 1;}

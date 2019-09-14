@@ -2,20 +2,20 @@ import API from '../../../api/index.js';
 import chooseImage from '../../../utils/choose-image/choose-image.js';
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     visibleSelector: false,
-    visibleSelectClass: false,
+    visibleBindClass: false,
+    isRecord: false,
+    RecorderManager: null,
+    count: 0,
+    timer: null,
 
     // 表单操作相关数据
     content: '',
     imgs: [],
     audios: [],
     mode: 0,
-    handleVisibleStemType: false,
+    visibleStemType: false,
 
     // 学段学科教材版本数据
     stgId: null,
@@ -29,6 +29,20 @@ Page({
     resId: null
   },
 
+  onReady() {
+    this.setData({
+      RecorderManager: wx.getRecorderManager()
+    });
+
+    this.data.RecorderManager.onStop((res) => {
+      API.Common.upload('audio', res.tempFilePath).then((data) => {
+        this.setData({
+          audios: [...this.data.audios, data.url]
+        });
+      });
+    });
+  },
+  
   onLoad: function (options) {
     var resId = options.resId;
     var refId = options.refId;
@@ -36,8 +50,8 @@ Page({
   },
 
   /**
-   * 查询习题详情
-   */
+  * 查询习题详情
+  */
   getQuestionDetail(resId, refId) {
     API.Question.getQuestionDetail(resId, refId).then((res) => {
       var content = res.content.content;
@@ -141,8 +155,55 @@ Page({
    * 添加语音
    */
   handleAddStemAudio() {
-    wx.getRecorderManager();
+    if (!this.data.isRecord) {
+      this.setData({
+        isRecord: true
+      });
+
+      this.data.RecorderManager.start({
+        format: 'mp3'
+      });
+
+      var count = 0;
+      var timer = null;
+      timer = setInterval(() => {
+        count += 1;
+        this.setData({
+          count
+        });
+      }, 1000);
+
+      this.setData({
+        timer
+      });
+    } else {
+      this.setData({
+        isRecord: false,
+        visibleStemType: false
+      });
+
+      clearInterval(this.data.timer);
+
+      this.setData({
+        timer: null,
+        count: 0
+      });
+
+      this.data.RecorderManager.stop();
+    }
   },
+
+  /**
+   * 删除语音
+   */
+  handleDeleteAudio(ev) {
+    var index = ev.target.dataset.index;
+    this.data.audios.splice(index, 1);
+    this.setData({
+      audios: this.data.audios
+    });
+  },
+
 
   /**
    * 选中答题方式
@@ -157,7 +218,7 @@ Page({
    * 保存创建习题
    */
   handleCreateQuestion() {
-    // 校验（学段学科教材章节必填）
+    // 校验必填（学段学科教材章节、题干、答题方式）
     if (!this.data.stgId) {
       wx.showToast({
         title: '请选择学段学科教程章节',
@@ -167,11 +228,52 @@ Page({
       return;
     }
 
-    this.createQuestion().then(() => {
+    if (!this.data.content) {
+      wx.showToast({
+        title: '请输入题目内容',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+
+    if (!this.data.mode) {
+      wx.showToast({
+        title: '请选择答题方式',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+
+    this.createQuestion().then((res) => {
+      var newQuestion = {
+        content: {
+          content: this.data.content,
+          imgs: this.data.imgs,
+          audios: this.data.audios,
+          mode: this.data.mode,
+          tbkNodes: [
+            {
+              attrs: {
+                edtId: this.data.edtId,
+                tbkId: this.data.tbkId
+              },
+              path: this.data.path.reverse()
+            }
+          ]
+        },
+        resource: {
+          resId: res.resId,
+          refId: res.refId
+        }
+      };
+
       var pages = getCurrentPages();
       var prevPage = pages[pages.length - 2];
       prevPage.setData({
-        needRefresh: true
+        needRefresh: true,
+        newQuestion
       });
 
       wx.navigateBack();
@@ -212,14 +314,14 @@ Page({
    * 绑定班级
    */
   handleBindClass() {
-    this.setData({
-      visibleSelectClass: true
-    });
-
     this.createQuestion().then((res) => {
       this.setData({
         resId: res.resId,
         refId: res.refId
+      });
+
+      this.setData({
+        visibleBindClass: true
       });
     });
   },
@@ -228,6 +330,22 @@ Page({
    * 确定绑定班级
    */
   handleConfirmBindClass() {
+    wx.navigateBack();
+  },
+
+  /**
+   * 取消绑定班级
+   */
+  handleCancelBindClass() {
+    this.setData({
+      visibleBindClass: false
+    });
+  },
+
+  /**
+   * 取消
+   */
+  handleCancel() {
     wx.navigateBack();
   }
 })

@@ -65,15 +65,23 @@
         <view class="c-question-list__con">
           <navigator url="/pages/question/detail/index?resId={{ item.resource.resId }}&refId={{ item.resource.refId }}">
             <view class="c-question-list__stem {{ filter.getModeClass(item.content.mode) }}"> {{ filter.ellipsis(item.content.content) }} </view>
-            <view class="c-question-list__attach-img">
-              <image
-                wx:for="{{ item.content.imgs }}"
-                wx:key="{{ index }}"
-                src="{{ item }}"
-              >
-              </image>
-            </view>
           </navigator>
+          <view class="c-question-list__attach-img">
+            <image
+              wx:for="{{ item.content.imgs }}"
+              wx:key="{{ index }}"
+              src="{{ item }}"
+            >
+            </image>
+          </view>
+          <view class="c-question-list__attach-audios">
+            <myk-audio
+              wx:for="{{ item.content.audios }}"
+              wx:key="{{ index }}"
+              src="{{ item }}"
+            >
+            </myk-audio>
+          </view>
         </view>
       </view>
       <view class="c-question-list__operator">

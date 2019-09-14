@@ -20,6 +20,16 @@
       >
       </image>
     </view>
+    <view
+      wx:if="{{ detail.content.audios.length }}"
+      class="c-question-detail__attath-audio"
+    >
+      <myk-audio
+        wx:for="{{ detail.content.audios }}"
+        src="{{ item }}"
+      >
+      </myk-audio>
+    </view>
     <view class="c-question-detail__attach-audio">
     
     </view>

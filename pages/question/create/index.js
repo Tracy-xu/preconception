@@ -135,7 +135,9 @@ Page({
         isRecord: true
       });
 
-      this.data.RecorderManager.start();
+      this.data.RecorderManager.start({
+        format: 'mp3'
+      });
 
       var count = 0;
       var timer = null;
@@ -165,6 +167,18 @@ Page({
       this.data.RecorderManager.stop();
     }
   },
+
+  /**
+   * 删除语音
+   */
+  handleDeleteAudio(ev) {
+    var index = ev.target.dataset.index;
+    this.data.audios.splice(index, 1);
+    this.setData({
+      audios: this.data.audios
+    });
+  },
+
 
   /**
    * 选中答题方式

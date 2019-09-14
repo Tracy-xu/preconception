@@ -32,25 +32,39 @@
         placeholder="请输入题目内容"
       >
       </input>
-      <!-- 音频 -->
+      <!-- 音频附件 -->
       <view
         wx:if="{{ audios.length }}"
-        class="c-question-create__stem-audio"
+        class="c-question-create__attach-audio"
       >
-        <view wx:for="{{ audios }}">
-          <myk-audio src="{{ items }}"></myk-audio>
+        <view
+          wx:for="{{ audios }}"
+          wx:key="{{ index }}"
+          class="c-question-create__attach-audio-item"
+        >
+          <view class="c-question-create__attach-audio-box">
+            <myk-audio src="{{ item }}"></myk-audio>
+          </view>
+          <icon
+            bindtap="handleDeleteAudio"
+            data-index="{{ index }}"
+          ></icon>
         </view>
       </view>
-      <!-- 图片 -->
+      <!-- 图片附件 -->
       <view
         wx:if="{{ imgs.length }}"
-        class="c-question-create__stem-img"
+        class="c-question-create__attach-img"
       >
         <view
           wx:for="{{ imgs }}"
-          class="c-question-create__attach-img"
+          wx:key="{{ index }}"
+          class="c-question-create__attach-img-item"
         >
-          <image src="{{ item }}"></image>
+          <image
+            src="{{ item }}"
+          >
+          </image>
           <icon
             bindtap="handleDeleteImg"
             data-index="{{ index }}"
@@ -67,20 +81,20 @@
     </view>
     </view>
   
-    <!-- 添加题干 -->
+    <!-- 添加附件 -->
     <view
       wx:if="{{ visibleStemType }}"
       class="c-question-create__stem-type"
     >
       <view
         bindtap="handleAddStemImg"
-        class="c-question-create__stem-type--img"
+        class="c-question-create__attach-type--img"
       >
         添加图片
       </view>
       <view
         bindtap="handleAddStemAudio"
-        class="c-question-create__stem-type--audio"
+        class="c-question-create__attach-type--audio"
       >
         添加语音
         <view
