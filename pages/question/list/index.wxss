@@ -50,7 +50,9 @@
 /* 标签 */
 .c-question-list__stem--txt::after,
 .c-question-list__stem--img::after,
-.c-question-list__stem--video::after {content: ""; display: inline-block; width: 50rpx; height: 60rpx; vertical-align: middle;background-size: 100% 100%;}
+.c-question-list__stem--video::after,
+.c-question-list__stem--audio::after {content: ""; display: inline-block; width: 50rpx; height: 60rpx; vertical-align: middle;background-size: 100% 100%;}
 .c-question-list__stem--txt::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/text.png');}
 .c-question-list__stem--img::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/picture.png');}
-.c-question-list__stem--video::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/voice.png');}
+.c-question-list__stem--audio::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/voice.png');}
+.c-question-list__stem--video::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/video.png');}

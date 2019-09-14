@@ -64,7 +64,9 @@
       <view class="c-question-list__con-box">
         <view class="c-question-list__con">
           <navigator url="/pages/question/detail/index?resId={{ item.resource.resId }}&refId={{ item.resource.refId }}">
-            <view class="c-question-list__stem {{ filter.getModeClass(item.content.mode) }}"> {{ filter.ellipsis(item.content.content) }} </view>
+            <view class="c-question-list__stem {{ filter.getModeClass(item.content.mode) }}">
+              {{ filter.ellipsis(item.content.content) }}
+            </view>
           </navigator>
           <view class="c-question-list__attach-img">
             <image
