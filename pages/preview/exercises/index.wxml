@@ -35,7 +35,7 @@
         wx:if="{{questionData.item.content.mode === 2}}">
         <image wx:for="{{questionData.work.imgs}}" src="item"
         class="c-preview-list__img"></image>
-        <view class="c-preview-list__img" bindTap="uploadImg">
+        <view class="c-preview-list__img" bindtap="uploadImg">
           +
         </view>
         
