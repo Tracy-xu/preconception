@@ -121,7 +121,7 @@
     <view class="c-img__content" wx:if="{{openGroupInfo[gIdx].open}}">
       <view class="c-img__list  {{selectedWorkIds[work.workId] ? 'c-img__list--active m-border__color1' : ''}}" wx:for="{{group.works}}" wx:key="wIdx" wx:for-index="wIdx" wx:for-item="work">
         <view class="c-img__imgbox">
-          <image class="c-img__list-img" src="{{work.imgs.length > 0 ? work.imgs[0] : '' }}"></image>
+          <image class="c-img__list-img" catchtap="openImgs" data-imgs="{{work.imgs}}" src="{{work.imgs.length > 0 ? work.imgs[0] : '' }}"></image>
           <view class="c-img__list-check {{selectedWorkIds[work.workId] ? 'c-img__list-check--yes' : ''}}" data-work-id="{{work.workId}}" bindtap="selectedWork">
           </view>
           <view class="c-img__list-num">共{{work.imgs.length}}张</view>

@@ -26,7 +26,7 @@ Page({
       { open: true, text: '收起' }, { open: true, text: '收起' }, { open: true, text: '收起' }], //展开状态的分组
     klassPreconQueId: null,
     workGroup: {
-      mode: 3,
+      mode: 2,
       groups: [{
         groupInfo: {
           workIds: [1, 2, 3],
@@ -38,7 +38,7 @@ Page({
           workId: 1,
           userName: "测试1",
           answer: '学生回答问题学生回答问题学生回答问题学生回答问题学生回答问题学生回答问题学生回答问题学生回答问题',
-          imgs: ["2222", "22222"],
+          imgs: ["http://122.112.239.223:9001/image/20190913/10/44/1/e9d65cc01af90d708015199be848aefc.png", "http://122.112.239.223:9001/image/20190914/06/35/1/be00e306a7b0638a0e8a0ec927911fb1.png", "http://122.112.239.223:9001/image/20190913/16/19/1/25faeedbeab3118bf2332d31fe998d2c.png","http://122.112.239.223:9001/image/20190913/10/44/1/e9d65cc01af90d708015199be848aefc.png"],
           modifiedOn: "222"
         }, {
             workId: 2,
@@ -364,5 +364,11 @@ Page({
       urlVideo: urlVideo,
       visibleVideo: true,
     });
+  },
+  openImgs(event){
+    let imgs = event.currentTarget.dataset.imgs;
+    wx.previewImage({
+      urls: imgs,
+    })
   }
 })
