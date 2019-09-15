@@ -1,6 +1,17 @@
 import API from '../../../api/index.js';
 
 Component({
+  properties: {
+    stgId: {
+      type: Number,
+      value: null
+    },
+    sbjId: {
+      type: Number,
+      value: null
+    }
+  },
+
   data: {
     visibleVersion: false,
     visibleChapter: false,
@@ -35,9 +46,18 @@ Component({
     treeData: null
   },
 
-  ready() {
-    this.getStage();
-    this.getSubject();
+  async ready() {
+    await this.getStage();
+    await this.getSubject();
+
+    // 如果有默认数据，需初始化默认数据
+    this.setData({
+      selectedStgId: this.properties.stgId,
+      selectedSbjId: this.properties.sbjId
+    });
+    if (this.data.selectedStgId) {
+      this.getRelativeSubject(this.data.selectedStgId);
+    }
   },
 
   methods: {
@@ -45,7 +65,7 @@ Component({
      * 查询学段
      */
     getStage() {
-      API.Question.getStage().then((rep) => {
+      return API.Question.getStage().then((rep) => {
         this.setData({
           stage: rep
         });
@@ -69,7 +89,7 @@ Component({
      * 查询学科
      */
     getSubject() {
-      API.Question.getSubject().then((rep) => {
+      return API.Question.getSubject().then((rep) => {
         this.setData({
           subject: rep
         });
