@@ -46,6 +46,7 @@ Page({
   onLoad: function (options) {
     var resId = options.resId;
     var refId = options.refId;
+    
     this.getQuestionDetail(resId, refId);
   },
 
@@ -272,7 +273,7 @@ Page({
       var pages = getCurrentPages();
       var prevPage = pages[pages.length - 2];
       prevPage.setData({
-        needRefresh: true,
+        updateMode: true,
         newQuestion
       });
 
@@ -295,16 +296,20 @@ Page({
         sbjId: this.data.sbjId,
         tbkNodes: [
           {
-            attrs: {
+            attrs: { 
               edtId: this.data.edtId,
               tbkId: this.data.tbkId
             },
             path: this.data.path.reverse()
           }
-        ]
+        ],
+
+        // 重新编辑时，这两个参数也要传过去
+        resId: this.data.resId,
+        refId: this.data.refId
       };
 
-      API.Question.createQuestion(param).then((res) => {
+      API.Question.createQuestion('EDIT', param).then((res) => {
         resolve(res);
       });
     });

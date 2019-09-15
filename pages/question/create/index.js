@@ -247,7 +247,7 @@ Page({
       var pages = getCurrentPages();
       var prevPage = pages[pages.length - 2];
       prevPage.setData({
-        needRefresh: true,
+        createMode: true,
         newQuestion
       });
 
@@ -279,7 +279,7 @@ Page({
         ]
       };
 
-      API.Question.createQuestion(param).then((res) => {
+      API.Question.createQuestion('ADD', param).then((res) => {
         resolve(res);
       });
     });

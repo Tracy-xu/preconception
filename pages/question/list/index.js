@@ -23,8 +23,10 @@ Page({
       items: [],
       page: {}
     },
-    needRefresh: false,
+    createMode: false,
+    updateMode: false,
     newQuestion: null,
+    updateIndex: null,
 
     // 绑定班级所需参数
     resId: null,
@@ -48,9 +50,10 @@ Page({
    * 创建问题点击确定重新加载分页
    */
   async onShow() {
-    if (this.data.needRefresh) {
+    // 创建
+    if (this.data.createMode) {
       this.setData({
-        needRefresh: false
+        createMode: false
       });
 
       this.data.questions.items.unshift(this.data.newQuestion);
@@ -59,20 +62,20 @@ Page({
       this.setData({
         questions: this.data.questions
       });
+    }
 
-      // 由于 ES 异步的原因，使用前端自己的数据
-      // await sleep(600);
+    // 编辑
+    if (this.data.updateMode) {
+      this.setData({
+        updateMode: false
+      });
 
-      // this.getQuestion(this.data.queryParam).then((rep) => {
-      //   var items = rep.items;
-      //   var page = rep.page;
-      //   this.data.questions.items = items;
-      //   this.data.questions.page = page;
+      this.data.questions.items.splice(this.data.updateIndex, 1, this.data.newQuestion);
 
-      //   this.setData({
-      //     questions: this.data.questions
-      //   });
-      // });
+      this.setData({
+        questions: this.data.questions,
+        updateIndex: null
+      });
     }
   },
 
@@ -268,6 +271,11 @@ Page({
   handleEditQuestion(ev) {
     var resId = ev.target.dataset.resid;
     var refId = ev.target.dataset.refid;
+    var index = ev.target.dataset.index;
+
+    this.setData({
+      updateIndex: index
+    });
 
     wx.navigateTo({
       url: `${ router.questionEdit }?refId=${ refId }&resId=${ resId }`

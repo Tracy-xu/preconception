@@ -45,8 +45,8 @@ export function getQuestionDetail(resId, refId) {
 /**
  * 创建习题
  */
-export function createQuestion(param) {
-  return axios.post('/qgn/precon/que?intent=ADD&scope=1', param);
+export function createQuestion(action, param) {
+  return axios.post(`/qgn/precon/que?intent=${ action }&scope=1`, param);
 }
 
 /**

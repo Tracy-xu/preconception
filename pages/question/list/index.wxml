@@ -99,6 +99,7 @@
           bindtap="handleEditQuestion"
           data-resId="{{ item.resource.resId }}"
           data-refId="{{ item.resource.refId }}"
+          data-index="{{ index }}"
           class="c-question-list__edit"
         >
           编辑
