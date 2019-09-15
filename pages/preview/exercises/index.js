@@ -263,9 +263,17 @@ Page({
       dialogShow: false,
     })
   },
+  // 全文
   showAll(){
     this.setData({
       showAllFlag: !this.data.showAllFlag,
+    })
+  },
+  showBigImage(event){
+    let $src= event.currentTarget.dataset.src;
+    wx.previewImage({
+      urls: this.data.questionData.item.content.imgs,
+      current: $src
     })
   }
 })

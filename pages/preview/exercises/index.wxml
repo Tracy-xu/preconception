@@ -33,7 +33,9 @@
         </view>
         <span wx:if="{{questionData.item.content.imgs.length}}">
           <image wx:for="{{questionData.item.content.imgs}}"
-                wx:key="{{item}}" 
+                  wx:key="{{item}}"
+                  data-src="{{item}}"
+                  bindtap="showBigImage" 
                   src="{{item}}" class="c-preview-list__img">
           </image>
         </span>

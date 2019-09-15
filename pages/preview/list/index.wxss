@@ -1,5 +1,5 @@
 /* pages/preview-list/index.wxss */
-.c-preview-list{position:fixed;top:90rpx;bottom:0;left:0;right:0;overflow: hidden;}
+.c-preview-list{position:fixed;top:90rpx;bottom:116rpx;left:0;right:0;overflow: hidden;}
 .c-preview-list scroll-view{height:100%;overflow:auto;}
 .c-preview-list__item{background:#fff;margin-bottom:20rpx;padding:0 20rpx;}
 .c-preview-list__con{padding:20rpx 0;font-size:50rpx;color:#517B39;line-height:70rpx;}

@@ -26,6 +26,16 @@ Page({
     this.getWorkList();
     this.getStudentById();
   },
+  //切换tapbar
+  handleTabChange(data) {
+    const index = data.detail.index;
+    if (index === 1) {
+      wx.redirectTo({
+        url: `${router.profile}?from=1`
+      });
+    }
+  },
+  // 获取作业列表
   getWorkList(){
     wx.showLoading({
       title: '加载中',
