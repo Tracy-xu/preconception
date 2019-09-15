@@ -7,7 +7,8 @@ Page({
     userInfo: null,
     resId: null,
     refId: null,
-    klassIds: []
+    klassIds: [],
+    historyKlassIds: []
   },
 
   onLoad: function (options) {
@@ -20,6 +21,24 @@ Page({
   onReady() {
     this.setData({
       userInfo: app.globalData.userInfo
+    });
+
+    this.getBindClass();
+  },
+
+  /**
+   * 查询绑定历史
+   */
+  getBindClass() {
+    API.Question.getBindClass(this.data.resId).then((rep) => {
+      var historyKlassIds = [];
+      rep.forEach((item) => {
+        historyKlassIds.push(item.klassId);
+      });
+
+      this.setData({
+        historyKlassIds
+      });
     });
   },
 

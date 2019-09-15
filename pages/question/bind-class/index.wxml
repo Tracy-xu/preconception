@@ -1,3 +1,5 @@
+<wxs src="./filter.wxs" module="filter"></wxs>
+
 <view class="m-select-class">
   <checkbox-group bindchange="handleCheckBoxChange">
     <view
@@ -7,6 +9,7 @@
     >
       <checkbox
         value="{{ item.id }}"
+        checked="{{ filter.includes(historyKlassIds, item.id) }}"
       />
       <view class="m-select-class__content">
         <view class="m-select-class__class-name">{{ item.school.name }} {{ item.name }}</view>
