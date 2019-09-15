@@ -37,7 +37,8 @@ Page({
       });
 
       this.setData({
-        historyKlassIds
+        historyKlassIds,
+        klassIds: [...(new Set(historyKlassIds))]
       });
     });
   },
