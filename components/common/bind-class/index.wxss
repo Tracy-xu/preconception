@@ -7,3 +7,5 @@
 .m-select-class__teacher-name::before {content: ""; display: inline-block; width: 40rpx; height: 40rpx; margin-right: 14rpx; background: #ccc;}
 .m-select-class__btn {position: fixed; display: flex; height: 96rpx; left: 0; right: 0; bottom: 0; z-index: 2;}
 .m-select-class__btn button {flex: 1;}
+.m-select-class__btn button:nth-child(1) {color: #999;}
+.m-select-class__btn button:nth-child(2) {color: #14C75F;}
