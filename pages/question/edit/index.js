@@ -26,7 +26,7 @@ Page({
 
     // 绑定到班级所需参数
     refId: null,
-    resId: null
+    resId: null,
   },
 
   onReady() {
@@ -44,8 +44,18 @@ Page({
   },
   
   onLoad: function (options) {
+    var stgId = options.stgId;
+    var sbjId = options.sbjId;
     var resId = options.resId;
     var refId = options.refId;
+
+    // TODO.....................
+    this.setData({
+      stgId,
+      sbjId,
+      resId,
+      refId
+    });
     
     this.getQuestionDetail(resId, refId);
   },
@@ -302,14 +312,11 @@ Page({
             },
             path: this.data.path.reverse()
           }
-        ],
-
-        // 重新编辑时，这两个参数也要传过去
-        resId: this.data.resId,
-        refId: this.data.refId
+        ]
       };
 
-      API.Question.createQuestion('EDIT', param).then((res) => {
+      // 重新编辑时，resId、refId 这两个参数也要传过去
+      API.Question.createQuestion('EDIT', param, this.data.resId, this.data.refId).then((res) => {
         resolve(res);
       });
     });
