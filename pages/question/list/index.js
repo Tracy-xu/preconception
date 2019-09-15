@@ -271,6 +271,8 @@ Page({
   handleEditQuestion(ev) {
     var resId = ev.target.dataset.resid;
     var refId = ev.target.dataset.refid;
+    var stgId = ev.target.dataset.stgid;
+    var sbjId = ev.target.dataset.sbjid;
     var index = ev.target.dataset.index;
 
     this.setData({
@@ -278,7 +280,7 @@ Page({
     });
 
     wx.navigateTo({
-      url: `${ router.questionEdit }?refId=${ refId }&resId=${ resId }`
+      url: `${ router.questionEdit }?refId=${ refId }&resId=${ resId }&stgId=${ stgId }&sbjId=${ sbjId }`
     });
   }
 })

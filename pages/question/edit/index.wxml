@@ -12,6 +12,8 @@
   </view>
   <selector
     wx:if="{{ visibleSelector }}"
+    stgId="{{ stgId }}"
+    sbjId="{{ sbjId }}"
     bindclose="handleCloseSelector"
     bindconfirm="handleConfirmSelector"
   >

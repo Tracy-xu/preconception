@@ -97,8 +97,11 @@
         </view>
         <view
           bindtap="handleEditQuestion"
-          data-resId="{{ item.resource.resId }}"
-          data-refId="{{ item.resource.refId }}"
+          data-stgid="{{ item.content.stgId }}"
+          data-sbjid="{{ item.content.sbjId }}"
+          data-tbknodes="{{ item.content.tbkNodes }}"
+          data-resid="{{ item.resource.resId }}"
+          data-refid="{{ item.resource.refId }}"
           data-index="{{ index }}"
           class="c-question-list__edit"
         >
