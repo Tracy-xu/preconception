@@ -8,6 +8,14 @@
 .c-question-detail__title-time {text-align: right;}
 /* 内容 */
 .c-question-detail__content {padding: 24rpx;}
+.c-question-detail__stem--txt::after,
+.c-question-detail__stem--img::after,
+.c-question-detail__stem--video::after,
+.c-question-detail__stem--audio::after {content: ""; display: inline-block; width: 50rpx; height: 60rpx; vertical-align: middle;background-size: 100% 100%;}
+.c-question-detail__stem--txt::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/text.png');}
+.c-question-detail__stem--img::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/picture.png');}
+.c-question-detail__stem--audio::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/voice.png');}
+.c-question-detail__stem--video::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/video.png');}
 /* 附件 */
 .c-question-detail__attath-img image {display: block; width: 100%; margin: 28rpx auto;}
 

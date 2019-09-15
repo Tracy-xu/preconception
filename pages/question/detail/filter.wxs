@@ -20,5 +20,24 @@ module.exports = {
     }
 
     return result;
+  },
+
+  getModeClass: function (mode) {
+    console.log(mode, 2222);
+    if (mode === 1) {
+      return 'c-question-detail__stem--txt';
+    }
+
+    if (mode === 2) {
+      return 'c-question-detail__stem--img';
+    }
+
+    if (mode === 3) {
+      return 'c-question-detail__stem--video';
+    }
+
+    if (mode === 4) {
+      return 'c-question-detail__stem--audio';
+    }
   }
 };

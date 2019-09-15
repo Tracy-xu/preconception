@@ -7,7 +7,7 @@
     <view class="c-question-detail__title-time">{{ detail.content.createdOn }}</view>
   </view>
   <view class="c-question-detail__content">
-    <view class="c-question-detail__stem">
+    <view class="c-question-detail__stem {{ filter.getModeClass(detail.content.mode) }}">
       {{ detail.content.content }}
     </view>
     <view
@@ -16,16 +16,19 @@
     >
       <image
         wx:for="{{ detail.content.imgs }}"
+        wx:key="{{ index }}"
         src="{{ item }}"
       >
       </image>
     </view>
     <view
       wx:if="{{ detail.content.audios.length }}"
+      wx:key="{{ index }}"
       class="c-question-detail__attath-audio"
     >
       <myk-audio
         wx:for="{{ detail.content.audios }}"
+        wx:key="{{ index }}"
         src="{{ item }}"
       >
       </myk-audio>
@@ -48,7 +51,7 @@
     wx:key="{{ index }}"
     class="c-bind-class_item"
   >
-    <view>{{ item.createdOn }} 科目：语文</view>
+    <view>{{ item.createdOn }}</view>
     <view class="c-bind-class__content">
       <view class="c-bind-class__class-name"
        bindtap="openKlassPrequeView"
