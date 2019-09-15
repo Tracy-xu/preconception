@@ -11,14 +11,30 @@
         </span>
         <!-- 文本 -->
         <view class="c-exercises-main__text">
-          {{questionData.item.content.content}}
+          {{}}
+          <span wx:if="{{showAllFlag}}">
+        {{questionData.item.content.content}}
+        </span>
+        <span wx:else>
+        {{questionData.item.content.content.length >= 48 ? util.sub(questionData.item.content.content,48) : questionData.item.content.content}}
+        </span>
+          <span class="font-color--blue"
+          data-index="{{item.work.workId}}" 
+          wx:if="{{questionData.item.content.content.length >= 48 && showAllFlag}}" 
+          bindtap="showAll">收起</span>
+          <span class="font-color--blue"
+          data-index="{{item.work.workId}}" 
+          wx:if="{{questionData.item.content.content.length >= 48 && !showAllFlag}}" 
+          bindtap="showAll">全文</span>
           <i class="c-preview__icon--text" wx:if="{{questionData.item.content.mode === 1}}"></i>
           <i class="c-preview__icon--camera" wx:elif="{{questionData.item.content.mode === 2}}"></i>
           <i class="c-preview__icon--video" wx:elif="{{questionData.item.content.mode === 3}}"></i>
           <i class="c-preview__icon--voice" wx:elif="{{questionData.item.content.mode === 4}}"></i>
         </view>
         <span wx:if="{{questionData.item.content.imgs.length}}">
-          <image wx:for="{{questionData.item.content.imgs}}" src="{{item}}" class="c-preview-list__img">
+          <image wx:for="{{questionData.item.content.imgs}}"
+                wx:key="{{item}}" 
+                  src="{{item}}" class="c-preview-list__img">
           </image>
         </span>
       </view>
@@ -112,3 +128,15 @@
   style="z-index:999;">
 </myk-video>
 </view>
+<wxs module="util">
+    var sub = function(val,length) {
+        return val.substring(0, length) + '...';
+    };
+    var floor = function(a){
+      return Math.floor(a);
+    };
+    module.exports = {
+      sub: sub,
+      floor: floor
+    }
+</wxs>

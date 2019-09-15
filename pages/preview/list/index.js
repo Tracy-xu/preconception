@@ -49,7 +49,11 @@ Page({
           workList: arr.contact(res.items)
         })
       }
+      this.data.workList.forEach(item => {
+        item.showAllFlag = false;
+      })
       this.setData({
+        workList: this.data.workList,
         pageSize: res.page.pageSize,
         total: res.page.total,
       })
@@ -119,5 +123,17 @@ Page({
       subjId: event.currentTarget.dataset.subjid
     })
     this.getWorkList()
+  },
+  showAll(event){
+    let $workId = event.currentTarget.dataset.index;
+    console.log($workId, event)
+    this.data.workList.forEach(item => {
+      if (item.work.workId === $workId){
+        item.showAllFlag = !item.showAllFlag;
+      }
+    });
+    this.setData({
+      workList: this.data.workList,
+    })
   }
 })

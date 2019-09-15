@@ -15,9 +15,24 @@
                   lower-threshold="100"
                   scroll-y style="width: 100%" 
                   bindscrolltolower="changeCurpage">
-      <view class="c-preview-list__item" wx:for="{{workList}}">
+      <view class="c-preview-list__item" 
+              wx:for="{{workList}}"
+              wx:key="{{item.work.workId}}">
         <view class="c-preview-list__con">
-          {{item.item.content.content}}
+        <span wx:if="{{item.showAllFlag}}">
+        {{item.item.content.content}}
+        </span>
+        <span wx:else>
+        {{item.item.content.content.length >= 48 ? util.sub(item.item.content.content,48) : item.item.content.content}}
+        </span>
+          <span class="font-color--blue"
+          data-index="{{item.work.workId}}" 
+          wx:if="{{item.item.content.content.length >= 48 && item.showAllFlag}}" 
+          bindtap="showAll">收起</span>
+          <span class="font-color--blue"
+          data-index="{{item.work.workId}}" 
+          wx:if="{{item.item.content.content.length >= 48 && !item.showAllFlag}}" 
+          bindtap="showAll">全文</span>
           <i class="c-preview__icon--text" wx:if="{{item.item.content.mode === 1}}"></i>
           <i class="c-preview__icon--camera" wx:elif="{{item.item.content.mode === 2}}"></i>
           <i class="c-preview__icon--video" wx:elif="{{item.item.content.mode === 3}}"></i>
@@ -28,7 +43,8 @@
           wx:if="{{item.item.content.audios.length}}">
           <myk-audio 
             wx:for-item="audioItem" 
-            wx:for="{{item.item.content.audios}}" 
+            wx:for="{{item.item.content.audios}}"
+            wx:key="{{audioItem}}" 
             src="{{audioItem}}"></myk-audio>
           </view>
           <span wx:for="{{item.item.content.imgs}}"
@@ -63,3 +79,15 @@
   <action-sheet-cancel class="cancel" bindtap="hideActionSheet">取消</action-sheet-cancel>
   </view>
 </view>
+<wxs module="util">
+    var sub = function(val,length) {
+        return val.substring(0, length) + '...';
+    };
+    var floor = function(a){
+      return Math.floor(a);
+    };
+    module.exports = {
+      sub: sub,
+      floor: floor
+    }
+</wxs>

@@ -16,6 +16,7 @@ Page({
     record: false,
     recordIng: false,
     playVideoFlag: false,
+    showAllFlag: false,
     recorderManager: null,
     questionData: {
       work: {
@@ -260,6 +261,11 @@ Page({
     this.setData({
       questionData: this.data.questionData,
       dialogShow: false,
+    })
+  },
+  showAll(){
+    this.setData({
+      showAllFlag: !this.data.showAllFlag,
     })
   }
 })
