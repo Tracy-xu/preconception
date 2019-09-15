@@ -5,7 +5,7 @@ module.exports = {
     }
     
     if (!item.content.tbkNodes) {
-      return;
+      return '--';
     }
 
     var path = item.content.tbkNodes[0].path;
