@@ -240,16 +240,25 @@ Page({
   /**
    * 删除习题
    */
-  async handleDeleteQuextion(ev) {
+  handleDeleteQuextion(ev) {
     var resId = ev.target.dataset.resid;
     var index = ev.target.dataset.index;
 
-    await API.Question.deleteQuextion(resId);
+    wx.showModal({
+      title: '提示',
+      content: '确定删除吗？',
+      success: async (res) => {
+        if (res.cancel) {
+          return;
+        }
 
-    // 直接删前端数据即可，不需再次请求
-    this.data.questions.items.splice(index, 1);
-    this.setData({
-      questions: this.data.questions
+        await API.Question.deleteQuextion(resId);
+
+        this.data.questions.items.splice(index, 1);
+        this.setData({
+          questions: this.data.questions
+        });
+      }
     });
   },
 
