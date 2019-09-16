@@ -61,11 +61,11 @@
       </view>
     </view>
     <view class="c-voice__content" wx:if="{{openGroupInfo[gIdx].open}}">
-      <view class="c-voice__show {{selectedWorkIds[work.workId] ? 'c-text__list-check--yes' : ''}}" wx:for="{{group.works}}" wx:key="workId"  wx:for-index="wIdx" wx:for-item="work" data-work-id="{{work.workId}}" bindtap="selectedWork">
+      <view class="c-voice__show {{selectedWorkIds[work.workId] ? 'c-text__list-check--yes' : ''}}" wx:for="{{group.works}}" wx:key="workId"  wx:for-index="wIdx" wx:for-item="work" data-work-id="{{work.workId}}" catchtap="selectedWork">
         <view class="c-voice__content-header">
           <view class="c-voice__name">{{work.userName}}</view>
           <view class="c-voice__time">{{work.createdOnStr}}</view>
-          <view wx:if="{{wIdx != (group.works.length -1) && gIdx < 5}}" data-work-id="{{work.workId}}" bindtap="moveTop">置顶</view>
+          <view wx:if="{{wIdx > 0 && gIdx < 5 }}" data-work-id="{{work.workId}}" catchtap="moveTop">置顶</view>
         </view>
         <view class="c-text__content">
           <view class="c-text__txt">
@@ -73,7 +73,7 @@
             <view wx:if="{{work.answer.length > 7}}" class="c-text__txt-show m-blur" data-work-id="{{work.workId}}" catchtap="openQuanwen">{{quanwenWorkIds[work.workId] ? '收起':'全文'}}</view>
           </view>
           <view class="c-voice__tab" wx:if="{{gIdx < 5}}">
-            <view class="c-voice__tab-pre"  data-work-id="{{work.workId}}" catchtap="moveUp"></view>
+            <view class="c-voice__tab-pre"  wx:if="{{!(gIdx == 0 && wIdx == 0)}}"  data-work-id="{{work.workId}}" catchtap="moveUp"></view>
             <view class="c-voice__tab-next"  data-work-id="{{work.workId}}" catchtap="moveDown"></view>
           </view>
         </view>
@@ -134,10 +134,10 @@
           </view>
           <view class="c-img__detail--fun" wx:if="{{gIdx < 5}}">
             <view class="c-img__detail-tab" >
-              <view class="c-img__tab-left" data-work-id="{{work.workId}}" catchtap="moveUp"></view>
+              <view class="c-img__tab-left" wx:if="{{!(gIdx == 0 && wIdx == 0)}}"  data-work-id="{{work.workId}}" catchtap="moveUp"></view>
               <view class="c-img__tab-left c-img__tab-right" data-work-id="{{work.workId}}" catchtap="moveDown"></view>
             </view>
-            <view wx:if="{{wIdx != (group.works.length -1)}}" data-work-id="{{work.workId}}" catchtap="moveTop">置顶</view>
+            <view wx:if="{{wIdx > 0 && gIdx < 5 }}" data-work-id="{{work.workId}}" catchtap="moveTop">置顶</view>
           </view>
         </view>
       </view>
@@ -181,19 +181,19 @@
     </view>
     <view class="c-img__content" wx:if="{{openGroupInfo[gIdx].open}}">
       <view class="c-img__list {{selectedWorkIds[work.workId] ? 'c-img__list--active m-border__color1' : ''}}" wx:for="{{group.works}}" wx:key="workId" wx:for-index="wIdx" wx:for-item="work">
-        <view class="c-img__imgbox" data-url-video="{{work.fileId}}" bindtap="openVideo">
+        <view class="c-img__imgbox" data-url-video="{{work.fileId}}" catchtap="openVideo">
           <image class="c-img__list-img" src=""  ></image>
-          <view class="c-img__list-check {{selectedWorkIds[work.workId] ? 'c-img__list-check--yes' : ''}}" data-work-id="{{work.workId}}" bindtap="selectedWork"></view>
+          <view class="c-img__list-check {{selectedWorkIds[work.workId] ? 'c-img__list-check--yes' : ''}}" data-work-id="{{work.workId}}" catchtap="selectedWork"></view>
           <view class="c-video__bg"></view>
         </view>
         <view class="c-img__detail">
           <view class="c-img__detail-content"><view>{{work.userName}}</view><view>{{work.createdOnStr}}</view></view>
           <view class="c-img__detail--fun">
             <view class="c-img__detail-tab" wx:if="{{gIdx < 5}}">
-              <view class="c-img__tab-left {{(gIdx+wIdx) == 0  ? 'c-img__tab-left--default' : ''}}" data-work-id="{{work.workId}}" catchtap="moveUp"></view>
+              <view class="c-img__tab-left {{(gIdx+wIdx) == 0  ? 'c-img__tab-left--default' : ''}}" data-work-id="{{work.workId}}" catchtap="moveUp" wx:if="{{!(gIdx == 0 && wIdx == 0)}}"></view>
               <view class="c-img__tab-left c-img__tab-right" data-work-id="{{work.workId}}" catchtap="moveDown"></view>
             </view>
-            <view  wx:if="{{wIdx != (group.works.length -1)}}" data-work-id="{{work.workId}}" catchtap="moveTop">置顶</view>
+            <view  wx:if="{{wIdx > 0 && gIdx < 5 }}" data-work-id="{{work.workId}}" catchtap="moveTop">置顶</view>
           </view>
         </view>
       </view>
@@ -236,18 +236,18 @@
       </view>
     </view>
     <view class="c-voice__content" wx:if="{{openGroupInfo[gIdx].open}}">
-      <view class="c-voice__show {{selectedWorkIds[work.workId] ? 'c-voice__list-check--yes' : ''}}" wx:for="{{group.works}}" wx:key="workId" wx:for-index="wIdx" wx:for-item="work" data-work-id="{{work.workId}}" bindtap="selectedWork">
+      <view class="c-voice__show {{selectedWorkIds[work.workId] ? 'c-voice__list-check--yes' : ''}}" wx:for="{{group.works}}" wx:key="workId" wx:for-index="wIdx" wx:for-item="work" data-work-id="{{work.workId}}" catchtap="selectedWork">
         <view class="c-voice__content-header">
           <view class="c-voice__name">{{work.userName}}</view>
           <view class="c-voice__time">{{work.createdOnStr}}</view>
-          <view wx:if="{{wIdx != (group.works.length -1) && gIdx < 5}}" data-work-id="{{work.workId}}" bindtap="moveTop">置顶</view>
+          <view wx:if="{{wIdx > 0 && gIdx < 5 }}"  data-work-id="{{work.workId}}" catchtap="moveTop">置顶</view>
         </view>
         <view class="c-voice__nav">
           <view class="c-voice__box">
            <myk-audio src="{{work.audio}}"></myk-audio>
           </view>
           <view class="c-voice__tab" wx:if="{{gIdx < 5}}">
-             <view class="c-voice__tab-pre" data-work-id="{{work.workId}}" catchtap="moveUp"></view>
+             <view class="c-voice__tab-pre" wx:if="{{!(gIdx == 0 && wIdx == 0)}}" data-work-id="{{work.workId}}" catchtap="moveUp"></view>
             <view class="c-voice__tab-next" data-work-id="{{work.workId}}" catchtap="moveDown"></view>
           </view>
         </view>
@@ -324,5 +324,11 @@
     var sub = function(val,length) {
         return val.substring(0, length) + '...';
     }
-    module.exports.sub = sub;
+    var canUp = function(gIdx,wIdx){
+        return !(gIdx == 0 && wIdx == 0);
+    }
+    module.exports ={
+        sub: sub,
+        canUp: canUp
+    };
 </wxs>
