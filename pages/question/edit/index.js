@@ -215,16 +215,6 @@ Page({
     });
   },
 
-
-  /**
-   * 选中答题方式
-   */
-  handleSelectAnswerType(ev) {
-    this.setData({
-      mode: ev.target.dataset.type
-    });
-  },
-
   /**
    * 保存创建习题
    */
