@@ -47,15 +47,25 @@ Page({
    * 解除绑定
    */
   async handleUnbindClass(ev) {
-    await API.Question.unbindClass({
-      klassPreconQueId: ev.target.dataset.id
-    });
+    wx.showModal({
+      title: '提示',
+      content: '确定删除吗？',
+      success: async (res) => {
+        if (res.cancel) {
+          return;
+        }
 
-    var index = ev.target.dataset.index;
+        await API.Question.unbindClass({
+          klassPreconQueId: ev.target.dataset.id
+        });
 
-    this.data.classData.splice(index, 1);
-    this.setData({
-      classData: this.data.classData
+        var index = ev.target.dataset.index;
+
+        this.data.classData.splice(index, 1);
+        this.setData({
+          classData: this.data.classData
+        });
+      }
     });
   },
 
