@@ -10,7 +10,7 @@
 
   <icon
     class="m-audio__button {{ audioAction.method === 'pause' ? 'm-audio__button--pause' : 'm-audio__button--play' }}"
-    bindtap="handlePlayPause"
+    catchtap="handlePlayPause"
   >
   </icon>
 

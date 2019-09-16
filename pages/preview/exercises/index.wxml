@@ -11,8 +11,7 @@
         </span>
         <!-- 文本 -->
         <view class="c-exercises-main__text">
-          {{}}
-          <span wx:if="{{showAllFlag}}">
+        <span wx:if="{{showAllFlag}}">
         {{questionData.item.content.content}}
         </span>
         <span wx:else>

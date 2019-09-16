@@ -51,6 +51,7 @@ Page({
       this.data.doneNum = 0;
       res.forEach((item) => {
         item.startTime = LocalDate.format(item.startTime, 'yyyy-MM-dd');
+        item.showAllFlag = false;
         if(item.status === 2){
           this.data.doneNum++;
         }
@@ -87,14 +88,31 @@ Page({
       })
     }
   },
+  // 我的答案图片查看
   showImg(){
     wx.previewImage({
       urls: this.data.activeWorkDetail.work.imgs,
     })
   },
+  // 相似答案图片查看
+  showLikeImg(event) {
+    let $src = event.currentTarget.dataset.src;
+    wx.previewImage({
+      urls: [$src]
+    })
+  },
+  // 播放我的答案视频
   playVideo() {
     this.setData({
       videoSrc: this.data.activeWorkDetail.work.fileId,
+      visible: true
+    })
+  },
+  // 播放相似答案视频
+  playLikeVideo(event) {
+    let $src = event.currentTarget.dataset.src;
+    this.setData({
+      videoSrc: $src,
       visible: true
     })
   },
@@ -132,5 +150,16 @@ Page({
         });
       })
     }
+  },
+  showAll(event) {
+    let $workId = event.currentTarget.dataset.index;
+    this.data.workList.forEach(item => {
+      if (item.work.workId === $workId) {
+        item.showAllFlag = !item.showAllFlag;
+      }
+    });
+    this.setData({
+      workList: this.data.workList,
+    })
   }
 })

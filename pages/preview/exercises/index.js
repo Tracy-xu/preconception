@@ -54,19 +54,19 @@ Page({
     const $mode = this.data.questionData.item.content.mode;
     switch ($mode){
       case 1:
-        return this.data.questionData.work.answer === null;
+        return this.data.questionData.work.answer == null;
         return this.data.questionData.work.answer.length <= 0;
       break;
       case 2:
-        return this.data.questionData.imgs === null;
+        return this.data.questionData.imgs == null;
         return this.data.questionData.work.imgs.length <= 0; 
       break;
       case 3:
-        return this.data.questionData.fileId === null;
+        return this.data.questionData.fileId == null;
         return this.data.questionData.work.fileId.length <= 0;
       break;
       case 4:
-        return this.data.questionData.audio === null;
+        return this.data.questionData.audio == null;
         return this.data.questionData.work.audio.length <= 0;
       break;
     }
@@ -86,13 +86,9 @@ Page({
     Api.Preview.pushWorkStorage(this.data.workId, this.data.questionData.work).then(res => {
       // 返回主页
       wx.hideLoading();
-      wx.navigateBack({
-        success: function() {
-          wx.redirectTo({
-            url: router.previewList,
-          })
-        }
-      });
+      wx.redirectTo({
+        url: router.previewList,
+      })
     })
   },
   // 提交数据
