@@ -19,5 +19,18 @@
     <view class="c-arrow">></view>
   </view>
 </view>
+<view class="c-profile-list">
+  <view class="c-profile-list__item" bindtap="deleteUser">
+    <view>解除账号绑定</view>
+    <view class="c-arrow">></view>
+  </view>
+</view>
+<mp-dialog
+      title="提示"
+      buttons="{{buttons}}"
+      bindbuttontap="tapDialogButton"
+      show="{{showDialog}}">
+      是否解除当前账号绑定？
+  </mp-dialog>
 <!-- tapbar -->
 <myk-tabbar bindchange="handleTabChange" current="1"></myk-tabbar>

@@ -7,6 +7,8 @@ Page({
    */
   data: {
     from:0,
+    showDialog:false,
+    buttons: [{ text: '取消' }, { text: '确定' }],
     roleId: 1, //1 老师,2 学生
     img:'http://g.hiphotos.baidu.com/image/pic/item/c2cec3fdfc03924590b2a9b58d94a4c27d1e2500.jpg'
   },
@@ -55,5 +57,15 @@ Page({
     wx.navigateTo({
       url: router.record
     });
+  },
+  // 解除账号绑定
+  deleteUser(){
+    this.setData({
+      showDialog:true,
+    })
+  },
+  // 解除账号确认
+  tapDialogButton(e) {
+   console.log(e.detail)
   },
 })
