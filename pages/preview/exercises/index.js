@@ -41,24 +41,69 @@ Page({
   getWorkById() {
     let that = this
     Api.Preview.getWorkById(this.data.workId).then((res) => {
+      // 转换文字
+      if(res.work.audio){
+        this.uploadAsr();
+      }
       that.setData({
         questionData: res
       })
     })
   },
+  verifyData(){
+    const $mode = this.data.questionData.item.content.mode;
+    switch ($mode){
+      case 1:
+        return this.data.questionData.work.answer === null;
+        return this.data.questionData.work.answer.length <= 0;
+      break;
+      case 2:
+        return this.data.questionData.imgs.answer === null;
+        return this.data.questionData.work.imgs.length <= 0; 
+      break;
+      case 3:
+        return this.data.questionData.fileId.answer === null;
+        return this.data.questionData.work.fileId.length <= 0;
+      break;
+      case 4:
+        return this.data.questionData.audio.answer === null;
+        return this.data.questionData.work.audio.length <= 0;
+      break;
+    }
+  },
   // 暂存数据
   pushWorkStorage() {
+    if (this.verifyData()){
+      wx.showToast({
+        title: '请输入答案',
+        icon: 'warn',
+      })
+      return;
+    }
     wx.showLoading({
       title: '暂存答案中哟~',
     });
     Api.Preview.pushWorkStorage(this.data.workId, this.data.questionData.work).then(res => {
       // 返回主页
       wx.hideLoading();
-      wx.navigateBack();
+      wx.navigateBack({
+        success: function() {
+          wx.redirectTo({
+            url: router.previewList,
+          })
+        }
+      });
     })
   },
   // 提交数据
   pushWorkSave() {
+    if (this.verifyData()) {
+      wx.showToast({
+        title: '请输入答案',
+        icon: 'warn',
+      })
+      return;
+    }
     wx.showLoading({
       title: '答提交中哟~',
     });
@@ -165,6 +210,7 @@ Page({
     }
     if (that.data.recordIng) {
       app.globalData.RecorderManager.start({
+        duration:30000,
         success: (res) => {
           wx.showToast({
             title: '开始录音',

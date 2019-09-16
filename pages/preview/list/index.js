@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    first:true,
     studentId: null,
     curPage: 1,
     klassId: null,

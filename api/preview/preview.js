@@ -11,7 +11,7 @@ export function getAllSubject() {
 export function getWorkList(data) {
   let $urlQuery='';
   if (data.subjId){
-    $urlQuery = `&subjId=${data.subjId}`
+    $urlQuery = `&sbjId=${data.subjId}`
   }
   return axios.get(`/qgn/precon/que/work?curPage=${data.curPage}&userId=${data.userId}${$urlQuery}`)
 }
