@@ -57,7 +57,7 @@ Page({
         if(item.status === 2){
           this.data.doneNum++;
         }
-        if(item.preWkId){
+        if (item.canLike){
           this.setData({
             activeWorkId: item.preWkId,
             overSle: true,

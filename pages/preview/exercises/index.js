@@ -281,6 +281,7 @@ Page({
   },
   asr() {
     let that = this;
+    wx.hideLoading();
     wx.showLoading({
       title: '语音转换中',
     });
@@ -290,12 +291,16 @@ Page({
         that.setData({
           questionData: that.data.questionData,
         })
-      } else {
+        wx.hideLoading();
+      } else if (resDetail.status === 0) {
+        this.asr();
+      }else{
         wx: wx.showToast({
           title: resDetail.msg,
         })
+        wx.hideLoading();
       }
-      wx.hideLoading();
+      
     })
 
   },
