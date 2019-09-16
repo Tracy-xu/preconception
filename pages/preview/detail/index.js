@@ -34,6 +34,11 @@ Page({
     })
     this.getWorkListByklassPreconQueId();
   },
+  // 监听页面卸载
+  onUnload(){
+    let $page = getCurrentPages();
+    $page[0].getWorkList();
+  },
   getWorkListByklassPreconQueId() {
     wx.showLoading({
       title: '加载中',

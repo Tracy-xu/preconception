@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    first:true,
     studentId: null,
     curPage: 1,
     klassId: null,
@@ -19,10 +20,6 @@ Page({
     total:0,
     actionSheetHidden:true,
     subJectListObj:[],
-  },
-  onshow(){
-    console.log("dddd")
-    this.getWorkList();
   },
   onLoad(){
     this.data.studentId = app.globalData.userInfo.id;
