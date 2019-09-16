@@ -48,6 +48,7 @@
             <myk-audio src="{{ item }}"></myk-audio>
           </view>
           <icon
+            class="c-question-create__delete-audio"
             bindtap="handleDeleteAudio"
             data-index="{{ index }}"
           ></icon>
