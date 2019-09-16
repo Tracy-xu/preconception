@@ -97,9 +97,6 @@
         </view>
         <view
           bindtap="handleEditQuestion"
-          data-stgid="{{ item.content.stgId }}"
-          data-sbjid="{{ item.content.sbjId }}"
-          data-tbknodes="{{ item.content.tbkNodes }}"
           data-resid="{{ item.resource.resId }}"
           data-refid="{{ item.resource.refId }}"
           data-index="{{ index }}"

@@ -5,6 +5,8 @@ Page({
   data: {
     visibleSelector: false,
     visibleBindClass: false,
+
+    // 录音相关
     isRecord: false,
     RecorderManager: null,
     count: 0,
@@ -24,7 +26,7 @@ Page({
     tbkId: null,
     path: [],
 
-    // 绑定到班级所需参数
+    // 初始化绑定班级组件所需参数(refId、resId)
     refId: null,
     resId: null,
   },
@@ -44,15 +46,10 @@ Page({
   },
   
   onLoad: function (options) {
-    var stgId = options.stgId;
-    var sbjId = options.sbjId;
     var resId = options.resId;
     var refId = options.refId;
 
-    // TODO.....................
     this.setData({
-      stgId,
-      sbjId,
       resId,
       refId
     });
@@ -69,12 +66,17 @@ Page({
       var imgs = res.content.imgs;
       var audios = res.content.audios;
       var mode = res.content.mode;
+      var sbjId = res.content.sbjId;
+      var stgId = res.content.stgId;
 
       this.setData({
         content,
         imgs,
         audios,
-        mode
+        mode,
+
+        sbjId,
+        stgId
       });
     });
   },
@@ -216,9 +218,43 @@ Page({
   },
 
   /**
+   * 往父页面插入习题
+   */
+  addNewQuestionToParentPage(resourceIds) {
+    var newQuestion = {
+      content: {
+        content: this.data.content,
+        imgs: this.data.imgs,
+        audios: this.data.audios,
+        mode: this.data.mode,
+        tbkNodes: [
+          {
+            attrs: {
+              edtId: this.data.edtId,
+              tbkId: this.data.tbkId
+            },
+            path: this.data.path.reverse()
+          }
+        ]
+      },
+      resource: {
+        resId: resourceIds.resId,
+        refId: resourceIds.refId
+      }
+    };
+
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2];
+    prevPage.setData({
+      updateMode: true,
+      newQuestion
+    });
+  },
+
+  /**
    * 保存创建习题
    */
-  handleCreateQuestion() {
+  async handleCreateQuestion() {
     // 校验必填（学段学科教材章节、题干、答题方式）
     if (!this.data.stgId) {
       wx.showToast({
@@ -238,93 +274,51 @@ Page({
       return;
     }
 
-    if (!this.data.mode) {
-      wx.showToast({
-        title: '请选择答题方式',
-        icon: 'none',
-        duration: 2000
-      });
-      return;
-    }
-
-    this.createQuestion().then((res) => {
-      var newQuestion = {
-        content: {
-          content: this.data.content,
-          imgs: this.data.imgs,
-          audios: this.data.audios,
-          mode: this.data.mode,
-          tbkNodes: [
-            {
-              attrs: {
-                edtId: this.data.edtId,
-                tbkId: this.data.tbkId
-              },
-              path: this.data.path.reverse()
-            }
-          ]
-        },
-        resource: {
-          resId: res.resId,
-          refId: res.refId
-        }
-      };
-
-      var pages = getCurrentPages();
-      var prevPage = pages[pages.length - 2];
-      prevPage.setData({
-        updateMode: true,
-        newQuestion
-      });
-
-      wx.navigateBack();
-    });
+    var res = await this.createQuestion();
+    this.addNewQuestionToParentPage(res);
+    wx.navigateBack();
   },
 
   /**
    * 创建习题
    */
   createQuestion() {
-    return new Promise((resolve, reject) => {
-      var param = {
-        content: this.data.content,
-        imgs: this.data.imgs,
-        audios: this.data.audios,
-        mode: this.data.mode,
+    var param = {
+      content: this.data.content,
+      imgs: this.data.imgs,
+      audios: this.data.audios,
+      mode: this.data.mode,
 
-        stgId: this.data.stgId,
-        sbjId: this.data.sbjId,
-        tbkNodes: [
-          {
-            attrs: { 
-              edtId: this.data.edtId,
-              tbkId: this.data.tbkId
-            },
-            path: this.data.path.reverse()
-          }
-        ]
-      };
+      stgId: this.data.stgId,
+      sbjId: this.data.sbjId,
+      tbkNodes: [
+        {
+          attrs: { 
+            edtId: this.data.edtId,
+            tbkId: this.data.tbkId
+          },
+          path: this.data.path.reverse()
+        }
+      ]
+    };
 
-      // 重新编辑时，resId、refId 这两个参数也要传过去
-      API.Question.createQuestion('EDIT', param, this.data.resId, this.data.refId).then((res) => {
-        resolve(res);
-      });
-    });
+    // 重新编辑时，resId、refId 这两个参数也要传过去
+    return API.Question.createQuestion('EDIT', param, this.data.resId, this.data.refId);
   },
 
   /**
    * 绑定班级
    */
-  handleBindClass() {
-    this.createQuestion().then((res) => {
-      this.setData({
-        resId: res.resId,
-        refId: res.refId
-      });
+  async handleBindClass() {
+    var res = await this.createQuestion();
 
-      this.setData({
-        visibleBindClass: true
-      });
+    this.setData({
+      resId: res.resId,
+      refId: res.refId
+    });
+
+    this.setData({
+      visibleBindClass: true
     });
   },
 
@@ -332,6 +326,10 @@ Page({
    * 确定绑定班级
    */
   handleConfirmBindClass() {
+    this.addNewQuestionToParentPage({
+      resId: this.data.resId,
+      refId: this.data.refId
+    });
     wx.navigateBack();
   },
 
@@ -339,9 +337,11 @@ Page({
    * 取消绑定班级
    */
   handleCancelBindClass() {
-    this.setData({
-      visibleBindClass: false
+    this.addNewQuestionToParentPage({
+      resId: this.data.resId,
+      refId: this.data.refId
     });
+    wx.navigateBack();
   },
 
   /**
