@@ -14,6 +14,7 @@
     title="绑定每一课账号"
     show="{{true}}"
     bindbuttontap="handleLogin"
+    mask-closable="{{!showLogin}}"
     buttons="{{buttons}}"
   >
     <view>
