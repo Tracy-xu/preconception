@@ -20,6 +20,10 @@ Page({
     actionSheetHidden:true,
     subJectListObj:[],
   },
+  onshow(){
+    console.log("dddd")
+    this.getWorkList();
+  },
   onLoad(){
     this.data.studentId = app.globalData.userInfo.id;
     this.getAllSubject();

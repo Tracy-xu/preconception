@@ -71,7 +71,7 @@ Page({
   pushWorkStorage() {
     if (this.verifyData()){
       wx.showToast({
-        title: '你没有回答问题哟',
+        title: '请输入答案',
         icon: 'warn',
       })
       return;
@@ -82,14 +82,20 @@ Page({
     Api.Preview.pushWorkStorage(this.data.workId, this.data.questionData.work).then(res => {
       // 返回主页
       wx.hideLoading();
-      wx.navigateBack();
+      wx.navigateBack({
+        success: function() {
+          wx.redirectTo({
+            url: router.previewList,
+          })
+        }
+      });
     })
   },
   // 提交数据
   pushWorkSave() {
     if (this.verifyData()) {
       wx.showToast({
-        title: '你没有回答问题哟',
+        title: '请输入答案',
         icon: 'warn',
       })
       return;

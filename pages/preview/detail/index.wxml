@@ -17,7 +17,10 @@
       <view class="c-dialog__top">
         {{activeWorkDetail.item.content.content}}
         <span wx:if="activeWorkDetail.item.content.imgs.length">
-          <image src="{{item}}" class="c-dialog__imgs" wx:for="{{activeWorkDetail.item.content.imgs}}"></image>
+          <image src="{{item}}" 
+                  class="c-dialog__imgs"
+                  wx:key="{{item}}" 
+                  wx:for="{{activeWorkDetail.item.content.imgs}}"></image>
         </span>
         <i class="c-preview__icon--text" wx:if="{{activeWorkDetail.item.content.mode == 1}}"></i>
         <i class="c-preview__icon--camera" wx:elif="{{activeWorkDetail.item.content.mode == 2}}"></i>
@@ -49,7 +52,11 @@
   <myk-video bindclose="handleCloseVideo" wx-if="{{visible}}" src="{{videoSrc}}">
   </myk-video>
   <view class="c-detail__con" wx:if="{{mode == 1}}">
-    <view class="c-detail__con-item {{activeWorkId === item.workId ? 'active' : ''}}" wx:for="{{workList}}" wx:key="{{item.workId}}" data-id="{{item.workId}}" bindtap="selWork">
+    <view class="c-detail__con-item {{activeWorkId === item.workId? 'active' : ''}}" 
+    wx:for="{{workList}}" 
+    wx:key="{{item.workId}}" 
+    data-id="{{item.workId}}" 
+    bindtap="selWork">
       <view class="c-detail__con__header">
         <image src="http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/activeplay.png"></image>
         <view class="c-detail__con__header-name">{{item.userName}}</view>
@@ -58,12 +65,15 @@
         </view>
       </view>
       <view class="c-detail__con__text">
-        {{item.answer}}
+        {{item.answer ? item.answer : ''}}
       </view>
     </view>
   </view>
   <view class="c-detail__con" wx:if="{{mode == 2}}">
-    <view class="c-detail__con-imgitem {{activeWorkId === item.workId ? 'active' : ''}}" wx:for="{{workList}}" wx:key="{{item.workId}}" data-id="{{item.workId}}" bindtap="selWork">
+    <view class="c-detail__con-imgitem {{activeWorkId === item.workId? 'active' : ''}}" 
+          wx:for="{{workList}}" 
+          wx:key="{{item.workId}}" 
+          data-id="{{item.workId}}" bindtap="selWork">
       <view class="c-detail__con-imgitem__top">
         <image src="{{item.imgs[0]}}"></image>
         <view class="c-detail__con-imgitem__tips">
@@ -85,7 +95,11 @@
     </view>
   </view>
   <view class="c-detail__con" wx:if="{{mode == 3}}">
-    <view class="c-detail__con-imgitem {{activeWorkId === item.workId ? 'active' : ''}}" wx:for="{{workList}}" wx:key="{{item.workId}}" data-id="{{item.workId}}" bindtap="selWork">
+    <view class="c-detail__con-imgitem {{activeWorkId === item.workId? 'active' : ''}}" 
+          wx:for="{{workList}}" 
+          wx:key="{{item.workId}}" 
+          data-id="{{item.workId}}" 
+          bindtap="selWork">
       <view class="c-detail__con-imgitem__top">
         <image src="item.thumbnail"></image>
         <i class="c-voice-box__btn" bindtap="playVideo(item)"></i>
@@ -105,7 +119,11 @@
     </view>
   </view>
   <view class="c-detail__con" wx:if="{{mode == 4}}">
-    <view class="c-detail__con-item {{activeWorkId === item.workId ? 'active' : ''}}" wx:for="{{workList}}" wx:key="{{item.workId}}" data-id="{{item.workId}}" bindtap="selWork">
+    <view class="c-detail__con-item {{activeWorkId === item.workId? 'active' : ''}}" 
+        wx:for="{{workList}}" 
+        wx:key="{{item.workId}}" 
+        data-id="{{item.workId}}" 
+        bindtap="selWork">
       <view class="c-detail__con__header">
         <image src="{{item.thumbnail}}"></image>
         {{item.userName}}
@@ -127,7 +145,7 @@
       暂无数据
     </view>
   </view>
-  <view class="c-detail__bottom">
+  <view class="c-detail__bottom" wx:if="{{!overSle}}">
     <view class="c-detail__bottom__leftbtn" bindtap="putNoAnswerLike">
       没有相近观点
     </view>
