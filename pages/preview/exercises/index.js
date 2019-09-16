@@ -46,8 +46,36 @@ Page({
       })
     })
   },
+  verifyData(){
+    const $mode = this.data.questionData.item.content.mode;
+    switch ($mode){
+      case 1:
+        return this.data.questionData.work.answer === null;
+        return this.data.questionData.work.answer.length <= 0;
+      break;
+      case 2:
+        return this.data.questionData.imgs.answer === null;
+        return this.data.questionData.work.imgs.length <= 0; 
+      break;
+      case 3:
+        return this.data.questionData.fileId.answer === null;
+        return this.data.questionData.work.fileId.length <= 0;
+      break;
+      case 4:
+        return this.data.questionData.audio.answer === null;
+        return this.data.questionData.work.audio.length <= 0;
+      break;
+    }
+  },
   // 暂存数据
   pushWorkStorage() {
+    if (this.verifyData()){
+      wx.showToast({
+        title: '你没有回答问题哟',
+        icon: 'warn',
+      })
+      return;
+    }
     wx.showLoading({
       title: '暂存答案中哟~',
     });
@@ -59,6 +87,13 @@ Page({
   },
   // 提交数据
   pushWorkSave() {
+    if (this.verifyData()) {
+      wx.showToast({
+        title: '你没有回答问题哟',
+        icon: 'warn',
+      })
+      return;
+    }
     wx.showLoading({
       title: '答提交中哟~',
     });
