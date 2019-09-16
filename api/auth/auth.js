@@ -106,6 +106,10 @@ let login = (username, password) => {
   });
 };
 
+let updatePhoto = (photo) => {
+  return Axios.put('/user/user/photo',{photo:photo});
+};
 
 
-export { login, getUser, getStudent, getTeacher, unBind}
+
+export { login, getUser, getStudent, getTeacher, unBind,updatePhoto}

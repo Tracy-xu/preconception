@@ -1,6 +1,7 @@
 // pages/profile/index.js
 import router from '../../router/index.js';
 import API from '../../api/index.js';
+const app = getApp()
 Page({
 
   /**
@@ -11,7 +12,8 @@ Page({
     showDialog:false,
     buttons: [{ text: '取消' }, { text: '确定' }],
     roleId: 1, //1 老师,2 学生
-    img:'http://g.hiphotos.baidu.com/image/pic/item/c2cec3fdfc03924590b2a9b58d94a4c27d1e2500.jpg'
+    img:'',
+    userName:''
   },
 
   /**
@@ -20,15 +22,8 @@ Page({
   onLoad: function (options) {
     this.setData({
       from:options.from,
-    })
-    wx.getUserInfo({
-      success: function(res) {
-        console.log(res)
-        alert(res.avatarUrl)
-        this.setData({
-          img: res.avatarUrl,
-        })
-      }
+      userName: app.globalData.userInfo.name,
+      img:app.globalData.userInfo.photo,
     })
   },
   handleTabChange(data){

@@ -2,7 +2,7 @@
 <view class="c-profile-header">
   <image src="{{img}}" class="c-profile-img"></image>
   <view class="c-profile-name">
-    张三
+    {{userName}}
   </view>
   <view class="c-profile-operation" wx:if="{{from == 1}}">
     设置
