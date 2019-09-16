@@ -9,48 +9,7 @@
       <view class="font-color--green">我的答案</view>
     </view>
   </view>
-  <!-- 答案详情弹框 -->
-  <mp-dialog title="" 
-              ext-class="c-preview-dialog"
-              show="{{dialogShow}}">
-    <view class="c-dialog" >
-      <view class="c-dialog__top">
-        {{activeWorkDetail.item.content.content}}
-        <span wx:if="activeWorkDetail.item.content.imgs.length">
-          <image src="{{item}}" 
-                  class="c-dialog__imgs"
-                  wx:key="{{item}}" 
-                  wx:for="{{activeWorkDetail.item.content.imgs}}"></image>
-        </span>
-        <i class="c-preview__icon--text" wx:if="{{activeWorkDetail.item.content.mode == 1}}"></i>
-        <i class="c-preview__icon--camera" wx:elif="{{activeWorkDetail.item.content.mode == 2}}"></i>
-        <i class="c-preview__icon--video" wx:elif="{{activeWorkDetail.item.content.mode == 3}}"></i>
-        <i class="c-preview__icon--voice" wx:elif="{{activeWorkDetail.item.content.mode == 4}}"></i>
-      </view>
-      <view class="c-dialog__bottom">
-        <span class="font-color--blue">我的答案：</span>
-        {{activeWorkDetail.work.answer}}
-        <view class="c-dialog__bottom__imgs" wx:if="{{activeWorkDetail.content.mode === 2}}">
-          <image src="{{activeWorkDetail.work.imgs[0]}}"></image>
-          <view class="c-dialog__bottom__imgs__tips">
-            共{{activeWorkDetail.work.imgs.length}}张
-          </view>
-          
-        </view>
-        <!--  音频  -->
-          <myk-audio src="{{activeWorkDetail.work.audio}}" 
-                      wx:if="{{activeWorkDetail.work.audio}}">
-          </myk-audio>
-          <!-- 视频 -->
-        <view class="c-dialog__bottom__imgs" wx:if="{{activeWorkDetail.item.content.mode === 3}}" bindtap="playVideo">
-          <image src="{{activeWorkDetail.work.thumbnail}}"></image>
-          <i class="c-voice-box__btn"></i>
-        </view>
-      </view>
-    </view>
-  </mp-dialog>
-  <myk-video bindclose="handleCloseVideo" wx-if="{{visible}}" src="{{videoSrc}}">
-  </myk-video>
+ 
   <view class="c-detail__con" wx:if="{{mode == 1}}">
     <view class="c-detail__con-item {{activeWorkId === item.workId? 'active' : ''}}" 
     wx:for="{{workList}}" 
@@ -142,7 +101,7 @@
   <view class="c-detail__con" wx:if="{{workList.length === 0}}">
     <view class="m-null">
       <i></i>
-      暂无数据
+      暂无其他学生提交数据
     </view>
   </view>
   <view class="c-detail__bottom" wx:if="{{!overSle}}">
@@ -154,3 +113,47 @@
     </view>
   </view>
 </view>
+ <!-- 答案详情弹框 -->
+  <mp-dialog title="" 
+              ext-class="c-preview-dialog"
+              show="{{dialogShow}}">
+    <view class="c-dialog" >
+      <view class="c-dialog__top">
+        {{activeWorkDetail.item.content.content}}
+        <span wx:if="activeWorkDetail.item.content.imgs.length">
+          <image src="{{item}}" 
+                  class="c-dialog__imgs"
+                  wx:key="{{item}}" 
+                  wx:for="{{activeWorkDetail.item.content.imgs}}"></image>
+        </span>
+        <i class="c-preview__icon--text" wx:if="{{activeWorkDetail.item.content.mode == 1}}"></i>
+        <i class="c-preview__icon--camera" wx:elif="{{activeWorkDetail.item.content.mode == 2}}"></i>
+        <i class="c-preview__icon--video" wx:elif="{{activeWorkDetail.item.content.mode == 3}}"></i>
+        <i class="c-preview__icon--voice" wx:elif="{{activeWorkDetail.item.content.mode == 4}}"></i>
+      </view>
+      <view class="c-dialog__bottom">
+        <span class="font-color--blue">我的答案：</span>
+        <span wx:if="{{activeWorkDetail.work.answer}}">{{activeWorkDetail.work.answer}}</span>
+        <view class="c-dialog__bottom__imgs" 
+              wx:if="{{activeWorkDetail.item.content.mode === 2}}"
+              bindtap="showImg">
+          <image src="{{activeWorkDetail.work.imgs[0]}}"></image>
+          <view class="c-dialog__bottom__imgs__tips">
+            共{{activeWorkDetail.work.imgs.length}}张
+          </view>
+          
+        </view>
+        <!--  音频  -->
+          <myk-audio src="{{activeWorkDetail.work.audio}}" 
+                      wx:if="{{activeWorkDetail.work.audio}}">
+          </myk-audio>
+          <!-- 视频 -->
+        <view class="c-dialog__bottom__imgs" wx:if="{{activeWorkDetail.item.content.mode === 3}}" bindtap="playVideo">
+          <image src="{{activeWorkDetail.work.thumbnail}}"></image>
+          <i class="c-voice-box__btn"></i>
+        </view>
+      </view>
+    </view>
+  </mp-dialog>
+  <myk-video bindclose="handleCloseVideo" wx-if="{{visible}}" src="{{videoSrc}}">
+  </myk-video>

@@ -47,8 +47,13 @@ Page({
       wx.hideLoading()
     }, 2000)
     Api.Preview.getWorkListByklassPreconQueId(this.data.klassPreconQueId).then(res => {
+      this.data.total = res ? res.length : 0;
+      this.data.doneNum = 0;
       res.forEach((item) => {
         item.startTime = LocalDate.format(item.startTime, 'yyyy-MM-dd');
+        if(item.status === 2){
+          this.data.doneNum++;
+        }
         if(item.preWkId){
           this.setData({
             activeWorkId: item.preWkId,
@@ -57,9 +62,11 @@ Page({
         }
       })
       res = res.filter(item => {
-        return item.userId !== app.globalData.userInfo.id
+        return item.userId !== app.globalData.userInfo.id && item.status === 2
       })
       this.setData({
+        total: this.data.total,
+        doneNum: this.data.doneNum,
         workList: res
       })
       wx.hideLoading();
@@ -79,6 +86,11 @@ Page({
         activeWorkId: event.currentTarget.dataset.id
       })
     }
+  },
+  showImg(){
+    wx.previewImage({
+      urls: this.data.activeWorkDetail.work.imgs,
+    })
   },
   playVideo() {
     this.setData({

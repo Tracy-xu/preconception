@@ -41,6 +41,10 @@ Page({
   getWorkById() {
     let that = this
     Api.Preview.getWorkById(this.data.workId).then((res) => {
+      // 转换文字
+      if(res.work.audio){
+        this.uploadAsr();
+      }
       that.setData({
         questionData: res
       })
@@ -206,6 +210,7 @@ Page({
     }
     if (that.data.recordIng) {
       app.globalData.RecorderManager.start({
+        duration:30000,
         success: (res) => {
           wx.showToast({
             title: '开始录音',
