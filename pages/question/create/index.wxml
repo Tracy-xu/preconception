@@ -21,73 +21,73 @@
     scroll-y="{{ true }}"
     class="c-question-create"
   >
-    <!-- 题干 -->
-    <view class="c-question-create__stem-box">
-    <view class="c-question-create__stem-label">1. </view>
-    <view class="c-question-create__stem">
-      <!-- 文本 -->
-      <textarea
-        bindinput="handleInputContent"
-        class="c-question-create__stem-txt"
-        placeholder="请输入题目内容"
-        auto-height="{{ true }}"
-        maxlength="-1"
-      >
-      </textarea>
-      <!-- 音频附件 -->
-      <view
-        wx:if="{{ audios.length }}"
-        class="c-question-create__attach-audio"
-      >
-        <view
-          wx:for="{{ audios }}"
-          wx:key="{{ index }}"
-          class="c-question-create__attach-audio-item"
+    <!-- 题目 -->
+    <view class="c-question-create__box">
+      <view class="c-question-create__box-label">1. </view>
+      <view class="c-question-create__box-content">
+        <!-- 题干 -->
+        <textarea
+          bindinput="handleInputContent"
+          class="c-question-create__stem"
+          placeholder="请输入题目内容"
+          auto-height="{{ true }}"
+          maxlength="-1"
         >
-          <view class="c-question-create__attach-audio-box">
-            <myk-audio src="{{ item }}"></myk-audio>
+        </textarea>
+        <!-- 音频附件 -->
+        <view
+          wx:if="{{ audios.length }}"
+          class="c-question-create__attach-audio"
+        >
+          <view
+            wx:for="{{ audios }}"
+            wx:key="{{ index }}"
+            class="c-question-create__attach-audio-item"
+          >
+            <view class="c-question-create__attach-audio-box">
+              <myk-audio src="{{ item }}"></myk-audio>
+            </view>
+            <icon
+              class="c-question-create__delete-audio"
+              bindtap="handleDeleteAudio"
+              data-index="{{ index }}"
+            ></icon>
           </view>
-          <icon
-            class="c-question-create__delete-audio"
-            bindtap="handleDeleteAudio"
-            data-index="{{ index }}"
-          ></icon>
         </view>
-      </view>
-      <!-- 图片附件 -->
-      <view
-        wx:if="{{ imgs.length }}"
-        class="c-question-create__attach-img"
-      >
+        <!-- 图片附件 -->
         <view
-          wx:for="{{ imgs }}"
-          wx:key="{{ index }}"
-          class="c-question-create__attach-img-item"
+          wx:if="{{ imgs.length }}"
+          class="c-question-create__attach-img"
         >
-          <image
-            src="{{ item }}"
+          <view
+            wx:for="{{ imgs }}"
+            wx:key="{{ index }}"
+            class="c-question-create__attach-img-item"
           >
-          </image>
-          <icon
-            bindtap="handleDeleteImg"
-            data-index="{{ index }}"
-          >
-          </icon>
+            <image
+              src="{{ item }}"
+            >
+            </image>
+            <icon
+              bindtap="handleDeleteImg"
+              data-index="{{ index }}"
+            >
+            </icon>
+          </view>
         </view>
-      </view>
 
-      <icon
-        bindtap="handleVisibleStemType"
-        class="c-question-create__open-stem-type"
-      >
-      </icon>
-    </view>
+        <icon
+          bindtap="handleVisibleStemType"
+          class="c-question-create__open-add-attach"
+        >
+        </icon>
+      </view>
     </view>
   
     <!-- 添加附件 -->
     <view
       wx:if="{{ visibleStemType }}"
-      class="c-question-create__stem-type"
+      class="c-question-create__attach"
     >
       <view
         bindtap="handleAddStemImg"
@@ -112,38 +112,40 @@
   
     <!-- 选择答题方式 -->
     <view class="c-queston-create__answer-type">
-    <view class="c-queston-create__type-label">答题方式：</view>
-    <view class="c-queston-create__type">
-      <view
-        bindtap="handleSelectAnswerType"
-        data-type="1"
-        class="c-queston-create__type-txt {{ mode == 1 ? 'c-queston-create__type-txt--active' : '' }}"
-      >
-        文本
-      </view>
-      <view
-        bindtap="handleSelectAnswerType"
-        data-type="2"
-        class="c-queston-create__type-img {{ mode == 2 ? 'c-queston-create__type-txt--active' : '' }}"
-      >
-        图片
-      </view>
-      <view
-        bindtap="handleSelectAnswerType"
-        data-type="4"
-        class="c-queston-create__type-audio {{ mode == 4 ? 'c-queston-create__type-txt--active' : '' }}"
-      >
-        语音
-      </view>
-      <view
-        bindtap="handleSelectAnswerType"
-        data-type="3"
-        class="c-queston-create__type-video {{ mode == 3 ? 'c-queston-create__type-txt--active' : '' }}"
-      >
-        视频
+      <view class="c-queston-create__type-label">答题方式：</view>
+      <view class="c-queston-create__type">
+        <view
+          bindtap="handleSelectAnswerType"
+          data-type="1"
+          class="c-queston-create__type-txt {{ mode == 1 ? 'c-queston-create__type-txt--active' : '' }}"
+        >
+          文本
+        </view>
+        <view
+          bindtap="handleSelectAnswerType"
+          data-type="2"
+          class="c-queston-create__type-img {{ mode == 2 ? 'c-queston-create__type-txt--active' : '' }}"
+        >
+          图片
+        </view>
+        <view
+          bindtap="handleSelectAnswerType"
+          data-type="4"
+          class="c-queston-create__type-audio {{ mode == 4 ? 'c-queston-create__type-txt--active' : '' }}"
+        >
+          语音
+        </view>
+        <view
+          bindtap="handleSelectAnswerType"
+          data-type="3"
+          class="c-queston-create__type-video {{ mode == 3 ? 'c-queston-create__type-txt--active' : '' }}"
+        >
+          视频
+        </view>
       </view>
     </view>
-    </view> 
+
+
   </scroll-view>
   
   <!-- 绑定班级 -->
