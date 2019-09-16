@@ -56,8 +56,8 @@ Page({
         createMode: false
       });
 
-      this.data.questions.items.unshift(this.data.newQuestion);
-      this.data.questions.page.total = this.data.questions.page.total + 1;
+      this.data.questions.items = [...this.data.newQuestion, ...this.data.questions.items];
+      this.data.questions.page.total = this.data.questions.page.total + this.data.newQuestion.length;
 
       this.setData({
         questions: this.data.questions
@@ -255,6 +255,7 @@ Page({
         await API.Question.deleteQuextion(resId);
 
         this.data.questions.items.splice(index, 1);
+        this.data.questions.page.total = this.data.questions.page.total - 1;
         this.setData({
           questions: this.data.questions
         });

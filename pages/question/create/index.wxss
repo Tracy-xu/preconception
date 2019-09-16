@@ -1,5 +1,6 @@
 /* 题干 */
-.c-question-create {position: relative; padding: 30rpx 20rpx 0 20rpx; height: calc(100% - 186rpx); background: #fff;}
+.c-question-create {padding: 30rpx 20rpx 0 20rpx; height: calc(100% - 186rpx); background: #fff;}
+.c-question-create__item {position: relative; margin-bottom: 50rpx;}
 .c-question-create__box {font-size: 46rpx;}
 .c-question-create__box-label {float: left; margin-right: 5rpx;}
 .c-question-create__box-content {position: relative; overflow: auto;}

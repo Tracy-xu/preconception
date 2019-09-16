@@ -50,6 +50,13 @@ export function createQuestion(action, param, resId='', refId='') {
 }
 
 /**
+ * 批量创建
+ */
+export function createQuestionBulk(action, param, resId = '', refId = '') {
+  return axios.post(`qgn/precon/que/bulk?intent=${ action }&scope=1&resId=${ resId }&refId=${ refId }`, param);
+}
+
+/**
  * 删除习题
  */
 export function deleteQuextion(resId) {

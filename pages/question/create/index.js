@@ -5,17 +5,16 @@ Page({
   data: {
     visibleSelector: false,
     visibleBindClass: false,
+
+    // 录音相关
     isRecord: false,
     RecorderManager: null,
     count: 0,
     timer: null,
+    recordIndex: null,
 
-    // 表单操作相关数据
-    content: '',
-    imgs: [],
-    audios: [],
-    mode: 0,
-    visibleStemType: false,
+    // 生产的数据
+    qsData: null,
 
     // 学段学科教材版本数据
     stgId: null,
@@ -30,14 +29,32 @@ Page({
   },
 
   onReady() {
+    // 初始化数据结构
+    var qsData = [];
+    for (var i = 0; i < 3; i++) {
+      qsData.push({
+        content: '',
+        imgs: [],
+        audios: [],
+        mode: 0,
+        visibleStemType: false,
+      });
+    }
+
+    this.setData({
+      qsData
+    });
+
     this.setData({
       RecorderManager: wx.getRecorderManager()
     });
 
     this.data.RecorderManager.onStop((res) => {
       API.Common.upload('audio', res.tempFilePath).then((data) => {
+        this.data.qsData[this.data.recordIndex].audios = [...this.data.qsData[this.data.recordIndex].audios, data.url];
+
         this.setData({
-          audios: [...this.data.audios, data.url]
+          qsData: this.data.qsData
         });
       });
     });
@@ -81,11 +98,14 @@ Page({
   },
 
   /**
-   * 显示第一个添加题干弹层
+   * 显示添加附件弹层
    */
-  handleVisibleStemType() {
+  handleVisibleStemType(ev) {
+    var index = ev.target.dataset.index;
+    this.data.qsData[index].visibleStemType = !this.data.qsData[index].visibleStemType;
+
     this.setData({
-      visibleStemType: !this.data.visibleStemType
+      qsData: this.data.qsData
     });
   },
 
@@ -93,23 +113,32 @@ Page({
    * 输入文本内容
    */
   handleInputContent(ev) {
+    var index = ev.target.dataset.index;
+
+    this.data.qsData[index].content = ev.detail.value;
+
     this.setData({
-      content: ev.detail.value
+      qsData: this.data.qsData
     });
   },
 
   /**
    * 添加图片
    */
-  handleAddStemImg() {
+  handleAddStemImg(ev) {
+    var index = ev.target.dataset.index;
+    this.data.qsData[index].visibleStemType = false;
+
     this.setData({
-      visibleStemType: false
+      qsData: this.data.qsData
     });
 
     chooseImage().then((res) => {
       API.Common.upload('image', res[0]).then((data) => {
+        this.data.qsData[index].imgs = [...this.data.qsData[index].imgs, data.url];
+
         this.setData({
-          imgs: [...this.data.imgs, data.url]
+          qsData: this.data.qsData
         });
       });
     });
@@ -120,16 +149,22 @@ Page({
    */
   handleDeleteImg(ev) {
     var index = ev.target.dataset.index;
-    this.data.imgs.splice(index, 1);
+    var idx = ev.target.dataset.idx;
+    this.data.qsData[index].imgs.splice(idx, 1);
+
     this.setData({
-      imgs: this.data.imgs
+      qsData: this.data.qsData
     });
   },
 
   /**
    * 添加语音
    */
-  handleAddStemAudio() {
+  handleAddStemAudio(ev) {
+    this.setData({
+      recordIndex: ev.target.dataset.index
+    });
+
     if (!this.data.isRecord) {
       this.setData({
         isRecord: true
@@ -173,61 +208,42 @@ Page({
    */
   handleDeleteAudio(ev) {
     var index = ev.target.dataset.index;
-    this.data.audios.splice(index, 1);
+    var idx = ev.target.dataset.idx;
+
+    this.data.qsData[index].audios.splice(idx, 1);
+
     this.setData({
-      audios: this.data.audios
+      qsData: this.data.qsData
     });
   },
-
 
   /**
    * 选中答题方式
    */
   handleSelectAnswerType(ev) {
+    var index = ev.target.dataset.index;
+    this.data.qsData[index].mode = ev.target.dataset.type;
+
     this.setData({
-      mode: ev.target.dataset.type
+      qsData: this.data.qsData
     });
   },
 
   /**
    * 保存创建习题
    */
-  handleCreateQuestion() {
-    // 校验必填（学段学科教材章节、题干、答题方式）
-    if (!this.data.stgId) {
-      wx.showToast({
-        title: '请选择学段学科教程章节',
-        icon: 'none',
-        duration: 2000
-      });
-      return;
-    }
+  async handleCreateQuestion() {
+    var res = await this.createQuestion();
 
-    if (!this.data.content) {
-      wx.showToast({
-        title: '请输入题目内容',
-        icon: 'none',
-        duration: 2000
-      });
-      return;
-    }
-
-    if (!this.data.mode) {
-      wx.showToast({
-        title: '请选择答题方式',
-        icon: 'none',
-        duration: 2000
-      });
-      return;
-    }
-
-    this.createQuestion().then((res) => {
-      var newQuestion = {
+    var qsData = this.data.qsData.reverse()
+    var newQuestion = [];
+    res.forEach((item, index) => {
+      newQuestion.push({
         content: {
-          content: this.data.content,
-          imgs: this.data.imgs,
-          audios: this.data.audios,
-          mode: this.data.mode,
+          content: qsData[index].content,
+          imgs: qsData[index].imgs,
+          audios: qsData[index].audios,
+          mode: qsData[index].mode,
           tbkNodes: [
             {
               attrs: {
@@ -239,50 +255,91 @@ Page({
           ]
         },
         resource: {
-          resId: res.resId,
-          refId: res.refId
+          resId: item.resId,
+          refId: item.refId
         }
-      };
-
-      var pages = getCurrentPages();
-      var prevPage = pages[pages.length - 2];
-      prevPage.setData({
-        createMode: true,
-        newQuestion
       });
-
-      wx.navigateBack();
     });
+
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2];
+    prevPage.setData({
+      createMode: true,
+      newQuestion
+    });
+
+    wx.navigateBack();
   },
 
   /**
    * 创建习题
    */
   createQuestion() {
-    return new Promise((resolve, reject) => {
-      var param = {
-        content: this.data.content,
-        imgs: this.data.imgs,
-        audios: this.data.audios,
-        mode: this.data.mode,
-
-        stgId: this.data.stgId,
-        sbjId: this.data.sbjId,
-        tbkNodes: [
-          {
-            attrs: {
-              edtId: this.data.edtId,
-              tbkId: this.data.tbkId
-            },
-            path: this.data.path.reverse()
-          }
-        ]
-      };
-
-      API.Question.createQuestion('ADD', param).then((res) => {
-        resolve(res);
+    // 学段学科教材章节，必填
+    if (!this.data.stgId) {
+      wx.showToast({
+        title: '请选择学段学科教程章节',
+        icon: 'none',
+        duration: 2000
       });
+      return;
+    }
+
+    // 题干、答题方式，可以整个不填，但是一旦填了一个，都要填
+    var tips = '';
+    var miss = false;
+    this.data.qsData.forEach((item) => {
+      if ((item.content && !item.mode) || (!item.content && item.mode)) {
+        tips = '请输入题干和答题方式'
+        miss = true;
+        return;
+      }
     });
+    // 三个都没填
+    var empty = this.data.qsData.every((item) => {
+      return !item.content && !item.mode;
+    });
+    if (empty) {
+      tips = '请新建题目';
+    }
+
+    if (miss || empty) {
+      wx.showToast({
+        title: tips,
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+
+
+    // 处理数据
+    var param = [];
+    this.data.qsData.forEach((item) => {
+      if (!item.content || !item.mode) {
+        return;
+      }
+
+      item.stgId = this.data.stgId;
+      item.sbjId = this.data.sbjId;
+      item.tbkNodes = [
+        {
+          attrs: {
+            edtId: this.data.edtId,
+            tbkId: this.data.tbkId
+          },
+          path: this.data.path.reverse()
+        }
+      ];
+
+      param.push(item);
+    });
+
+    this.setData({
+      qsData: param
+    });
+    
+    return API.Question.createQuestionBulk('ADD', param);
   },
 
   /**
