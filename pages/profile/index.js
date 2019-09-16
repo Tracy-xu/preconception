@@ -1,5 +1,6 @@
 // pages/profile/index.js
 import router from '../../router/index.js';
+import API from '../../api/index.js';
 Page({
 
   /**
@@ -67,5 +68,16 @@ Page({
   // 解除账号确认
   tapDialogButton(e) {
    console.log(e.detail)
+   if(e.detail.index==0){
+     this.setData({
+       showDialog: false,
+     })
+   }else{
+     API.Auth.unBind().then(v=>{
+       wx.redirectTo({
+         url: router.auth
+       });
+     });
+   }
   },
 })

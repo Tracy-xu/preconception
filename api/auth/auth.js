@@ -53,6 +53,10 @@ let bind = (openId) => {
   return Axios.post(`/auth/social/bind?openId=${openId}`);
 };
 
+let unBind = () => {
+  return Axios.post(`/auth/social/unbind?providerId=wxmp`);
+};
+
 let loginByPassword = (username, password, openId) => {
   return Axios.post(`/auth/oauth/token?client_id=${client_id}&client_secret=${client_secret}&grant_type=password&scope=all&username=${username}&password=${password}`, {}, { headers: { isAuth: false } }).then(v => {
     console.log(v);
@@ -104,4 +108,4 @@ let login = (username, password) => {
 
 
 
-export { login, getUser, getStudent, getTeacher}
+export { login, getUser, getStudent, getTeacher, unBind}
