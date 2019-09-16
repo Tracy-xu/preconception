@@ -4,11 +4,8 @@ const app = getApp();
 
 Component({
   properties: {
-    resId: {
-      type: Number
-    },
-    refId: {
-      type: Number
+    resourceIds: {
+      type: Array
     }
   },
 
@@ -38,10 +35,9 @@ Component({
      */
     handleConfirm() {
       var klassIds = this.data.klassIds;
-      var refId = this.properties.refId;
-      var resId = this.properties.resId
+      var pairs = this.properties.resourceIds;
 
-      API.Question.bindClass({ klassIds, refId, resId }).then(() => {
+      API.Question.bindClassBulk({ klassIds, pairs }).then(() => {
         this.triggerEvent('confirmbindclass');
       });
     },

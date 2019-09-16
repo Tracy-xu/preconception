@@ -71,6 +71,13 @@ export function bindClass(param) {
 }
 
 /**
+ * 批量绑定
+ */
+export function bindClassBulk(param) {
+  return axios.post('/qgn/klass/precon/que/bulk/bind', param);
+}
+
+/**
  * 解除绑定班级
  */
 export function unbindClass(param) {

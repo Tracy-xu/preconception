@@ -23,9 +23,8 @@ Page({
     tbkId: null,
     path: [],
 
-    // 绑定到班级所需参数
-    refId: null,
-    resId: null
+    // 初始化绑定班级组件所需参数(refId、resId)
+    resourceIds: []
   },
 
   onReady() {
@@ -230,14 +229,12 @@ Page({
   },
 
   /**
-   * 保存创建习题
+   * 修改父页面插入习题
    */
-  async handleCreateQuestion() {
-    var res = await this.createQuestion();
-
-    var qsData = this.data.qsData.reverse()
+  addNewQuestionToParentPage(resource) {
+    var qsData = this.data.qsData.reverse();
     var newQuestion = [];
-    res.forEach((item, index) => {
+    resource.forEach((item, index) => {
       newQuestion.push({
         content: {
           content: qsData[index].content,
@@ -267,7 +264,14 @@ Page({
       createMode: true,
       newQuestion
     });
+  },
 
+  /**
+   * 保存创建习题
+   */
+  async handleCreateQuestion() {
+    var res = await this.createQuestion();
+    this.addNewQuestionToParentPage(res);
     wx.navigateBack();
   },
 
@@ -282,7 +286,7 @@ Page({
         icon: 'none',
         duration: 2000
       });
-      return;
+      return Promise.reject();
     }
 
     // 题干、答题方式，可以整个不填，但是一旦填了一个，都要填
@@ -309,9 +313,8 @@ Page({
         icon: 'none',
         duration: 2000
       });
-      return;
+      return Promise.reject();
     }
-
 
     // 处理数据
     var param = [];
@@ -345,16 +348,20 @@ Page({
   /**
    * 绑定班级
    */
-  handleBindClass() {
-    this.createQuestion().then((res) => {
-      this.setData({
-        resId: res.resId,
-        refId: res.refId
-      });
+  async handleBindClass() {
+    var res = await this.createQuestion();
 
-      this.setData({
-        visibleBindClass: true
+    var resourceIds = [];
+    res.forEach((item, index) => {
+      resourceIds.push({
+        resId: item.resId,
+        refId: item.refId
       });
+    });
+
+    this.setData({
+      resourceIds,
+      visibleBindClass: true
     });
   },
 
@@ -362,6 +369,7 @@ Page({
    * 确定绑定班级
    */
   handleConfirmBindClass() {
+    this.addNewQuestionToParentPage(this.data.resourceIds);
     wx.navigateBack();
   },
 
@@ -369,9 +377,8 @@ Page({
    * 取消绑定班级
    */
   handleCancelBindClass() {
-    this.setData({
-      visibleBindClass: false
-    });
+    this.addNewQuestionToParentPage(this.data.resourceIds);
+    wx.navigateBack();
   },
 
   /**

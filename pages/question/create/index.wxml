@@ -165,8 +165,7 @@
   
   <!-- 绑定班级 -->
   <bind-class
-    resId="{{ resId }}"
-    refId="{{ refId }}"
+    resourceIds="{{ resourceIds }}"
     wx:if="{{ visibleBindClass }}"
     bindconfirmbindclass="handleConfirmBindClass"
     bindcancelbindclass="handleCancelBindClass"
