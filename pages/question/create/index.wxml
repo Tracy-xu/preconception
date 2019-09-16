@@ -32,6 +32,7 @@
         <view class="c-question-create__box-content">
           <!-- 题干 -->
           <textarea
+            hidden="{{ visibleSelector }}"
             bindinput="handleInputContent"
             data-index="{{ index }}"
             class="c-question-create__stem"
