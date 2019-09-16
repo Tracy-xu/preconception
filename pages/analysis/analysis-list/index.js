@@ -10,16 +10,11 @@ Page({
     width: 50,
     klassPreconQueId: null,
     quanwen: false,
-    lkRatio: Math.floor(3 / 5 * 100),
-    ulkRatio: 100 - Math.floor(3 / 5 * 100),
-    mode: 1,
-    createdOnStr: '2019-08-10',
+    lkRatio: null,
+    ulkRatio: null,
+    mode: null,
+    createdOnStr: null,
     workReport: {
-      size: 12,
-      commit: 5,
-      like: 3,
-      unlike: 2,
-      item: { content: '问题问题问题问题问题问题问题问题问题问题问题问题问题问题问题'}
     }
   },
 
@@ -95,6 +90,14 @@ Page({
 
   },
   onGroupEdit: function(event) {
+    if (!this.data.workReport.commit){
+      wx.showToast({
+        title: '当前还没有学生提交，暂时不能查看报告详情',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
     wx.navigateTo({
       url: `${router.analysisDetail}?klassPreconQueId=${this.data.klassPreconQueId}`
     });

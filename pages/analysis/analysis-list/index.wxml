@@ -21,13 +21,6 @@
       <view class="c-nav__finishState">全部</view>
     </view>
     <view>
-      <view class="c-nav__people m-green">
-        <view class="c-nav__num">{{workReport.commit}}</view>
-        <view>人</view>
-      </view>
-      <view class="c-nav__finishState">完成</view>
-    </view>
-    <view>
       <view class="c-nav__people">
         <view class="c-nav__num m-crimson">{{workReport.size - workReport.commit}}</view>
         <view>人</view>

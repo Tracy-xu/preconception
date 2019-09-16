@@ -12,7 +12,7 @@
   </mp-dialog>
 
   <view class="c-fix__viewpoint" bindtap="openPoint">正确观点</view>
-  <mp-dialog show="{{openPoint}}" bindbuttontap="bindPointConfirm"  buttons="{{pointbtns}}"><template is="setPoint" data="{{currPointIndex: currPointIndex}}"></template></mp-dialog>
+  <mp-dialog show="{{openPoint}}" bindbuttontap="bindPointConfirm"  buttons="{{pointbtns}}"><template is="setPoint" data="{{currPointIndex: currPointIndex,groups: workGroup.groups}}"></template></mp-dialog>
 
   <view class="c-footer" >
      <view class="c-footer__list c-footer__list1" data-g-idx="0" bindtap="bulkMoveGroup">
@@ -25,19 +25,19 @@
      </view>
      <view class="c-footer__list c-footer__list3" data-g-idx="2" bindtap="bulkMoveGroup">
         <view class="c-footer__list-viewpoint">观点3</view>
-        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 2 && workGroup.groups[1].works ? workGroup.groups[2].works.length : 0}}人</view>
+        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 2 && workGroup.groups[2].works ? workGroup.groups[2].works.length : 0}}人</view>
      </view>
      <view class="c-footer__list c-footer__list4" data-g-idx="3" bindtap="bulkMoveGroup">
         <view class="c-footer__list-viewpoint">观点4</view>
-        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 3 && workGroup.groups[1].works ? workGroup.groups[3].works.length : 0}}人</view>
+        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 3 && workGroup.groups[3].works ? workGroup.groups[3].works.length : 0}}人</view>
      </view>
      <view class="c-footer__list c-footer__list5" data-g-idx="4" bindtap="bulkMoveGroup">
         <view class="c-footer__list-viewpoint">观点5</view>
-        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 4 && workGroup.groups[1].works ? workGroup.groups[4].works.length : 0}}人</view>
+        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 4 && workGroup.groups[4].works ? workGroup.groups[4].works.length : 0}}人</view>
      </view>
      <view class="c-footer__list c-footer__list6">
         <view class="c-footer__list-viewpoint">其他</view>
-        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 5 && workGroup.groups[1].works ? workGroup.groups[5].works.length : 0}}人</view>
+        <view class="c-footer__list-peoplenum">{{workGroup.groups.length > 5 && workGroup.groups[5].works ? workGroup.groups[5].works.length : 0}}人</view>
      </view>
   </view>
   <!-- 视频播放器begin -->
@@ -52,6 +52,7 @@
       <view class="c-img__header-left">
          <view class="{{'c-img__header-point c-img__header-point' + (gIdx + 1)}}">{{gIdx < 5 ? '观点' + (gIdx + 1) : '其他'}}</view>
         <view class="c-img__header-people">(共<view class="c-img__header-peoplenum">{{group.works.length}}</view>人)</view>
+        <icon class="c-detail__list--yes" wx:if="{{group.groupInfo.right}}"></icon>
       </view>
       <view class="c-img__header-right">
         <view class="c-img__header-tactics"  data-index="{{gIdx}}" data-label="{{group.groupInfo.label}}" data-comment="{{group.groupInfo.comment}}"  bindtap="showCommentDialog">策略</view>
@@ -69,7 +70,7 @@
         <view class="c-text__content">
           <view class="c-text__txt">
             {{work.answer.length > 7 && !quanwenWorkIds[work.workId] ? util.sub(work.answer,7) : work.answer || '' }}
-            <view wx:if="{{work.answer.length > 7}}" class="c-text__txt-show m-blur" data-work-id="{{work.workId}}" bindtap="openQuanwen">{{quanwenWorkIds[work.workId] ? '收起':'全文'}}</view>
+            <view wx:if="{{work.answer.length > 7}}" class="c-text__txt-show m-blur" data-work-id="{{work.workId}}" catchtap="openQuanwen">{{quanwenWorkIds[work.workId] ? '收起':'全文'}}</view>
           </view>
           <view class="c-voice__tab" wx:if="{{gIdx < 5}}">
             <view class="c-voice__tab-pre"  data-work-id="{{work.workId}}" catchtap="moveUp"></view>
@@ -104,11 +105,11 @@
   <view  class="c-detail__list">
     <view class="c-detail__list-header">
       <view class="c-img__header-left">
-        <view class="{{'c-img__header-point c-img__header-point' + (gIdx + 1)}}">{{gIdx < 6 ? '观点' + (gIdx + 1) : '其他'}}</view>
+        <view class="{{'c-img__header-point c-img__header-point' + (gIdx + 1)}}">{{gIdx < 5 ? '观点' + (gIdx + 1) : '其他'}}</view>
         <view class="c-img__header-people">
           (共<view class="c-img__header-peoplenum">{{group.works.length}}</view>人)
         </view>
-        <icon class="c-detail__list--yes"></icon>
+        <icon class="c-detail__list--yes" wx:if="{{group.groupInfo.right}}"></icon>
       </view>
       <view class="c-img__header-right">
         <view class="c-img__header-tactics" 
@@ -144,7 +145,7 @@
     <view class="c-imgList__footer">
       <view class="c-imgList__footer-content">
         <view class="c-imgList__footer-lable">策略：</view>
-        <view class="c-imgList__footer-text">{{group.groupInfo.comment}}</view>
+        <view class="c-imgList__footer-text">{{group.groupInfo.comment || ''}}</view>
       </view>
       <view class="c-footer__lable">
         <view class="c-lable__list {{group.groupInfo.label == 1 ? 'c-lable__list--active' : ''}}"
@@ -167,8 +168,9 @@
   <view  class="c-detail__list">
     <view class="c-detail__list-header">
       <view class="c-img__header-left">
-        <view class="{{'c-img__header-point c-img__header-point' + (gIdx + 1)}}">{{gIdx < 6 ? '观点' + (gIdx + 1) : '其他'}}</view>
+        <view class="{{'c-img__header-point c-img__header-point' + (gIdx + 1)}}">{{gIdx < 5 ? '观点' + (gIdx + 1) : '其他'}}</view>
         <view class="c-img__header-people">(共<view class="c-img__header-peoplenum">{{group.works.length}}</view>人)</view>
+        <icon class="c-detail__list--yes" wx:if="{{group.groupInfo.right}}"></icon>
       </view>
       <view class="c-img__header-right">
         <view class="c-img__header-tactics"  data-index="{{gIdx}}" data-label="{{group.groupInfo.label}}" data-comment="{{group.groupInfo.comment}}"  bindtap="showCommentDialog">策略</view>
@@ -199,7 +201,7 @@
     <view class="c-imgList__footer">
       <view class="c-imgList__footer-content">
         <view class="c-imgList__footer-lable">策略：</view>
-        <view class="c-imgList__footer-text">{{group.comment}}</view>
+        <view class="c-imgList__footer-text">{{group.groupInfo.comment || ''}}</view>
       </view>
       <view class="c-footer__lable">
         <view class="c-lable__list {{group.groupInfo.label == 1 ? 'c-lable__list--active' : ''}}"
@@ -222,8 +224,9 @@
   <view class="c-detail__list">
     <view class="c-detail__list-header">
       <view class="c-img__header-left">
-        <view class="{{'c-img__header-point c-img__header-point' + (gIdx + 1)}}">{{gIdx < 6 ? '观点' + (gIdx + 1) : '其他'}}</view>
+        <view class="{{'c-img__header-point c-img__header-point' + (gIdx + 1)}}">{{gIdx < 5 ? '观点' + (gIdx + 1) : '其他'}}</view>
         <view class="c-img__header-people">(共<view class="c-img__header-peoplenum">{{group.works.length}}</view>人)</view>
+        <icon class="c-detail__list--yes" wx:if="{{group.groupInfo.right}}"></icon>
       </view>
       <view class="c-img__header-right">
         <view class="c-img__header-tactics"  data-index="{{gIdx}}" data-label="{{group.groupInfo.label}}" data-comment="{{group.groupInfo.comment}}"  bindtap="showCommentDialog">策略</view>
@@ -241,7 +244,6 @@
         </view>
         <view class="c-voice__nav">
           <view class="c-voice__box">
-            <view class="c-voice__icon"></view>
            <myk-audio src="{{work.audio}}"></myk-audio>
           </view>
           <view class="c-voice__tab" wx:if="{{gIdx < 5}}">
@@ -251,16 +253,16 @@
         </view>
         <view class="c-voice__text">
           <view class="c-voice__text-content">
-            {{work.answer.length > 10 && !quanwenWorkIds[work.workId] ? util.sub(work.answer,10) : work.answer }}
+            {{work.answer.length > 10 && !quanwenWorkIds[work.workId] ? util.sub(work.answer,10) : work.answer || '' }}
           </view>
-          <view class="c-voice__text-all m-blur" wx:if="{{work.answer.length > 10}}" data-work-id="{{work.workId}}"      bindtap="openQuanwen">{{quanwenWorkIds[work.workId] ? '收起':'全文'}}</view>
+          <view class="c-voice__text-all m-blur" wx:if="{{work.answer.length > 10}}" data-work-id="{{work.workId}}"      catchtap="openQuanwen">{{quanwenWorkIds[work.workId] ? '收起':'全文'}}</view>
         </view>
       </view>
     </view>
     <view class="c-imgList__footer">
       <view class="c-imgList__footer-content">
         <view class="c-imgList__footer-lable">策略：</view>
-        <view class="c-imgList__footer-text">{{group.groupInfo.comment}}</view>
+        <view class="c-imgList__footer-text">{{group.groupInfo.comment || ''}}</view>
       </view>
       <view class="c-footer__lable">
          <view class="c-lable__list {{group.groupInfo.label == 1 ? 'c-lable__list--active' : ''}}"
@@ -281,7 +283,7 @@
 <template name="setPoint">
 <!-- 弹出框观点样式 -->
   <view class="c-viewpoint__list" data-point-index="0" bindtap="bindCurrPointIndex">
-    <view class="c-viewpoint__check {{currPointIndex == 0 ? 'c-viewpoint__check--active' : '' }}"></view>
+    <view class="c-viewpoint__check {{currPointIndex == 0  ? 'c-viewpoint__check--active' : '' }}"></view>
     <view class="c-viewpoint__option c-viewpoint__option1">
     观点1
       <view class="c-viewpoint__option--yes"></view>

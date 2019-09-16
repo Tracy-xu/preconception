@@ -19,68 +19,13 @@ Page({
     selectedWorkIds: {},
     quanwenWorkIds: {},
     openPoint: false,
-    currPointIndex: 0,
+    currPointIndex: -1,
     visibleVideo: false,
     urlVideo: '',
     openGroupInfo: [{ open: true, text: '收起' }, { open: true, text: '收起' }, { open: true, text: '收起' },
       { open: true, text: '收起' }, { open: true, text: '收起' }, { open: true, text: '收起' }], //展开状态的分组
     klassPreconQueId: null,
     workGroup: {
-      mode: 2,
-      groups: [{
-        groupInfo: {
-          workIds: [1, 2, 3],
-          right: false,
-          comment: "commentcommentcomment",
-          label: 1
-        },
-        works: [{
-          workId: 1,
-          userName: "测试1",
-          answer: '学生回答问题学生回答问题学生回答问题学生回答问题学生回答问题学生回答问题学生回答问题学生回答问题',
-          imgs: ["http://122.112.239.223:9001/image/20190913/10/44/1/e9d65cc01af90d708015199be848aefc.png", "http://122.112.239.223:9001/image/20190914/06/35/1/be00e306a7b0638a0e8a0ec927911fb1.png", "http://122.112.239.223:9001/image/20190913/16/19/1/25faeedbeab3118bf2332d31fe998d2c.png","http://122.112.239.223:9001/image/20190913/10/44/1/e9d65cc01af90d708015199be848aefc.png"],
-          modifiedOn: "222"
-        }, {
-            workId: 2,
-            userName: "测试2",
-            answer: '学生回答问题题题',
-            imgs: ["2222", "22222"],
-            modifiedOn: "222"
-          }, {
-          workId: 3,
-          userName: "测试3",
-            answer: '学生回答问题',
-          imgs: ["2222", "22222"],
-          modifiedOn: "222"
-        }]
-      }, {
-        groupInfo: {
-          workIds: [4, 5, 6],
-          right: false,
-          comment: "commentcommentcomment",
-          label: 1
-        },
-        works: [{
-          workId: 4,
-          userName: "测试4",
-          answer: '学生回答问题',
-          imgs: ["2222", "22222"],
-          modifiedOn: "222"
-        }, {
-          workId: 5,
-          userName: "测试5",
-            answer: '学生回答问题',
-          imgs: ["2222", "22222"],
-          modifiedOn: "222"
-          }, {
-            workId: 6,
-            userName: "测试6",
-            answer: '学生回答问题',
-            imgs: ["2222", "22222"],
-            modifiedOn: "222"
-          }]
-
-      }]
     },
   },
 
@@ -89,7 +34,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      klassPreconQueId: options.klassPreconQueId || 1
+      klassPreconQueId: options.klassPreconQueId || 16
     });
     this.doLoad();
   },
@@ -317,11 +262,8 @@ Page({
       openPoint: !this.data.openPoint
     })
     let dataset = event.currentTarget.dataset;
-      console.log(this.data.currPointIndex);
     if (event.detail.index == 1) {
       //确认
-      console.log(this.data.klassPreconQueId);
-      console.log(this.data.currPointIndex);
       API.Analysis.setPoint(this.data.klassPreconQueId, this.data.currPointIndex).then(res=>{
         this.doLoad();
         wx.showToast({
@@ -336,7 +278,6 @@ Page({
   },
   bindCurrPointIndex(event) {
     let pointIndex = event.currentTarget.dataset.pointIndex;
-    console.log(pointIndex);
     this.setData({ currPointIndex: pointIndex });
   },
   // 设置正确观点
