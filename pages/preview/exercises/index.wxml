@@ -51,10 +51,18 @@
       placeholder="请在此输入答案~" />
       <view class="c-exercises-con__imgs"
         wx:if="{{questionData.item.content.mode === 2}}">
-        <image wx:for="{{questionData.work.imgs}}" 
-                src="{{item}}"
-        class="c-preview-list__img"></image>
-        <view class="c-preview-list__img" bindtap="uploadImg">
+        <view class="c-preview-list__img"
+              wx:if="{{questionData.work.imgs.length}}">
+              <icon type="clear" 
+              size="24" color="#999" class="c-icon" 
+              bindtap="deleteImg"/>
+          <image src="{{questionData.work.imgs[0]}}"
+                data-src="{{questionData.work.imgs[0]}}"  
+                bindtap="showBigImage"></image>
+        </view>
+        <view class="c-preview-list__img"
+              wx:else 
+              bindtap="uploadImg">
           +
         </view>
       </view>

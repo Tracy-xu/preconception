@@ -58,15 +58,15 @@ Page({
         return this.data.questionData.work.answer.length <= 0;
       break;
       case 2:
-        return this.data.questionData.imgs.answer === null;
+        return this.data.questionData.imgs === null;
         return this.data.questionData.work.imgs.length <= 0; 
       break;
       case 3:
-        return this.data.questionData.fileId.answer === null;
+        return this.data.questionData.fileId === null;
         return this.data.questionData.work.fileId.length <= 0;
       break;
       case 4:
-        return this.data.questionData.audio.answer === null;
+        return this.data.questionData.audio === null;
         return this.data.questionData.work.audio.length <= 0;
       break;
     }
@@ -257,6 +257,13 @@ Page({
       questionData: this.data.questionData,
     })
   },
+  //删除图片答案
+  deleteImg(){
+    this.data.questionData.work.imgs = [];
+    this.setData({
+      questionData: this.data.questionData,
+    })
+  },
   // 输入文字
   answerHander(event) {
     this.data.questionData.work.answer = event.detail.value;
@@ -315,11 +322,20 @@ Page({
       showAllFlag: !this.data.showAllFlag,
     })
   },
+  // 查看题干图片
   showBigImage(event){
+    console.log(event)
     let $src= event.currentTarget.dataset.src;
     wx.previewImage({
       urls: this.data.questionData.item.content.imgs,
       current: $src
+    })
+  },
+  // 查看答案图片
+  showBigImage(event) {
+    let $src = event.currentTarget.dataset.src;
+    wx.previewImage({
+      urls: [$src]
     })
   }
 })

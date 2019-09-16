@@ -117,14 +117,20 @@ Page({
   },
   // 提交观点
   putAnswerLike() {
-    Api.Preview.putAnswerLike(this.data.workId, this.data.activeWorkId).then(res => {
-      wx.navigateBack({
-        success: function() {
-          wx.redirectTo({
-            url: router.previewList,
-          })
-        }
-      });
-    })
+    if (!this.data.activeWorkId){
+      wx.showToast({
+        title: '要先选择相似观点哟~',
+      })
+    }else{
+      Api.Preview.putAnswerLike(this.data.workId, this.data.activeWorkId).then(res => {
+        wx.navigateBack({
+          success: function () {
+            wx.redirectTo({
+              url: router.previewList,
+            })
+          }
+        });
+      })
+    }
   }
 })
