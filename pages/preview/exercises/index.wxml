@@ -91,7 +91,7 @@
         <view class="c-exercises-con__btn" bindtap="asr">
           <i class="c-icon--transform"></i> 转换文字
         </view>
-        <view class="c-exercises-con__btn" bindTap="deleteVoice">
+        <view class="c-exercises-con__btn" bindtap="deleteVoice">
           <i class="c-icon--delete"></i> 删除
         </view>
       </view>
