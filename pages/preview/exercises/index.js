@@ -208,17 +208,7 @@ Page({
         format: 'mp3'
       });
     }
-    if (that.data.recordIng) {
-      app.globalData.RecorderManager.start({
-        duration:30000,
-        success: (res) => {
-          wx.showToast({
-            title: '开始录音',
-          })
-        }
-      });
-    } else {
-      app.globalData.RecorderManager.stop();
+    if (app.globalData.RecorderManager){
       app.globalData.RecorderManager.onStop((res) => {
         wx.showToast({
           title: '录音结束',
@@ -233,13 +223,27 @@ Page({
           success(res1) {
             that.data.questionData.work.audio = JSON.parse(res1.data).url;
             that.setData({
+              recordIng: false,
               questionData: that.data.questionData
             });
-            that.uploadAsr(that.data.questionData.work.audio,1);
+            that.uploadAsr(that.data.questionData.work.audio, 1);
             wx.hideLoading();
           }
         })
       });
+    }
+    if (that.data.recordIng) {
+      app.globalData.RecorderManager.start({
+        duration:30000,
+        success: (res) => {
+          wx.showToast({
+            title: '开始录音',
+          })
+        }
+      });
+    } else {
+      app.globalData.RecorderManager.stop();
+      
     }
   },
   // 删除语音答案
