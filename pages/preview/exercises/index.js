@@ -66,6 +66,8 @@ Page({
         return this.data.questionData.work.fileId.length <= 0;
       break;
       case 4:
+        return this.data.questionData.work.answer == null;
+        return this.data.questionData.work.answer.length <= 0;
         return this.data.questionData.work.audio == null;
         return this.data.questionData.work.audio.length <= 0;
       break;
@@ -74,6 +76,13 @@ Page({
   // 暂存数据
   pushWorkStorage() {
     if (this.verifyData()){
+      if (this.data.questionData.work.audio){
+        wx.showToast({
+          title: '请转换文字',
+          icon: 'warn',
+        })
+        return;
+      }
       wx.showToast({
         title: '请输入答案',
         icon: 'warn',
