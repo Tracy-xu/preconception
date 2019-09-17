@@ -196,7 +196,11 @@ Page({
   // 上传语音
   uploadVoice() {
     let that = this
+    this.data.questionData.work.audio = '';
+    this.data.questionData.work.answer = '';
     that.setData({
+      id:'',
+      questionData: this.data.questionData,
       recordIng: !that.data.recordIng
     })
     if (!app.globalData.RecorderManager) {
@@ -241,7 +245,9 @@ Page({
   // 删除语音答案
   deleteVoice() {
     this.data.questionData.work.audio = '';
+    this.data.questionData.work.answer = '';
     this.setData({
+      id:null,
       questionData: this.data.questionData,
     })
   },
@@ -285,6 +291,9 @@ Page({
     wx.showLoading({
       title: '语音转换中',
     });
+    that.setData({
+      asrIng:true,
+    })
     Api.Preview.getAsrDetail(that.data.id).then(resDetail => {
       if (resDetail.status === 1) {
         that.data.questionData.work.answer = resDetail.details[0].result.result.join(',');
@@ -300,7 +309,9 @@ Page({
         })
         wx.hideLoading();
       }
-      
+      that.setData({
+        asrIng: false,
+      })
     })
 
   },
