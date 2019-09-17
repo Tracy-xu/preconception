@@ -58,15 +58,15 @@ Page({
         return this.data.questionData.work.answer.length <= 0;
       break;
       case 2:
-        return this.data.questionData.imgs == null;
+        return this.data.questionData.work.imgs == null;
         return this.data.questionData.work.imgs.length <= 0; 
       break;
       case 3:
-        return this.data.questionData.fileId == null;
+        return this.data.questionData.work.fileId == null;
         return this.data.questionData.work.fileId.length <= 0;
       break;
       case 4:
-        return this.data.questionData.audio == null;
+        return this.data.questionData.work.audio == null;
         return this.data.questionData.work.audio.length <= 0;
       break;
     }
