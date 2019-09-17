@@ -32,11 +32,10 @@ Page({
       klassPreconQueId: options.klassPreconQueId,
       mode: parseInt(options.mode)
     })
-    this.getWorkListByklassPreconQueId();
+    this.getMyWorkById();
   },
   // 监听页面卸载
   onUnload(){
-    console.log("ddd")
     let $page = getCurrentPages();
     $page[0].getWorkList();
     this.activeWorkId = null;
@@ -57,9 +56,9 @@ Page({
         if(item.status === 2){
           this.data.doneNum++;
         }
-        if (item.canLike){
+        if (item.workId === this.data.activeWorkDetail.work.preWkId){
           this.setData({
-            activeWorkId: item.preWkId,
+            activeWorkId: this.data.activeWorkDetail.work.preWkId,
             overSle: true,
           })
         }
@@ -75,12 +74,17 @@ Page({
       wx.hideLoading();
     })
   },
-  showMyAnswer() {
+  getMyWorkById(){
     Api.Preview.getWorkById(this.data.workId).then(res => {
       this.setData({
         activeWorkDetail: res,
-        dialogShow: true,
       })
+      this.getWorkListByklassPreconQueId();
+    })
+  },
+  showMyAnswer() {
+    this.setData({
+      dialogShow: true,
     })
   },
   selWork(event) {
