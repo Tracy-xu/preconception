@@ -266,13 +266,13 @@
       </view>
       <view class="c-footer__lable">
          <view class="c-lable__list {{group.groupInfo.label == 1 ? 'c-lable__list--active' : ''}}"
-          data-label = "1" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}t"
+          data-label = "1" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}"
           bindtap="updateLabe">有效</view>
         <view class="c-lable__list {{group.groupInfo.label == 2 ? 'c-lable__list--active' : ''}}"
-        data-label = "2" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}t"
+        data-label = "2" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}"
           bindtap="updateLabe">无效</view>
         <view class="c-lable__list {{group.groupInfo.label == 3 ? 'c-lable__list--active' : ''}}"
-          data-label = "3" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}t"
+          data-label = "3" data-index = "{{gIdx}}" data-comment="{{group.groupInfo.comment}}"
           bindtap="updateLabe">不确定</view>
       </view>
     </view>
