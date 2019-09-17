@@ -80,7 +80,7 @@
         </view>
       </view>
       <!-- 音频 -->
-      <view class="c-exercises-con__imgs" wx:if="{{questionData.item.content.mode === 4}}">
+      <view class="c-exercises-con__imgs" wx:if="{{questionData.item.content.mode === 1}}">
         <view class="c-preview-list__img" bindtap="uploadVoice">
         <view class="c-preview__icon--voice" 
               class="{{recordIng ? 'c-preview__icon--voiceing' : 'c-preview__icon--voice'}}"></view>

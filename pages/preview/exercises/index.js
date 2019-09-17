@@ -43,7 +43,7 @@ Page({
     Api.Preview.getWorkById(this.data.workId).then((res) => {
       // 转换文字
       if(res.work.audio){
-        this.uploadAsr();
+        this.uploadAsr(res.work.audio);
       }
       that.setData({
         questionData: res
@@ -235,7 +235,7 @@ Page({
             that.setData({
               questionData: that.data.questionData
             });
-            that.uploadAsr();
+            that.uploadAsr(that.data.questionData.work.audio,1);
             wx.hideLoading();
           }
         })
@@ -274,10 +274,12 @@ Page({
     })
   },
   // 转换文字
-  uploadAsr() {
-    Api.Preview.asr(this.data.questionData.work.audio).then(res => {
+  uploadAsr(src,type) {
+    Api.Preview.asr(src).then(res => {
       if (res.id) {
-        this.data.questionData.work.answer = null;
+        if (type){
+          this.data.questionData.work.answer = null;
+        }
         this.setData({
           questionData: this.data.questionData,
           id: res.id
