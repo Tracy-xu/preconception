@@ -3,4 +3,4 @@ view,
 scroll-view,
 icon,
 input,
-button {box-sizing: border-box;}
+button {box-sizing: border-box; font-size: 44rpx;}
