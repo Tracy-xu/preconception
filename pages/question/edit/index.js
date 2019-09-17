@@ -24,7 +24,9 @@ Page({
     sbjId: null,
     edtId: null,
     tbkId: null,
+    tbkNodeId: null,
     path: [],
+    name: '',
 
     // 初始化绑定班级组件所需参数(refId、resId)
     refId: null,
@@ -218,36 +220,26 @@ Page({
   },
 
   /**
-   * 往父页面插入习题
+   * 往父页面习题列表查询条件
    */
-  addNewQuestionToParentPage(resourceIds) {
-    var newQuestion = {
-      content: {
-        content: this.data.content,
-        imgs: this.data.imgs,
-        audios: this.data.audios,
-        mode: this.data.mode,
-        tbkNodes: [
-          {
-            attrs: {
-              edtId: this.data.edtId,
-              tbkId: this.data.tbkId
-            },
-            path: this.data.path.reverse()
-          }
-        ]
-      },
-      resource: {
-        resId: resourceIds.resId,
-        refId: resourceIds.refId
-      }
+  addNewQuestionToParentPage() {
+    var queryParam = {
+      curPage: 1,
+      scope: 1,
+      sortBy: 'created',
+      stgId: this.data.stgId,
+      sbjId: this.data.sbjId,
+      edtId: this.data.edtId,
+      tbkId: this.data.tbkId,
+      tbkNodeId: this.data.tbkNodeId
     };
 
     var pages = getCurrentPages();
     var prevPage = pages[pages.length - 2];
     prevPage.setData({
-      updateMode: true,
-      newQuestion
+      reload: true,
+      queryParam,
+      name: this.data.name
     });
   },
 
@@ -274,8 +266,8 @@ Page({
       return;
     }
 
-    var res = await this.createQuestion();
-    this.addNewQuestionToParentPage(res);
+    await this.createQuestion();
+    this.addNewQuestionToParentPage();
     wx.navigateBack();
   },
 
@@ -326,10 +318,7 @@ Page({
    * 确定绑定班级
    */
   handleConfirmBindClass() {
-    this.addNewQuestionToParentPage({
-      resId: this.data.resId,
-      refId: this.data.refId
-    });
+    this.addNewQuestionToParentPage();
     wx.navigateBack();
   },
 
@@ -337,10 +326,7 @@ Page({
    * 取消绑定班级
    */
   handleCancelBindClass() {
-    this.addNewQuestionToParentPage({
-      resId: this.data.resId,
-      refId: this.data.refId
-    });
+    this.addNewQuestionToParentPage();
     wx.navigateBack();
   },
 

@@ -21,7 +21,9 @@ Page({
     sbjId: null,
     edtId: null,
     tbkId: null,
+    tbkNodeId: null,
     path: [],
+    name: '',
 
     // 初始化绑定班级组件所需参数(refId、resId)
     resourceIds: []
@@ -229,40 +231,26 @@ Page({
   },
 
   /**
-   * 修改父页面插入习题
+   * 修改父页面习题列表查询查询条件
    */
-  addNewQuestionToParentPage(resource) {
-    var qsData = this.data.qsData.reverse();
-    var newQuestion = [];
-    resource.forEach((item, index) => {
-      newQuestion.push({
-        content: {
-          content: qsData[index].content,
-          imgs: qsData[index].imgs,
-          audios: qsData[index].audios,
-          mode: qsData[index].mode,
-          tbkNodes: [
-            {
-              attrs: {
-                edtId: this.data.edtId,
-                tbkId: this.data.tbkId
-              },
-              path: this.data.path.reverse()
-            }
-          ]
-        },
-        resource: {
-          resId: item.resId,
-          refId: item.refId
-        }
-      });
-    });
+  addNewQuestionToParentPage() {
+    var queryParam = {
+      curPage: 1,
+      scope: 1,
+      sortBy: 'created',
+      stgId: this.data.stgId,
+      sbjId: this.data.sbjId,
+      edtId: this.data.edtId,
+      tbkId: this.data.tbkId,
+      tbkNodeId: this.data.tbkNodeId
+    };
 
     var pages = getCurrentPages();
     var prevPage = pages[pages.length - 2];
     prevPage.setData({
-      createMode: true,
-      newQuestion
+      reload: true,
+      queryParam,
+      name: this.data.name
     });
   },
 
@@ -270,8 +258,8 @@ Page({
    * 保存创建习题
    */
   async handleCreateQuestion() {
-    var res = await this.createQuestion();
-    this.addNewQuestionToParentPage(res);
+    await this.createQuestion();
+    this.addNewQuestionToParentPage();
     wx.navigateBack();
   },
 
@@ -369,7 +357,7 @@ Page({
    * 确定绑定班级
    */
   handleConfirmBindClass() {
-    this.addNewQuestionToParentPage(this.data.resourceIds);
+    this.addNewQuestionToParentPage();
     wx.navigateBack();
   },
 
@@ -377,7 +365,7 @@ Page({
    * 取消绑定班级
    */
   handleCancelBindClass() {
-    this.addNewQuestionToParentPage(this.data.resourceIds);
+    this.addNewQuestionToParentPage();
     wx.navigateBack();
   },
 

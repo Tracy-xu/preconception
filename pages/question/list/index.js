@@ -17,14 +17,19 @@ Page({
       curPage: 1,
       scope: 1,
       sortBy: 'created',
+      stgId: null,
+      sbjId: null,
+      edtId: null,
+      tbkId: null,
+      tbkNodeId: null
     },
+    name: '',
     pageTips: '',
     questions: {
       items: [],
       page: {}
     },
-    createMode: false,
-    updateMode: false,
+    reload: false,
     newQuestion: null,
     updateIndex: null,
 
@@ -47,34 +52,26 @@ Page({
   },
 
   /**
-   * 创建问题点击确定重新加载分页
+   * 创建、编辑问题点击确定重新加载分页
    */
   async onShow() {
-    // 创建
-    if (this.data.createMode) {
+    if (this.data.reload) {
       this.setData({
-        createMode: false
+        reload: false
       });
 
-      this.data.questions.items = [...this.data.newQuestion, ...this.data.questions.items];
-      this.data.questions.page.total = this.data.questions.page.total + this.data.newQuestion.length;
+      // 查询条件变了，要重查（单纯插入数据解决不了问题）
+      await sleep(1000);
 
-      this.setData({
-        questions: this.data.questions
-      });
-    }
+      this.getQuestion(this.data.queryParam).then((rep) => {
+        var items = rep.items;
+        var page = rep.page;
+        this.data.questions.items = items;
+        this.data.questions.page = page;
 
-    // 编辑
-    if (this.data.updateMode) {
-      this.setData({
-        updateMode: false
-      });
-
-      this.data.questions.items.splice(this.data.updateIndex, 1, this.data.newQuestion);
-
-      this.setData({
-        questions: this.data.questions,
-        updateIndex: null
+        this.setData({
+          questions: this.data.questions
+        });
       });
     }
   },
