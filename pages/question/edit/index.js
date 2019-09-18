@@ -300,6 +300,20 @@ Page({
    * 创建习题
    */
   createQuestion() {
+    var tbkNodes = null;
+    if (this.data.edtId) {
+      tbkNodes.attrs = {
+        edtId: this.data.edtId,
+        tbkId: this.data.tbkId,
+        edtName: this.data.edtName,
+        tbkName: this.data.tbkName
+      };
+    }
+
+    if (this.data.path.length) {
+      tbkNodes.path = this.data.path.reverse();
+    }
+
     var param = {
       content: this.data.content,
       imgs: this.data.imgs,
@@ -308,17 +322,7 @@ Page({
 
       stgId: this.data.stgId,
       sbjId: this.data.sbjId,
-      tbkNodes: [
-        {
-          attrs: { 
-            edtId: this.data.edtId,
-            tbkId: this.data.tbkId,
-            edtName: this.data.edtName,
-            tbkName: this.data.tbkName
-          },
-          path: this.data.path.reverse()
-        }
-      ]
+      tbkNodes: tbkNodes
     };
 
     // 重新编辑时，resId、refId 这两个参数也要传过去

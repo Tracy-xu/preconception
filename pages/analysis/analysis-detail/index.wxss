@@ -231,11 +231,11 @@ page{
 .c-voice__nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 30rpx;
 }
 .c-voice__box {
-  display: flex;
-  align-items: center;
+  flex: 1;
 }
 .c-voice__icon {
   width:50rpx;

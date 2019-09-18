@@ -341,6 +341,20 @@ Page({
     }
 
     // 处理数据
+    var tbkNodes = null;
+    if (this.data.edtId) {
+      tbkNodes.attrs = {
+        edtId: this.data.edtId,
+        tbkId: this.data.tbkId,
+        edtName: this.data.edtName,
+        tbkName: this.data.tbkName
+      };
+    }
+
+    if (this.data.path.length) {
+      tbkNodes.path = this.data.path.reverse();
+    }
+
     var param = [];
     this.data.qsData.forEach((item) => {
       if (!item.content || !item.mode) {
@@ -349,17 +363,7 @@ Page({
 
       item.stgId = this.data.stgId;
       item.sbjId = this.data.sbjId;
-      item.tbkNodes = [
-        {
-          attrs: {
-            edtId: this.data.edtId,
-            tbkId: this.data.tbkId,
-            edtName: this.data.edtName,
-            tbkName: this.data.tbkName
-          },
-          path: this.data.path.reverse()
-        }
-      ];
+      item.tbkNodes = tbkNodes;
 
       param.push(item);
     });

@@ -46,12 +46,12 @@
     <view class="c-questions-info__subject">
       当前章节：
       <view>{{ nodeName }}</view>
-      <icon
+      <!-- <icon
         wx:if="{{ nodeName }}"
         bindtap="handleRemoveChapterQueryParam"
         class="c-questions-info__subject-del"
       >
-      </icon>
+      </icon> -->
     </view>
     <view class="c-questions-info__count">共<view>{{ questions.page.total }}</view>条</view>
   </view>
