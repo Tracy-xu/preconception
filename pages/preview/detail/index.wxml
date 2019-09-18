@@ -26,9 +26,12 @@
         <span wx:else>
           {{item.answer.length >= 48 ? util.sub(item.answer,48) : item.answer}}
         </span>
-        <span class="font-color--blue" data-index="{{item.workId}}" wx:if="{{item.answer.length >= 48 && item.showAllFlag}}" bindtap="showAll">收起</span>
-        <span class="font-color--blue" data-index="{{item.workId}}" wx:if="{{item.answer.length >= 48 && !item.showAllFlag}}" bindtap="showAll">全文</span>
-        {{item.answer ? item.answer : ''}}
+        <span class="font-color--blue" 
+        data-index="{{item.workId}}" 
+        wx:if="{{item.answer.length >= 48 && item.showAllFlag}}" bindtap="showAll">收起</span>
+        <span class="font-color--blue" 
+        data-index="{{item.workId}}" 
+        wx:if="{{item.answer.length >= 48 && !item.showAllFlag}}" bindtap="showAll">全文</span>
       </view>
     </view>
   </view>

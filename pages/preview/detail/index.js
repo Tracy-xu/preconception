@@ -160,7 +160,7 @@ Page({
   showAll(event) {
     let $workId = event.currentTarget.dataset.index;
     this.data.workList.forEach(item => {
-      if (item.work.workId === $workId) {
+      if (item.workId === $workId) {
         item.showAllFlag = !item.showAllFlag;
       }
     });
