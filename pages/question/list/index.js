@@ -17,7 +17,7 @@ Page({
     // 学段学科教材版本数据（部分在查询参数里面）
     nodeName: '',
     edtName: '',
-    path: '',
+    path: [],
     tbkName: '',
     
     // 分页数据
