@@ -77,8 +77,8 @@
           data-id="{{item.workId}}" 
           bindtap="selWork">
       <view class="c-detail__con-imgitem__top">
-        <image src="item.thumbnail"></image>
-        <i class="c-voice-box__btn" catchtap="playLikeVideo"></i>
+        <image src="{{item.thumbnail}}"></image>
+        <i class="c-voice-box__btn" data-src="{{item.fileId}}" catchtap="playLikeVideo"></i>
       </view>
       <view class="c-detail__con-imgitem__bottom">
         <image src="http://g.hiphotos.baidu.com/image/pic/item/c2cec3fdfc03924590b2a9b58d94a4c27d1e2500.jpg"></image>

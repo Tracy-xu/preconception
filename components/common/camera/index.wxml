@@ -1,10 +1,10 @@
 <view class="m-camera">
+  <icon type="cancel" size="40" color="red"/>
   <camera
     device-position="back"
     flash="off"
   >
   </camera>
-  
   <view class="m-camera__operator">
     <button type="primary" bindtap="handleStartRecord">开始录像</button>
     <button type="primary" bindtap="handleStopRecord">结束录像</button>

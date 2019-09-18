@@ -43,7 +43,7 @@ Page({
     Api.Preview.getWorkById(this.data.workId).then((res) => {
       // 转换文字
       if(res.work.audio){
-        this.uploadAsr();
+        this.uploadAsr(res.work.audio);
       }
       that.setData({
         questionData: res
@@ -58,15 +58,17 @@ Page({
         return this.data.questionData.work.answer.length <= 0;
       break;
       case 2:
-        return this.data.questionData.imgs == null;
+        return this.data.questionData.work.imgs == null;
         return this.data.questionData.work.imgs.length <= 0; 
       break;
       case 3:
-        return this.data.questionData.fileId == null;
+        return this.data.questionData.work.fileId == null;
         return this.data.questionData.work.fileId.length <= 0;
       break;
       case 4:
-        return this.data.questionData.audio == null;
+        return this.data.questionData.work.answer == null;
+        return this.data.questionData.work.answer.length <= 0;
+        return this.data.questionData.work.audio == null;
         return this.data.questionData.work.audio.length <= 0;
       break;
     }
@@ -74,6 +76,13 @@ Page({
   // 暂存数据
   pushWorkStorage() {
     if (this.verifyData()){
+      if (this.data.questionData.work.audio){
+        wx.showToast({
+          title: '请转换文字',
+          icon: 'warn',
+        })
+        return;
+      }
       wx.showToast({
         title: '请输入答案',
         icon: 'warn',
@@ -196,7 +205,11 @@ Page({
   // 上传语音
   uploadVoice() {
     let that = this
+    this.data.questionData.work.audio = '';
+    this.data.questionData.work.answer = '';
     that.setData({
+      id:'',
+      questionData: this.data.questionData,
       recordIng: !that.data.recordIng
     })
     if (!app.globalData.RecorderManager) {
@@ -204,17 +217,7 @@ Page({
         format: 'mp3'
       });
     }
-    if (that.data.recordIng) {
-      app.globalData.RecorderManager.start({
-        duration:30000,
-        success: (res) => {
-          wx.showToast({
-            title: '开始录音',
-          })
-        }
-      });
-    } else {
-      app.globalData.RecorderManager.stop();
+    if (app.globalData.RecorderManager){
       app.globalData.RecorderManager.onStop((res) => {
         wx.showToast({
           title: '录音结束',
@@ -229,19 +232,35 @@ Page({
           success(res1) {
             that.data.questionData.work.audio = JSON.parse(res1.data).url;
             that.setData({
+              recordIng: false,
               questionData: that.data.questionData
             });
-            that.uploadAsr();
+            that.uploadAsr(that.data.questionData.work.audio, 1);
             wx.hideLoading();
           }
         })
       });
     }
+    if (that.data.recordIng) {
+      app.globalData.RecorderManager.start({
+        duration:30000,
+        success: (res) => {
+          wx.showToast({
+            title: '开始录音',
+          })
+        }
+      });
+    } else {
+      app.globalData.RecorderManager.stop();
+      
+    }
   },
   // 删除语音答案
   deleteVoice() {
     this.data.questionData.work.audio = '';
+    this.data.questionData.work.answer = '';
     this.setData({
+      id:null,
       questionData: this.data.questionData,
     })
   },
@@ -268,10 +287,12 @@ Page({
     })
   },
   // 转换文字
-  uploadAsr() {
-    Api.Preview.asr(this.data.questionData.work.audio).then(res => {
+  uploadAsr(src,type) {
+    Api.Preview.asr(src).then(res => {
       if (res.id) {
-        this.data.questionData.work.answer = null;
+        if (type){
+          this.data.questionData.work.answer = null;
+        }
         this.setData({
           questionData: this.data.questionData,
           id: res.id
@@ -285,6 +306,9 @@ Page({
     wx.showLoading({
       title: '语音转换中',
     });
+    that.setData({
+      asrIng:true,
+    })
     Api.Preview.getAsrDetail(that.data.id).then(resDetail => {
       if (resDetail.status === 1) {
         that.data.questionData.work.answer = resDetail.details[0].result.result.join(',');
@@ -300,7 +324,9 @@ Page({
         })
         wx.hideLoading();
       }
-      
+      that.setData({
+        asrIng: false,
+      })
     })
 
   },

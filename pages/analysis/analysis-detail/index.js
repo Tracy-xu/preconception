@@ -185,7 +185,6 @@ Page({
     })
   },
   bindCurrCommentInput(event){
-    console.log(event.detail.value);
     this.setData({
       currComment: event.detail.value
     })
@@ -212,10 +211,11 @@ Page({
     }
   },
   updateLabe(event){
+    debugger
     let dataset = event.currentTarget.dataset;
     let uwg = {
       label: dataset.label,
-      comment: dataset.comment,
+      comment: dataset.comment || '',
       index: dataset.index
     }
     this.data.workGroup.groups[uwg.index].groupInfo.label = uwg.label;

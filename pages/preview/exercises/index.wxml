@@ -113,12 +113,12 @@
         提交答案
       </view>
     </view>
-    <!-- 录像 -->
+  </view>
+  <!-- 录像 -->
     <myk-camera
         wx:if="{{record}}"
         bindstoprecord="handleStopRecord">
     </myk-camera>
-  </view>
   <!-- 编辑语音答案 -->
   <mp-dialog 
       ext-class="c-preview-dialog"
@@ -136,6 +136,7 @@
   src="{{questionData.work.fileId}}"
   style="z-index:999;">
 </myk-video>
+<view class="c-model" wx:if="{{asrIng}}"></view>
 </view>
 <wxs module="util">
     var sub = function(val,length) {
