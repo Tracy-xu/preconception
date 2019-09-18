@@ -211,7 +211,6 @@ Page({
     }
   },
   updateLabe(event){
-    debugger
     let dataset = event.currentTarget.dataset;
     let uwg = {
       label: dataset.label,
