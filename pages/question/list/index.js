@@ -43,16 +43,47 @@ Page({
     refId: null
   },
 
-  onLoad() {
-    this.getQuestion(this.data.queryParam).then((rep) => {
-      var items = rep.items;
-      var page = rep.page;
-      this.data.questions.items = items;
-      this.data.questions.page = page;
+  async onLoad() {
+    var res = await this.getTbkPreference();
 
-      this.setData({
-        questions: this.data.questions
-      });
+    this.data.queryParam.stgId = res.stgId;
+    this.data.queryParam.sbjId = res.sbjId;
+    this.data.queryParam.edtId = res.edtId;
+    this.data.queryParam.tbkId = res.tbkId;
+
+    var edtName = '';
+    var tbkName = '';
+    var nodeName = '';
+    var path = [];
+    var tbkNodes = res.tbkNode;
+    if (tbkNodes) {
+      edtName = tbkNodes[0].attrs.edtName;
+      tbkName = tbkNodes[0].attrs.tbkName;
+      var hasPath = tbkNodes[0].path;
+      if (hasPath) {
+        path = tbkNodes[0].path;
+        this.data.queryParam.tbkNodeId = path[path.length - 1].id;
+        nodeName = path[path.length - 1].name;
+      }
+    }
+
+    this.setData({
+      queryParam: this.data.queryParam,
+      edtName,
+      tbkName,
+      nodeName,
+      path,
+    });
+
+    var rep = await this.getQuestion(this.data.queryParam);
+
+    var items = rep.items;
+    var page = rep.page;
+    this.data.questions.items = items;
+    this.data.questions.page = page;
+
+    this.setData({
+      questions: this.data.questions
     });
   },
 
@@ -315,5 +346,12 @@ Page({
     wx.navigateTo({
       url: `${ router.questionEdit }?refId=${ refId }&resId=${ resId }&stgId=${ stgId }&sbjId=${ sbjId }&edtId=${ edtId }&tbkId=${ tbkId }&tbkNodeId=${ tbkNodeId }&nodeName=${ nodeName }&edtName=${ edtName }&tbkName=${ tbkName }&path=${ path }`
     });
+  },
+
+  /**
+   * 获取数据偏好
+   */
+  getTbkPreference() {
+    return API.Question.getTbkPreference();
   }
 })

@@ -110,7 +110,17 @@ Component({
       var selectedStgId = ev.target.dataset.stgid;
       
       this.setData({
-        selectedStgId: selectedStgId
+        selectedStgId: selectedStgId,
+
+        // 清空其他
+        selectedSbjId: null,
+        selectedEdtId: null,
+        selectedTbkId: null,
+        selectedEdtName: '',
+        selectedTbkName: '',
+        selectedNodeName: '',
+        tempNodeId: null,
+        path: []
       });
 
       this.getRelativeSubject(selectedStgId);
@@ -147,7 +157,16 @@ Component({
       var selectedSbjId = ev.target.dataset.sbjid;
 
       this.setData({
-        selectedSbjId: selectedSbjId
+        selectedSbjId: selectedSbjId,
+
+        // 清空其他
+        selectedEdtId: null,
+        selectedTbkId: null,
+        selectedEdtName: '',
+        selectedTbkName: '',
+        selectedNodeName: '',
+        tempNodeId: null,
+        path: []
       });
     },
 
@@ -195,7 +214,13 @@ Component({
         tempEdtName: data.detail.edtName,
         tempTbkName: data.detail.tbkName,
         tempEdtId: data.detail.edtId,
-        tempTbkId: data.detail.tbkId
+        tempTbkId: data.detail.tbkId,
+
+        // 清空其他
+        selectedTbkName: '',
+        selectedNodeName: '',
+        tempNodeId: null,
+        path: []
       });
     },
 
@@ -298,6 +323,23 @@ Component({
         
         return;
       }
+
+      // 设置数据偏好
+      API.Question.setTbkPreference({
+        stgId,
+        sbjId,
+        edtId,
+        tbkId,
+        tbkNode: [{
+          attrs: {
+            edtId,
+            tbkId,
+            edtName,
+            tbkName
+          },
+          path: path.reverse()
+        }]
+      });
 
       this.triggerEvent('confirm', {
         stgId, 

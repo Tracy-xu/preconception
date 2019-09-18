@@ -23,6 +23,7 @@
     edtName="{{ edtName }}"
     nodeName="{{ nodeName }}"
     tbkName="{{ tbkName }}"
+    path="{{ path }}"
     bindclose="handleCloseSelector"
     bindconfirm="handleConfirmSelector"
   >

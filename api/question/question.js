@@ -90,3 +90,17 @@ export function unbindClass(param) {
 export function getBindClass(resId) {
   return axios.get(`/qgn/klass/precon/que/${resId }/info`);
 }
+
+/**
+ * 设置资源库数据偏好 -- 课本
+ */
+export function setTbkPreference(param) {
+  return axios.post('/qgn/preference/tbkPref', param);
+}
+
+/**
+ * 获取资源库数据偏好 -- 课本
+ */
+export function getTbkPreference(param) {
+  return axios.get('/qgn/preference/tbkPref');
+}
