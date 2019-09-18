@@ -231,7 +231,7 @@ Page({
   handleRemoveChapterQueryParam() {
     this.setData({
       nodeName: '',
-      path: '',
+      path: [],
       queryParam: Object.assign({}, this.data.queryParam, {
         stgId: '',
         sbjId: '',
