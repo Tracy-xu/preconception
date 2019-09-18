@@ -122,7 +122,15 @@
         </view>
       </view>
     </view>
-    <view class="m-page-tips">{{ pageTips }}</view>
+    <view class="m-page-tips">
+      <view
+        wx:if="{{ pageTips === '加载中' }}"
+        class="m-page-load"
+      >
+        <icon class="m-page-load__loader"></icon>
+      </view>
+      {{ pageTips }}
+    </view>
   </scroll-view>
 
   <!-- tapbar -->

@@ -18,7 +18,18 @@
  * 分页提示
  */
 .m-page-tips {display: flex; padding: 20rpx 0; align-items: center; justify-content: center;}
-
+.m-page-load {position: relative; display: inline-block; width: 45rpx; height: 45rpx; margin-right: 20rpx;}
+.m-page-load__loader {border: 4rpx #ccc solid; border-left: 4rpx #999 solid; animation: rotate 1.1s infinite linear; transform:  translateZ(0);}
+.m-page-load__loader,
+.m-page-load__loader::after {position: relative; display: inline-block; z-index: 222; width: 100%; height: 100%; border-radius: 50%;}
+@keyframes rotate {
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}
 
 /* 字体颜色 */
 .font-color--blue{color:#3484C2;}
