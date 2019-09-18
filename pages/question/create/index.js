@@ -343,7 +343,8 @@ Page({
     // 处理数据
     var tbkNodes = null;
     if (this.data.edtId) {
-      tbkNodes.attrs = {
+      tbkNodes = [{}];
+      tbkNodes[0].attrs = {
         edtId: this.data.edtId,
         tbkId: this.data.tbkId,
         edtName: this.data.edtName,
@@ -352,7 +353,7 @@ Page({
     }
 
     if (this.data.path.length) {
-      tbkNodes.path = this.data.path.reverse();
+      tbkNodes[0].path = this.data.path.reverse();
     }
 
     var param = [];
