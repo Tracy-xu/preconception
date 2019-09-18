@@ -251,8 +251,14 @@ Page({
    */
   handleSelectAnswerType(ev) {
     var index = ev.target.dataset.index;
-    this.data.qsData[index].mode = ev.target.dataset.type;
 
+    var mode = ev.target.dataset.type;
+    if (this.data.qsData[index].mode === mode) {
+      this.data.qsData[index].mode = 0;
+    } else {
+      this.data.qsData[index].mode = mode;
+    }
+    
     this.setData({
       qsData: this.data.qsData
     });
