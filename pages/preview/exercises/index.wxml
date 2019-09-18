@@ -117,7 +117,8 @@
   <!-- 录像 -->
   <myk-camera
         wx:if="{{record}}"
-        bindstoprecord="handleStopRecord">
+        bindstoprecord="handleStopRecord"
+        bindcancelrecord="handleCancelrecord">
   </myk-camera>
   <!-- 编辑语音答案 -->
   <mp-dialog 

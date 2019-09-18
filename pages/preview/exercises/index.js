@@ -195,6 +195,13 @@ Page({
       }
     })
   },
+  // 取消录像
+  handleCancelrecord(){
+    let that = this
+    that.setData({
+      record: false,
+    });
+  },
   // 播放视频
   playvideo() {
     console.log("ddd")
