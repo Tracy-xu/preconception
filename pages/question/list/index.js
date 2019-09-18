@@ -13,6 +13,14 @@ var sleep = time => {
 Page({
   data: {
     visibleSelector: false,
+
+    // 学段学科教材版本数据（部分在查询参数里面）
+    nodeName: '',
+    edtName: '',
+    path: '',
+    tbkName: '',
+    
+    // 分页数据
     queryParam: {
       curPage: 1,
       scope: 1,
@@ -23,15 +31,12 @@ Page({
       tbkId: null,
       tbkNodeId: null
     },
-    name: '',
     pageTips: '',
     questions: {
       items: [],
       page: {}
     },
     reload: false,
-    newQuestion: null,
-    updateIndex: null,
 
     // 绑定班级所需参数
     resId: null,
@@ -158,11 +163,15 @@ Page({
     var edtId = data.detail.edtId;
     var tbkId = data.detail.tbkId;
     var tbkNodeId = data.detail.tbkNodeId;
-    var name = data.detail.name;
+    var nodeName = data.detail.nodeName;
+    var edtName = data.detail.edtName;
+    var tbkName = data.detail.tbkName;
     var path = data.detail.path;
 
     this.setData({
-      name,
+      nodeName,
+      edtName,
+      tbkName,
       path,
       queryParam: Object.assign({}, this.data.queryParam, {
         stgId,
@@ -190,7 +199,7 @@ Page({
    */
   handleRemoveChapterQueryParam() {
     this.setData({
-      name: '',
+      nodeName: '',
       path: '',
       queryParam: Object.assign({}, this.data.queryParam, {
         stgId: '',
@@ -229,8 +238,18 @@ Page({
    * 创建习题
    */
   handleCreatQuestion() {
+    var stgId = this.data.queryParam.stgId;
+    var sbjId = this.data.queryParam.sbjId;
+    var edtId = this.data.queryParam.edtId;
+    var tbkId = this.data.queryParam.tbkId;
+    var tbkNodeId = this.data.queryParam.tbkNodeId;
+    var nodeName = this.data.nodeName;
+    var edtName = this.data.edtName;
+    var tbkName = this.data.tbkName;
+    var path = JSON.stringify(this.data.path);
+
     wx.navigateTo({
-      url: router.questionCreate
+      url: `${ router.questionCreate }?stgId=${ stgId }&sbjId=${ sbjId }&edtId=${ edtId }&tbkId=${ tbkId }&tbkNodeId=${ tbkNodeId }&nodeName=${ nodeName }&edtName=${ edtName }&tbkName=${ tbkName }&path=${ path }`
     });
   },
 
@@ -276,18 +295,25 @@ Page({
    * 编辑
    */
   handleEditQuestion(ev) {
+    var content = ev.target.dataset.content;
+
     var resId = ev.target.dataset.resid;
     var refId = ev.target.dataset.refid;
-    var stgId = ev.target.dataset.stgid;
-    var sbjId = ev.target.dataset.sbjid;
-    var index = ev.target.dataset.index;
 
-    this.setData({
-      updateIndex: index
-    });
+    var stgId = content.stgid;
+    var sbjId = content.sbjid;
+    if (content.tbkNodes) {
+      var edtId = content.tbkNodes[0].attrs.edtId;
+      var tbkId = content.tbkNodes[0].attrs.tbkId;
+      var tbkNodeId = content.tbkNodes[0].path[content.tbkNodes[0].path.length - 1].id;
+      var nodeName = content.tbkNodes[0].path[content.tbkNodes[0].path.length - 1].name;
+      var edtName = content.tbkNodes[0].attrs.edtName;
+      var tbkName = content.tbkNodes[0].attrs.tbkName;
+      var path = JSON.stringify(content.tbkNodes[0].path);
+    }
 
     wx.navigateTo({
-      url: `${ router.questionEdit }?refId=${ refId }&resId=${ resId }&stgId=${ stgId }&sbjId=${ sbjId }`
+      url: `${ router.questionEdit }?refId=${ refId }&resId=${ resId }&stgId=${ stgId }&sbjId=${ sbjId }&edtId=${ edtId }&tbkId=${ tbkId }&tbkNodeId=${ tbkNodeId }&nodeName=${ nodeName }&edtName=${ edtName }&tbkName=${ tbkName }&path=${ path }`
     });
   }
 })

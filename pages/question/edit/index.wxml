@@ -14,6 +14,13 @@
     wx:if="{{ visibleSelector }}"
     stgId="{{ stgId }}"
     sbjId="{{ sbjId }}"
+    edtId="{{ edtId }}"
+    tbkId="{{ tbkId }}"
+    tbkNodeId="{{ tbkNodeId }}"
+    edtName="{{ edtName }}"
+    nodeName="{{ nodeName }}"
+    tbkName="{{ tbkName }}"
+    path="{{ path }}"
     bindclose="handleCloseSelector"
     bindconfirm="handleConfirmSelector"
   >

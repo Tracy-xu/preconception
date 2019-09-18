@@ -1,22 +1,30 @@
 <view class="m-scroll-container">
   <view class="c-sort">
-      <view class="c-sort__left">
-        学段学科教材版本
-      </view>
-      <view
-        bindtap="handleVisibleSelector"
-        class="c-sort__right"
-      >
-        <i class="c-sort__icon"></i>筛选
-      </view>
+    <view class="c-sort__left">
+      学段学科教材版本
+    </view>
+    <view
+      bindtap="handleVisibleSelector"
+      class="c-sort__right"
+    >
+      <i class="c-sort__icon"></i>筛选
+    </view>
   </view>
   <selector
     wx:if="{{ visibleSelector }}"
+    stgId="{{ stgId }}"
+    sbjId="{{ sbjId }}"
+    edtId="{{ edtId }}"
+    tbkId="{{ tbkId }}"
+    tbkNodeId="{{ tbkNodeId }}"
+    edtName="{{ edtName }}"
+    nodeName="{{ nodeName }}"
+    tbkName="{{ tbkName }}"
     bindclose="handleCloseSelector"
     bindconfirm="handleConfirmSelector"
   >
   </selector>
-  
+
   <scroll-view
     scroll-y="{{ true }}"
     class="c-question-create"

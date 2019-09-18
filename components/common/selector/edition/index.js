@@ -7,6 +7,12 @@ Component({
     },
     stgId: {
       type: Number
+    },
+    edtId: {
+      type: Number
+    },
+    tbkId: {
+      type: Number
     }
   },
 
@@ -18,8 +24,12 @@ Component({
     selectedTbkId: null
   },
 
-  ready() {
-    this.getEdition(this.properties.sbjId, this.properties.stgId);
+  async ready() {
+    await this.getEdition(this.properties.sbjId, this.properties.stgId);
+
+    if (this.properties.edtId && this.properties.tbkId) {
+      this.setDefaultSelect(this.properties.edtId, this.properties.tbkId);
+    }
   },
 
   methods: {
@@ -27,7 +37,7 @@ Component({
      * 查询教材版本
      */
     getEdition(sbjId, stgId) {
-      API.Question.getEdition(sbjId, stgId).then((rep) => {
+      return API.Question.getEdition(sbjId, stgId).then((rep) => {
         this.setData({
           edition: rep
         });
@@ -38,15 +48,15 @@ Component({
      * 选择教材版本
      */
     handleSelectEdition(ev) {
-      var editid = ev.target.dataset.edtid;
+      var edtId = ev.target.dataset.edtid;
       var edtName = ev.target.dataset.edtname;
       this.setData({
-        selectedEdtId: editid
+        selectedEdtId: edtId
       });
       this.setData({
         selectedEdtName: edtName
       });
-      this.getRelativeBook(editid);
+      this.getRelativeBook(edtId);
     },
 
     /**
@@ -74,6 +84,18 @@ Component({
         selectedTbkId: tbkId
       });
       this.triggerEvent('selectbook', { edtName, edtId, tbkName, tbkId });
+    },
+
+    /**
+     * 设置默认选中
+     */
+    setDefaultSelect(edtId, tbkId) {
+      this.setData({
+        selectedEdtId: edtId,
+        selectedTbkId: tbkId
+      });
+
+      this.getRelativeBook(edtId);
     }
   }
 })

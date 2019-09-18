@@ -15,6 +15,14 @@
   </view>
   <selector
     wx:if="{{ visibleSelector }}"
+    stgId="{{ queryParam.stgId }}"
+    sbjId="{{ queryParam.sbjId }}"
+    edtId="{{ queryParam.edtId }}"
+    tbkId="{{ queryParam.tbkId }}"
+    tbkNodeId="{{ queryParam.tbkNodeId }}"
+    edtName="{{ edtName }}"
+    nodeName="{{ nodeName }}"
+    tbkName="{{ tbkName }}"
     bindclose="handleCloseSelector"
     bindconfirm="handleConfirmSelector"
   >
@@ -36,9 +44,9 @@
   <view class="c-questions-info">
     <view class="c-questions-info__subject">
       当前章节：
-      <view>{{ name }}</view>
+      <view>{{ nodeName }}</view>
       <icon
-        wx:if="{{ name }}"
+        wx:if="{{ nodeName }}"
         bindtap="handleRemoveChapterQueryParam"
         class="c-questions-info__subject-del"
       >
@@ -99,7 +107,7 @@
           bindtap="handleEditQuestion"
           data-resid="{{ item.resource.resId }}"
           data-refid="{{ item.resource.refId }}"
-          data-index="{{ index }}"
+          data-content="{{ item.content }}"
           class="c-question-list__edit"
         >
           编辑

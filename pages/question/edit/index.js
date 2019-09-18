@@ -26,7 +26,9 @@ Page({
     tbkId: null,
     tbkNodeId: null,
     path: [],
-    name: '',
+    nodeName: '',
+    edtName: '',
+    tbkName: '',
 
     // 初始化绑定班级组件所需参数(refId、resId)
     refId: null,
@@ -50,12 +52,31 @@ Page({
   onLoad: function (options) {
     var resId = options.resId;
     var refId = options.refId;
+    // 从习题列表带过来的学段学科教材章节默认值
+    var stgId = options.stgId;
+    var sbjId = options.sbjId;
+    var edtId = options.edtId ? Number(options.edtId) : options.edtId;
+    var tbkId = options.tbkId ? Number(options.tbkId) : options.tbkId;
+    var tbkNodeId = options.tbkNodeId;
+    var nodeName = options.nodeName;
+    var edtName = options.edtName;
+    var tbkName = options.tbkName;
+    var path = JSON.parse(options.path);
 
     this.setData({
       resId,
-      refId
+      refId,
+      stgId,
+      sbjId,
+      edtId,
+      tbkId,
+      tbkNodeId,
+      nodeName,
+      edtName,
+      tbkName,
+      path
     });
-    
+
     this.getQuestionDetail(resId, refId);
   },
 
@@ -116,7 +137,9 @@ Page({
       tbkId: data.detail.tbkId,
       tbkNodeId: data.detail.tbkNodeId,
       path: data.detail.path,
-      name: data.detail.name
+      edtName: data.detail.edtName,
+      nodeName: data.detail.nodeName,
+      tbkName: data.detail.tbkName
     });
   },
 
@@ -239,7 +262,9 @@ Page({
     prevPage.setData({
       reload: true,
       queryParam,
-      name: this.data.name
+      edtName: this.data.edtName,
+      nodeName: this.data.nodeName,
+      tbkName: this.data.tbkName,
     });
   },
 
@@ -287,7 +312,9 @@ Page({
         {
           attrs: { 
             edtId: this.data.edtId,
-            tbkId: this.data.tbkId
+            tbkId: this.data.tbkId,
+            edtName: this.data.edtName,
+            tbkName: this.data.tbkName
           },
           path: this.data.path.reverse()
         }

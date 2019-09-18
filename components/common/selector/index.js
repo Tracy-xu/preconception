@@ -3,17 +3,36 @@ import API from '../../../api/index.js';
 Component({
   properties: {
     stgId: {
-      type: Number,
-      value: null
+      type: Number
     },
     sbjId: {
-      type: Number,
-      value: null
+      type: Number
+    },
+    edtId: {
+      type: Number
+    },
+    tbkId: {
+      type: Number
+    },
+    tbkNodeId: {
+      type: Number
+    },
+    edtName: {
+      type: String
+    },
+    tbkName: {
+      type: String
+    },
+    nodeName: {
+      type: String
+    },
+    path: {
+      type: Array
     }
   },
 
   data: {
-    visibleVersion: false,
+    visibleEdition: false,
     visibleChapter: false,
 
     // 学段
@@ -53,10 +72,22 @@ Component({
     // 如果有默认数据，需初始化默认数据
     this.setData({
       selectedStgId: this.properties.stgId,
-      selectedSbjId: this.properties.sbjId
+      selectedSbjId: this.properties.sbjId,
+      selectedEdtId: this.properties.edtId,
+      selectedTbkId: this.properties.tbkId,
+      selectedNodeName: this.properties.nodeName,
+      selectedEdtName: this.properties.edtName,
+      selectedTbkName: this.properties.tbkName,
+      tempNodeId: this.properties.tbkNodeId,
+      path: this.properties.path
     });
+ 
     if (this.data.selectedStgId) {
       this.getRelativeSubject(this.data.selectedStgId);
+    }
+
+    if (this.data.selectedTbkId) {
+      this.getChapterTree(this.data.selectedTbkId);
     }
   },
 
@@ -123,7 +154,7 @@ Component({
     /**
      * 显示教材版本选择组件
      */
-    handleVisibleVersion() {
+    handleVisibleEdition() {
       if (!this.data.selectedStgId || !this.data.selectedSbjId) {
         wx.showToast({
           title: '请先选择学段学科',
@@ -134,7 +165,7 @@ Component({
       }
 
       this.setData({
-        visibleVersion: true
+        visibleEdition: true
       });
     },
 
@@ -195,7 +226,7 @@ Component({
      */
     handleClose() {
       // 教材版本选择组件、教材章节选择打开状态下
-      if (this.data.visibleVersion || this.data.visibleChapter) {
+      if (this.data.visibleEdition || this.data.visibleChapter) {
         this.closeLayer();
         return;
       }
@@ -209,7 +240,7 @@ Component({
      */
     handleConfirm() {
       // 教材版本选择组件
-      if (this.data.visibleVersion) {
+      if (this.data.visibleEdition) {
         this.setData({
           selectedEdtName: this.data.tempEdtName,
           selectedEdtId: this.data.tempEdtId,
@@ -252,7 +283,9 @@ Component({
       var edtId = this.data.selectedEdtId;
       var tbkId = this.data.selectedTbkId;
       var tbkNodeId = this.data.selectedNodeId;
-      var name = this.data.selectedNodeName;
+      var nodeName = this.data.selectedNodeName;
+      var edtName = this.data.selectedEdtName;
+      var tbkName = this.data.selectedTbkName;
       var path = this.data.path;
 
       // 需要校验数据
@@ -272,7 +305,9 @@ Component({
         edtId, 
         tbkId, 
         tbkNodeId, 
-        name, 
+        nodeName,
+        edtName,
+        tbkName,
         path
       });
     },
@@ -282,7 +317,7 @@ Component({
      */
     closeLayer() {
       this.setData({
-        visibleVersion: false
+        visibleEdition: false
       });
 
       this.setData({

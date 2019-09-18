@@ -29,7 +29,7 @@
 
   <!-- 选择教材版本 -->
   <view
-    bindtap="handleVisibleVersion"
+    bindtap="handleVisibleEdition"
     class="c-selection__title"
   >
     教材版本
@@ -51,12 +51,14 @@
 
   <!-- 选择教材版本、选择教材章节 -->
   <scroll-view
-    wx:if="{{ visibleVersion || visibleChapter }}"
+    wx:if="{{ visibleEdition || visibleChapter }}"
     class="c-selection__scroll"
     scroll-y="{{ true }}"
   >
     <edition
-      wx:if="{{ visibleVersion }}"
+      wx:if="{{ visibleEdition }}"
+      edtId="{{ selectedEdtId }}"
+      tbkId="{{ selectedTbkId }}"
       bindselectbook="handleSelectBook"
       stgId="{{ selectedStgId }}"
       sbjId="{{ selectedSbjId }}"
