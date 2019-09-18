@@ -38,6 +38,11 @@ Page({
     })
     this.getWorkById();
   },
+  onUnload :function(){
+    if (app.globalData.RecorderManager) {
+      app.globalData.RecorderManager.stop();
+    }
+  },
   getWorkById() {
     let that = this
     Api.Preview.getWorkById(this.data.workId).then((res) => {
@@ -75,6 +80,7 @@ Page({
   },
   // 暂存数据
   pushWorkStorage() {
+    console.log()
     if (this.verifyData()){
       if (this.data.questionData.work.audio){
         wx.showToast({
@@ -205,8 +211,8 @@ Page({
   // 上传语音
   uploadVoice() {
     let that = this
-    this.data.questionData.work.audio = '';
-    this.data.questionData.work.answer = '';
+    this.data.questionData.work.audio = null;
+    this.data.questionData.work.answer = null;
     that.setData({
       id:'',
       questionData: this.data.questionData,
@@ -252,7 +258,6 @@ Page({
       });
     } else {
       app.globalData.RecorderManager.stop();
-      
     }
   },
   // 删除语音答案
@@ -302,7 +307,6 @@ Page({
   },
   asr() {
     let that = this;
-    wx.hideLoading();
     wx.showLoading({
       title: '语音转换中',
     });
@@ -316,17 +320,20 @@ Page({
           questionData: that.data.questionData,
         })
         wx.hideLoading();
+        that.setData({
+          asrIng: false,
+        })
       } else if (resDetail.status === 0) {
         this.asr();
       }else{
         wx: wx.showToast({
           title: resDetail.msg,
         })
+        that.setData({
+          asrIng: false,
+        })
         wx.hideLoading();
       }
-      that.setData({
-        asrIng: false,
-      })
     })
 
   },
