@@ -66,6 +66,7 @@
   font-size:51rpx;
   line-height:72rpx;
   text-align: justify;
+  overflow: hidden;
 }
 .c-list__content-all {
   display: inline-block;
