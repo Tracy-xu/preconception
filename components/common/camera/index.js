@@ -1,6 +1,5 @@
 Component({
   attached() {
-    console.log("dddd")
     this.ctx = wx.createCameraContext();
   },
 
@@ -16,17 +15,20 @@ Component({
      */
     handleStartRecord() {
       let that = this;
-      console.log(this.ctx)
+      console.log(this.ctx);
       this.ctx.startRecord({
-        fail: () => {
-          console.log("fff")
-        },
         success: (res) => {
           console.log(res)
           that.setData({
             recording: true
           })
           console.log('startRecord');
+        },
+      fail:() => {
+        console.log("sddasd")
+      },
+        complete: () => {
+          console.log('complete');
         }
       })
     },

@@ -1,6 +1,7 @@
 <view class="m-camera">
   <camera
     device-position="back"
+    mode="normal"
     flash="off"
   >
   </camera>
