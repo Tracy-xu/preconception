@@ -32,13 +32,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.setData({
       workId: options.workId
     })
     this.getWorkById();
   },
-  onUnload :function(){
+  onUnload: function () {
     if (app.globalData.RecorderManager) {
       app.globalData.RecorderManager.stop();
     }
@@ -47,7 +47,7 @@ Page({
     let that = this
     Api.Preview.getWorkById(this.data.workId).then((res) => {
       // 转换文字
-      if(res.work.audio){
+      if (res.work.audio) {
         this.uploadAsr(res.work.audio);
       }
       that.setData({
@@ -55,40 +55,35 @@ Page({
       })
     })
   },
-  verifyData(){
+  verifyData(type) {
     const $mode = this.data.questionData.item.content.mode;
-    switch ($mode){
+    switch ($mode) {
       case 1:
         return this.data.questionData.work.answer == null;
         return this.data.questionData.work.answer.length <= 0;
-      break;
+        break;
       case 2:
         return this.data.questionData.work.imgs == null;
-        return this.data.questionData.work.imgs.length <= 0; 
-      break;
+        return this.data.questionData.work.imgs.length <= 0;
+        break;
       case 3:
         return this.data.questionData.work.fileId == null;
         return this.data.questionData.work.fileId.length <= 0;
-      break;
+        break;
       case 4:
-        return this.data.questionData.work.answer == null;
-        return this.data.questionData.work.answer.length <= 0;
+        if (!type) {
+          return this.data.questionData.work.answer == null;
+          return this.data.questionData.work.answer.length <= 0;
+        }
         return this.data.questionData.work.audio == null;
         return this.data.questionData.work.audio.length <= 0;
-      break;
+        break;
     }
   },
   // 暂存数据
   pushWorkStorage() {
     console.log()
-    if (this.verifyData()){
-      if (this.data.questionData.work.audio){
-        wx.showToast({
-          title: '请转换文字',
-          icon: 'warn',
-        })
-        return;
-      }
+    if (this.verifyData(1)) {
       wx.showToast({
         title: '请输入答案',
         icon: 'warn',
@@ -196,7 +191,7 @@ Page({
     })
   },
   // 取消录像
-  handleCancelrecord(){
+  handleCancelrecord() {
     let that = this
     that.setData({
       record: false,
@@ -221,7 +216,7 @@ Page({
     this.data.questionData.work.audio = null;
     this.data.questionData.work.answer = null;
     that.setData({
-      id:'',
+      id: '',
       questionData: this.data.questionData,
       recordIng: !that.data.recordIng
     })
@@ -230,7 +225,7 @@ Page({
         format: 'mp3'
       });
     }
-    if (app.globalData.RecorderManager){
+    if (app.globalData.RecorderManager) {
       app.globalData.RecorderManager.onStop((res) => {
         wx.showToast({
           title: '录音结束',
@@ -256,7 +251,7 @@ Page({
     }
     if (that.data.recordIng) {
       app.globalData.RecorderManager.start({
-        duration:30000,
+        duration: 30000,
         success: (res) => {
           wx.showToast({
             title: '开始录音',
@@ -272,7 +267,7 @@ Page({
     this.data.questionData.work.audio = '';
     this.data.questionData.work.answer = '';
     this.setData({
-      id:null,
+      id: null,
       questionData: this.data.questionData,
     })
   },
@@ -285,7 +280,7 @@ Page({
     })
   },
   //删除图片答案
-  deleteImg(){
+  deleteImg() {
     this.data.questionData.work.imgs = [];
     this.setData({
       questionData: this.data.questionData,
@@ -299,10 +294,10 @@ Page({
     })
   },
   // 转换文字
-  uploadAsr(src,type) {
+  uploadAsr(src, type) {
     Api.Preview.asr(src).then(res => {
       if (res.id) {
-        if (type){
+        if (type) {
           this.data.questionData.work.answer = null;
         }
         this.setData({
@@ -318,7 +313,7 @@ Page({
       title: '语音转换中',
     });
     that.setData({
-      asrIng:true,
+      asrIng: true,
     })
     Api.Preview.getAsrDetail(that.data.id).then(resDetail => {
       if (resDetail.status === 1) {
@@ -332,7 +327,7 @@ Page({
         })
       } else if (resDetail.status === 0) {
         this.asr();
-      }else{
+      } else {
         wx: wx.showToast({
           title: resDetail.msg,
         })
@@ -347,7 +342,7 @@ Page({
   // 编辑语音转换文字
   editAnswer() {
     this.setData({
-      dialogShow:true,
+      dialogShow: true,
     })
   },
   bindFormSubmit(e) {
@@ -358,15 +353,15 @@ Page({
     })
   },
   // 全文
-  showAll(){
+  showAll() {
     this.setData({
       showAllFlag: !this.data.showAllFlag,
     })
   },
   // 查看题干图片
-  showBigImage(event){
+  showBigImage(event) {
     console.log(event)
-    let $src= event.currentTarget.dataset.src;
+    let $src = event.currentTarget.dataset.src;
     wx.previewImage({
       urls: this.data.questionData.item.content.imgs,
       current: $src
