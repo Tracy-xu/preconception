@@ -56,7 +56,7 @@ Page({
         if(item.status === 2){
           this.data.doneNum++;
         }
-        if (item.workId === this.data.activeWorkDetail.work.preWkId){
+        if (item.workId === this.data.activeWorkDetail.work.preWkId || this.data.activeWorkDetail.work.preWkId === 0){
           this.setData({
             activeWorkId: this.data.activeWorkDetail.work.preWkId,
             overSle: true,

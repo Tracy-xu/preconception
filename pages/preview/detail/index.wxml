@@ -10,8 +10,13 @@
     </view>
   </view>
 
-  <view class="c-detail__con" wx:if="{{mode == 1}}">
-    <view class="c-detail__con-item {{activeWorkId === item.workId? 'active' : ''}}" wx:for="{{workList}}" wx:key="{{item.workId}}" data-id="{{item.workId}}" bindtap="selWork">
+  <view class="c-detail__con" 
+        wx:if="{{mode == 1}}">
+    <view class="c-detail__con-item {{activeWorkId === item.workId? 'active' : ''}}" 
+          wx:for="{{workList}}" 
+          wx:key="{{item.workId}}" 
+          data-id="{{item.workId}}" 
+          bindtap="selWork">
       <view class="c-detail__con__header">
         <image src="http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/activeplay.png"></image>
         <view class="c-detail__con__header-name">{{item.userName}}</view>
@@ -59,7 +64,7 @@
       </view>
     </view>
   </view>
-  <!--  -->
+  <!-- -->
   <view class="c-detail__con" wx:if="{{mode == 3}}">
     <view class="c-detail__con-imgitem {{activeWorkId === item.workId? 'active' : ''}}" wx:for="{{workList}}" wx:key="{{item.workId}}" data-id="{{item.workId}}" bindtap="selWork">
       <view class="c-detail__con-imgitem__top">
