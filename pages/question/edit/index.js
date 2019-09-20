@@ -61,7 +61,7 @@ Page({
     var nodeName = options.nodeName;
     var edtName = options.edtName;
     var tbkName = options.tbkName;
-    var path = JSON.parse(options.path);
+    var path = options.path && JSON.parse(options.path);
 
     this.setData({
       resId,

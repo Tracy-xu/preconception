@@ -274,25 +274,39 @@ Page({
    * 修改父页面习题列表查询查询条件
    */
   addNewQuestionToParentPage() {
+    var nodeName = '';
+    var edtName = '';
+    var tbkName = '';
     var queryParam = {
       curPage: 1,
       scope: 1,
       sortBy: 'created',
       stgId: this.data.stgId,
       sbjId: this.data.sbjId,
-      edtId: this.data.edtId,
-      tbkId: this.data.tbkId,
-      tbkNodeId: this.data.tbkNodeId
     };
+
+    if (this.data.edtId && this.data.tbkId && this.data.tbkNodeId) {
+      queryParam.edtId = this.data.edtId;
+      queryParam.tbkId = this.data.tbkId;
+      queryParam.tbkNodeId = this.data.tbkNodeId;
+      nodeName = this.data.nodeName;
+      edtName = this.data.edtName;
+      tbkName = this.data.tbkName;
+
+    } else {
+      queryParam.edtId = null;
+      queryParam.tbkId = null;
+      queryParam.tbkNodeId = null;
+    }
 
     var pages = getCurrentPages();
     var prevPage = pages[pages.length - 2];
     prevPage.setData({
       reload: true,
       queryParam,
-      nodeName: this.data.nodeName,
-      edtName: this.data.edtName,
-      tbkName: this.data.tbkName
+      nodeName,
+      edtName,
+      tbkName
     });
   },
 
@@ -360,7 +374,7 @@ Page({
 
     // 处理数据
     var tbkNodes = null;
-    if (this.data.edtId) {
+    if (this.data.edtId && this.data.path.length) {
       tbkNodes = [{}];
       tbkNodes[0].attrs = {
         edtId: this.data.edtId,
@@ -368,9 +382,6 @@ Page({
         edtName: this.data.edtName,
         tbkName: this.data.tbkName
       };
-    }
-
-    if (this.data.path.length) {
       tbkNodes[0].path = this.data.path;
     }
 

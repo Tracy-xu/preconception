@@ -339,14 +339,21 @@ Page({
 
     var stgId = content.stgid;
     var sbjId = content.sbjid;
+    var edtId = null;
+    var tbkId = null;
+    var tbkNodeId = null;
+    var nodeName = '';
+    var edtName = '';
+    var tbkName = '';
+    var path = [];
     if (content.tbkNodes) {
-      var edtId = content.tbkNodes[0].attrs.edtId;
-      var tbkId = content.tbkNodes[0].attrs.tbkId;
-      var tbkNodeId = content.tbkNodes[0].path[content.tbkNodes[0].path.length - 1].id;
-      var nodeName = content.tbkNodes[0].path[content.tbkNodes[0].path.length - 1].name;
-      var edtName = content.tbkNodes[0].attrs.edtName;
-      var tbkName = content.tbkNodes[0].attrs.tbkName;
-      var path = JSON.stringify(content.tbkNodes[0].path);
+      edtId = content.tbkNodes[0].attrs.edtId;
+      tbkId = content.tbkNodes[0].attrs.tbkId;
+      tbkNodeId = content.tbkNodes[0].path[content.tbkNodes[0].path.length - 1].id;
+      nodeName = content.tbkNodes[0].path[content.tbkNodes[0].path.length - 1].name;
+      edtName = content.tbkNodes[0].attrs.edtName;
+      tbkName = content.tbkNodes[0].attrs.tbkName;
+      path = JSON.stringify(content.tbkNodes[0].path);
     }
 
     wx.navigateTo({
