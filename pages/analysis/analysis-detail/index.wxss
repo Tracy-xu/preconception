@@ -421,8 +421,8 @@ page{
 }
 .c-fix__viewpoint {
   position: fixed;
-  right: 48rpx;
-  bottom: 60rpx;
+  right: 30rpx;
+  bottom: 70rpx;
   width:120rpx;
   height:120rpx;
   padding: 29rpx 31rpx;
