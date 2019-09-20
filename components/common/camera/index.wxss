@@ -1,5 +1,4 @@
-.m-camera {position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9999;}
-.m-camera camera {width: 100%; height: calc(100% - 600rpx);}
-.m-camera icon{position:absolute;top:40rpx;right:40rpx;z-index:222;}
+.m-camera {position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9999;background:rgba(0,0,0,0.7);}
+.m-camera camera {position:fixed;top:0;left:0;width: 100%; height: calc(100% - 600rpx);z-index:10;}
 .m-camera__operator {position: absolute; left: 0; bottom: 0; right: 0;}
 .m-camera__operator button{float:left;width:50%;}

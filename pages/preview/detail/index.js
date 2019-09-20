@@ -56,7 +56,7 @@ Page({
         if(item.status === 2){
           this.data.doneNum++;
         }
-        if (item.workId === this.data.activeWorkDetail.work.preWkId){
+        if (item.workId === this.data.activeWorkDetail.work.preWkId || this.data.activeWorkDetail.work.preWkId === 0){
           this.setData({
             activeWorkId: this.data.activeWorkDetail.work.preWkId,
             overSle: true,
@@ -160,7 +160,7 @@ Page({
   showAll(event) {
     let $workId = event.currentTarget.dataset.index;
     this.data.workList.forEach(item => {
-      if (item.work.workId === $workId) {
+      if (item.workId === $workId) {
         item.showAllFlag = !item.showAllFlag;
       }
     });

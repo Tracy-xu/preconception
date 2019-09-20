@@ -41,7 +41,8 @@
         <view class="c-preview-list__result">
           <view class="c-voice-box" 
           wx:if="{{item.item.content.audios.length}}">
-          <myk-audio 
+          <myk-audio
+            style="width:100%;" 
             wx:for-item="audioItem" 
             wx:for="{{item.item.content.audios}}"
             wx:key="{{audioItem}}" 

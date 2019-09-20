@@ -115,16 +115,17 @@
     </view>
   </view>
   <!-- 录像 -->
-    <myk-camera
+  <myk-camera
         wx:if="{{record}}"
-        bindstoprecord="handleStopRecord">
-    </myk-camera>
+        bindstoprecord="handleStopRecord"
+        bindcancelrecord="handleCancelrecord">
+  </myk-camera>
   <!-- 编辑语音答案 -->
   <mp-dialog 
       ext-class="c-preview-dialog"
       show="{{dialogShow}}">
       <form bindsubmit="bindFormSubmit">
-    <textarea 
+        <textarea 
           value="{{questionData.work.answer}}"
           name="textarea"/>
     <button form-type="submit">确定</button>
