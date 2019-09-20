@@ -75,6 +75,11 @@ Page({
       path,
     });
 
+    this.data.queryParam.curPage = 1;
+    this.setData({
+      queryParam: this.data.queryParam
+    });
+
     var rep = await this.getQuestion(this.data.queryParam);
 
     var items = rep.items;
@@ -97,7 +102,7 @@ Page({
       });
 
       // 查询条件变了，要重查（单纯插入数据解决不了问题）
-      await sleep(1000);
+      // await sleep(1000);
 
       this.getQuestion(this.data.queryParam).then((rep) => {
         var items = rep.items;
@@ -157,6 +162,7 @@ Page({
   getQuestion(param) {
     return new Promise((resolve, reject) => {
       param = qs(param);
+      
       API.Question.getQuestion(param).then((rep) => {
         resolve(rep);
       });

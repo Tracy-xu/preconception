@@ -53,11 +53,11 @@ Page({
     var resId = options.resId;
     var refId = options.refId;
     // 从习题列表带过来的学段学科教材章节默认值
-    var stgId = options.stgId;
-    var sbjId = options.sbjId;
-    var edtId = options.edtId ? Number(options.edtId) : options.edtId;
-    var tbkId = options.tbkId ? Number(options.tbkId) : options.tbkId;
-    var tbkNodeId = options.tbkNodeId;
+    var stgId = options.stgId !== 'null' ? Number(options.stgId) : this.data.stgId;
+    var sbjId = options.sbjId !== 'null' ? Number(options.sbjId) : this.data.sbjId;
+    var edtId = options.edtId !== 'null' ? Number(options.edtId) : this.data.edtId;
+    var tbkId = options.tbkId !== 'null' ? Number(options.tbkId) : this.data.tbkId;
+    var tbkNodeId = options.tbkNodeId !== 'null' ? Number(options.tbkNodeId) : this.data.tbkNodeId;
     var nodeName = options.nodeName;
     var edtName = options.edtName;
     var tbkName = options.tbkName;
@@ -312,7 +312,7 @@ Page({
     }
 
     if (this.data.path.length) {
-      tbkNodes[0].path = this.data.path.reverse();
+      tbkNodes[0].path = this.data.path;
     }
 
     var param = {
