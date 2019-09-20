@@ -213,8 +213,8 @@ Page({
   // 上传语音
   uploadVoice() {
     let that = this
-    this.data.questionData.work.audio = null;
-    this.data.questionData.work.answer = null;
+    this.data.questionData.work.audio = '';
+    this.data.questionData.work.answer = '';
     that.setData({
       id: '',
       questionData: this.data.questionData,
@@ -298,7 +298,7 @@ Page({
     Api.Preview.asr(src).then(res => {
       if (res.id) {
         if (type) {
-          this.data.questionData.work.answer = null;
+          this.data.questionData.work.answer = '';
         }
         this.setData({
           questionData: this.data.questionData,
