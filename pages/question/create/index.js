@@ -292,7 +292,6 @@ Page({
       nodeName = this.data.nodeName;
       edtName = this.data.edtName;
       tbkName = this.data.tbkName;
-
     } else {
       queryParam.edtId = null;
       queryParam.tbkId = null;
@@ -304,9 +303,9 @@ Page({
     prevPage.setData({
       reload: true,
       queryParam,
-      nodeName,
       edtName,
-      tbkName
+      tbkName,
+      nodeName
     });
   },
 

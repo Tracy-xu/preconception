@@ -31,8 +31,9 @@ Page({
     tbkName: '',
 
     // 初始化绑定班级组件所需参数(refId、resId)
+    resourceIds: [],
     refId: null,
-    resId: null,
+    resId: null
   },
 
   onReady() {
@@ -246,25 +247,38 @@ Page({
    * 往父页面习题列表查询条件
    */
   addNewQuestionToParentPage() {
+    var nodeName = '';
+    var edtName = '';
+    var tbkName = '';
     var queryParam = {
       curPage: 1,
       scope: 1,
       sortBy: 'created',
       stgId: this.data.stgId,
       sbjId: this.data.sbjId,
-      edtId: this.data.edtId,
-      tbkId: this.data.tbkId,
-      tbkNodeId: this.data.tbkNodeId
     };
+
+    if (this.data.edtId && this.data.tbkId && this.data.tbkNodeId) {
+      queryParam.edtId = this.data.edtId;
+      queryParam.tbkId = this.data.tbkId;
+      queryParam.tbkNodeId = this.data.tbkNodeId;
+      nodeName = this.data.nodeName;
+      edtName = this.data.edtName;
+      tbkName = this.data.tbkName;
+    } else {
+      queryParam.edtId = null;
+      queryParam.tbkId = null;
+      queryParam.tbkNodeId = null;
+    }
 
     var pages = getCurrentPages();
     var prevPage = pages[pages.length - 2];
     prevPage.setData({
       reload: true,
       queryParam,
-      edtName: this.data.edtName,
-      nodeName: this.data.nodeName,
-      tbkName: this.data.tbkName,
+      edtName,
+      tbkName,
+      nodeName
     });
   },
 
@@ -293,7 +307,15 @@ Page({
 
     await this.createQuestion();
     this.addNewQuestionToParentPage();
-    wx.navigateBack();
+
+    wx.showModal({
+      title: '提示',
+      content: '编辑成功',
+      showCancel: false,
+      success: async (res) => {
+        wx.navigateBack();
+      }
+    });
   },
 
   /**
@@ -337,8 +359,10 @@ Page({
     var res = await this.createQuestion();
 
     this.setData({
-      resId: res.resId,
-      refId: res.refId
+      resourceIds: [{
+        resId: res.resId,
+        refId: res.refId
+      }]
     });
 
     this.setData({
@@ -351,7 +375,15 @@ Page({
    */
   handleConfirmBindClass() {
     this.addNewQuestionToParentPage();
-    wx.navigateBack();
+
+    wx.showModal({
+      title: '提示',
+      content: '绑定成功',
+      showCancel: false,
+      success: async (res) => {
+        wx.navigateBack();
+      }
+    });
   },
 
   /**
