@@ -18,7 +18,7 @@
           data-id="{{item.workId}}"
           bindtap="selWork">
       <view class="c-detail__con__header">
-        <image src="https://assets.meiyike.cn/preconception/assets/images/activeplay.png"></image>
+        <image src="https://assets.meiyike.cn/preconception/images/activeplay.png"></image>
         <view class="c-detail__con__header-name">{{item.userName}}</view>
         <view class="c-detail__con__header-operation">
           {{item.startTime}}
