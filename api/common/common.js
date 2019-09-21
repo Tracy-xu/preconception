@@ -6,7 +6,7 @@ import axios from '../../common/axios/config.js';
 export function upload(type, path) {
   return new Promise((resolve, reject) => {
     wx.uploadFile({
-      url: `http://122.112.239.223:8080/file/upload/${ type }/binary`,
+      url: `https://api.meiyike.cn/file/upload/${ type }/binary`,
       filePath: path,
       name: 'file',
       formData: {

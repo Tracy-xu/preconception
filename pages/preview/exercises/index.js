@@ -131,7 +131,7 @@ Page({
     chooseImage().then(res => {
       const tempFilePaths = res
       wx.uploadFile({
-        url: 'http://122.112.239.223:8080/file/upload/image/binary',
+        url: 'https://api.meiyike.cn/file/upload/image/binary',
         filePath: tempFilePaths[0],
         name: 'file',
         formData: {
@@ -165,7 +165,7 @@ Page({
       title: '视频上传中~',
     });
     wx.uploadFile({
-      url: 'http://122.112.239.223:8080/file/upload/plain/binary',
+      url: 'https://api.meiyike.cn/file/upload/plain/binary',
       filePath: tempFilePaths.tempVideoPath,
       name: 'file',
       success(res) {
@@ -179,7 +179,7 @@ Page({
       }
     })
     wx.uploadFile({
-      url: 'http://122.112.239.223:8080/file/upload/image/binary',
+      url: 'https://api.meiyike.cn/file/upload/image/binary',
       filePath: tempFilePaths.tempThumbPath,
       name: 'file',
       success(res) {
@@ -234,7 +234,7 @@ Page({
           title: '录音上传中',
         });
         wx.uploadFile({
-          url: 'http://122.112.239.223:8080/file/upload/plain/binary',
+          url: 'https://api.meiyike.cn/file/upload/plain/binary',
           name: 'file',
           filePath: res.tempFilePath,
           success(res1) {
