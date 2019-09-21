@@ -1,4 +1,4 @@
-page {background: #F5F7F8FF; color: #444444FF;}
+page {background: #F5F7F8; color: #444444;}
 view,
 scroll-view,
 icon,

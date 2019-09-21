@@ -31,8 +31,9 @@ Page({
     tbkName: '',
 
     // 初始化绑定班级组件所需参数(refId、resId)
+    resourceIds: [],
     refId: null,
-    resId: null,
+    resId: null
   },
 
   onReady() {
@@ -53,15 +54,15 @@ Page({
     var resId = options.resId;
     var refId = options.refId;
     // 从习题列表带过来的学段学科教材章节默认值
-    var stgId = options.stgId;
-    var sbjId = options.sbjId;
-    var edtId = options.edtId ? Number(options.edtId) : options.edtId;
-    var tbkId = options.tbkId ? Number(options.tbkId) : options.tbkId;
-    var tbkNodeId = options.tbkNodeId;
+    var stgId = options.stgId !== 'null' ? Number(options.stgId) : this.data.stgId;
+    var sbjId = options.sbjId !== 'null' ? Number(options.sbjId) : this.data.sbjId;
+    var edtId = options.edtId !== 'null' ? Number(options.edtId) : this.data.edtId;
+    var tbkId = options.tbkId !== 'null' ? Number(options.tbkId) : this.data.tbkId;
+    var tbkNodeId = options.tbkNodeId !== 'null' ? Number(options.tbkNodeId) : this.data.tbkNodeId;
     var nodeName = options.nodeName;
     var edtName = options.edtName;
     var tbkName = options.tbkName;
-    var path = JSON.parse(options.path);
+    var path = options.path && JSON.parse(options.path);
 
     this.setData({
       resId,
@@ -246,25 +247,38 @@ Page({
    * 往父页面习题列表查询条件
    */
   addNewQuestionToParentPage() {
+    var nodeName = '';
+    var edtName = '';
+    var tbkName = '';
     var queryParam = {
       curPage: 1,
       scope: 1,
       sortBy: 'created',
       stgId: this.data.stgId,
       sbjId: this.data.sbjId,
-      edtId: this.data.edtId,
-      tbkId: this.data.tbkId,
-      tbkNodeId: this.data.tbkNodeId
     };
+
+    if (this.data.edtId && this.data.tbkId && this.data.tbkNodeId) {
+      queryParam.edtId = this.data.edtId;
+      queryParam.tbkId = this.data.tbkId;
+      queryParam.tbkNodeId = this.data.tbkNodeId;
+      nodeName = this.data.nodeName;
+      edtName = this.data.edtName;
+      tbkName = this.data.tbkName;
+    } else {
+      queryParam.edtId = null;
+      queryParam.tbkId = null;
+      queryParam.tbkNodeId = null;
+    }
 
     var pages = getCurrentPages();
     var prevPage = pages[pages.length - 2];
     prevPage.setData({
       reload: true,
       queryParam,
-      edtName: this.data.edtName,
-      nodeName: this.data.nodeName,
-      tbkName: this.data.tbkName,
+      edtName,
+      tbkName,
+      nodeName
     });
   },
 
@@ -293,7 +307,15 @@ Page({
 
     await this.createQuestion();
     this.addNewQuestionToParentPage();
-    wx.navigateBack();
+
+    wx.showModal({
+      title: '提示',
+      content: '编辑成功',
+      showCancel: false,
+      success: async (res) => {
+        wx.navigateBack();
+      }
+    });
   },
 
   /**
@@ -312,7 +334,7 @@ Page({
     }
 
     if (this.data.path.length) {
-      tbkNodes[0].path = this.data.path.reverse();
+      tbkNodes[0].path = this.data.path;
     }
 
     var param = {
@@ -337,8 +359,10 @@ Page({
     var res = await this.createQuestion();
 
     this.setData({
-      resId: res.resId,
-      refId: res.refId
+      resourceIds: [{
+        resId: res.resId,
+        refId: res.refId
+      }]
     });
 
     this.setData({
@@ -351,7 +375,15 @@ Page({
    */
   handleConfirmBindClass() {
     this.addNewQuestionToParentPage();
-    wx.navigateBack();
+
+    wx.showModal({
+      title: '提示',
+      content: '绑定成功',
+      showCancel: false,
+      success: async (res) => {
+        wx.navigateBack();
+      }
+    });
   },
 
   /**

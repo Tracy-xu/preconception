@@ -50,7 +50,7 @@
 .c-queston-create__type-video::before {background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/video.png");}
 /* 按钮 */
 .c-question-create__btn {position: fixed; display: flex; bottom: 0; left: 0; right: 0;}
-.c-question-create__btn button {flex: 1; height: 96rpx;}
+.c-question-create__btn button {flex: 1; height: 96rpx; line-height: 96rpx;}
 .c-question-create__btn button:nth-child(1) {color: #999999;}
 .c-question-create__btn button:nth-child(2) {color: #14C75E;}
 .c-question-create__btn button:nth-child(3) {color: #FFB423;}
