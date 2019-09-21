@@ -10,15 +10,15 @@
     </view>
   </view>
 
-  <view class="c-detail__con" 
+  <view class="c-detail__con"
         wx:if="{{mode == 1}}">
-    <view class="c-detail__con-item {{activeWorkId === item.workId? 'active' : ''}}" 
-          wx:for="{{workList}}" 
-          wx:key="{{item.workId}}" 
-          data-id="{{item.workId}}" 
+    <view class="c-detail__con-item {{activeWorkId === item.workId? 'active' : ''}}"
+          wx:for="{{workList}}"
+          wx:key="{{item.workId}}"
+          data-id="{{item.workId}}"
           bindtap="selWork">
       <view class="c-detail__con__header">
-        <image src="http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/activeplay.png"></image>
+        <image src="https://assets.meiyike.cn/preconception/assets/images/activeplay.png"></image>
         <view class="c-detail__con__header-name">{{item.userName}}</view>
         <view class="c-detail__con__header-operation">
           {{item.startTime}}
@@ -31,16 +31,16 @@
         <span wx:else>
           {{item.answer.length >= 48 ? util.sub(item.answer,48) : item.answer}}
         </span>
-        <span class="font-color--blue" 
-        data-index="{{item.workId}}" 
+        <span class="font-color--blue"
+        data-index="{{item.workId}}"
         wx:if="{{item.answer.length >= 48 && item.showAllFlag}}" bindtap="showAll">收起</span>
-        <span class="font-color--blue" 
-        data-index="{{item.workId}}" 
+        <span class="font-color--blue"
+        data-index="{{item.workId}}"
         wx:if="{{item.answer.length >= 48 && !item.showAllFlag}}" bindtap="showAll">全文</span>
       </view>
     </view>
   </view>
-  <view class="c-detail__con" 
+  <view class="c-detail__con"
         wx:if="{{mode == 2}}">
     <view class="c-detail__con-imgitem {{activeWorkId === item.workId? 'active' : ''}}" wx:for="{{workList}}" wx:key="{{item.workId}}" data-id="{{item.workId}}" bindtap="selWork">
       <view class="c-detail__con-imgitem__top">
@@ -87,10 +87,10 @@
     </view>
   </view>
   <view class="c-detail__con" wx:if="{{mode == 4}}">
-    <view class="c-detail__con-item {{activeWorkId === item.workId? 'active' : ''}}" 
-      wx:for="{{workList}}" 
-      wx:key="{{item.workId}}" 
-      data-id="{{item.workId}}" 
+    <view class="c-detail__con-item {{activeWorkId === item.workId? 'active' : ''}}"
+      wx:for="{{workList}}"
+      wx:key="{{item.workId}}"
+      data-id="{{item.workId}}"
       bindtap="selWork">
       <view class="c-detail__con__header">
         <image src="{{item.thumbnail}}"></image>

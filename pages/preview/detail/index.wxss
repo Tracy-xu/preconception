@@ -35,10 +35,10 @@
 .c-dialog__bottom__imgs__tips{position:absolute;bottom:0;left:0;right:0;height:65rpx;line-height:65rpx;font-size:40rpx;text-align:center;background:rgba(0,0,0,0.5);color:#fff;}
 .c-dialog__bottom__imgs .c-voice-box__btn{position:absolute;width:70rpx;height:70rpx;top:50%;left:50%;margin:-35rpx 0 0 -35rpx;}
 .c-preview-dialog .weui-dialog__ft{line-height:0 !important;}
-.c-preview__icon--text{display:inline-block;width:50rpx;height:50rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/text.png');vertical-align:middle;}
-.c-preview__icon--video{display:inline-block;width:66rpx;height:57rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/video.png');vertical-align:middle;}
-.c-preview__icon--voice{display:inline-block;width:54rpx;height:67rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/voice.png');vertical-align:middle;}
-.c-preview__icon--camera{display:inline-block;width:66rpx;height:62rpx;background-size:100% 100%;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/picture.png');vertical-align:middle;}
+.c-preview__icon--text{display:inline-block;width:50rpx;height:50rpx;background-size:100% 100%;background-image:url('https://assets.meiyike.cn/preconception/assets/images/text.png');vertical-align:middle;}
+.c-preview__icon--video{display:inline-block;width:66rpx;height:57rpx;background-size:100% 100%;background-image:url('https://assets.meiyike.cn/preconception/assets/images/video.png');vertical-align:middle;}
+.c-preview__icon--voice{display:inline-block;width:54rpx;height:67rpx;background-size:100% 100%;background-image:url('https://assets.meiyike.cn/preconception/assets/images/voice.png');vertical-align:middle;}
+.c-preview__icon--camera{display:inline-block;width:66rpx;height:62rpx;background-size:100% 100%;background-image:url('https://assets.meiyike.cn/preconception/assets/images/picture.png');vertical-align:middle;}
 .c-preview-list__result{padding:0 0 20rpx 0;}
 .c-preview-list__img{display:inline-block;vertical-align:middle;height:190rpx;width:190rpx;margin:10rpx 14rpx 0 0;border:1rpx solid #d9d9d9;}
 mp-dialog{position:relative;z-index:99;}

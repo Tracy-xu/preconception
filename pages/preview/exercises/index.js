@@ -183,7 +183,7 @@ Page({
       filePath: tempFilePaths.tempThumbPath,
       name: 'file',
       success(res) {
-        that.data.questionData.work.thumbnail = JSON.parse(res.data).url || 'http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/default.png'
+        that.data.questionData.work.thumbnail = JSON.parse(res.data).url || 'https://assets.meiyike.cn/preconception/assets/images/default.png'
         that.setData({
           questionData: that.data.questionData
         })

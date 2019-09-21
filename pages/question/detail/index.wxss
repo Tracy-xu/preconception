@@ -1,4 +1,4 @@
-/** 
+/**
  * 题目详情
  */
 /* 标题 */
@@ -12,15 +12,15 @@
 .c-question-detail__stem--img::after,
 .c-question-detail__stem--video::after,
 .c-question-detail__stem--audio::after {content: ""; display: inline-block; width: 50rpx; height: 60rpx; vertical-align: middle;background-size: 100% 100%;}
-.c-question-detail__stem--txt::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/text.png');}
-.c-question-detail__stem--img::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/picture.png');}
-.c-question-detail__stem--audio::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/voice.png');}
-.c-question-detail__stem--video::after {background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/video.png');}
+.c-question-detail__stem--txt::after {background-image:url('https://assets.meiyike.cn/preconception/assets/images/text.png');}
+.c-question-detail__stem--img::after {background-image:url('https://assets.meiyike.cn/preconception/assets/images/picture.png');}
+.c-question-detail__stem--audio::after {background-image:url('https://assets.meiyike.cn/preconception/assets/images/voice.png');}
+.c-question-detail__stem--video::after {background-image:url('https://assets.meiyike.cn/preconception/assets/images/video.png');}
 /* 附件 */
 .c-question-detail__attath-img image {display: block; width: 100%; margin: 28rpx auto;}
 
-/** 
- * 绑定班级列表 
+/**
+ * 绑定班级列表
  */
 .c-bind-class-info {display: flex; margin-top: 30rpx; padding: 24rpx;}
 .c-bind-class {background: #fff;}

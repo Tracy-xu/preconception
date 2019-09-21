@@ -1,6 +1,6 @@
 /**index.wxss**/
 .section{position:relative;height:104rpx;padding-top:40rpx;font-size:28rpx;color:#999;border-bottom:1rpx solid #e6e6e6;text-align:left;}
 .section .login-ipt{display:inline-block;height:50rpx;width:100%;line-height:50rpx;padding-left:60rpx;box-sizing:border-box;}
-.section i{position:absolute;top:54rpx;left:24rpx;display:inline-block;width:24rpx;height:26rpx;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/username.png');background-repeat:no-repeat;background-size:100% 100%;}
-.section:nth-child(2) i{width:24rpx;background-image:url('http://122.112.239.223:13000/xuwenbo/preconception/raw/master/assets/images/password.png');}
+.section i{position:absolute;top:54rpx;left:24rpx;display:inline-block;width:24rpx;height:26rpx;background-image:url('https://assets.meiyike.cn/preconception/assets/images/username.png');background-repeat:no-repeat;background-size:100% 100%;}
+.section:nth-child(2) i{width:24rpx;background-image:url('https://assets.meiyike.cn/preconception/assets/images/password.png');}
 .weui-dialog__ft::after{display:none !important;}
