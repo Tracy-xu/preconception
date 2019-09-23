@@ -12,11 +12,11 @@
 .c-preview-list__img .c-icon{position:absolute;line-height:36rpx;top:-18rpx;right:-18rpx;}
 .c-preview-list__img .c-voice-box__btn{position:absolute;width:70rpx;height:70rpx;top:50%;left:50%;margin:-35rpx 0 0 -35rpx;}
 .c-preview-list__img .c-preview__icon--camera{position:absolute;width:70rpx;height:70rpx;top:50%;left:50%;margin:-35rpx 0 0 -35rpx;}
-.c-preview__icon--text{display:inline-block;width:50rpx;height:50rpx;background-size:100% 100%;background-image:url('https://assets.meiyike.cn/preconception/assets/images/text.png');vertical-align:middle;}
-.c-preview__icon--video{display:inline-block;width:66rpx;height:57rpx;background-size:100% 100%;background-image:url('https://assets.meiyike.cn/preconception/assets/images/video.png');vertical-align:middle;}
-.c-preview__icon--voice{display:inline-block;width:54rpx;height:67rpx;background-size:100% 100%;background-image:url('https://assets.meiyike.cn/preconception/assets/images/voice.png');vertical-align:middle;}
-.c-preview__icon--voiceing{display:inline-block;width:54rpx;height:67rpx;background-size:100% 100%;background-image:url('https://assets.meiyike.cn/preconception/assets/images/activevoice.png');vertical-align:middle;animation:mymove linear infinite 1s;}
-.c-preview__icon--camera{display:inline-block;width:66rpx;height:62rpx;background-size:100% 100%;background-image:url('https://assets.meiyike.cn/preconception/assets/images/picture.png');vertical-align:middle;}
+.c-preview__icon--text{display:inline-block;width:50rpx;height:50rpx;background-size:100% 100%;background-image:url('https://assets.meiyike.cn/preconception/images/text.png');vertical-align:middle;}
+.c-preview__icon--video{display:inline-block;width:66rpx;height:57rpx;background-size:100% 100%;background-image:url('https://assets.meiyike.cn/preconception/images/video.png');vertical-align:middle;}
+.c-preview__icon--voice{display:inline-block;width:54rpx;height:67rpx;background-size:100% 100%;background-image:url('https://assets.meiyike.cn/preconception/images/voice.png');vertical-align:middle;}
+.c-preview__icon--voiceing{display:inline-block;width:54rpx;height:67rpx;background-size:100% 100%;background-image:url('https://assets.meiyike.cn/preconception/images/activevoice.png');vertical-align:middle;animation:mymove linear infinite 1s;}
+.c-preview__icon--camera{display:inline-block;width:66rpx;height:62rpx;background-size:100% 100%;background-image:url('https://assets.meiyike.cn/preconception/images/picture.png');vertical-align:middle;}
 .c-exercises-con__btns{font-size:40rpx;color:#666;overflow:hidden;padding:0 24rpx;}
 .c-exercises-con__btn{float:left;margin-right:29rpx;}
 .c-exercises-con__text{position:relative;padding:24rpx;font-size:51rpx;}

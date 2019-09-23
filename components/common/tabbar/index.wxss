@@ -2,8 +2,8 @@
 .m-tabbar__item {display: inline-flex; flex-direction: column; align-items: center;}
 .m-tabbar__item--preview::before,
 .m-tabbar__item--profile::before {content: ""; width: 54rpx; height: 54rpx;background-size:100% 100%;}
-.m-tabbar__item--preview::before{background-image:url('https://assets.meiyike.cn/preconception/assets/images/preconcept.png')}
-.m-tabbar__item--profile::before {background-image:url('https://assets.meiyike.cn/preconception/assets/images/my.png')}
-.m-tabbar__item--active.m-tabbar__item--preview::before{background-image:url('https://assets.meiyike.cn/preconception/assets/images/activepreconcept.png')}
-.m-tabbar__item--active.m-tabbar__item--profile::before {background-image:url('https://assets.meiyike.cn/preconception/assets/images/activemy.png')}
+.m-tabbar__item--preview::before{background-image:url('https://assets.meiyike.cn/preconception/images/preconcept.png')}
+.m-tabbar__item--profile::before {background-image:url('https://assets.meiyike.cn/preconception/images/my.png')}
+.m-tabbar__item--active.m-tabbar__item--preview::before{background-image:url('https://assets.meiyike.cn/preconception/images/activepreconcept.png')}
+.m-tabbar__item--active.m-tabbar__item--profile::before {background-image:url('https://assets.meiyike.cn/preconception/images/activemy.png')}
 .m-tabbar__item--active {color: #517B39;}

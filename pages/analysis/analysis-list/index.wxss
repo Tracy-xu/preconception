@@ -4,7 +4,7 @@
 }
 .c-analysislist__header-top {display: flex; justify-content: space-between;   padding: 26rpx 0 23rpx;
   line-height: 38rpx;}
-.c-aL__header-sub {display: inline-block; width:34rpx; height:40rpx; margin-right: 16rpx; background: url('https://assets.meiyike.cn/preconception/assets/images/subject.png') center/100% 100%;}
+.c-aL__header-sub {display: inline-block; width:34rpx; height:40rpx; margin-right: 16rpx; background: url('https://assets.meiyike.cn/preconception/images/subject.png') center/100% 100%;}
 .c-aL__header-day {
   display: flex;
   align-items: center;
@@ -39,7 +39,7 @@
   width: 42rpx;
   height: 38rpx;
   margin-right: 10rpx;
-  background: url('https://assets.meiyike.cn/preconception/assets/images/search.png') center/contain;
+  background: url('https://assets.meiyike.cn/preconception/images/search.png') center/contain;
 }
 .c-content {
   margin-top: 20rpx;
@@ -78,28 +78,28 @@
   width:50rpx;
   height:60rpx;
   margin: 10rpx 11rpx 0 56rpx;
-  background: url('https://assets.meiyike.cn/preconception/assets/images/text.png') center/contain;
+  background: url('https://assets.meiyike.cn/preconception/images/text.png') center/contain;
 }
 .c-list__content-type-img {
   float: right;
   width: 66rpx;
   height: 57rpx;
   margin: 10rpx 11rpx 0 40rpx;
-  background: url('https://assets.meiyike.cn/preconception/assets/images/picture.png') center/contain;
+  background: url('https://assets.meiyike.cn/preconception/images/picture.png') center/contain;
 }
 .c-list__content-type-voice {
   float: right;
   width: 54rpx;
   height: 67rpx;
   margin: 0rpx 17rpx 0 44rpx;
-  background: url('https://assets.meiyike.cn/preconception/assets/images/voice.png') center/contain;
+  background: url('https://assets.meiyike.cn/preconception/images/voice.png') center/contain;
 }
 .c-list__content-type-video {
   float: right;
   width: 66rpx;
   height: 62rpx;
   margin: 10rpx 11rpx 0 40rpx;
-  background: url('https://assets.meiyike.cn/preconception/assets/images/video.png') center/contain;
+  background: url('https://assets.meiyike.cn/preconception/images/video.png') center/contain;
 }
 .c-list__footer {
   display: flex;
