@@ -39,14 +39,14 @@
           <i class="c-preview__icon--voice" wx:elif="{{item.item.content.mode === 4}}"></i>
         </view>
         <view class="c-preview-list__result">
-          <view class="c-voice-box" 
-          wx:if="{{item.item.content.audios.length}}">
+          <view wx:if="{{item.item.content.audios.length}}">
           <myk-audio
             style="width:100%;" 
             wx:for-item="audioItem" 
             wx:for="{{item.item.content.audios}}"
             wx:key="{{audioItem}}" 
-            src="{{audioItem}}"></myk-audio>
+            src="{{audioItem}}">
+            </myk-audio>
           </view>
           <span wx:for="{{item.item.content.imgs}}"
                 wx:key="{{imgItem}}" 
