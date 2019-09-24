@@ -4,3 +4,7 @@
 .section i{position:absolute;top:54rpx;left:24rpx;display:inline-block;width:24rpx;height:26rpx;background-image:url('https://assets.meiyike.cn/preconception/images/username.png');background-repeat:no-repeat;background-size:100% 100%;}
 .section:nth-child(2) i{width:24rpx;background-image:url('https://assets.meiyike.cn/preconception/images/password.png');}
 .weui-dialog__ft::after{display:none !important;}
+.bind_user{color: white;background: #3ab203;margin: 0 100px;border-radius:50px}
+.bind_user:active{
+  opacity: 0.5
+}
