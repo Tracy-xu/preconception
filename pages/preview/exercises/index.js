@@ -59,23 +59,23 @@ Page({
     const $mode = this.data.questionData.item.content.mode;
     switch ($mode) {
       case 1:
-        return this.data.questionData.work.answer == null;
+        return !this.data.questionData.work.answer;
         return this.data.questionData.work.answer.length <= 0;
         break;
       case 2:
-        return this.data.questionData.work.imgs == null;
+        return !this.data.questionData.work.imgs;
         return this.data.questionData.work.imgs.length <= 0;
         break;
       case 3:
-        return this.data.questionData.work.fileId == null;
+        return !this.data.questionData.work.fileId;
         return this.data.questionData.work.fileId.length <= 0;
         break;
       case 4:
-        if (!type) {
-          return this.data.questionData.work.answer == null;
+        if (type !== 1) {
+          return !this.data.questionData.work.answer;
           return this.data.questionData.work.answer.length <= 0;
         }
-        return this.data.questionData.work.audio == null;
+        return !this.data.questionData.work.audio;
         return this.data.questionData.work.audio.length <= 0;
         break;
     }
