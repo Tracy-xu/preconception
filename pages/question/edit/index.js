@@ -244,9 +244,9 @@ Page({
   },
 
   /**
-   * 往父页面习题列表查询条件
+   * 修改父页面习题列表查询条件
    */
-  addNewQuestionToParentPage() {
+  updateQueryParamParentPage() {
     var nodeName = '';
     var edtName = '';
     var tbkName = '';
@@ -306,7 +306,7 @@ Page({
     }
 
     await this.createQuestion();
-    this.addNewQuestionToParentPage();
+    this.updateQueryParamParentPage();
 
     wx.showModal({
       title: '提示',
@@ -374,7 +374,7 @@ Page({
    * 确定绑定班级
    */
   handleConfirmBindClass() {
-    this.addNewQuestionToParentPage();
+    this.updateQueryParamParentPage();
 
     wx.showModal({
       title: '提示',
@@ -390,7 +390,7 @@ Page({
    * 取消绑定班级
    */
   handleCancelBindClass() {
-    this.addNewQuestionToParentPage();
+    this.updateQueryParamParentPage();
     wx.navigateBack();
   },
 

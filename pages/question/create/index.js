@@ -271,9 +271,9 @@ Page({
   },
 
   /**
-   * 修改父页面习题列表查询查询条件
+   * 修改父页面习题列表查询条件
    */
-  addNewQuestionToParentPage() {
+  updateQueryParamParentPage() {
     var nodeName = '';
     var edtName = '';
     var tbkName = '';
@@ -314,7 +314,7 @@ Page({
    */
   async handleCreateQuestion() {
     await this.createQuestion();
-    this.addNewQuestionToParentPage();
+    this.updateQueryParamParentPage();
 
     wx.showModal({
       title: '提示',
@@ -429,7 +429,7 @@ Page({
       content: '绑定成功，需要继续创建问题吗？',
       success: async (res) => {
         if (res.cancel) {
-          this.addNewQuestionToParentPage();
+          this.updateQueryParamParentPage();
           wx.navigateBack();
           return;
         }
@@ -446,14 +446,7 @@ Page({
    * 取消绑定班级
    */
   handleCancelBindClass() {
-    this.addNewQuestionToParentPage();
-    wx.navigateBack();
-  },
-
-  /**
-   * 取消
-   */
-  handleCancel() {
+    this.updateQueryParamParentPage();
     wx.navigateBack();
   }
 })
