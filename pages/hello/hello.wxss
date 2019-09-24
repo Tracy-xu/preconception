@@ -1,0 +1,3 @@
+.m-bd{position:absolute;top:0;bottom:0;left:0;right:0;overflow:hidden;}
+.m-bd image{height:100%;width:100%;border:none;}
+.m-bd button{position:absolute;width:360rpx;height:100rpx;line-height:100rpx;left:50%;bottom:122rpx;margin-left:-180rpx;border-radius:50rpx;background:#24E07C;opacity:0.75;box-shadow:0px 0px 16px 0px rgba(20,199,94,0.33);}
