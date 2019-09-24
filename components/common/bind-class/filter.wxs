@@ -1,0 +1,5 @@
+module.exports = {
+  includes: function(arr, item) {
+    return arr.indexOf(item) > -1;
+  }
+};
