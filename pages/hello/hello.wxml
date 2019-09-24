@@ -1,0 +1,4 @@
+<view class="m-bd">
+<image src="https://assets.meiyike.cn/preconception/images/home_img.jpg"></image>
+<button type="primary">绑定账号</button>
+</view>
