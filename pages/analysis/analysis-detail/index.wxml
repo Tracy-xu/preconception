@@ -1,5 +1,5 @@
 <!--pages/analysis/analysis-detail/index.wxml-->
-<scroll-view class="c-body">
+<scroll-view class="c-body c-body__content">
   <view wx:for="{{workGroup.groups}}" wx:key="index" wx:for-index="gIdx" wx:for-item="group">
   <template is="text" wx:if="{{workGroup.mode == 1}}" data="{{group: group,gIdx: gIdx,openGroupInfo: openGroupInfo,selectedWorkIds: selectedWorkIds,quanwenWorkIds: quanwenWorkIds}}"></template>
     <template is="img" wx:if="{{workGroup.mode == 2}}" data="{{group: group,gIdx: gIdx,openGroupInfo: openGroupInfo,selectedWorkIds: selectedWorkIds}}"></template>

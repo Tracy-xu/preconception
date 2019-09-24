@@ -10,19 +10,19 @@
 .c-question-create__stem {width: 580rpx; padding: 10rpx 0 10rpx 17rpx; border:1px solid rgba(217,217,217,1); border-radius:6rpx;}
 .c-question-create__attach-img-item {position: relative; float: left; width: 190rpx; height: 190rpx; margin-right: 14rpx; margin-bottom: 14rpx; border:1px solid rgba(153, 153, 153, 1);}
 .c-question-create__attach-img-item image {width: 100%; height: 100%;}
-.c-question-create__attach-img-item icon {position: absolute; width: 36rpx; height: 36rpx; right: 0; top: 0; transform: translate(50%, -50%); background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/graydelete.png"); background-size: 100% 100%;}
+.c-question-create__attach-img-item icon {position: absolute; width: 36rpx; height: 36rpx; right: 0; top: 0; transform: translate(50%, -50%); background-image: url("https://assets.meiyike.cn/preconception/images/graydelete.png"); background-size: 100% 100%;}
 .c-question-create__attach-audio-item {display: flex; align-items: center;}
 .c-question-create__attach-audio-box {flex: 1;}
-.c-question-create__delete-audio {width: 36rpx; height: 36rpx; margin-left: 20rpx; background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/graydelete.png"); background-size: 100% 100%;}
+.c-question-create__delete-audio {width: 36rpx; height: 36rpx; margin-left: 20rpx; background-image: url("https://assets.meiyike.cn/preconception/images/graydelete.png"); background-size: 100% 100%;}
 /* 添加题干 */
-.c-question-create__open-add-attach {position: absolute; top: 14rpx; right: 0; width: 54rpx; height: 54rpx; background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/activeadd.png"); background-size: 100% 100%;}
+.c-question-create__open-add-attach {position: absolute; top: 14rpx; right: 0; width: 54rpx; height: 54rpx; background-image: url("https://assets.meiyike.cn/preconception/images/activeadd.png"); background-size: 100% 100%;}
 .c-question-create__attach {display: flex; position: absolute; height: 177rpx; left: 0; top: 115rpx; right: 0; z-index: 2; align-items: center; justify-content: space-around; background: #fff; box-shadow:0px 6px 38px 0px rgba(0, 0, 0, 0.2);}
 .c-question-create__attach-type--img,
 .c-question-create__attach-type--audio {position: relative; display: inline-flex; flex-direction: column; justify-content: center; align-items: center;}
 .c-question-create__attach-type--img::before,
 .c-question-create__attach-type--audio::before {content: ""; width: 66rpx; height: 57rpx;}
-.c-question-create__attach-type--img::before {background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/picture.png"); background-size: 100% 100%;}
-.c-question-create__attach-type--audio::before {background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/voice.png"); background-size: 100% 100%;}
+.c-question-create__attach-type--img::before {background-image: url("https://assets.meiyike.cn/preconception/images/picture.png"); background-size: 100% 100%;}
+.c-question-create__attach-type--audio::before {background-image: url("https://assets.meiyike.cn/preconception/images/voice.png"); background-size: 100% 100%;}
 .c-question-create__attach icon {position: absolute; top: -13rpx; right: 60rpx;}
 .c-question-create__attach icon::before{content: ""; position: absolute; left: 0; top: 0; width: 0; height: 0; border: 15rpx transparent solid; border-top: none; }
 .c-question-create__attach icon::after{content: ""; position: absolute; left: 0; top: 1rpx; width: 0; height: 0; border: 15rpx transparent solid; border-bottom-color: #fff; border-top: none;}
@@ -44,13 +44,12 @@
 .c-queston-create__type-img::before,
 .c-queston-create__type-audio::before,
 .c-queston-create__type-video::before {content: ""; display: inline-block; width: 50rpx; height: 60rpx; background-size: 100% 100%;}
-.c-queston-create__type-txt::before {background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/text.png");}
-.c-queston-create__type-img::before {background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/picture.png");}
-.c-queston-create__type-audio::before {background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/voice.png");}
-.c-queston-create__type-video::before {background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/bb284811d9690f83bba0bd0360e7ee7009e4d4f9/assets/images/video.png");}
+.c-queston-create__type-txt::before {background-image: url("https://assets.meiyike.cn/preconception/images/text.png");}
+.c-queston-create__type-img::before {background-image: url("https://assets.meiyike.cn/preconception/images/picture.png");}
+.c-queston-create__type-audio::before {background-image: url("https://assets.meiyike.cn/preconception/images/voice.png");}
+.c-queston-create__type-video::before {background-image: url("https://assets.meiyike.cn/preconception/images/video.png");}
 /* 按钮 */
 .c-question-create__btn {position: fixed; display: flex; bottom: 0; left: 0; right: 0;}
 .c-question-create__btn button {flex: 1; height: 96rpx; line-height: 96rpx;}
-.c-question-create__btn button:nth-child(1) {color: #999999;}
-.c-question-create__btn button:nth-child(2) {color: #14C75E;}
-.c-question-create__btn button:nth-child(3) {color: #FFB423;}
+.c-question-create__btn button:nth-child(1) {color: #14C75E;}
+.c-question-create__btn button:nth-child(2) {color: #FFB423;}

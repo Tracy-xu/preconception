@@ -158,6 +158,12 @@ page{
   display: flex;
   align-items: flex-end;
 }
+.c-img__detail-userName {
+  width: 150rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .c-img__tab-right {
   margin-left: 40rpx;
   transform: rotate(180deg);
@@ -336,8 +342,12 @@ page{
 .c-text__list-check--yes, .c-voice__list-check--yes {
   background:rgba(255,186,186,1);
 }
-
+.c-body__content {
+  padding-bottom: 88rpx;
+}
 .c-footer {
+  position: fixed;
+  bottom: 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -422,7 +432,7 @@ page{
 .c-fix__viewpoint {
   position: fixed;
   right: 30rpx;
-  bottom: 70rpx;
+  bottom: 90rpx;
   width:120rpx;
   height:120rpx;
   padding: 29rpx 31rpx;

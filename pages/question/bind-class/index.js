@@ -30,7 +30,8 @@ Page({
    * 查询绑定历史
    */
   getBindClass() {
-    API.Question.getBindClass(this.data.resId).then((rep) => {
+    var resId = this.data.resId;
+    API.Question.getBindClass(resId).then((rep) => {
       var historyKlassIds = [];
       rep.forEach((item) => {
         historyKlassIds.push(item.klassId);

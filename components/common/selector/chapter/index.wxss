@@ -5,5 +5,5 @@
 .m-tree__item::after {content: ""; position: absolute; left: -300rpx; right: -30rpx; bottom: 0; border-bottom: 1px #E5E5E5 solid;}
 .m-tree__item-name {flex: 1;}
 .m-tree__item-name--active {color:#14C75E;}
-.m-tree__icon {display: inline-block; width: 51rpx; height: 52rpx; margin-right: 20rpx; background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/691dc1e570bcf7998ac573e44b7fe4ea5e54bc31/assets/images/close.png"); background-size: 100% 100%;}
-.m-tree__icon--open {background-image: url("http://122.112.239.223:13000/xuwenbo/preconception/raw/691dc1e570bcf7998ac573e44b7fe4ea5e54bc31/assets/images/open.png"); background-size: 100% 100%;}
+.m-tree__icon {display: inline-block; width: 51rpx; height: 52rpx; margin-right: 20rpx; background-image: url("https://assets.meiyike.cn/preconception/images/close.png"); background-size: 100% 100%;}
+.m-tree__icon--open {background-image: url("https://assets.meiyike.cn/preconception/images/open.png"); background-size: 100% 100%;}
