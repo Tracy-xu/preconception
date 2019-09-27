@@ -7,9 +7,9 @@
 <!--  <view wx:else>请升级微信版本</view>-->
 
   <view wx:if="{{showGetInfo}}" >
-    <view style="color: #ffffff;font-size: 20px;height:100px;width: 100%;text-align: center;display: flex;justify-content: flex-end;margin-bottom: 50px;flex-direction: column">每一刻-让教学更有效</view>
-    <view style="color: #ffffff;font-size: 14px;height:200px;width: 100%;text-align: center;display: flex;justify-content: flex-end;margin-bottom: 50px;flex-direction: column">绑定每一课账号，需获得微信授权</view>
-    <button class="bind_user" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">绑定账号</button>
+    <view style="color: #ffffff;font-size: 20px;height:100px;width: 100%;text-align: center;display: flex;justify-content: flex-end;margin-bottom: 50px;flex-direction: column">每一课-让教学更有效</view>
+    <view style="color: #ffffff;font-size: 14px;height:200px;width: 100%;text-align: center;display: flex;justify-content: flex-end;margin-bottom: 50px;flex-direction: column">为了获取您的教学数据，请绑定每一课账号</view>
+    <button class="bind_user" bindtap="bindGetUserInfo">绑定账号</button>
   </view>
   <mp-dialog wx:if="{{!showGetInfo&&showLogin}}"
     title="绑定每一课账号"

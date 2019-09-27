@@ -10,11 +10,11 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     buttons: [{
-      text: '登录'
+      text: '确认绑定'
     }],
     password:null,
     username:null,
-    showGetInfo:false,
+    showGetInfo:true,
     showLogin:false,
     image:null,
   },
@@ -29,17 +29,17 @@ Page({
       console.log('showLogin',this.data.showLogin);
       this.setData({'showLogin':true});
     });
-    wx.getUserInfo({
-      success: (res)=>{
-        this.setData({ 'showGetInfo': false,image: res.userInfo.avatarUrl});
-      },
-      fail:(res)=>{
-        this.setData({ 'showGetInfo': true});
-      }
-    });
+    // wx.getUserInfo({
+    //   success: (res)=>{
+    //     this.setData({ 'showGetInfo': false,image: res.userInfo.avatarUrl});
+    //   },
+    //   fail:(res)=>{
+    //     this.setData({ 'showGetInfo': true});
+    //   }
+    // });
   },
   bindGetUserInfo (e) {
-    this.setData({ 'showGetInfo': false,image: e.detail.userInfo.avatarUrl});
+    this.setData({ 'showGetInfo': false});
   },
   usernameHander(event){
     this.setData({ 'username':event.detail.value});
@@ -54,23 +54,21 @@ Page({
   },
   loginSuccess(){
     API.Auth.getUser().then(v=>{
-      API.Auth.updatePhoto(this.data.image).then(v=>{
-        if (v.roleIds.indexOf(201)>-1){
-          API.Auth.getTeacher().then(v=>{
-            app.globalData.userInfo = v;
-            wx.redirectTo({
-              url: router.questionList
-            });
-          })
-        }else{
-          API.Auth.getStudent().then(v => {
-            app.globalData.userInfo = v;
-            wx.redirectTo({
-              url: router.previewList
-            });
-          })
-        }
-      });
+      if (v.roleIds.indexOf(201) > -1) {
+        API.Auth.getTeacher().then(v => {
+          app.globalData.userInfo = v;
+          wx.redirectTo({
+            url: router.questionList
+          });
+        })
+      } else {
+        API.Auth.getStudent().then(v => {
+          app.globalData.userInfo = v;
+          wx.redirectTo({
+            url: router.previewList
+          });
+        })
+      }
     })
   },
 });
