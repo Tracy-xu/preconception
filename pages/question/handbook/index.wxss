@@ -1,0 +1,45 @@
+
+/**
+ * 题库信息
+ */
+.c-questions-info {margin-bottom: 20rpx; background: #fff;}
+.c-questions-info__subject {display: flex; height: 87rpx; padding: 0 24rpx; border-bottom: 1px #E5E5E5 solid; font-size: 38rpx; align-items: center;}
+.c-questions-info__subject-del {width: 54rpx; height: 54rpx; margin-left: 16rpx; background-image:url('https://assets.meiyike.cn/preconception/images/reddelete.png');background-size:100% 100%;}
+.c-questions-info__count {height: 66rpx; line-height: 66rpx; padding: 0 24rpx; font-size: 32rpx; color: #666666;}
+.c-questions-info__count view,
+.c-questions-info__subject view {display: inline; color: #517B39;}
+
+/**
+ * 题目列表
+ */
+.c-question-lists {height: calc(100% - 540rpx);}
+.c-question-lists--handbook {height: calc(100% - 173rpx);}
+.c-question-list {margin-top: 20rpx; background: #fff; box-shadow:0px 3px 7px 0px rgba(0, 0, 0, 0.04);}
+.c-question-list:first-child {margin-top: 0;}
+/* 信息 */
+.c-question-list__info {width: 100%; height: 91rpx; line-height: 91rpx; margin: 0 22rpx; border-bottom: 1px #E5E5E5 dashed; font-size: 44rpx; color: #666666; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+/* 内容 */
+.c-question-list__con-box {position: relative; min-height: 176rpx; padding: 28rpx 22rpx; font-size: 50rpx; color: #517B39;}
+.c-question-list__con {display: inline;}
+.c-question-list__stem {margin-bottom: 14rpx;}
+.c-question-list__attach-img image {width: 190rpx; height: 190rpx; margin-right: 14rpx; margin-bottom: 14rpx; vertical-align: middle;}
+/* 操作 */
+.c-question-list__operator {display: flex; height: 110rpx; padding: 0 22rpx; box-shadow:0 -3px 7px 0 rgba(0, 0, 0, 0.04); justify-content: space-between; align-items: center;}
+.c-question-list__bind-class,
+.c-question-list__edit,
+.c-question-list__del {display: inline-flex; font-size: 44rpx; color: #999999; align-items: center;}
+.c-question-list__bind-class::before,
+.c-question-list__edit::before,
+.c-question-list__del::before {content: ""; width: 50rpx; height: 50rpx; margin-right: 15rpx;background-size:100% 100%;}
+.c-question-list__bind-class::before{background-image:url('https://assets.meiyike.cn/preconception/images/bindclass.png')}
+.c-question-list__edit::before{background-image:url('https://assets.meiyike.cn/preconception/images/edit.png')}
+.c-question-list__del::before{background-image:url('https://assets.meiyike.cn/preconception/images/delete.png')}
+/* 标签 */
+.c-question-list__stem--txt::after,
+.c-question-list__stem--img::after,
+.c-question-list__stem--video::after,
+.c-question-list__stem--audio::after {content: ""; display: inline-block; width: 50rpx; height: 60rpx; vertical-align: middle;background-size: 100% 100%;}
+.c-question-list__stem--txt::after {background-image:url('https://assets.meiyike.cn/preconception/images/text.png');}
+.c-question-list__stem--img::after {background-image:url('https://assets.meiyike.cn/preconception/images/picture.png');}
+.c-question-list__stem--audio::after {background-image:url('https://assets.meiyike.cn/preconception/images/voice.png');}
+.c-question-list__stem--video::after {background-image:url('https://assets.meiyike.cn/preconception/images/video.png');}

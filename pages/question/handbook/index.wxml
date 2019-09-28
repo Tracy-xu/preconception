@@ -1,56 +1,6 @@
 <wxs src="./filter.wxs" module="filter"></wxs>
 
 <view class="m-scroll-container">
-  <!-- 筛选学段学科教材章节 -->
-  <view class="c-sort">
-      <view class="c-sort__left">
-        学段学科教材版本
-      </view>
-      <view
-        bindtap="handleVisibleSelector"
-        class="c-sort__right"
-      >
-        <i class="c-sort__icon"></i>筛选
-      </view>
-  </view>
-  <selector
-    wx:if="{{ visibleSelector }}"
-    stgId="{{ queryParam.stgId }}"
-    sbjId="{{ queryParam.sbjId }}"
-    edtId="{{ queryParam.edtId }}"
-    tbkId="{{ queryParam.tbkId }}"
-    tbkNodeId="{{ queryParam.tbkNodeId }}"
-    edtName="{{ edtName }}"
-    nodeName="{{ nodeName }}"
-    tbkName="{{ tbkName }}"
-    path="{{ path }}"
-    bindclose="handleCloseSelector"
-    bindconfirm="handleConfirmSelector"
-  >
-  </selector>
-
-  <!-- 菜单 -->
-  <view class="c-menu">
-    <view
-      bindtap="handleOpenHandbook"
-      class="c-menu__spec"
-    >
-      速查手册
-    </view>
-    <view
-      bindtap="handleOpenKnowledgeGraph"
-      class="c-menu__knowledge-graph"
-    >
-      知识点图谱
-    </view>
-    <view
-      class="c-menu__create-question"
-      bindtap="handleCreatQuestion"
-    >
-      创建问题
-    </view>
-  </view>
-
   <!-- 题库信息 -->
   <view class="c-questions-info">
     <view class="c-questions-info__subject">
@@ -68,7 +18,7 @@
 
   <!-- 题库列表 -->
   <scroll-view
-    class="c-question-lists"
+    class="c-question-lists c-question-lists--handbook"
     scroll-y="{{ true }}"
     bindscrolltolower="handlePageChange"
   >
@@ -143,7 +93,4 @@
       {{ pageTips }}
     </view>
   </scroll-view>
-
-  <!-- tapbar -->
-  <myk-tabbar bindchange="handleTabChange"></myk-tabbar>
 </view>

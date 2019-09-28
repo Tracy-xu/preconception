@@ -20,7 +20,7 @@ Page({
     path: [],
     tbkName: '',
     
-    // 分页数据
+    // 习题查询条件和查询结果
     queryParam: {
       curPage: 1,
       scope: 1,
@@ -366,5 +366,35 @@ Page({
    */
   getTbkPreference() {
     return API.Question.getTbkPreference();
+  },
+
+  /**
+   * 速查手册
+   */
+  handleOpenHandbook() {
+    var stgId = this.data.queryParam.stgId;
+    var sbjId = this.data.queryParam.sbjId;
+    var edtId = this.data.queryParam.edtId;
+    var tbkId = this.data.queryParam.tbkId;
+    var tbkNodeId = this.data.queryParam.tbkNodeId;
+    var nodeName = this.data.nodeName;
+    var edtName = this.data.edtName;
+    var tbkName = this.data.tbkName;
+    var path = JSON.stringify(this.data.path);
+
+    wx.navigateTo({
+      url: `${router.handBook}?stgId=${stgId}&sbjId=${sbjId}&edtId=${edtId}&tbkId=${tbkId}&tbkNodeId=${tbkNodeId}&nodeName=${nodeName}&edtName=${edtName}&tbkName=${tbkName}&path=${path}`
+    });
+  },
+
+  /**
+   * 知识图谱
+   */
+  handleOpenKnowledgeGraph() {
+    wx.showToast({
+      title: '还未开放，敬请期待',
+      icon: 'none',
+      duration: 2000
+    });
   }
 })
