@@ -1,6 +1,8 @@
 import API from '../../../api/index.js';
 import chooseImage from '../../../utils/choose-image/choose-image.js';
 
+const app = getApp();
+
 Page({
   data: {
     visibleSelector: false,
@@ -70,6 +72,10 @@ Page({
           qsData: this.data.qsData
         });
       });
+    });
+
+    this.setData({
+      userInfo: app.globalData.userInfo
     });
   },
 
@@ -414,6 +420,31 @@ Page({
       });
     });
 
+    // 一个班级时直接绑定
+    if (this.data.userInfo.klasses.length === 1) {
+      var klassIds = [this.data.userInfo.klasses[0].id];
+      API.Question.bindClassBulk({ klassIds, resourceIds }).then(() => {
+        wx.showModal({
+          title: '提示',
+          content: '绑定成功，需要继续创建问题吗？',
+          success: async (res) => {
+            if (res.cancel) {
+              this.updateQueryParamParentPage();
+              wx.navigateBack();
+              return;
+            }
+
+            this.setData({
+              visibleBindClass: false
+            });
+            this.initQsData();
+          }
+        });
+      });
+      return;
+    }
+
+    // 多个班级到一个新弹框选择绑定
     this.setData({
       resourceIds,
       visibleBindClass: true

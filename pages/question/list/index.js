@@ -2,13 +2,7 @@ import router from '../../../router/index.js';
 import API from '../../../api/index.js';
 import qs from '../../../utils/qs/index.js';
 
-var sleep = time => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, time);
-  });
-};
+const app = getApp();
 
 Page({
   data: {
@@ -39,8 +33,15 @@ Page({
     reload: false,
 
     // 绑定班级所需参数
+    userInfo: null,
     resId: null,
     refId: null
+  },
+
+  onReady() {
+    this.setData({
+      userInfo: app.globalData.userInfo
+    });
   },
 
   async onLoad() {
@@ -323,6 +324,20 @@ Page({
     var resId = ev.target.dataset.resid;
     var refId = ev.target.dataset.refid;
 
+    // 一个班级时直接绑定
+    if (this.data.userInfo.klasses.length === 1) {
+      var klassIds = [this.data.userInfo.klasses[0].id];
+      API.Question.bindClass({ klassIds, refId, resId }).then(() => {
+        wx.showToast({
+          title: '绑定成功',
+          icon: 'none',
+          duration: 2000
+        });
+      });
+      return;
+    }
+
+    // 多个班级到一个新页面选择绑定
     wx.navigateTo({
       url: `${ router.bindClass }?refId=${ refId }&resId=${ resId }`
     });
