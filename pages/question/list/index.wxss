@@ -8,6 +8,6 @@
 .c-menu__spec::before,
 .c-menu__knowledge-graph::before,
 .c-menu__create-question::before {content: ""; width: 66rpx; height: 66rpx; background-size:100% 100%;}
-.c-menu__spec::before{background-image:url('https://assets.meiyike.cn/preconception/images/notebook.png');}
-.c-menu__knowledge-graph::before{background-image:url('https://assets.meiyike.cn/preconception/images/map.png');}
-.c-menu__create-question::before{background-image:url('https://assets.meiyike.cn/preconception/images/makeQuestion.png');}
+.c-menu__spec::before{background-image:url("https://assets.meiyike.cn/preconception/images/notebook.png");}
+.c-menu__knowledge-graph::before{background-image:url("https://assets.meiyike.cn/preconception/images/map.png");}
+.c-menu__create-question::before{background-image:url("https://assets.meiyike.cn/preconception/images/makeQuestion.png");}
