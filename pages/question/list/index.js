@@ -392,7 +392,7 @@ Page({
    */
   handleOpenKnowledgeGraph() {
     wx.showToast({
-      title: '还未开放，敬请期待',
+      title: '暂未开放，敬请期待',
       icon: 'none',
       duration: 2000
     });

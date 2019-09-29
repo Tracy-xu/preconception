@@ -6,12 +6,6 @@
     <view class="c-questions-info__subject">
       当前章节：
       <view>{{ nodeName }}</view>
-      <!-- <icon
-        wx:if="{{ nodeName }}"
-        bindtap="handleRemoveChapterQueryParam"
-        class="c-questions-info__subject-del"
-      >
-      </icon> -->
     </view>
     <view class="c-questions-info__count">共<view>{{ questions.page.total }}</view>条</view>
   </view>
@@ -63,23 +57,6 @@
           class="c-question-list__bind-class"
         >
           绑定班级
-        </view>
-        <view
-          bindtap="handleEditQuestion"
-          data-resid="{{ item.resource.resId }}"
-          data-refid="{{ item.resource.refId }}"
-          data-content="{{ item.content }}"
-          class="c-question-list__edit"
-        >
-          编辑
-        </view>
-        <view
-          bindtap="handleDeleteQuextion"
-          data-resid="{{ item.resource.resId }}"
-          data-index="{{ index }}"
-          class="c-question-list__del"
-        >
-          删除
         </view>
       </view>
     </view>

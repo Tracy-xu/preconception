@@ -20,6 +20,7 @@ Page({
       items: [],
       page: {}
     },
+    nodeName: '',
     pageTips: ''
   },
 
@@ -30,9 +31,11 @@ Page({
     this.data.queryParam.edtId = options.edtId !== 'null' ? Number(options.edtId) : null;
     this.data.queryParam.tbkId = options.tbkId !== 'null' ? Number(options.tbkId) : null;
     this.data.queryParam.tbkNodeId = options.tbkNodeId !== 'null' ? Number(options.tbkNodeId) : null;
+    var nodeName = options.nodeName;
 
     this.setData({
-      queryParam: this.data.queryParam
+      queryParam: this.data.queryParam,
+      nodeName,
     });
 
     var rep = await this.getQuestion(this.data.queryParam);
@@ -97,5 +100,17 @@ Page({
         questions: this.data.questions
       });
     });
-  }
+  },
+
+  /**
+   * 绑定班级
+   */
+  handleBindClass(ev) {
+    var resId = ev.target.dataset.resid;
+    var refId = ev.target.dataset.refid;
+
+    wx.navigateTo({
+      url: `${router.bindClass}?refId=${refId}&resId=${resId}`
+    });
+  },
 })
