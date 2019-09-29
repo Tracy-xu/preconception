@@ -2,7 +2,7 @@
 .m-select-class__item {display: flex; height: 162rpx; padding: 0 24rpx; align-items: center; border-bottom: 1px #D9D9D9 solid;}
 .m-select-class checkbox {margin-right: 15rpx;}
 .m-select-class__class-name,
-.m-select-class__teacher-name {display: flex; align-items: center;}
+.m-select-class__teacher-name {display: flex; align-items: center; overflow: hidden; white-space: nowrap;}
 .m-select-class__class-name::before,
 .m-select-class__teacher-name::before {content: ""; display: inline-block; width: 40rpx; height: 40rpx; margin-right: 14rpx;}
 .m-select-class__class-name::before {background-image: url("https://assets.meiyike.cn/preconception/images/activeclass.png"); background-size: 100% 100%;}
