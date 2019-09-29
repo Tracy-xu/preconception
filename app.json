@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/hello/hello",
     "pages/auth/index",
     "pages/index/index",
     "pages/question/list/index",

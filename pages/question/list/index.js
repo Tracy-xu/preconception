@@ -266,7 +266,7 @@ Page({
   handleTabChange(data) {
     const index = data.detail.index;
     if (index === 1) {
-      wx.navigateTo({
+      wx.redirectTo({
         url: router.profile
       });
     }
