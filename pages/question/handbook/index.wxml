@@ -1,37 +1,37 @@
-<wxs src="./filter.wxs" module="filter"></wxs>
+<wxs src="../list/filter.wxs" module="filter"></wxs>
 
 <view class="m-scroll-container">
   <!-- 题库信息 -->
-  <view class="c-questions-info">
-    <view class="c-questions-info__subject">
+  <view class="m-questions-info">
+    <view class="m-questions-info__subject">
       当前章节：
       <view>{{ nodeName }}</view>
     </view>
-    <view class="c-questions-info__count">共<view>{{ questions.page.total }}</view>条</view>
+    <view class="m-questions-info__count">共<view>{{ questions.page.total }}</view>条</view>
   </view>
 
   <!-- 题库列表 -->
   <scroll-view
-    class="c-question-lists c-question-lists--handbook"
+    class="m-question-lists m-question-lists--handbook"
     scroll-y="{{ true }}"
     bindscrolltolower="handlePageChange"
   >
     <view
       wx:for="{{ questions.items }}"
       wx:key="{{ index }}"
-      class="c-question-list"
+      class="m-question-list"
     >
-      <view class="c-question-list__info">
+      <view class="m-question-list__info">
         章节：{{ filter.formatPath(item) }}
       </view>
-      <view class="c-question-list__con-box">
-        <view class="c-question-list__con">
+      <view class="m-question-list__con-box">
+        <view class="m-question-list__con">
           <navigator url="/pages/question/detail/index?resId={{ item.resource.resId }}&refId={{ item.resource.refId }}">
-            <view class="c-question-list__stem {{ filter.getModeClass(item.content.mode) }}">
+            <view class="m-question-list__stem {{ filter.getModeClass(item.content.mode) }}">
               {{ filter.ellipsis(item.content.content) }}
             </view>
           </navigator>
-          <view class="c-question-list__attach-img">
+          <view class="m-question-list__attach-img">
             <image
               wx:for="{{ item.content.imgs }}"
               wx:key="{{ index }}"
@@ -39,7 +39,7 @@
             >
             </image>
           </view>
-          <view class="c-question-list__attach-audios">
+          <view class="m-question-list__attach-audios">
             <myk-audio
               wx:for="{{ item.content.audios }}"
               wx:key="{{ index }}"
@@ -49,12 +49,12 @@
           </view>
         </view>
       </view>
-      <view class="c-question-list__operator">
+      <view class="m-question-list__operator">
         <view
           bindtap="handleBindClass"
           data-resId="{{ item.resource.resId }}"
           data-refId="{{ item.resource.refId }}"
-          class="c-question-list__bind-class"
+          class="m-question-list__bind-class"
         >
           绑定班级
         </view>
