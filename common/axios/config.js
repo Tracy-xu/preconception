@@ -17,6 +17,12 @@ Axios.defaults.adapter = function (config) {
       header: config.headers,
       success: (res) => {
         if(res.statusCode>299||res.statusCode<200){
+          if (res.statusCode == 401) {
+            wx.showToast({
+              icon:'none',
+              title: '请重试',
+            })
+          }
           reject(res);
         }else{
           resolve(res)
