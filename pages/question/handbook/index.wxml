@@ -1,74 +1,18 @@
-<wxs src="./filter.wxs" module="filter"></wxs>
+<wxs src="../list/filter.wxs" module="filter"></wxs>
 
 <view class="m-scroll-container">
-  <!-- 筛选学段学科教材章节 -->
-  <view class="c-sort">
-      <view class="c-sort__left">
-        学段学科教材版本
-      </view>
-      <view
-        bindtap="handleVisibleSelector"
-        class="c-sort__right"
-      >
-        <i class="c-sort__icon"></i>筛选
-      </view>
-  </view>
-  <selector
-    wx:if="{{ visibleSelector }}"
-    stgId="{{ queryParam.stgId }}"
-    sbjId="{{ queryParam.sbjId }}"
-    edtId="{{ queryParam.edtId }}"
-    tbkId="{{ queryParam.tbkId }}"
-    tbkNodeId="{{ queryParam.tbkNodeId }}"
-    edtName="{{ edtName }}"
-    nodeName="{{ nodeName }}"
-    tbkName="{{ tbkName }}"
-    path="{{ path }}"
-    bindclose="handleCloseSelector"
-    bindconfirm="handleConfirmSelector"
-  >
-  </selector>
-
-  <!-- 菜单 -->
-  <view class="c-menu">
-    <view
-      bindtap="handleOpenHandbook"
-      class="c-menu__spec"
-    >
-      速查手册
-    </view>
-    <view
-      bindtap="handleOpenKnowledgeGraph"
-      class="c-menu__knowledge-graph"
-    >
-      知识点图谱
-    </view>
-    <view
-      class="c-menu__create-question"
-      bindtap="handleCreatQuestion"
-    >
-      创建问题
-    </view>
-  </view>
-
   <!-- 题库信息 -->
   <view class="m-questions-info">
     <view class="m-questions-info__subject">
       当前章节：
       <view>{{ nodeName }}</view>
-      <!-- <icon
-        wx:if="{{ nodeName }}"
-        bindtap="handleRemoveChapterQueryParam"
-        class="m-questions-info__subject-del"
-      >
-      </icon> -->
     </view>
     <view class="m-questions-info__count">共<view>{{ questions.page.total }}</view>条</view>
   </view>
 
   <!-- 题库列表 -->
   <scroll-view
-    class="m-question-lists"
+    class="m-question-lists m-question-lists--handbook"
     scroll-y="{{ true }}"
     bindscrolltolower="handlePageChange"
   >
@@ -114,23 +58,6 @@
         >
           绑定班级
         </view>
-        <view
-          bindtap="handleEditQuestion"
-          data-resid="{{ item.resource.resId }}"
-          data-refid="{{ item.resource.refId }}"
-          data-content="{{ item.content }}"
-          class="m-question-list__edit"
-        >
-          编辑
-        </view>
-        <view
-          bindtap="handleDeleteQuextion"
-          data-resid="{{ item.resource.resId }}"
-          data-index="{{ index }}"
-          class="m-question-list__del"
-        >
-          删除
-        </view>
       </view>
     </view>
     <view class="m-page-tips">
@@ -143,7 +70,4 @@
       {{ pageTips }}
     </view>
   </scroll-view>
-
-  <!-- tapbar -->
-  <myk-tabbar bindchange="handleTabChange"></myk-tabbar>
 </view>

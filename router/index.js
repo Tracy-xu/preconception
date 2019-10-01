@@ -11,6 +11,8 @@ export default {
   questionEdit: '/pages/question/edit/index',
   // 绑定班级
   bindClass: '/pages/question/bind-class/index',
+  // 速查手册
+  handBook: '/pages/question/handbook/index',
   // 前概念分析--列表
   analysisList: '/pages/analysis/analysis-list/index',
   // 前概念分析--详情

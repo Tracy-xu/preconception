@@ -36,7 +36,7 @@
       <view class="c-question-create__box-content">
         <!-- 文本 -->
         <textarea
-          hidden="{{ visibleSelector }}"
+          hidden="{{ visibleSelector || visibleBindClass }}"
           bindinput="handleInputContent"
           class="c-question-create__stem"
           placeholder="请输入题目内容"

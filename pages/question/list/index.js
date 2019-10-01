@@ -2,13 +2,7 @@ import router from '../../../router/index.js';
 import API from '../../../api/index.js';
 import qs from '../../../utils/qs/index.js';
 
-var sleep = time => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, time);
-  });
-};
+const app = getApp();
 
 Page({
   data: {
@@ -20,7 +14,7 @@ Page({
     path: [],
     tbkName: '',
     
-    // 分页数据
+    // 习题查询条件和查询结果
     queryParam: {
       curPage: 1,
       scope: 1,
@@ -39,8 +33,15 @@ Page({
     reload: false,
 
     // 绑定班级所需参数
+    userInfo: null,
     resId: null,
     refId: null
+  },
+
+  onReady() {
+    this.setData({
+      userInfo: app.globalData.userInfo
+    });
   },
 
   async onLoad() {
@@ -265,7 +266,7 @@ Page({
   handleTabChange(data) {
     const index = data.detail.index;
     if (index === 1) {
-      wx.navigateTo({
+      wx.redirectTo({
         url: router.profile
       });
     }
@@ -323,6 +324,20 @@ Page({
     var resId = ev.target.dataset.resid;
     var refId = ev.target.dataset.refid;
 
+    // 一个班级时直接绑定
+    if (this.data.userInfo.klasses.length === 1) {
+      var klassIds = [this.data.userInfo.klasses[0].id];
+      API.Question.bindClass({ klassIds, refId, resId }).then(() => {
+        wx.showToast({
+          title: '绑定成功',
+          icon: 'none',
+          duration: 2000
+        });
+      });
+      return;
+    }
+
+    // 多个班级到一个新页面选择绑定
     wx.navigateTo({
       url: `${ router.bindClass }?refId=${ refId }&resId=${ resId }`
     });
@@ -366,5 +381,35 @@ Page({
    */
   getTbkPreference() {
     return API.Question.getTbkPreference();
+  },
+
+  /**
+   * 速查手册
+   */
+  handleOpenHandbook() {
+    var stgId = this.data.queryParam.stgId;
+    var sbjId = this.data.queryParam.sbjId;
+    var edtId = this.data.queryParam.edtId;
+    var tbkId = this.data.queryParam.tbkId;
+    var tbkNodeId = this.data.queryParam.tbkNodeId;
+    var nodeName = this.data.nodeName;
+    var edtName = this.data.edtName;
+    var tbkName = this.data.tbkName;
+    var path = JSON.stringify(this.data.path);
+
+    wx.navigateTo({
+      url: `${router.handBook}?stgId=${stgId}&sbjId=${sbjId}&edtId=${edtId}&tbkId=${tbkId}&tbkNodeId=${tbkNodeId}&nodeName=${nodeName}&edtName=${edtName}&tbkName=${tbkName}&path=${path}`
+    });
+  },
+
+  /**
+   * 知识图谱
+   */
+  handleOpenKnowledgeGraph() {
+    wx.showToast({
+      title: '暂未开放，敬请期待',
+      icon: 'none',
+      duration: 2000
+    });
   }
 })

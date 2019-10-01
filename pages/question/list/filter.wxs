@@ -24,19 +24,19 @@ module.exports = {
 
   getModeClass: function (mode) {
     if (mode === 1) {
-      return 'c-question-list__stem--txt';
+      return 'm-question-list__stem--txt';
     }
 
     if (mode === 2) {
-      return 'c-question-list__stem--img';
+      return 'm-question-list__stem--img';
     }
 
     if (mode === 3) {
-      return 'c-question-list__stem--video';
+      return 'm-question-list__stem--video';
     }
 
     if (mode === 4) {
-      return 'c-question-list__stem--audio';
+      return 'm-question-list__stem--audio';
     }
   },
 
