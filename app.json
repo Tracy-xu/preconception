@@ -20,7 +20,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "前概念",
+    "navigationBarTitleText": "每一课",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
