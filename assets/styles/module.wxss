@@ -32,6 +32,15 @@
 }
 
 /**
+ * 筛选
+ */
+.m-selector-button {display: flex; height:90rpx; line-height:90rpx; padding:0 21rpx; font-size:40rpx; background:#f2f2f2; color:#444; align-items: center;}
+.m-selector-button__left {flex: 1; min-width: 0;}
+.m-selector-button__left view {overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+.m-selector-button__right {display: inline-flex; width: 150rpx; align-items: center;}
+.m-selector-button__right::before {content: ""; width:42rpx; height:38rpx; margin-right:10rpx; background-image:url("https://assets.meiyike.cn/preconception/images/search.png"); background-size:100% 100%;}
+
+/**
  * 题库信息
  */
 .m-questions-info {margin-bottom: 20rpx; background: #fff;}
