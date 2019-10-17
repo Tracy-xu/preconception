@@ -2,15 +2,17 @@
 
 <view class="m-scroll-container">
   <!-- 筛选学段学科教材章节 -->
-  <view class="c-sort">
-      <view class="c-sort__left">
-        学段学科教材版本
+  <view class="m-selector-button">
+      <view class="m-selector-button__left">
+        <view wx:if="{{ !edtName }}">请选择教材版本</view>
+        <view wx:else>{{ edtName }}>{{ tbkName }}</view>
       </view>
+      
       <view
         bindtap="handleVisibleSelector"
-        class="c-sort__right"
+        class="m-selector-button__right"
       >
-        <i class="c-sort__icon"></i>筛选
+        筛选
       </view>
   </view>
   <selector
