@@ -15,9 +15,10 @@ module.exports = {
       return;
     }
 
-    for (var i = 0; i < path.length; i++) {
-      result += path[i].name;
-    }
+    // for (var i = 0; i < path.length; i++) {
+    //   result += path[i].name;
+    // }
+    result = path[path.length - 1].name
 
     return result;
   },
