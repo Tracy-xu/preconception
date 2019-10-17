@@ -266,7 +266,7 @@ Component({
     handleConfirm() {
       // 教材版本选择组件
       if (this.data.visibleEdition) {
-        if (!this.data.tempTbkId) {
+        if ((this.data.tempTbkId === null) && (this.data.selectedTbkId === null)) {
           wx.showToast({
             title: '请选择课本',
             icon: 'none',
@@ -275,11 +275,12 @@ Component({
           return;
         }
 
+        // 如果没有手动选择，则采用默认值
         this.setData({
-          selectedEdtName: this.data.tempEdtName,
-          selectedEdtId: this.data.tempEdtId,
-          selectedTbkName: this.data.tempTbkName,
-          selectedTbkId: this.data.tempTbkId
+          selectedEdtName: this.data.tempEdtName || this.data.selectedEdtName,
+          selectedEdtId: this.data.tempEdtId || this.data.selectedEdtId,
+          selectedTbkName: this.data.tempTbkName || this.data.selectedTbkName,
+          selectedTbkId: this.data.tempTbkId || this.data.selectedTbkId
         });
         this.getChapterTree(this.data.selectedTbkId);
         this.closeLayer();
