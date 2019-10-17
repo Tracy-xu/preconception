@@ -266,6 +266,15 @@ Component({
     handleConfirm() {
       // 教材版本选择组件
       if (this.data.visibleEdition) {
+        if (!this.data.tempTbkId) {
+          wx.showToast({
+            title: '请选择课本',
+            icon: 'none',
+            duration: 2000
+          });
+          return;
+        }
+
         this.setData({
           selectedEdtName: this.data.tempEdtName,
           selectedEdtId: this.data.tempEdtId,
