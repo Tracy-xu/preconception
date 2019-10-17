@@ -7,7 +7,7 @@ Page({
     // 习题查询条件
     queryParam: {
       curPage: 1,
-      scope: 2,
+      scope: 3,
       sortBy: 'created',
       stgId: null,
       sbjId: null,
