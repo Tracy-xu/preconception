@@ -59,9 +59,10 @@
       wx:if="{{ visibleEdition }}"
       edtId="{{ selectedEdtId }}"
       tbkId="{{ selectedTbkId }}"
-      bindselectbook="handleSelectBook"
       stgId="{{ selectedStgId }}"
       sbjId="{{ selectedSbjId }}"
+      edtName="{{ selectedEdtName }}"
+      bindselectbook="handleSelectBook"
     >
     </edition>
 

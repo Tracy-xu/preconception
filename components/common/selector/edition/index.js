@@ -13,6 +13,9 @@ Component({
     },
     tbkId: {
       type: Number
+    },
+    edtName: {
+      type: String
     }
   },
 
@@ -28,7 +31,7 @@ Component({
     await this.getEdition(this.properties.sbjId, this.properties.stgId);
 
     if (this.properties.edtId && this.properties.tbkId) {
-      this.setDefaultSelect(this.properties.edtId, this.properties.tbkId);
+      this.setDefaultSelect(this.properties.edtId, this.properties.tbkId, this.properties.edtName);
     }
   },
 
@@ -89,10 +92,11 @@ Component({
     /**
      * 设置默认选中
      */
-    setDefaultSelect(edtId, tbkId) {
+    setDefaultSelect(edtId, tbkId, edtName) {
       this.setData({
         selectedEdtId: edtId,
-        selectedTbkId: tbkId
+        selectedTbkId: tbkId,
+        selectedEdtName: edtName
       });
 
       this.getRelativeBook(edtId);
