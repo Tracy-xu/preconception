@@ -4,10 +4,6 @@
   <view class="c-profile-name">
     {{userName}}
   </view>
-  <view class="c-profile-operation" wx:if="{{from == 1}}">
-    设置
-    <view class="c-arrow">></view>
-  </view>
 </view>
 <view class="c-profile-list" wx:if="{{from != 1}}">
   <view class="c-profile-list__item" bindtap="goToMyClass" >
