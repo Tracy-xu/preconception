@@ -57,13 +57,7 @@
   <view class="m-questions-info">
     <view class="m-questions-info__subject">
       当前章节：
-      <view>{{ nodeName }}</view>
-      <!-- <icon
-        wx:if="{{ nodeName }}"
-        bindtap="handleRemoveChapterQueryParam"
-        class="m-questions-info__subject-del"
-      >
-      </icon> -->
+      <view>{{ nodeName ? nodeName : '--' }}</view>
     </view>
     <view class="m-questions-info__count">共<view>{{ questions.page.total }}</view>条</view>
   </view>
