@@ -55,7 +55,10 @@
     <view class="c-bind-class__content">
       <view class="c-bind-class__class-name"
        bindtap="openKlassPrequeView"
-      data-id="{{ item.klassPreconQueId }}">{{ item.schoolName }} {{ item.klassName }}</view>
+       data-id="{{ item.klassPreconQueId }}"
+      >
+        {{ item.schoolName }} {{ item.klassName }}
+      </view>
       <button
         bindtap="handleUnbindClass"
         class="c-bind-class__unbind"
