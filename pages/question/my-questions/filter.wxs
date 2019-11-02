@@ -1,0 +1,51 @@
+module.exports = {
+  formatPath: function (item) {
+    if (!item) {
+      return;
+    }
+    
+    if (!item.content.tbkNodes) {
+      return '--';
+    }
+
+    var path = item.content.tbkNodes[0].path;
+    var result = '';
+
+    if (!path) {
+      return;
+    }
+
+    // for (var i = 0; i < path.length; i++) {
+    //   result += path[i].name;
+    // }
+    result = path[path.length - 1].name
+
+    return result;
+  },
+
+  getModeClass: function (mode) {
+    if (mode === 1) {
+      return 'm-question-list__stem--txt';
+    }
+
+    if (mode === 2) {
+      return 'm-question-list__stem--img';
+    }
+
+    if (mode === 3) {
+      return 'm-question-list__stem--video';
+    }
+
+    if (mode === 4) {
+      return 'm-question-list__stem--audio';
+    }
+  },
+
+  ellipsis: function (text) {
+    if (text && text.length > 24) {
+      return text.substring(0, 24) + '...';
+    }
+
+    return text;
+  }
+};

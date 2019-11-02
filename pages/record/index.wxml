@@ -1,13 +1,17 @@
 <view>
-<!-- 筛选 -->
-  <view class="c-sort">
-      <view class="c-sort__left">
-        共30条记录
-      </view>
-      <view class="c-sort__right">
-        <i class="c-sort__icon"></i>筛选
-      </view>
+  <!-- 筛选 -->
+  <view class="m-selector-button">
+    <view class="m-selector-button__left">
+      <view>共30条记录</view>
+    </view>
+    <view
+      bindtap="handleVisibleSelector"
+      class="m-selector-button__right"
+    >
+      筛选
+    </view>
   </view>
+
   <view class="c-record-header">
     <view class="c-record-header__time">
       <view class="c-record-header__tit">
@@ -26,6 +30,7 @@
       共30条
     </view>
   </view>
+
   <view class="c-reord-list">
     <view class="c-reord-list__item">
       <view class="c-reord-list__tit">
@@ -35,7 +40,7 @@
       <view class="c-reord-list__subtit">
         <i class="c-reord-list__subicon"></i>
         杭州市第二中学七年级一班
-        </view>
+      </view>
     </view>
   </view>
 </view>

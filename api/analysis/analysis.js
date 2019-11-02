@@ -3,11 +3,19 @@ import axios from '../../common/axios/config.js';
 var baseDir = '/qgn/';
 
 /**
- * 前概念老师报告信息
+ * 前概念老师单条报告信息
  */
 export function analyze(klassPreconQueId) {
   return axios.get(baseDir + `klass/precon/que/${klassPreconQueId}/analyze`);
 }
+
+/**
+ * 老师历史纪录
+ */
+export function assignHistory(param) {
+  return axios.get(baseDir + `klass/precon/que/analyze?${param}`);
+}
+
 /**
  * 前概念分组信息
  */

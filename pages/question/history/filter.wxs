@@ -1,0 +1,13 @@
+module.exports = {
+  getPercent: function (a, b) {
+    if (b === 0) {
+      return 0;
+    }
+
+    return Math.floor(a / b * 100);
+  },
+
+  ellipsis: function (val, length) {
+    return val.substring(0, length) + '...';
+  },
+};

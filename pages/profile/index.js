@@ -34,7 +34,7 @@ Page({
       });
     } else if (index === 0){
       wx.redirectTo({
-        url: `${router.questionList}`
+        url: router.history// router.questionList
       });
     }
   },
@@ -50,8 +50,12 @@ Page({
      * 跳转我的记录页面
      */
   goToRecord: function () {
+    // wx.navigateTo({
+    //   url: router.record
+    // });
+
     wx.navigateTo({
-      url: router.record
+      url: router.myQuestions
     });
   },
   // 解除账号绑定

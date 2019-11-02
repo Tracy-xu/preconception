@@ -1,0 +1,120 @@
+<wxs src="./filter.wxs" module="filter"></wxs>
+
+<view class="m-scroll-container">
+  <!-- 筛选学段学科教材章节 -->
+  <view class="m-selector-button">
+    <view class="m-selector-button__left">
+      <view wx:if="{{ !edtName }}">请选择教材版本</view>
+      <view wx:else>{{ edtName }}>{{ tbkName }}</view>
+    </view>
+    
+    <view
+      bindtap="handleVisibleSelector"
+      class="m-selector-button__right"
+    >
+      筛选
+    </view>
+  </view>
+  <selector
+    wx:if="{{ visibleSelector }}"
+    stgId="{{ queryParam.stgId }}"
+    sbjId="{{ queryParam.sbjId }}"
+    edtId="{{ queryParam.edtId }}"
+    tbkId="{{ queryParam.tbkId }}"
+    tbkNodeId="{{ queryParam.tbkNodeId }}"
+    edtName="{{ edtName }}"
+    nodeName="{{ nodeName }}"
+    tbkName="{{ tbkName }}"
+    path="{{ path }}"
+    bindclose="handleCloseSelector"
+    bindconfirm="handleConfirmSelector"
+  >
+  </selector>
+
+  <!-- 题库信息 -->
+  <view class="m-questions-info">
+    <view class="m-questions-info__subject">
+      当前章节：
+      <view>{{ nodeName ? nodeName : '--' }}</view>
+    </view>
+    <view class="m-questions-info__count">共<view>{{ questions.page.total }}</view>条</view>
+  </view>
+
+  <!-- 题库列表 -->
+  <scroll-view
+    class="m-question-lists"
+    scroll-y="{{ true }}"
+    bindscrolltolower="handlePageChange"
+  >
+    <view
+      wx:for="{{ questions.items }}"
+      wx:key="{{ index }}"
+      class="m-question-list"
+    >
+      <view class="m-question-list__info">
+        章节：{{ filter.formatPath(item) }}
+      </view>
+      <view class="m-question-list__con-box">
+        <view class="m-question-list__con">
+          <navigator url="/pages/question/detail/index?resId={{ item.resource.resId }}&refId={{ item.resource.refId }}">
+            <view class="m-question-list__stem {{ filter.getModeClass(item.content.mode) }}">
+              {{ filter.ellipsis(item.content.content) }}
+            </view>
+          </navigator>
+          <view class="m-question-list__attach-img">
+            <image
+              wx:for="{{ item.content.imgs }}"
+              wx:key="{{ index }}"
+              src="{{ item }}"
+            >
+            </image>
+          </view>
+          <view class="m-question-list__attach-audios">
+            <myk-audio
+              wx:for="{{ item.content.audios }}"
+              wx:key="{{ index }}"
+              src="{{ item }}"
+            >
+            </myk-audio>
+          </view>
+        </view>
+      </view>
+      <view class="m-question-list__operator">
+        <view
+          bindtap="handleBindClass"
+          data-resId="{{ item.resource.resId }}"
+          data-refId="{{ item.resource.refId }}"
+          class="m-question-list__bind-class"
+        >
+          绑定班级
+        </view>
+        <view
+          bindtap="handleEditQuestion"
+          data-resid="{{ item.resource.resId }}"
+          data-refid="{{ item.resource.refId }}"
+          data-content="{{ item.content }}"
+          class="m-question-list__edit"
+        >
+          编辑
+        </view>
+        <view
+          bindtap="handleDeleteQuextion"
+          data-resid="{{ item.resource.resId }}"
+          data-index="{{ index }}"
+          class="m-question-list__del"
+        >
+          删除
+        </view>
+      </view>
+    </view>
+    <view class="m-page-tips">
+      <view
+        wx:if="{{ pageTips === '加载中' }}"
+        class="m-page-load"
+      >
+        <icon class="m-page-load__loader"></icon>
+      </view>
+      {{ pageTips }}
+    </view>
+  </scroll-view>
+</view>

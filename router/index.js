@@ -13,6 +13,10 @@ export default {
   bindClass: '/pages/question/bind-class/index',
   // 速查手册
   handBook: '/pages/question/handbook/index',
+  // 我创编的问题
+  myQuestions: '/pages/question/my-questions/index',
+  // 历史纪录
+  history: '/pages/question/history/index',
   // 前概念分析--列表
   analysisList: '/pages/analysis/analysis-list/index',
   // 前概念分析--详情

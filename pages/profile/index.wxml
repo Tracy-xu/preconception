@@ -11,7 +11,7 @@
     <view class="c-arrow">></view>
   </view>
   <view class="c-profile-list__item" bindtap="goToRecord">
-    <view>历史记录</view>
+    <view>我创编的问题</view>
     <view class="c-arrow">></view>
   </view>
 </view>
