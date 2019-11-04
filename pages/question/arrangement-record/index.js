@@ -213,19 +213,8 @@ Page({
    * 速查手册
    */
   handleOpenHandbook() {
-    var stgId = this.data.preference.stgId;
-    var sbjId = this.data.preference.sbjId;
-    var edtId = this.data.preference.edtId;
-    var tbkId = this.data.preference.tbkId;
-    var tbkNodeId = this.data.preference.tbkNodeId;
-
-    var nodeName = this.data.preference.nodeName;
-    var edtName = this.data.preference.edtName;
-    var tbkName = this.data.preference.tbkName;
-    var path = JSON.stringify(this.data.preference.path);
-
     wx.navigateTo({
-      url: `${router.handBook}?stgId=${stgId}&sbjId=${sbjId}&edtId=${edtId}&tbkId=${tbkId}&tbkNodeId=${tbkNodeId}&nodeName=${nodeName}&edtName=${edtName}&tbkName=${tbkName}&path=${path}`
+      url: router.handBook
     });
   },
 

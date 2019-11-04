@@ -54,7 +54,7 @@
  * 题目列表
  */
 .m-question-lists {height: calc(100% - 263rpx);}
-.m-question-lists--handbook {height: calc(100% - 173rpx);}
+.m-question-lists--handbook {height: calc(100% - 263rpx);}
 .m-question-list {margin-top: 20rpx; background: #fff; box-shadow:0px 3px 7px 0px rgba(0, 0, 0, 0.04);}
 .m-question-list:first-child {margin-top: 0;}
 /* 信息 */
@@ -84,7 +84,8 @@
 .m-question-list__stem--img::after {background-image:url("https://assets.meiyike.cn/preconception/images/picture.png");}
 .m-question-list__stem--audio::after {background-image:url("https://assets.meiyike.cn/preconception/images/voice.png");}
 .m-question-list__stem--video::after {background-image:url("https://assets.meiyike.cn/preconception/images/video.png");}
-
+/* 观点 */
+.m-question-list__points {color: #333;}
 
 /* 字体颜色 */
 .font-color--blue{color:#3484C2;}

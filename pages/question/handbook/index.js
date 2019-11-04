@@ -4,6 +4,14 @@ import qs from '../../../utils/qs/index.js';
 
 Page({
   data: {
+    visibleSelector: false,
+
+    // 学段学科教材版本数据（部分在查询参数里面）
+    nodeName: '',
+    edtName: '',
+    path: [],
+    tbkName: '',
+
     // 习题查询条件
     queryParam: {
       curPage: 1,
@@ -25,17 +33,35 @@ Page({
   },
 
   async onLoad (options) {
-    // 从习题列表带过来的学段学科教材章节默认值
-    this.data.queryParam.stgId = options.stgId !== 'null' ? Number(options.stgId) : null;
-    this.data.queryParam.sbjId = options.sbjId !== 'null' ? Number(options.sbjId) : null;
-    this.data.queryParam.edtId = options.edtId !== 'null' ? Number(options.edtId) : null;
-    this.data.queryParam.tbkId = options.tbkId !== 'null' ? Number(options.tbkId) : null;
-    this.data.queryParam.tbkNodeId = options.tbkNodeId !== 'null' ? Number(options.tbkNodeId) : null;
-    var nodeName = options.nodeName;
+    var res = await this.getTbkPreference();
+
+    this.data.queryParam.stgId = res.stgId;
+    this.data.queryParam.sbjId = res.sbjId;
+    this.data.queryParam.edtId = res.edtId;
+    this.data.queryParam.tbkId = res.tbkId;
+
+    var edtName = '';
+    var tbkName = '';
+    var nodeName = '';
+    var path = [];
+    var tbkNodes = res.tbkNode;
+    if (tbkNodes) {
+      edtName = tbkNodes[0].attrs.edtName;
+      tbkName = tbkNodes[0].attrs.tbkName;
+      var hasPath = tbkNodes[0].path;
+      if (hasPath) {
+        path = tbkNodes[0].path;
+        this.data.queryParam.tbkNodeId = path[path.length - 1].id;
+        nodeName = path[path.length - 1].name;
+      }
+    }
 
     this.setData({
       queryParam: this.data.queryParam,
+      edtName,
+      tbkName,
       nodeName,
+      path,
     });
 
     var rep = await this.getQuestion(this.data.queryParam);
@@ -112,5 +138,74 @@ Page({
     wx.navigateTo({
       url: `${router.bindClass}?refId=${refId}&resId=${resId}`
     });
+  },
+
+  /**
+   * 显示学段学科教材章节组件 
+   */
+  handleVisibleSelector() {
+    this.setData({
+      visibleSelector: true
+    });
+  },
+
+  /**
+   * 取消学段学科教材章节组件
+   */
+  handleCloseSelector() {
+    this.setData({
+      visibleSelector: false
+    });
+  },
+
+  /**
+   * 选择学段学科教材章节查询习题
+   */
+  handleConfirmSelector(data) {
+    this.setData({
+      visibleSelector: false
+    });
+
+    var stgId = data.detail.stgId;
+    var sbjId = data.detail.sbjId;
+    var edtId = data.detail.edtId;
+    var tbkId = data.detail.tbkId;
+    var tbkNodeId = data.detail.tbkNodeId;
+    var nodeName = data.detail.nodeName;
+    var edtName = data.detail.edtName;
+    var tbkName = data.detail.tbkName;
+    var path = data.detail.path;
+
+    this.setData({
+      nodeName,
+      edtName,
+      tbkName,
+      path,
+      queryParam: Object.assign({}, this.data.queryParam, {
+        stgId,
+        sbjId,
+        edtId,
+        tbkId,
+        tbkNodeId,
+      })
+    });
+
+    this.getQuestion(this.data.queryParam).then((rep) => {
+      var items = rep.items;
+      var page = rep.page;
+      this.data.questions.items = items;
+      this.data.questions.page = page;
+
+      this.setData({
+        questions: this.data.questions
+      });
+    });
+  },
+
+  /**
+   * 获取数据偏好
+   */
+  getTbkPreference() {
+    return API.Question.getTbkPreference();
   },
 })

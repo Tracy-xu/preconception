@@ -1,6 +1,36 @@
 <wxs src="../list/filter.wxs" module="filter"></wxs>
 
 <view class="m-scroll-container">
+  <!-- 筛选学段学科教材章节 -->
+  <view class="m-selector-button">
+    <view class="m-selector-button__left">
+      <view wx:if="{{ !edtName }}">请选择教材版本</view>
+      <view wx:else>{{ edtName }}>{{ tbkName }}</view>
+    </view>
+    
+    <view
+      bindtap="handleVisibleSelector"
+      class="m-selector-button__right"
+    >
+      筛选
+    </view>
+  </view>
+  <selector
+    wx:if="{{ visibleSelector }}"
+    stgId="{{ queryParam.stgId }}"
+    sbjId="{{ queryParam.sbjId }}"
+    edtId="{{ queryParam.edtId }}"
+    tbkId="{{ queryParam.tbkId }}"
+    tbkNodeId="{{ queryParam.tbkNodeId }}"
+    edtName="{{ edtName }}"
+    nodeName="{{ nodeName }}"
+    tbkName="{{ tbkName }}"
+    path="{{ path }}"
+    bindclose="handleCloseSelector"
+    bindconfirm="handleConfirmSelector"
+  >
+  </selector>
+
   <!-- 题库信息 -->
   <view class="m-questions-info">
     <view class="m-questions-info__subject">
@@ -46,6 +76,16 @@
               src="{{ item }}"
             >
             </myk-audio>
+          </view>
+          <view class="m-question-list__points">
+            <view
+              wx:for="{{ item.content.points }}"
+              wx:key="{{ index }}"
+              wx:for-item="point"
+              wx:for-index="num"
+            >
+              {{ ['A','B','C','D','E','F'][num]}}. {{point.content }}
+            </view>
           </view>
         </view>
       </view>
