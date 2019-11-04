@@ -12,7 +12,7 @@
 .c-menu__knowledge-graph::before{background-image:url("https://assets.meiyike.cn/preconception/images/map.png");}
 .c-menu__create-question::before{background-image:url("https://assets.meiyike.cn/preconception/images/makeQuestion.png");}
 
-/*** 历史纪录 ***/
+/*** 布置纪录 ***/
 .c-analysislist--history {height: calc(100% - 453rpx) !important; margin-top: 20rpx;}
 .c-analysislist--history .c-content {margin-top: 0;}
 .c-analysislist__page-count {height: 66rpx; line-height: 66rpx; padding: 0 24rpx; font-size: 32rpx; background: #fff; color: #666666;}

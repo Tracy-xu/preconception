@@ -34,7 +34,7 @@ Page({
       });
     } else if (index === 0){
       wx.redirectTo({
-        url: router.history// router.questionList
+        url: router.arrangementRecord// router.questionList
       });
     }
   },

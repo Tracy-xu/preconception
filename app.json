@@ -10,11 +10,10 @@
     "pages/question/handbook/index",
     "pages/question/my-questions/index",
     "pages/preview/list/index",
-    "pages/question/history/index",
+    "pages/question/arrangement-record/index",
     "pages/preview/exercises/index",
     "pages/preview/detail/index",
     "pages/profile/index",
-    "pages/record/index",
     "pages/my-class/index",
     "pages/analysis/analysis-detail/index",
     "pages/analysis/analysis-list/index"

@@ -58,7 +58,7 @@ Page({
         API.Auth.getTeacher().then(v => {
           app.globalData.userInfo = v;
           wx.redirectTo({
-            url: router.history
+            url: router.arrangementRecord
           });
         })
       } else {

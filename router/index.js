@@ -15,8 +15,8 @@ export default {
   handBook: '/pages/question/handbook/index',
   // 我创编的问题
   myQuestions: '/pages/question/my-questions/index',
-  // 历史纪录
-  history: '/pages/question/history/index',
+  // 布置纪录
+  arrangementRecord: '/pages/question/arrangement-record/index',
   // 前概念分析--列表
   analysisList: '/pages/analysis/analysis-list/index',
   // 前概念分析--详情

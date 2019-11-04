@@ -31,7 +31,7 @@
   </view>
 
   <!-- 分页统计 -->
-  <view class="c-analysislist__page-count">共{{reports.page.total}}条记录</view>
+  <view class="c-analysislist__page-count">共{{records.page.total}}条记录</view>
 
   <!-- 历史纪录列表 -->
   <scroll-view
@@ -41,27 +41,27 @@
   >
     <view class="c-content">
       <view
-        wx:for="{{ reports.items }}"
+        wx:for="{{ records.items }}"
         wx:key="{{ index }}"
-        wx:for-item="report"
+        wx:for-item="record"
         class="c-content__list"
-        bindtap="handleOpenReportDetail"
-        data-report="{{ report }}"
+        bindtap="handleOpenAnalysisReport"
+        data-record="{{ record }}"
       >
         <view class="c-list__content">
           <view class="c-list__content-text">
             {{
-              report.item.content.content.length > 10 && !show 
-              ? filter.ellipsis(report.item.content.content, 10) 
-              : report.item.content.content
+              record.item.content.content.length > 10 && !show 
+              ? filter.ellipsis(record.item.content.content, 10) 
+              : record.item.content.content
             }}
-            <icon wx:if="{{report.item.content.mode == '1'}}" class="c-list__content-type-text"></icon>
-            <icon wx:if="{{report.item.content.mode == '2'}}" class="c-list__content-type-img"></icon>
-            <icon wx:if="{{report.item.content.mode == '3'}}" class="c-list__content-type-video"></icon>
-            <icon wx:if="{{report.item.content.mode == '4'}}" class="c-list__content-type-img"></icon>
+            <icon wx:if="{{record.item.content.mode == '1'}}" class="c-list__content-type-text"></icon>
+            <icon wx:if="{{record.item.content.mode == '2'}}" class="c-list__content-type-img"></icon>
+            <icon wx:if="{{record.item.content.mode == '3'}}" class="c-list__content-type-video"></icon>
+            <icon wx:if="{{record.item.content.mode == '4'}}" class="c-list__content-type-img"></icon>
             <view
               class="c-list__content-all m-blur"
-              wx:if="{{report.item.content.content.length > 10}}"
+              wx:if="{{record.item.content.content.length > 10}}"
               catchtap="handleToggleMore"
             >
               {{show ? '收起': '全文'}}
@@ -73,7 +73,7 @@
           <!-- 完成率 -->
           <view class="c-list__footer-finishingRate">
             <view class="c-list__finishingRate-num">
-              {{filter.getPercent(report.commit, report.size)}}%
+              {{filter.getPercent(record.commit, record.size)}}%
             </view>
             <view>完成率</view>
           </view>
@@ -85,13 +85,13 @@
               </view>
               <view class="c-list__footer-progressBox">
                 <view
-                  style="width:{{filter.getPercent(report.like, report.size)}}%;"
-                  class="c-list__footer-progress {{filter.getPercent(report.like, report.size) == 100 ? 'c-list__footer-progressall' : ''}}"
+                  style="width:{{filter.getPercent(record.like, record.size)}}%;"
+                  class="c-list__footer-progress {{filter.getPercent(record.like, record.size) == 100 ? 'c-list__footer-progressall' : ''}}"
                 >
                 </view>
               </view>
               <view class="m-crimson c-list__footer-similarityNum">
-                {{filter.getPercent(report.like, report.size)}}%
+                {{filter.getPercent(record.like, record.size)}}%
               </view>
             </view>
             <view class="c-list__footer-similarity">
@@ -100,13 +100,13 @@
               </view>
               <view class="c-list__footer-progressBox">
                 <view
-                  style="width:{{filter.getPercent(report.unlike, report.size)}}%;"
-                  class="c-list__footer-progress {{filter.getPercent(report.unlike, report.size) == 100 ? 'c-list__footer-progressall' : ''}}"
+                  style="width:{{filter.getPercent(record.unlike, record.size)}}%;"
+                  class="c-list__footer-progress {{filter.getPercent(record.unlike, record.size) == 100 ? 'c-list__footer-progressall' : ''}}"
                 >
                 </view>
               </view>
               <view class="m-crimson c-list__footer-similarityNum">
-                {{filter.getPercent(report.unlike, report.size)}}%
+                {{filter.getPercent(record.unlike, record.size)}}%
               </view>
             </view>
           </view>

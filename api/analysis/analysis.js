@@ -10,9 +10,9 @@ export function analyze(klassPreconQueId) {
 }
 
 /**
- * 老师历史纪录
+ * 老师布置纪录
  */
-export function assignHistory(param) {
+export function getArrangementRecord(param) {
   return axios.get(baseDir + `klass/precon/que/analyze?${param}`);
 }
 

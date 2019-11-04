@@ -25,7 +25,7 @@ Page({
     },
     
     // 查询结果
-    reports: null,
+    records: null,
   },
 
   onLoad: async function(options) {
@@ -38,10 +38,10 @@ Page({
       }),
     });
 
-    const rep = await this.getAssignHistory(this.data.queryParam);
+    const rep = await this.getArrangementRecord(this.data.queryParam);
     
     this.setData({
-      reports: rep
+      records: rep
     });
 
     var res = await this.getTbkPreference();
@@ -91,7 +91,7 @@ Page({
    */
   handlePageChange() {
     var curPage = this.data.queryParam.curPage + 1;
-    var totalPage = Math.ceil(this.data.reports.page.total / this.data.reports.page.pageSize);
+    var totalPage = Math.ceil(this.data.records.page.total / this.data.records.page.pageSize);
 
     if (curPage > totalPage) {
       curPage = totalPage;
@@ -113,23 +113,23 @@ Page({
       })
     });
 
-    this.getAssignHistory(this.data.queryParam).then((rep) => {
-      var items = this.data.reports.items.concat(rep.items);
+    this.getArrangementRecord(this.data.queryParam).then((rep) => {
+      var items = this.data.records.items.concat(rep.items);
       var page = rep.page;
-      this.data.reports.items = items;
-      this.data.reports.page = page;
+      this.data.records.items = items;
+      this.data.records.page = page;
 
       this.setData({
-        reports: this.data.reports
+        records: this.data.records
       });
     });
   },
 
   /**
-   * 获取老师历史纪录
+   * 获取老师布置纪录
    */
-  getAssignHistory(param) {
-    return API.Analysis.assignHistory(qs(param));
+  getArrangementRecord(param) {
+    return API.Analysis.getArrangementRecord(qs(param));
   },
 
   /**
@@ -151,10 +151,10 @@ Page({
           }),
         });
 
-        const rep = await this.getAssignHistory(this.data.queryParam);
+        const rep = await this.getArrangementRecord(this.data.queryParam);
 
         this.setData({
-          reports: rep
+          records: rep
         });
       },
     })
@@ -163,10 +163,10 @@ Page({
   /**
    * 打开报告详情
    */
-  handleOpenReportDetail: function(ev) {
-    var report = ev.currentTarget.dataset.report;
-    var commit = report.commit;
-    var klassPreconQueId = report.klassPreconQue.klassPreconQueId;
+  handleOpenAnalysisReport: function(ev) {
+    var record = ev.currentTarget.dataset.record;
+    var commit = record.commit;
+    var klassPreconQueId = record.klassPreconQue.klassPreconQueId;
 
     if (!commit){
       wx.showToast({
