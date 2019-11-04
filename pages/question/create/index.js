@@ -32,17 +32,30 @@ Page({
     resourceIds: []
   },
 
-  onLoad: function (options) {
-    // 从习题列表带过来的学段学科教材章节默认值
-    var stgId = options.stgId !== 'null' ? Number(options.stgId) : this.data.stgId;
-    var sbjId = options.sbjId !== 'null' ? Number(options.sbjId) : this.data.sbjId;
-    var edtId = options.edtId !== 'null' ? Number(options.edtId) : this.data.edtId;
-    var tbkId = options.tbkId !== 'null' ? Number(options.tbkId) : this.data.tbkId;
-    var tbkNodeId = options.tbkNodeId !== 'null' ? Number(options.tbkNodeId) : this.data.tbkNodeId;
-    var nodeName = options.nodeName;
-    var edtName = options.edtName;
-    var tbkName = options.tbkName;
-    var path = JSON.parse(options.path);
+  onLoad: async function () {
+    var res = await this.getTbkPreference();
+
+    var stgId = res.stgId;
+    var sbjId = res.sbjId;
+    var edtId = res.edtId;
+    var tbkId = res.tbkId;
+    var tbkNodeId = null;
+
+    var edtName = '';
+    var tbkName = '';
+    var nodeName = '';
+    var path = [];
+    var tbkNodes = res.tbkNode;
+    if (tbkNodes) {
+      edtName = tbkNodes[0].attrs.edtName;
+      tbkName = tbkNodes[0].attrs.tbkName;
+      var hasPath = tbkNodes[0].path;
+      if (hasPath) {
+        path = tbkNodes[0].path;
+        tbkNodeId = path[path.length - 1].id;
+        nodeName = path[path.length - 1].name;
+      }
+    }
 
     this.setData({
       stgId,
@@ -479,5 +492,12 @@ Page({
   handleCancelBindClass() {
     this.updateQueryParamParentPage();
     wx.navigateBack();
-  }
+  },
+
+  /**
+   * 获取数据偏好
+   */
+  getTbkPreference() {
+    return API.Question.getTbkPreference();
+  },
 })
