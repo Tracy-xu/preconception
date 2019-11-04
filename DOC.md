@@ -4,9 +4,7 @@
 
 ```
 import API from '../../api/index.js';
-```
 
-```
 API.Auth.login();
 ```
 
@@ -15,11 +13,9 @@ API.Auth.login();
 * 路由跳转
 
 ```
-import router from '../../router/index.js';
-```
-
-```
 // 编程式导航
+import router from '../../router/index.js';
+
 wx.navigateTo({
   url: router.home
 });
@@ -30,12 +26,20 @@ wx.navigateTo({
 <navigator url="xxx"></navigator>
 ```
 
-* 路由传参
+* 路由参数
 
 ```
+// 传参
 wx.navigateTo({
   url: `${ router.home }?a=1&b=2`
 });
+```
+
+```
+// 接收
+onLoad: function(options) {
+  console.log(options.a, options.b);
+}
 ```
 
 ### 页面
@@ -90,7 +94,27 @@ wx.navigateTo({
 
 在 plugins 文件夹。采用官方 weui。
 
-## 组件
+### wxs
+
+wxs 一般用于格式化数据，相当于 Vue 里面的 filter，不是完全体的 JavaScript，用时需要小心，比如不支持对象简写：
+
+```
+// 错
+module.exports = {
+  foo() {
+    // ...
+  }
+};
+
+// 对
+module.exports = {
+  foo: function() {
+    // ...
+  }
+};
+```
+
+## 常用组件
 
 ### 拍照
 
