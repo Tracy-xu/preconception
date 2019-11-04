@@ -3,17 +3,17 @@
 <view class="m-scroll-container">
   <!-- 筛选学段学科教材章节 -->
   <view class="m-selector-button">
-      <view class="m-selector-button__left">
-        <view wx:if="{{ !edtName }}">请选择教材版本</view>
-        <view wx:else>{{ edtName }}>{{ tbkName }}</view>
-      </view>
-      
-      <view
-        bindtap="handleVisibleSelector"
-        class="m-selector-button__right"
-      >
-        筛选
-      </view>
+    <view class="m-selector-button__left">
+      <view wx:if="{{ !edtName }}">请选择教材版本</view>
+      <view wx:else>{{ edtName }}>{{ tbkName }}</view>
+    </view>
+    
+    <view
+      bindtap="handleVisibleSelector"
+      class="m-selector-button__right"
+    >
+      筛选
+    </view>
   </view>
   <selector
     wx:if="{{ visibleSelector }}"

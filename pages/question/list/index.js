@@ -233,34 +233,6 @@ Page({
   },
 
   /**
-   * 移除学段学科教材章节查询习题
-   */
-  handleRemoveChapterQueryParam() {
-    this.setData({
-      nodeName: '',
-      path: [],
-      queryParam: Object.assign({}, this.data.queryParam, {
-        stgId: '',
-        sbjId: '',
-        edtId: '',
-        tbkId: '',
-        tbkNodeId: ''
-      })
-    });
-
-    this.getQuestion(this.data.queryParam).then((rep) => {
-      var items = rep.items;
-      var page = rep.page;
-      this.data.questions.items = items;
-      this.data.questions.page = page;
-
-      this.setData({
-        questions: this.data.questions
-      });
-    });
-  },
-
-  /**
    * 切换 tabbar
    */
   handleTabChange(data) {
