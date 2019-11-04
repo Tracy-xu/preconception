@@ -47,13 +47,9 @@ Page({
     });
   },
   /**
-     * 跳转我的记录页面
+     * 跳转我创编的问题页面
      */
   goToRecord: function () {
-    // wx.navigateTo({
-    //   url: router.record
-    // });
-
     wx.navigateTo({
       url: router.myQuestions
     });
