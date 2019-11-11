@@ -66,13 +66,15 @@
     >
     </edition>
 
-    <chapter
-      wx:if="{{ visibleChapter }}"
-      tree-data="{{ treeData }}"
-      bindselectchapter="handleSelectChapter"
-      selectId="{{ tempNodeId }}"
-    >
-    </chapter>
+    <view style="padding-left: 40rpx;">
+      <chapter
+        wx:if="{{ visibleChapter }}"
+        tree-data="{{ treeData }}"
+        bindselectchapter="handleSelectChapter"
+        selectId="{{ tempNodeId }}"
+      >
+      </chapter>
+    </view>
   </scroll-view>
 
   <!-- 按钮 -->
