@@ -51,7 +51,7 @@
         <view class="c-list__content">
           <view class="c-list__content-text">
             {{
-              record.item.content.content.length > 10 && !show 
+              record.item.content.content.length > 10 && !record.show 
               ? filter.ellipsis(record.item.content.content, 10) 
               : record.item.content.content
             }}
@@ -63,8 +63,9 @@
               class="c-list__content-all m-blur"
               wx:if="{{record.item.content.content.length > 10}}"
               catchtap="handleToggleMore"
+              data-index="{{ index }}"
             >
-              {{show ? '收起': '全文'}}
+              {{record.show ? '收起': '全文'}}
             </view>
           </view>
         </view>

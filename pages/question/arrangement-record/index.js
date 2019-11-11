@@ -183,9 +183,12 @@ Page({
   /**
    * 切换全文显示
    */
-  handleToggleMore: function(){
+  handleToggleMore: function(ev){
+    var index = ev.currentTarget.dataset.index;
+    this.data.records.items[index].show = !this.data.records.items[index].show;
+
     this.setData({
-      show: !this.data.show
+      records: this.data.records
     });
   },
 
