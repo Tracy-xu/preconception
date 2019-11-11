@@ -84,7 +84,7 @@
               wx:for-item="point"
               wx:for-index="num"
             >
-              {{ ['A','B','C','D','E','F'][num]}}. {{point.content }}
+              <view wx:if="{{point.content}}">{{ ['A','B','C','D','E','F'][num] }}. {{ point.content }}</view>
             </view>
           </view>
         </view>
