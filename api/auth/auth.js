@@ -37,8 +37,8 @@ let setRefresh = () => {
   }
 };
 
-let loginByOpenId = (openId) => {
-  return Axios.post(`/auth/oauth/token?client_id=${client_id}&client_secret=${client_secret}&grant_type=openid&scope=all&openId=${openId}`, {},{ headers: { isAuth:false}}).then(v => {
+let loginByOpenId = (authId) => {
+  return Axios.post(`/auth/oauth/token?client_id=${client_id}&client_secret=${client_secret}&grant_type=openid&scope=all&authId=${authId}`, {},{ headers: { isAuth:false}}).then(v => {
     console.log("setting auth to localStorage by password loginByOpenId");
     let auth = v;
     wx.setStorageSync('token', auth.access_token);
@@ -49,15 +49,15 @@ let loginByOpenId = (openId) => {
   });
 };
 
-let bind = (openId) => {
-  return Axios.post(`/auth/social/bind?openId=${openId}`);
+let bind = (authId) => {
+  return Axios.post(`/auth/social/bind?authId=${authId}`);
 };
 
 let unBind = () => {
   return Axios.post(`/auth/social/unbind?providerId=wxmp`);
 };
 
-let loginByPassword = (username, password, openId) => {
+let loginByPassword = (username, password, authId) => {
   return Axios.post(`/auth/oauth/token?client_id=${client_id}&client_secret=${client_secret}&grant_type=password&scope=all&username=${username}&password=${password}`, {}, { headers: { isAuth: false } }).then(v => {
     console.log(v);
     console.log("setting auth to localStorage by password loginByPassword");
@@ -66,7 +66,7 @@ let loginByPassword = (username, password, openId) => {
     wx.setStorageSync('refreshToken', auth.refresh_token);
     wx.setStorageSync('expiresIn', auth.expires_in);
   }).then(v => {
-    bind(openId).then(v=>{
+    bind(authId).then(v=>{
       setRefresh();
     });
   })
@@ -76,18 +76,18 @@ let login = (username, password) => {
   return new Promise((resolve, reject) => {
     wx.login({
       success: res => {
-        Axios.post(`/auth/social/auth/wxmp?code=${res.code}`, {}, { headers: { isAuth: false } }).then(v => {
+        Axios.post(`/auth/social/auth/wx?code=${res.code}`, {}, { headers: { isAuth: false } }).then(v => {
           console.log("get social message from service");
           let social = v;
           if(social.nextStep=='signIn'){
-            loginByOpenId(social.openId).then(v=>{
+            loginByOpenId(social.authId).then(v=>{
               resolve(v);
             }).catch(v=>{
               reject(v);
             });
           }else if(social.nextStep=='signUp'){
             if(username!=null&&password!=null){
-              loginByPassword(username,password,social.openId).then(v=>{
+              loginByPassword(username,password,social.authId).then(v=>{
                 resolve(v);
               }).catch(v=>{
                 reject(v);
