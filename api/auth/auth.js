@@ -1,7 +1,7 @@
 import Axios from '../../common/axios/config.js';
 
-let client_id = 'myk-web';
-let client_secret = '12719da91b1745da8d272c6e119f71da';
+let client_id = 'myk-wx';
+let client_secret = 'dcdd0330591ad3da2db9b3aca86168eb';
 
 let interval = null;
 
