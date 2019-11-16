@@ -54,7 +54,7 @@ let bind = (authId) => {
 };
 
 let unBind = () => {
-  return Axios.post(`/auth/social/unbind?providerId=wxmp`);
+  return Axios.post(`/auth/social/unbind?providerId=wx`);
 };
 
 let loginByPassword = (username, password, authId) => {
