@@ -131,6 +131,7 @@
 .c-list__footer-finishingRate {
   position: relative;
   padding-right: 45rpx;
+  margin-right: 40rpx;
   font-size:40rpx;
 }
 .c-list__footer-finishingRate::after {
@@ -147,6 +148,9 @@
   line-height: 50rpx;
   font-weight:bold;
   color:rgba(194,54,78,1);
+}
+.c-list__footer-viewpoint {
+  flex: 1;
 }
 .c-list__footer-similarity {
   display: flex;
