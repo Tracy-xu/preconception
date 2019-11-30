@@ -45,10 +45,12 @@
         wx:key="{{ index }}"
         wx:for-item="record"
         class="c-content__list"
-        bindtap="handleOpenAnalysisReport"
-        data-record="{{ record }}"
       >
-        <view class="c-list__content">
+        <view
+          bindtap="handleOpenAnalysisReport"
+          data-record="{{ record }}"
+          class="c-list__content"
+        >
           <view class="c-list__content-text">
             {{
               record.item.content.content.length > 10 && !record.show 
@@ -70,7 +72,11 @@
           </view>
         </view>
 
-        <view class="c-list__footer">
+        <view
+          bindtap="handleVisibleUnfinishStudentList"
+          data-record="{{ record }}"
+          class="c-list__footer"
+        >
           <!-- 完成率 -->
           <view class="c-list__footer-finishingRate">
             <view class="c-list__finishingRate-num">
@@ -125,6 +131,25 @@
       {{ pageTips }}
     </view>
   </scroll-view>
+
+  <!-- 未完成的学生列表 -->
+  <mp-dialog 
+    wx:if="{{visibleUnfinish}}"
+    title="未完成的学生"
+    show="{{true}}"
+    buttons="{{[{text: '确定'}]}}"
+    bindclose="handleCloseUnfinishStudentList"
+    bindbuttontap="handleCloseUnfinishStudentList"
+  >
+    <view class="c-unfinish-student">
+      <view
+        wx:for="{{unfinishStudent}}"
+        class="c-unfinish-student__list"
+      >
+        {{item}}
+      </view>
+    </view>
+  </mp-dialog>
 
   <!-- tapbar -->
   <myk-tabbar bindchange="handleTabChange"></myk-tabbar>

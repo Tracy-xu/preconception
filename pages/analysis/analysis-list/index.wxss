@@ -104,12 +104,12 @@
 .c-list__footer {
   display: flex;
   justify-content: space-between;
-  height:137rpx;
   padding: 28rpx 60rpx;
 }
 .c-list__footer-finishingRate {
   position: relative;
   padding-right: 45rpx;
+  margin-right: 40rpx;
   font-size:40rpx;
 }
 .c-list__footer-finishingRate::after {

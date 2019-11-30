@@ -26,6 +26,10 @@ Page({
     
     // 查询结果
     records: null,
+
+    // 未完成的学生
+    visibleUnfinish: false,
+    unfinishStudent: [],
   },
 
   onLoad: async function(options) {
@@ -165,6 +169,7 @@ Page({
    */
   handleOpenAnalysisReport: function(ev) {
     var record = ev.currentTarget.dataset.record;
+
     var commit = record.commit;
     var klassPreconQueId = record.klassPreconQue.klassPreconQueId;
 
@@ -207,6 +212,33 @@ Page({
   handleOpenHandbook() {
     wx.navigateTo({
       url: router.handBook
+    });
+  },
+
+  /**
+   * 显示未完成学生列表
+   */
+  handleVisibleUnfinishStudentList(ev) {
+    var record = ev.currentTarget.dataset.record;
+
+    var unfinishStudent = record.unFinishWork.map((item) => {
+      return item.userName;
+    });
+
+    if (unfinishStudent.length) {
+      this.setData({
+        visibleUnfinish: true,
+        unfinishStudent,
+      });
+    }
+  },
+
+  /**
+   * 关闭未完成学生列表
+   */
+  handleCloseUnfinishStudentList() {
+    this.setData({
+      visibleUnfinish: false,
     });
   },
 

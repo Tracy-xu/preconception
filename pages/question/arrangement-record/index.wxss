@@ -17,7 +17,9 @@
 .c-analysislist--history .c-content {margin-top: 0;}
 .c-analysislist__page-count {height: 66rpx; line-height: 66rpx; padding: 0 24rpx; font-size: 32rpx; background: #fff; color: #666666;}
 
-
+/* 未完成学生列表 */
+.c-unfinish-student {width: 500rpx; max-height: 45vh;}
+.c-unfinish-student__list {display: flex; height: 80rpx; align-items: center; border-bottom: 1px #eee solid; font-size: 36rpx; color: #333;}
 
 
 .c-analysislist {height: 100%; background:rgba(242,242,242,1);}
@@ -125,7 +127,6 @@
 .c-list__footer {
   display: flex;
   justify-content: space-between;
-  height:137rpx;
   padding: 28rpx 60rpx;
 }
 .c-list__footer-finishingRate {
