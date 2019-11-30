@@ -14,12 +14,13 @@
     <view>我创编的问题</view>
     <view class="c-arrow">></view>
   </view>
+</view>
+<view class="c-profile-list">
   <view class="c-profile-list__item" bindtap="deleteUser">
     <view>解除账号绑定</view>
     <view class="c-arrow">></view>
   </view>
 </view>
-
 <mp-dialog
   title="提示"
   buttons="{{buttons}}"
