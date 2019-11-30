@@ -84,6 +84,16 @@ Page({
       param = qs(param);
 
       API.Question.getQuestion(param).then((rep) => {
+        rep.items = rep.items.map((item) => {
+          item.content.points = item.content.points.filter((point) => {
+            if (point.content) {
+              return point;
+            }
+          });
+
+          return item;
+        });
+
         resolve(rep);
       });
     });
